@@ -45,9 +45,24 @@
 									</header>
 
 									<p>
-										This project is heavily inspired by <a href = "https://www.cs.princeton.edu/courses/archive/fall10/cos402/assignments/satisfaction/">one of my favorite projects in my undergraduate AI class</a>.  For the first time in the class, students will write ordinary code in Java to explore topics in computational complexity.  In particular, students will be responsible for coming up with a reduction from a NP complete problem to an instance of 3-SAT.
+										This project is heavily inspired by <a href = "https://www.cs.princeton.edu/courses/archive/fall10/cos402/assignments/satisfaction/">one of my favorite projects in my undergraduate AI class</a>.  For the first time in the class, students will write ordinary code in Java to explore topics in computational complexity.  In particular, students will be responsible for coming up with a reduction from a NP complete problem to an instance of 3-SAT, and also for solving general 3-SAT problems in code.  We will then have a class competition to see who can generate the hardest problems and who has the most efficient solvers.
+									</p>
+
+									<h2>Part 1: Generating 3-SAT Problems</h2>
+									<p>
+										The first part of this project will be for you to implement a program that generates random instances of 3-SAT based on reductions from a more "natural" problem.  We showed in class how it is possible to reduce 3-SAT to vertex cover and to Hamiltonian cycles.  In this assignment, you should go the other way; you should take some problem and reduce it to 3-SAT.  In other words, you should translate an instance of your problem to 3-SAT, use a 3-SAT solver to solve it, and then translate it back to show the solution to your original problem.  You can choose any problem, <b>but it must be NP-complete</b>.  <a href = "https://en.wikipedia.org/wiki/List_of_NP-complete_problems">Click here</a> to see a list of NP-complete problems on Wikipedia.
+									</p>
+
+									<h2>Part 2: Polynomial Time Checking</h2>
+									<p>
+										You should create some code to verify that the solution you get back from 3-SAT is correct once you've translated it back to your problem instance.  Since the problem you chose is NP complete, this checking code should run in polynomial time.
 									</p>
 									
+
+									<h2>Part 3: 3-SAT Solver</h2>
+									<p>
+										A basic brute force 3-SAT solver has been provided along with your code, but you should implement your own 3-SAT solver.  You should not expect this to run efficiently in general (otherwise, you would have solved P = NP, and you should immediately graduate from Ursinus and be granted at Ph.D.).  But perhaps there are apparent "heuristics" or shortcuts you can use to make it faster on practical problems.
+									</p>
 
 
 
