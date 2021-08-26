@@ -1,0 +1,8 @@
+SECTION
+Unit 1: Deterministic Finite Automata (DFAs)
+
+
+LECTURE
+Python Basics: Variables, Methods, Lists, Dictionaries
+
+<ul><li><a href = "https://www.learnpython.org/">learnpython.org</a></li></ul>
