@@ -16,6 +16,36 @@ Assignment 2 Due
 Assignment 3 Due
 
 2021-09-17
-<HR>Assignment 4: Regular Expressions Out
+<HR>Assignment 4: Regular Expressions, Nonregular Languages Out
 
 2021-09-17
+Assignment 4 Due
+
+2021-09-24
+<HR>Assignment 5: Context Free Grammars Out
+
+2021-09-24
+Assignment 5 Due
+
+2021-10-01
+<HR>Assignment 6: Pushdown Automata Out
+
+2021-10-01
+Assignment 6 Due
+
+2021-10-08
+<HR>Assignment 7: Non CFGs, Turing Machines Part 1 Out
+
+2021-10-08
+Assignment 7 Due
+
+2021-10-15
+Assignment 8: Turing Machines Part 2 Out
+
+2021-10-20
+Assignment 8 Due
+
+2021-10-29
+<HR>Assignment 9: (Un)Decidability Out
+
+2021-10-29
