@@ -49,3 +49,21 @@ Assignment 8 Due
 <HR>Assignment 9: (Un)Decidability Out
 
 2021-10-29
+Assignment 9 Due
+
+2021-11-05
+<HR>Assignment 10: Reductions Out
+
+2021-11-05
+Assignment 10 Due
+
+2021-11-17
+<HR>Assignment 11: NP Complete Problems Out
+
+2021-11-17
+<a href = "FinalProject">Final Project</a> Out
+
+2021-11-29
+Assignment 11 Due
+
+2021-12-06
