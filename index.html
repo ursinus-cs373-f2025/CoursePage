@@ -61,7 +61,7 @@
 
 
 <!-- Start of Last Updated -->
-<h2><b>Course Evolving: Site Last Updated 8/25/2021
+<h2><b>Course Evolving: Site Last Updated 8/26/2021
 </b></h2><!-- End of Last Updated -->
 
 											<h2>Table Of Contents</h2>
@@ -130,25 +130,49 @@
 
 											<h3>Course Description</h3>
 												
-												<p>
+											<p>
+												While the subject of programming languages asks the question "what is code," theory of computation asks an even deeper question: <b>"what is a computer?"</b>  Or, in other words, <b>"what can be computed"</b>?  Given the unbridled optimism about technology in the 21st century, one might assume that computers can do anything, but there are limits.  To explore these limits, one might think about what programs can be written in Java on their particular Acer computer, for example.  However, this type of analysis quickly gets nasty because of the huge variance in possible programming languages and possible computers (not to mention the huge variance in possible programs that can be written).  What's to say that a student with a better computer than mine couldn't solve the problem that my computer struggles with, or that a computer with better specs and a more powerful programming language won't come along someday.  What we need is an <b>abstraction</b>, or a mathematical model that's general enough to describe all possible computers and powerful enough to run all programs one could possibly write on these computers.  Once we have such an abstraction, we can study it mathematically and prove what its capabilities and limits are.  This is what the subject of the theory of computation is about.
+											</p>
 
-												</p>
+											<p>
+												This course will serve as an introduction to this deep topic, and we will study TODO
 
+												
+											</p>
+
+											<p>
+												This course satisfies the <a href = "https://www.ursinus.edu/academics/mathematics-and-computer-science/requirements/">theory requirement</a> for the computer science major (the other option being CS 374: Programming Languages).  But beyond being interesting in its own right as a theoretical subject, this course overlaps with compiling techniques and with linguistics.  So those interested in systems programming and natural languages processing / AI, respectively, will benefit from the knowledge in this course.
+											</p>
 
 
 
 											<h3><a name = "goals">Learning Goals</a></h3>
 											<p>
 											<ol>
-												
+												<li>
+													Discover how abstract thinking can make it easier to ask and answer difficult questions about computer science.
+												</li>
+												<li>
+													Explore how simple, precise models of what a computer is can be used to answer seemingly complicated questions about what can be computed by any of the computers we have.
+												</li>
+												<li>
+													Articulate the limits of computation, and what makes a problem "hard"
+												</li>
 											</ol>
 											</p>
 
 											<h3><a name = "objectives">Learning Objectives</a></h3>
 											<p>
 											<ol>
-												
-				
+												<li>
+													Design "programs" for finite state automata, context free grammars, and Turing machines that are capable of solving various problems within the capabilities of these models of computation.
+												</li>
+												<li>
+													Identify the capabilities and limitations of finite state automata, context free grammars, and Turing machines, and be able to demonstrate which are more powerful than the others.
+												</li>
+												<li>
+													Work with algorithm reductions and big-O notation and use these tools to elucidate the hardness of different problems.
+												</li>
 											</ol>
 											</p>
 
@@ -246,7 +270,7 @@
 	
 											<h3><a name = "discord">Discord</a></h3>
 											<p>
-												To facilitate informal, class-wide discussions about the class, we will have a Discord channel for the class.  My goal is for this to turn into a flourishing area to work through <a href = "#confusion">confusion</a> and to share ideas as a group.  All questions are welcome! <b>We will also keep the CS 477 Discord channel open during class for polling and for general questions for students who are shy about speaking up verbally in front of their peers.</b>
+												To facilitate informal, class-wide discussions about the class, we will have a Discord channel for the class.  My goal is for this to turn into a flourishing area to work through <a href = "#confusion">confusion</a> and to share ideas as a group.  All questions are welcome! <b>We will also keep the CS 371 Discord channel open during class for polling and for general questions for students who are shy about speaking up verbally in front of their peers.</b>
 											</p>
 											<p>
 												In addition to the regular channel, we will be holding drop-in student office hours on the Ursinus ACM Discord channel, since student office hours are joint between my classes.  You can find it under the "Chit Chat" Category, as shown below
@@ -292,7 +316,7 @@
 											</table>
 
 											<p>
-												This book was selected because, in my opinion, it's a masterpiece in exposition for undergraduates.  
+												This book was selected because, in my opinion, it's a masterpiece in exposition for undergraduates; it is succinct, clear, and comprehensive for what I want to teach you (and beyond).  I even know people in CS who have used this book as bedtime reading...
 											</p>
 
 
@@ -310,11 +334,7 @@
 											<h3><a name = "preclass">Class Engagement / Pre-Class Work</a></h3>
                                             
                                             <p>
-												It's easier to learn a difficult subject like AI by going through a number of examples on each topic beyond the examples in the large assignments.  Because of this, we will often do small programming exercises and experiments in class related to a topic that we're learning.  At times, I may ask you to read over a description of an exercise or to read some notes about a new topic before class so we can go more deeply into the examples.  I may also ask you to hand in something small related to the class exercises to make sure you were putting effort in during class.  This will all make up a small part of your <a href = "#grading">grade</a> in the class.
-											</p>
-
-											<p>
-												Beyond that, we will have 5 classes devoted to ethics discussions.  I will ask you to watch a video or to do some readings before class, and to answer a few brief reflection questions to make sure you are prepared to have a meaningful discussion.  I will also grade for participation during these classes.
+												It's easier to learn a subject like theory of computation by drilling through a number of examples on each topic beyond the limited examples in the problem sets.  Because of this, we will often do small exercises in class related to a topic that we're learning.  At times, I may ask you to read over a description of an exercise or to read some notes about a new topic before class so we can go more deeply into the examples.  I may also ask you to hand in something small related to the class exercises to make sure you were putting effort in during class.  This will all make up a small part of your <a href = "#grading">grade</a> in the class.
 											</p>
 
 
@@ -335,9 +355,26 @@
 		
 
 <!-- Begin Schedule -->
-<tr><td colspan = "5"><h2><b>Unit 1: Deterministic Finite Automata (DFAs)</b></h2><p></p></td></tr>
-<tr><td>1</td><td>Mon 8/30/2021</td><td>Python Basics: Variables, Methods, Lists, Dictionaries</td><td><ul><li><a href = "https://www.learnpython.org/">learnpython.org</a></li></ul></td><td bgcolor=#f4e6e7>Assignment 1: Welcome To CS 373 Out
+<tr><td colspan = "5"><h2><b>Unit 1: Regular Languages</b></h2><p></p></td></tr>
+<tr><td>1</td><td>Mon 8/30/2021</td><td>Course Overview, DFA Intro</td><td><ul><li>Class Exercise: Treasure Hunt</li></ul></td><td bgcolor=#f4e6e7>Assignment 1: Discrete Math Warmup Out
 </td></tr>
+<tr><td>2</td><td>Wed 9/1/2021</td><td>Discrete Math Review</td><td><ul><li><a href = "#readings">Sipser</a> Ch. 0</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/SetNotation.html">PIFLSA21 Ch. 2</a></li></ul></td><td></td></tr>
+<tr><td>3</td><td>Fri 9/3/2021</td><td>Designing Deterministic Finite Automata (DFAs)</td><td><ul><li><a href = "#readings">Sipser</a> Ch. 1.1</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/DFA.html">PIFLSA21 Ch. 3.1-3.3</a></li></ul></td><td bgcolor=#f4e6e7>Assignment 1 Due
+<HR>Assignment 2: DFAs Out
+</td></tr>
+<tr><td>4</td><td>Mon 9/6/2021</td><td>Formal Description of Finite Automata</td><td><ul><li><a href = "#readings">Sipser</a> Ch. 1.1</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/DFA.html">PIFLSA21 Ch. 3.1-3.3</a></li></ul></td><td></td></tr>
+<tr><td>5</td><td>Wed 9/8/2021</td><td>Regular Operations, Closure Under Union And Concatenation</td><td><ul><li><a href = "#readings">Sipser</a> Ch. 1.1</li></ul></td><td></td></tr>
+<tr><td>6</td><td>Fri 9/10/2021</td><td>Nondeterministic Finite Automata (NFAs)</td><td><ul><li><a href = "#readings">Sipser</a>1.2</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/NFA.html">PIFLSA21 Ch. 3.4-3.6</a></li></ul></td><td bgcolor=#f4e6e7>Assignment 2 Due
+<HR>Assignment 3: NFAs / Regular Operations Out
+</td></tr>
+<tr><td>7</td><td>Mon 9/13/2021</td><td>Equivalence of NFAs and DFAs</td><td><ul><li><a href = "#readings">Sipser</a>1.2</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/NFA.html">PIFLSA21 Ch. 3.4-3.6</a></li></ul></td><td></td></tr>
+<tr><td>8</td><td>Wed 9/15/2021</td><td>Closure Under Star, Begin Regular Expressions</td><td><ul><li><a href = "#readings">Sipser</a>1.2, 1.3</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/RegEx.html">PIFLSA21 Ch. 4.1-4.3, 4.7</a></li></ul></td><td></td></tr>
+<tr><td>9</td><td>Fri 9/17/2021</td><td>Regular Languages And Regular Expressions</td><td><ul><li><a href = "#readings">Sipser</a>1.2, 1.3</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/RegEx.html">PIFLSA21 Ch. 4.1-4.3, 4.7</a></li></ul></td><td bgcolor=#f4e6e7>Assignment 3 Due
+<HR>Assignment 4: Regular Expressions Out
+</td></tr>
+<tr><td>10</td><td>Mon 9/20/2021</td><td>Nonregular Languages (The Limits of Regular Expressions)</td><td><ul><li><a href = "#readings">Sipser</a>1.4</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/NonRegular.html">PIFLSA21 Ch. 5</a></li></ul></td><td></td></tr>
+<tr><td>11</td><td>Wed 9/22/2021</td><td>The pumping lemma</td><td><ul><li><a href = "#readings">Sipser</a>1.4</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/NonRegular.html">PIFLSA21 Ch. 5</a></li></ul></td><td></td></tr>
+<tr><td colspan = "5"><h2><b>Unit 2: Context Free Grammars</b></h2><p></p></td></tr>
 <!-- End Schedule -->
 				</table>
 
@@ -351,9 +388,10 @@
 											<h3>Breakdown</h3>
 											
 											<table>
-											<tr><td>Class Engagement, Pre-Class Prep, Ethics Reading</td><td>15%</td></tr>
-											<tr><td>Programming Assignments</td><td>70%</td></tr>
+											<tr><td>Problem Sets</td><td>60%</td></tr>											
+											<tr><td>Take Home Final</td><td>15%</td></tr>
 											<tr><td>Final Project</td><td>15%</td></tr>
+											<tr><td>Class Engagement, Pre-Class Prep</td><td>10%</td></tr>
 											</table>					
 											
 											<h3><a name = "flexiblesubmission">Flexible Submission Policy</a></h3>
@@ -419,7 +457,7 @@
 											<h3><a name = "inclusive">Inclusive Environment</a></h3>
 
 											<p>
-												Computer science is a field that has <a href = "https://www.theverge.com/2017/8/16/16153740/tech-diversity-problem-science-history-explainer-inequality">historically been and continues to be</a> steeped in inequalities.  In fact, one of the founders of theory of computation, <a href = "https://en.wikipedia.org/wiki/Alan_Turing">Alan Turing</a>, was discriminated against by society for his sexuality to the extent that he likely died by suicide.
+												Computer science is a field that has <a href = "https://www.theverge.com/2017/8/16/16153740/tech-diversity-problem-science-history-explainer-inequality">historically been and continues to be</a> steeped in inequalities.  In fact, one of the founders of theory of computation, <a href = "https://en.wikipedia.org/wiki/Alan_Turing">Alan Turing</a>, was discriminated against by society for his sexuality to the extent that he likely <a href = "https://www.kings.cam.ac.uk/news/2021/kings-pays-tribute-alan-turing">died by suicide</a>.  Given that we're still talking about the contributions he made during his lifetime, we have to wonder what more he would have contributed to the field had he not been pushed out of society, and, by extension, what other contributions we may have missed out on from other people who have not traditionally been welcomed in our field.
 											
 											</p>
 											<p>

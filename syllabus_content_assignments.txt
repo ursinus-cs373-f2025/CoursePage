@@ -1,3 +1,21 @@
-Assignment 1: Welcome To CS 373 Out
+Assignment 1: Discrete Math Warmup Out
 
 2021-08-30
+Assignment 1 Due
+
+2021-09-03
+<HR>Assignment 2: DFAs Out
+
+2021-09-03
+Assignment 2 Due
+
+2021-09-10
+<HR>Assignment 3: NFAs / Regular Operations Out
+
+2021-09-10
+Assignment 3 Due
+
+2021-09-17
+<HR>Assignment 4: Regular Expressions Out
+
+2021-09-17

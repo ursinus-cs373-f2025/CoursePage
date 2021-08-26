@@ -1,8 +1,53 @@
 SECTION
-Unit 1: Deterministic Finite Automata (DFAs)
+Unit 1: Regular Languages
 
 
 LECTURE
-Python Basics: Variables, Methods, Lists, Dictionaries
+Course Overview, DFA Intro
 
-<ul><li><a href = "https://www.learnpython.org/">learnpython.org</a></li></ul>
+<ul><li>Class Exercise: Treasure Hunt</li></ul>
+LECTURE
+Discrete Math Review
+
+<ul><li><a href = "#readings">Sipser</a> Ch. 0</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/SetNotation.html">PIFLSA21 Ch. 2</a></li></ul>
+LECTURE
+Designing Deterministic Finite Automata (DFAs)
+
+<ul><li><a href = "#readings">Sipser</a> Ch. 1.1</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/DFA.html">PIFLSA21 Ch. 3.1-3.3</a></li></ul>
+LECTURE
+Formal Description of Finite Automata
+
+<ul><li><a href = "#readings">Sipser</a> Ch. 1.1</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/DFA.html">PIFLSA21 Ch. 3.1-3.3</a></li></ul>
+LECTURE
+Regular Operations, Closure Under Union And Concatenation
+
+<ul><li><a href = "#readings">Sipser</a> Ch. 1.1</li></ul>
+LECTURE
+Nondeterministic Finite Automata (NFAs)
+
+<ul><li><a href = "#readings">Sipser</a>1.2</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/NFA.html">PIFLSA21 Ch. 3.4-3.6</a></li></ul>
+LECTURE
+Equivalence of NFAs and DFAs
+
+<ul><li><a href = "#readings">Sipser</a>1.2</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/NFA.html">PIFLSA21 Ch. 3.4-3.6</a></li></ul>
+LECTURE
+Closure Under Star, Begin Regular Expressions
+
+<ul><li><a href = "#readings">Sipser</a>1.2, 1.3</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/RegEx.html">PIFLSA21 Ch. 4.1-4.3, 4.7</a></li></ul>
+LECTURE
+Regular Languages And Regular Expressions
+
+<ul><li><a href = "#readings">Sipser</a>1.2, 1.3</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/RegEx.html">PIFLSA21 Ch. 4.1-4.3, 4.7</a></li></ul>
+LECTURE
+Nonregular Languages (The Limits of Regular Expressions), Begin The Pumping Lemma
+
+<ul><li><a href = "#readings">Sipser</a>1.4</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/NonRegular.html">PIFLSA21 Ch. 5</a></li></ul>
+LECTURE
+The pumping lemma
+
+<ul><li><a href = "#readings">Sipser</a>1.4</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/NonRegular.html">PIFLSA21 Ch. 5</a></li></ul>
+SECTION
+Unit 2: Context Free Grammars
+
+
+
