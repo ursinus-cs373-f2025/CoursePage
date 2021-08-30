@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<!-- Header !-->
+	<head>
+		<title>Ursinus CS 373: Theory of Computation, Fall 2021</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="../../assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="../../assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="../../assets/css/ie8.css" /><![endif]-->
+        <style>
+        .image_off, #home:hover .image_on{
+           display:none
+        }
+        .image_on, #home:hover .image_off{
+           display:block
+        }
+        </style>
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="../../index.html" class="logo"><strong>Ursinus CS 373: Theory of Computation, Fall 2021</strong></a>
+								</header>
+<!-- End Header !-->
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+                                        <h2>Homework 2: DFAs</h2>
+									</header>
+
+									<div id="page-content">
+
+                                        <h2>Overview / Logistics</h2>
+										<p>
+                                            The purpose of this problem set is to give you practice with DFAs
+                                        </p>
+                                        
+                                        <h2>Part 1: Constructing DFAs</h2>
+
+                                        <p>
+                                            For all of the problems below, you should save your JFLAP file as "DFAx.jff", where x is the problem number, and then upload them to canvas.
+                                        </p>
+
+                                        <h3>Problem 2</h3>
+                                        <p>
+                                            Complete <a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/DFAExercises2.html#exercise-1">problem 3.3.2</a> in the PIFLSA21 book.  In particular, give a DFA that accepts the language over &Sigma; = {a, b} of a nonzero and even number of a's, followed by at least one b, followed by zero or an odd number of a's.  Running your DFA on <a href = "tests2.txt">the following test file</a> should give these results (you should come up with your own tests as well)
+                                        </p>
+
+                                        <table>
+                                            <tr><td>Input</td><td>Output</td>
+                                            <tr><td>aaaaaa</td><td>Reject</td></tr>
+                                            <tr><td>aaaab</td><td>Accept</td></tr>
+                                            <tr><td>aaaabbbbbb</td><td>Accept</td></tr>
+                                            <tr><td>aaaabbbbbba</td><td>Accept</td></tr>
+                                            <tr><td>aaaabbbbbbaa</td><td>Reject</td></tr>
+                                            <tr><td>aaaabbbbbbaaa</td><td>Accept</td></tr>
+                                            <tr><td>abbb</td><td>Reject</td></tr>
+                                            <tr><td>bbb</td><td>Reject</td></tr>
+                                        </table>
+
+
+                                        
+
+
+
+                                    
+                                </div>
+						</div>
+					</div>
+
+					<!--LaTeX in Javascript!-->
+					<script src="../../../../jsMath/easy/load.js"></script>
+					<!--Syntax highlighting in Javascript!-->
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shCore.js"></script>
+					<script type="text/javascript" src="../../../syntaxhighlighter/scripts/shBrushJScript.js"></script>
+                    <script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushCpp.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushXml.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushMatlabSimple.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushPython.js"></script>
+					<link type="text/css" rel="stylesheet" href="../../../../syntaxhighlighter/styles/shCoreDefault.css"/>
+					<script type="text/javascript">SyntaxHighlighter.all();</script>
+
+<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+                                        <li>
+											<span class="opener">General</span>
+											<ul>
+												<li><a href = "../../index.html#overview">Overview</a></li>
+												<li><a href = "../../index.html#logistics">Technology Logistics</a></li>
+												<li><a href = "../../index.html#readings">Readings</a></li>
+												<li><a href = "../../index.html#deliverables">Deliverables</a></li>
+												<li><a href = "../../index.html#schedule">Schedule</a></li>
+												<li><a href = "../../index.html#grading">Grading</a></li>
+												<li><a href = "../../index.html#environment">Classroom Environment</a></li>
+												<li><a href = "../../index.html#collaboration">Collaboration Policy</a></li>
+												<li><a href = "../../index.html#other">Other Resources / Policies</a></li>
+											</ul> 
+										</li>
+										<li><a href = "../../Software/index.html">Software</a></li>
+										<li><a href = "../../FinalProject/index.html">Final Project</a></li>
+                                        <li>
+											<span class="opener">Assignments</span>
+											<ul>
+											</ul>
+										</li>
+                                        <li>
+											<span class="opener">Class Exercises</span>
+											<ul>
+
+											</ul>
+										</li>
+									</ul>
+								</nav>
+
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; <a href = "http://www.ctralie.com">Christopher J. Tralie</a>. All rights reserved.  Contact chris.tralie@gmail.com. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+			
+            <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+            <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- End Sidebar !-->
+
+<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/skel.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="../../assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../../assets/js/main.js"></script>
+<!-- End Scripts -->
+	</

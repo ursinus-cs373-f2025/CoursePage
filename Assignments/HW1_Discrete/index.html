@@ -1,0 +1,236 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<!-- Header !-->
+	<head>
+		<title>Ursinus CS 373: Theory of Computation, Fall 2021</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="../../assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="../../assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="../../assets/css/ie8.css" /><![endif]-->
+        <style>
+        .image_off, #home:hover .image_on{
+           display:none
+        }
+        .image_on, #home:hover .image_off{
+           display:block
+        }
+        </style>
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="../../index.html" class="logo"><strong>Ursinus CS 373: Theory of Computation, Fall 2021</strong></a>
+								</header>
+<!-- End Header !-->
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+                                        <h2>Homework 1: Discrete Math Review</h2>
+									</header>
+
+									<div id="page-content">
+
+                                        <h2>Overview / Logistics</h2>
+										<p>
+                                            The purpose of this problem set is to get you warmed back up on notation and proof techniques that you will use in the course.  Each problem will be graded out of 3 points.  Upload your solutions to Canvas as a word document, a PDF document, or as a picture of <b>legible</b> handwriting.
+                                        </p>
+
+										<h3>Problem 0</h3>
+
+										There are 3 easy points to earn here:
+										<ol>
+											<li>
+												Read over the <a href = "../../">syllabus</a> and complete the 1-point syllabus quiz at <a href = "https://ursinus.instructure.com/courses/12825/quizzes/15864">this link</a>
+											</li>
+											<li>
+												<a href = "https://ursinus.co1.qualtrics.com/jfe/form/SV_6FHq4IurYitIMvA">Click here</a> to complete the personal survey for the course.
+											</li>
+											<li>
+												<a href = "https://discord.gg/kKR7FrxH">Click here</a> to sign up for the class Discord.  Post a message on the #general channel and let us know what your favorite animal is!
+											</li>
+										</ol>
+										<p>
+											As an ungraded final step, <a href = "https://doodle.com/poll/wgmu62ug8t2g479a?utm_source=poll&utm_medium=link">click here</a> to fill out an office hours survey for what times you can make if you want to make sure that the hours I choose work with your schedule.  Put a check next to every time block for which you can make <b>at least 30 minutes</b> on at that time on that day of the week.
+										</p>
+
+										<h3>Problem 1</h3>
+										<p>
+											Write a short informal English description of the following sets
+										</p>
+										<ol>
+											<li>
+												<h3> 
+													\[ \{ n| n = 2m, m \in \mathcal{N}, \text{ and } n = 7k, k \in \mathcal{N}  \} \]
+												</h3>
+											</li>
+											<li>
+												<h3>
+													\[ \{ n| n = 2k + 1, k \in \mathbb{Z}  \} \]
+												</h3>
+											</li>
+											<li>
+												<h3>
+													\[ \{ n| n = 2^k, k \in \mathcal{N}  \} \]
+												</h3>
+											</li>
+										</ol>
+
+                                        <h3>Problem 2</h3>
+
+										<p>
+											Write a formal description of the following sets using set notation
+										</p>
+										<ol>
+											<li>The set containing all natural numbers which are an odd power of 2</li>
+											<li>The set containing all natural numbers which are an even power of 2, excluding 1</li>
+											<li>The set containing the numbers corresponding to all <a href = "https://www.ursinus.edu/academics/mathematics-and-computer-science/courses/">300 level CS courses at Ursinus</a></li>
+										</ol>
+
+										<h3>Problem 3</h3>
+										<p>
+											Prove that there are at least two people in Philadelphia with the same number of hairs on their head.  
+										</p>
+										<p>
+											<b>HINT:</b> Use the pigeonhole principle.  You'll have to look a couple of numbers up as well (cite your sources)
+										</p>
+                                        
+										<h3>Problem 4</h3>
+										<p>
+											Prove by induction that the dual graph of every convex polygon is a tree
+										</p>
+
+										<h3>Problem 5</h3>
+										<p>
+											Find the error in the following proof that every student on campus is running the same operating system (if this were actually true, it would be a CS professor's dream, particularly if that OS was Linux...)
+										</p>
+
+										<div id = "problem5" style="background: #f3eded; padding: 25px 25px 25px 25px; border-style: solid;">
+										<p>
+											<b>Claim:</b> Any group <b>N</b> students at Ursinus are running the same operating system
+										</p>
+										<p>
+											<b>Proof:</b> By induction on <b>N</b>
+										</p>
+										<p>
+											<b>Base Case</b>: For <b>N = 1</b>, there's only one person to consider, so no matter what operating system they're running, everyone is running the same operating system. 
+										</p>
+										<p>
+											<b>Inductive Step: </b> For <b>N > 1</b>, assume the hypothesis is true for <b>N-1</b> students, and prove that it is true for <b>N</b>.  Take any set <b>S</b> of <b>N</b> students.  We show that all of the students in this group are using the same OS.  Remove some arbitrary student <b>a</b> from this set to obtain the set <b>S<SUB>1</SUB></b>; that is.
+											
+											\[ S = S_1 \cup \{ a \} \]
+											
+
+											By the inductive hypothesis, all students in <b>S<SUB>1</SUB></b> are running the same OS.  Now remove a different student <b>b</b> from <b>S</b> to obtain different set <b>S<SUB>2</SUB></b>; that is
+											
+											\[ S = S_2 \cup \{ b \}, b \neq a \]
+											
+											By the same reasoning, all of the students in <b>S<SUB>2</SUB></b> are running the same OS.  Since <b>a</b> and <b>b</b> are different, this implies that
+
+											\[ a \in S_2, b \in S_1 \]
+
+											or, in other words, <b>a</b> is using the same OS as everyone in <b>S<SUB>2</SUB></b>, and <b>b</b> is using the same OS as everyone in <b>S<SUB>1</SUB></b>.  Since the people overlapping in <b>S<SUB>1</SUB></b> and <b>S<SUB>2</SUB></b> are using the same operating system, it follows that everyone is using the same operating system.  Proof complete!
+										</p>
+										</div>
+										<p>
+											<b>Hint: </b> Pick a particular value for <b>N</b> and try drawing out an example that traces through the argument.  Can you find an <b>N</b> for which some line of reasoning breaks down?
+										</p>
+
+                                        
+
+
+
+                                    
+                                </div>
+						</div>
+					</div>
+
+					<!--LaTeX in Javascript!-->
+					<script src="../../../../jsMath/easy/load.js"></script>
+					<!--Syntax highlighting in Javascript!-->
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shCore.js"></script>
+					<script type="text/javascript" src="../../../syntaxhighlighter/scripts/shBrushJScript.js"></script>
+                    <script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushCpp.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushXml.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushMatlabSimple.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushPython.js"></script>
+					<link type="text/css" rel="stylesheet" href="../../../../syntaxhighlighter/styles/shCoreDefault.css"/>
+					<script type="text/javascript">SyntaxHighlighter.all();</script>
+
+<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+                                        <li>
+											<span class="opener">General</span>
+											<ul>
+												<li><a href = "../../index.html#overview">Overview</a></li>
+												<li><a href = "../../index.html#logistics">Technology Logistics</a></li>
+												<li><a href = "../../index.html#readings">Readings</a></li>
+												<li><a href = "../../index.html#deliverables">Deliverables</a></li>
+												<li><a href = "../../index.html#schedule">Schedule</a></li>
+												<li><a href = "../../index.html#grading">Grading</a></li>
+												<li><a href = "../../index.html#environment">Classroom Environment</a></li>
+												<li><a href = "../../index.html#collaboration">Collaboration Policy</a></li>
+												<li><a href = "../../index.html#other">Other Resources / Policies</a></li>
+											</ul> 
+										</li>
+										<li><a href = "../../Software/index.html">Software</a></li>
+										<li><a href = "../../FinalProject/index.html">Final Project</a></li>
+                                        <li>
+											<span class="opener">Assignments</span>
+											<ul>
+											</ul>
+										</li>
+                                        <li>
+											<span class="opener">Class Exercises</span>
+											<ul>
+
+											</ul>
+										</li>
+									</ul>
+								</nav>
+
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; <a href = "http://www.ctralie.com">Christopher J. Tralie</a>. All rights reserved.  Contact chris.tralie@gmail.com. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+			
+            <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+            <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- End Sidebar !-->
+
+<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/skel.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="../../assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../../assets/js/main.js"></script>
+<!-- End Scripts -->
+	</
