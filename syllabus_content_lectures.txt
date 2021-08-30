@@ -3,9 +3,9 @@ Unit 1: Regular Languages
 
 
 LECTURE
-Course Overview, DFA Intro
+DFA Intro, JFLAP
 
-<ul><li>Class Exercise: Treasure Hunt</li></ul>
+<ul><li>Class Exercise: Find Wawa</li></ul>
 LECTURE
 Discrete Math Review
 

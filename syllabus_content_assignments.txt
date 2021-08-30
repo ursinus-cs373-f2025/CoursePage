@@ -1,4 +1,4 @@
-Assignment 1: Discrete Math Warmup Out
+<a href = "Assignments/HW1_Discrete">Assignment 1: Discrete Math Practice</a> Out
 
 2021-08-30
 Assignment 1 Due

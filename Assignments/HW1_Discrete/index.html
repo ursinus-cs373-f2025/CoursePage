@@ -41,7 +41,8 @@
 							<!-- Content -->
 								<section>
 									<header class="main">
-                                        <h2>Homework 1: Discrete Math Review</h2>
+                                        <h2>Homework 1: Discrete Math Practice</h2>
+										<h3>Chris Tralie</h3>
 										<h3>Due Sunday 9/5/2021 at 11:59PM</h3>
 									</header>
 
@@ -49,10 +50,10 @@
 
                                         <h2>Overview / Logistics</h2>
 										<p>
-                                            The purpose of this problem set is to get you warmed back up on notation and proof techniques that you will use in the course.  Each problem will be graded out of 3 points.  Upload your solutions to Canvas as a word document, a PDF document, or as a picture of <b>legible</b> handwriting.
+                                            The purpose of this problem set is to get you warmed back up on notation and proof techniques that you will use in the course.  Upload your solutions to Canvas as a word document, a PDF document, or as a picture of <b>legible</b> handwriting.
                                         </p>
 
-										<h3>Problem 0</h3>
+										<h3>Problem 0 (3 pts)</h3>
 
 										There are 3 easy points to earn here:
 										<ol>
@@ -70,7 +71,7 @@
 											As an ungraded final step, <a href = "https://doodle.com/poll/wgmu62ug8t2g479a?utm_source=poll&utm_medium=link">click here</a> to fill out an office hours survey for what times you can make if you want to make sure that the hours I choose work with your schedule.  Put a check next to every time block for which you can make <b>at least 30 minutes</b> on at that time on that day of the week.
 										</p>
 
-										<h3>Problem 1</h3>
+										<h3>Problem 1 (3 pts)</h3>
 										<p>
 											Write a short informal English description of the following sets
 										</p>
@@ -92,7 +93,7 @@
 											</li>
 										</ol>
 
-                                        <h3>Problem 2</h3>
+                                        <h3>Problem 2 (3 pts)</h3>
 
 										<p>
 											Write a formal description of the following sets using set notation
@@ -103,20 +104,32 @@
 											<li>The set containing the numbers corresponding to all <a href = "https://www.ursinus.edu/academics/mathematics-and-computer-science/courses/">300 level CS courses at Ursinus</a></li>
 										</ol>
 
-										<h3>Problem 3</h3>
+										<h3>Problem 3 (3 pts)</h3>
 										<p>
 											Prove that there are at least two people in Philadelphia with the same number of hairs on their head.  
 										</p>
 										<p>
 											<b>HINT:</b> Use the pigeonhole principle.  You'll have to look a couple of numbers up as well (cite your sources)
 										</p>
-                                        
-										<h3>Problem 4</h3>
-										<p>
-											Prove by induction that the dual graph of every convex polygon is a tree
-										</p>
 
-										<h3>Problem 5</h3>
+										<h3>Problem 4 (3 pts)</h3>
+										<p>
+											Write truth tables for the following expressions
+										</p>
+										<ol>
+											<li>
+												<h3> \[  x \wedge (y \vee  (z \wedge x)) \] </h3>
+											</li>
+											<li>
+												<h3> \[  (x \vee y) \wedge (x \vee z) \wedge \neg y \] </h3>
+											</li>
+											<li>
+												<h3> \[  z \vee \neg (x \wedge  y \wedge z) \] </h3>
+											</li>
+										</ol>
+                                        
+
+										<h3>Problem 5 (3 pts)</h3>
 										<p>
 											Find the error in the following proof that every student on campus is running the same operating system (if this were actually true, it would be a CS professor's dream, particularly if that OS was Linux...)
 										</p>
@@ -145,7 +158,7 @@
 
 											\[ a \in S_2, b \in S_1 \]
 
-											or, in other words, <b>a</b> is using the same OS as everyone in <b>S<SUB>2</SUB></b>, and <b>b</b> is using the same OS as everyone in <b>S<SUB>1</SUB></b>.  Since the people overlapping in <b>S<SUB>1</SUB></b> and <b>S<SUB>2</SUB></b> are using the same operating system, it follows that everyone is using the same operating system.  Proof complete!
+											which, by the inductive hypothesis, means that <b>a</b> is using the same OS as everyone in <b>S<SUB>2</SUB></b>, and <b>b</b> is using the same OS as everyone in <b>S<SUB>1</SUB></b>.  Since the people overlapping in <b>S<SUB>1</SUB></b> and <b>S<SUB>2</SUB></b> are using the same operating system, it follows that everyone is using the same operating system.  Proof complete!
 										</p>
 										</div>
 										<p>
@@ -154,7 +167,75 @@
 
                                         
 
+										<h3><a name = "problem6">Problem 6 (4 pts)</a></h3>
+										<p>
+											In this problem, we will see how three definitions play together in an interesting way
+										</p>
 
+										<h4>Definition 1: Simple Triangulation</h4>
+										<p>
+											A <b>simple triangulation</b> of a set of points in the plane is a set of triangles drawn between the points satisfying the following properties
+											<ol>
+												<li>Every point is touched by at least one triangle</li>
+												<li>If two triangles intersect, then they intersect along the entirety of exactly one edge</li>
+												<li>
+													The entire set of triangles is connected, and there are no holes (missing triangles) in the middle
+												</li>
+											</ol>
+										</p>
+
+										<img src = "Triangulation.svg" width=300>
+
+										<h4>Definition 2: Dual Graph</h4>
+										<p>
+											The <b>dual graph</b> of a simple triangulation is the graph obtained by creating a node for each triangle and with edges between nodes corresponding to triangles that overlap at an edge.  The picture below shows the dual graph of the above triangulation superimposed on the triangulation
+										</p>
+
+										<img src = "TriangulationDual.svg" width=300>
+
+										<h4>Definition 3: Convex Point Set</h4>
+										<p>
+											A <b>convex point set</b> is a set of points in the plane whose <b>convex hull</b> is empty.  In other words, if I snap a rubber band around the outside of all of the points, there will be no points on the inside.  Below is an example of a convex point set
+										</p>
+
+										<img src = "Convex1.svg" width=250>
+
+										<p>
+											Below is an example of a point set that is not convex
+										</p>
+
+										<img src = "Notconvex.svg" width=250>
+
+										<p>
+											<a href = "https://www.nayuki.io/page/convex-hull-algorithm">Click here</a> for an interactive demo of convex hulls of points sets.
+										</p>
+
+										<h4>Your Task</h4>
+										<p>
+											<b>Prove by induction that the dual graph of a simple triangulation of a convex point set is a tree.</b>  Below are two examples
+										</p>
+
+										<table>
+											<tr>
+												<td>
+													<img src = "ConvexPolygon.svg" width=250>
+												</td>
+												<td>
+													<img src = "ConvexPolygon2.svg" width=250>
+												</td>
+											</tr>
+										</table>
+
+										<b>Hints</b>
+										<ul>
+											<li>You may use the fact that removing any point from a convex point set yields a convex point set</li>
+											<li>
+												You may use the fact that any simple triangulation has an <a href = "https://en.wikipedia.org/wiki/Polygon_triangulation#Ear_clipping_method">ear</a>, or a triangle along the outside that can be removed, leaving a smaller valid simple triangulation
+											</li>
+											<li>
+												Look back in Sipser 0.2 for the definition of a tree as a special case of a graph, and prove that you're satisfying the properties of a tree
+											</li>
+										</ul>
 
                                     
                                 </div>
@@ -201,6 +282,9 @@
                                         <li>
 											<span class="opener">Assignments</span>
 											<ul>
+												<li>
+													<a href = "../../Assignments/HW1_Discrete/index.html">HW1: Discrete Math Practice</a>
+												</li>
 											</ul>
 										</li>
                                         <li>
