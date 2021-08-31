@@ -5,7 +5,7 @@ Unit 1: Regular Languages
 LECTURE
 DFA Intro, JFLAP
 
-<ul><li>Class Exercise: Find Wawa</li></ul>
+<ul><li><a href = "ClassExercises/Week1_Unplugged">Class Exercise: Acting Out DFAs</a></li></ul>
 LECTURE
 Discrete Math Review
 
