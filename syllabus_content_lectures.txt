@@ -9,7 +9,7 @@ DFA Intro, JFLAP
 LECTURE
 Discrete Math Review
 
-<ul><li><a href = "#readings">Sipser</a> Ch. 0</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/SetNotation.html">PIFLSA21 Ch. 2</a></li></ul>
+<ul><li><a href = "ClassExercises/Week1_Discrete">Class exercises / notes</a></li><li><a href = "#readings">Sipser</a> Ch. 0</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/SetNotation.html">PIFLSA21 Ch. 2</a></li></ul>
 LECTURE
 Designing Deterministic Finite Automata (DFAs)
 

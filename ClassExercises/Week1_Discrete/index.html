@@ -1,0 +1,697 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<!-- Header !-->
+	<head>
+		<title>Ursinus CS 373: Theory of Computation, Fall 2021</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="../../assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="../../assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="../../assets/css/ie8.css" /><![endif]-->
+        <style>
+        .image_off, #home:hover .image_on{
+           display:none
+        }
+        .image_on, #home:hover .image_off{
+           display:block
+        }
+        </style>
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="../../index.html" class="logo"><strong>Ursinus CS 373: Theory of Computation, Fall 2021</strong></a>
+								</header>
+<!-- End Header !-->
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+                                        <h2>Week 1: Discrete Math Review</h2>
+                                        <h3><a href = "http://www.ctralie.com">Chris Tralie</a>
+									</header>
+
+									<div id="page-content">
+
+                                        <h3>Debrief</h3>
+										<p>
+                                            The purpose of today's class was to warm us up on some discrete math.  We remembered a proof is a thing we do when we're too tired to do any more examples and we want to convince ourselves that every example of a particular <b>proposition</b> (proposed statement about a truth) is in fact true from now on.
+										</p>
+										<p>
+											We spent most of class today talking about proofs by induction.  We also briefly mentioned the pigeonhole principle.  These are tools we'll need from time to time in the course.  I'll rehash the examples we did below and provide some other ones, including a brief section on truth tables since we didn't get to that.  For more reading beyond these examples, please refer to Sipser Ch. 0 and <a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/Proofs.html">PIFLAS21 Ch. 2.3</a>
+                                        </p>
+
+										<HR>
+										<h2>Proofs by Induction</h2>
+
+										<img src = "https://thumbs.dreamstime.com/z/row-dominoes-23827117.jpg" width=200>
+										<p>
+											Proofs by induction are usually applied to propositions over natural numbers, each of which can be though of a different domino in line of infinite dominoes.  A proof by induction is like all of infinite dominoes falling.  We start off the first domino, and then all we need to show is that we can get from one domino to the next, and the whole thing goes crashing down forever.  There are three parts that we'd like to see in a formal proof by induction:
+											<ol>
+												<li>The base case.  This is analogous to the first domino</li>
+												<li>The inductive hypothesis.  This is the assumption that a particular domino right before we are has fallen down</li>
+												<li>The inductive step.  This is how we use the inductive hypothesis to go from one domino to the next.</li>
+											</ol>
+											If we can pull all of this off correctly, then we've completed a proof by induction.
+										</p>
+
+										<p>
+											This is easiest to see through some examples, so let's review them
+										</p>
+
+										<h2>Example 1: Arithmetic Series ➕</h2>
+										<p>
+											Prove that for all <b>N >= 1</b>
+										</p>
+										<div style="width:200px;">
+										<h3>
+											\[ 1 + 2 + ... + N = \frac{N(N+1)}{2} \]
+										</h3>
+										</div>
+										<p>
+											Let's get together all of the ingredients we need
+										</p>
+										<h4>Base case:</h4>
+										We should start at <b>N = 1</b> and plug that in.  It is indeed true that
+										<div style="width:200px;">
+										<h3>
+											\[ 1 = 1(2)/2 \]
+										</h3>
+										</div>
+										<p>
+										So we're finished with this part
+										</p>
+										<h4>Inductive hypothesis:</h4>
+										<p>
+											We simply assume the proposition is true for some arbitrary <b>N</b>
+										</p>
+										<div style="width:200px;">
+										<h3>
+											\[ 1 + 2 + ... + N = \frac{N(N+1)}{2} \]
+										</h3>
+										</div>
+
+										<h4>Inductive step:</h4>
+										<p>
+											Let's see if we can use some facts from algebra to show that if our inductive hypothesis is taken to be true for <b>N</b>, that we can prove our proposition for <b>N+1</b>.  First, let's just go ahead and plug <b>N+1</b> into the formula
+										</p>
+
+										<div style="width:200px;">
+										<h3>
+											\[  (1 + 2 + ... + N) + (N+1) = \frac{(N+1)(N+2)}{2}  \]
+										</h3>
+										</div>
+
+										<p>
+											Our job will be to show that this equality actually holds.  We can substitute our inductive hypothesis in for the first group of terms in the first set of parentheses 
+										</p>
+
+										<div style="width:200px;">
+											<h3>
+												\[  \frac{N(N+1)}{2} + (N+1) = \frac{(N+1)(N+2)}{2}  \]
+											</h3>
+											</div>
+										
+										<p>
+											We're getting very close now.  Let's come up with a common denominator for the left side
+										</p>
+
+
+										<div style="width:200px;">
+											<h3>
+												\[  \frac{N(N+1) + 2N + 2}{2} + (N+1) = \frac{(N+1)(N+2)}{2}  \]
+											</h3>
+										</div>
+
+										<p>
+											And finally, we'll distribute, foil, and combine like terms on both sides to see that the equation does indeed hold.
+										</p>
+
+										<div style="width:200px;">
+											<h3>
+												\[  \frac{N^2 + 3N + 2}{2}  = \frac{N^2 + 3N + 2}{2}  \]
+											</h3>
+										</div>
+
+										<p>
+											We carried through all of the steps, and so this concludes the proof!
+										</p>
+
+
+										<h2>Example 2: Making Change 🪙</h2>
+										<p>
+											Let's say we want to make change with 2 cent and 5 cent coins.  We want to prove that it's possible to do this for all amounts of change that are <b>N >= 4</b> cents.  As people noticed in class, there is an easier way to prove that this is possible by simply showing how to do it, or making a <b>proof by construction</b>.  But for the sake of reviewing induction, let's follow that recipe first.
+										</p>
+										<h4>Inductive step:</h4>
+                                        <p>
+											Here our base case actually starts at <b>N = 4</b>.  We know it's possible to make 4 cents with 2x2cent coins, so we're finished this part
+										</p>
+
+										<h4>Inductive hypothesis:</h4>
+										<p>
+											The inductive hypothesis is that it's possible to make change with 2cent and 5cent coins for some amount of change <b>N</b>.  Formally, this translates into saying that 
+										</p>
+
+										<div style="width:200px;">
+											<h3>
+												\[  N = 2a + 5b  \]
+											</h3>
+										</div>
+										<p>
+											for some nonnegative integers <b>a</b> and <b>b</b>.  We don't have any control over what these integers are, just that they exist
+										</p>
+
+										<h4>Inductive Step:</h4>
+                                        <p>
+											Since we can't really make any assumptions about what <b>a</b> and <b>b</b> are, let's break them down into a couple of cases and see if it's possible to swap coins around to get from <b>N</b> cents to <b>N+1</b> cents
+										</p>
+										<p>
+										<b>Case 1:</b> Assume we have at least one 5c coin (<b>b > 0</b>).  Then what we can do is take away this coin and add back 3x2cent coins.  Formally, we'll update <b>a</b> and <b>b</b> as follows
+										</p>
+										<div style="width:200px;">
+											<h3>
+												\[  b \gets b - 1  \]
+											</h3>
+											(this is allowed since <b>b > 0</b> in this case)
+										</div>
+										<div style="width:200px;">
+											<h3>
+												\[ a \gets a + 3 \]
+											</h3>
+										</div>
+
+										<p>
+										<b>Case 2:</b> The only other possibility is that we don't have any 5c coins.  This means that <b>N = 2b</b>.  Since <b>N >= 4</b>, we know that <b>a >= 2</b>.  So it's valid to take away 2x2cent coins (4 cents) and add back 5 cents, which brings us to <b>N+1</b>.  Formally,
+										</p>
+										<div style="width:200px;">
+											<h3>
+												\[  a \gets a - 2  \]
+											</h3>
+											(this works since <b>a >= 2</b> in this case)
+										</div>
+										<div style="width:200px;">
+											<h3>
+												\[  b \gets b + 1 \]
+											</h3>
+										</div>
+
+										<p>
+											This concludes the proof by induction
+										</p>
+
+										<h4>Proof by construction:</h4>
+										<p>
+											It's actually much easier to prove this is possible by simply showing how to do it.  Many (most?) of the proofs you will do in this class will be more direct and intuitive than induction, so we like to do things that way if we can (though induction is nice to fall back on sometimes when we're stumped).  To prove this statement by construction, we have two cases
+										</p>
+										<b>Case 1: N is even</b>
+										<p>
+											If <b>N >= 4</b> is even, then it's the case that <b>N = 2a</b> for some nonnegative integer <b>a >= 2</b>.  In other words, simply use <b>N/2</b> 2cent coins
+										</p>
+
+										<b>Case 2: N is odd</b>
+										<p>
+											If <b>N > 4</b> is odd, then it's the case that <b>N = 5 + 2a</b> for some <b>a >= 0</b>.  Or, in other words, start with a 5c coin, and use (N-5)/2 2cent coins to make change for what remains.
+										</p>
+
+										<h2>Example 3: Power Set Cardinality 💪</h2>
+										<p>
+											In this example, we'll talk about set notation and the power set.  Take a moment to review set notation <a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/SetNotation.html">at this link</a> or in Sipser 0.2 if you're rusty.
+										</p>
+
+										<p>
+											Given a set <b>S</b>, the <b>power set</b> <b>P(S)</b> corresponding to <b>S</b> is a set whose elements are all possible subsets of <b>S</b>, <i>including the emptyset &empty;</i>.  That is a mouthful, so let's look at a few examples.  We'll keep it simple by making the set elements be letters
+										</p>
+
+										<p>
+											1. The power set <b>P({a})</b> simply has the following <b>2</b> subsets:
+										</p>
+										<div style="width:200px;">
+											<h3>
+												\[ \{ \emptyset, \{ a \} \} \]
+											</h3>
+										</div>
+
+										<p>
+											3. The power set <b>P({a, b})</b> has the following <b>4</b> subsets:
+										</p>
+										<div style="width:200px;">
+											<h3>
+												\[ \{ \emptyset, \{ a \}, \{ b \}, \{ a, b \} \} \]
+											</h3>
+										</div>
+
+										<p>
+											3. The power set <b>P({a, b, c})</b> has the following <b>8</b> subsets:
+										</p>
+										<div style="width:200px;">
+											<h3>
+												\[ \{ \emptyset, \{ a \}, \{ b \}, \{ c \}, \{ a, b \}, \{ a, c \}, \{ b, c \}, \{ a, b, c \} \} \]
+											</h3>
+										</div>
+										
+										<p>
+											4. The power set <b>P({a, b, c, d})</b> has the following <b>16</b> subsets:
+										</p>
+										<div style="width:200px;">
+											<h3>
+												\[ \{ \emptyset, \{ a \}, \{ b \}, \{ c \}, \{ d \}, \{ a, b \}, \{ a, c \}, \{ a, d \}, \{ b, c \}, \{ b, d \}, \{ c, d \}, \{ a, b, c \}, \{ a, b, d \}, \{ a, c, d \}, \{ b, c, d \} , \{ a, b, c, d \} \} \]
+											</h3>
+										</div>
+
+										<p>
+											By now, you may be starting to notice a pattern: only powers of two are showing up.  In particular, the <b>cardinality</b> (number of elements) in the power set is 2 raised to the cardinality of the original set.
+										</p>
+
+										<h4>Proposition:</h4>
+										<div style="width:200px;">
+											<h3>
+												\[ |\mathcal{P}(S)| = 2^{|S|} \]
+											</h3>
+										</div>
+										<p>
+											Let's prove this by induction
+										</p>
+
+										<h4>Proposition: Base case</h4>
+										<p>
+											We'll start with the set <b>S</b> with cardinality 1.  The proposition says that <b>|P(S)|</b> should be <b>2<SUP>1</SUP> = 2</b>.  This is indeed true, since the only two possible subsets are the empty set &empty; and the single element in <b>S</b>
+										</p>
+
+										<h4>Inductive hypothesis:</h4>
+										<p>
+											A set with <b>N</b> elements has a power set with <b>2<SUP>N</SUP></b> elements
+										</p>
+
+										<h4>Inductive Step:</h4>
+										<p>
+											Let's use the inductive hypothesis to prove that a set <b>S</b> with <b>N+1</b> elements has a power set with <b>2<SUP>N+1</SUP></b> elements.  Let's rip a particular element <b>a</b> out of the set <b>S</b> to create a set <b>S<SUP>-</SUP></b>.  With formal notation, we define 
+										</p>
+
+										<div style="width:200px;">
+											<h3>
+												\[ S^- = S - a \]
+											</h3>
+										</div>
+
+										By the inductive hypothesis 
+
+										<div style="width:200px;">
+											<h3>
+												\[ |\mathcal{P}(S^-)| = 2^{N} \]
+											</h3>
+										</div>
+
+										<p>
+											Then, we note that since <b>S<SUP>-</SUP></b> is a subset of <b>S</b> (formally, <b>S<SUP>-</SUP></b> &#8838; <b>S</b>), it follows that all of the elements of the power set of <b>S</b> belong to all of the elements of the power set of <b>S<SUP>-</SUP></b>.  Formally,
+										</p>
+
+										<div style="width:200px;">
+											<h3>
+												\[ \mathcal{P}(S^-) \subseteq \mathcal{P} \]
+											</h3>
+										</div>
+
+										<p>
+											So there are at least <b>2<SUP>N</SUP></b> elements in <b>P(S)</b>.  However, none of the elements in <b>P(S<SUP>-</SUP>)</b> include <b>a</b>, so we're failing to count a bunch of elements.  We'll add each new element by taking an element from <b>P(S<SUP>-</SUP>)</b> and appending <b>a</b> to it.  For instance, if we had the element <b>{d, f, k}</b> in <b>P(S<SUP>-</SUP>)</b>, we'd create a new element <b>{d, f, k, a}</b>.  We can do this to <b>2<SUP>N</SUP></b> such elements in <b>P(S<SUP>-</SUP>)</b>.  So including the original elements and the new elements, we see that we have 
+										</p>
+
+										<div style="width:200px;">
+											<h3>
+												\[ |\mathcal{P}(S)| = 2^N + 2^N = 2^{N+1}  \]
+											</h3>
+										</div>
+										<p>
+											Which completes the proof
+										</p>
+
+										<h4>Proof by construction:</h4>
+										<p>
+											There is a nice alternative proof by construction using binary counting which gives a lot more intuition about why this proposition is true.  Given a set <b>S</b>, we can associate a binary number with <b>|S|</b> digits to each subset of <b>S</b>.  Each digit represents a unique element in <b>S</b>, and we'll make it a 1 if that element is in a particular subset or 0 if it's not there. 
+										</p>
+
+										<p>
+											As an example, let's consider <b>S = {a, b, c}</b>.  We'll let <b>a</b> be the 4s place, <b>b</b> be the 2s place, and <b>c</b> be the 1s place.  Then we have the following correspondences of binary numbers
+										</p>
+
+										<table style="width:300px">
+											<tr>
+												<td>Subset</td><td>abc binary number</td>
+											</tr>
+											<tr>
+												<td>&empty;</td><td>000</td>
+											</tr>
+											<tr>
+												<td>{a}</td><td>100</td>
+											</tr>
+											<tr>
+												<td>{b}</td><td>010</td>
+											</tr>
+											<tr>
+												<td>{c}</td><td>001</td>
+											</tr>
+											<tr>
+												<td>{a, b}</td><td>110</td>
+											</tr>
+											<tr>
+												<td>{a, c}</td><td>101</td>
+											</tr>
+											<tr>
+												<td>{b, c}</td><td>011</td>
+											</tr>
+											<tr>
+												<td>{a, b, c}</td><td>111</td>
+											</tr>
+										</table>
+
+										<p>
+											In general, there are <b>2<SUP>N</SUP></b> unique numbers with <b>N</b> binary digits, and since each of these numbers is in 1 to 1 correspondence with subsets of <b>S</b> by the construction above, this completes the proof.
+										</p>
+
+										<HR>
+											<h2>The Pigeonhole Principle</h2>
+											<img src = "https://upload.wikimedia.org/wikipedia/commons/5/5c/TooManyPigeons.jpg" width=400>
+											<p>
+											<a href = "https://upload.wikimedia.org/wikipedia/commons/5/5c/TooManyPigeons.jpg">https://upload.wikimedia.org/wikipedia/commons/5/5c/TooManyPigeons.jpg</a>
+										</p>
+
+											<p>
+												Here's a proof technique that doesn't come up often and which might seem obvious, but which can be applied to very non-obvious scenarios to help.  We'll use it in a very specific place at the end of this unit
+											</p>
+
+											<div style="background-color: rgb(241, 234, 221); padding: 10px;">
+													If there are <b>N</b> pigeons and <b>K &lt N</b> holes, and every pigeon must be assigned to a hole, then at least one hole will have two or more pigeons.
+											</div>
+
+											<p>
+												Applying the pigeonhole principle always amounts to figuring out what the pigeons are and what the holes are in the analogy, and then showing that the inequality <b>K &lt N</b> holds
+											</p>
+
+											<h2>Example 1: Birthdays 🎂</h2>
+											<p>
+												<b>Proposition: </b> If there are 400 people in a room, then at least two of these people have the same birthday
+											</p>
+
+											<p>
+												<b>Proof: </b> By the pigeonhole principle, let's make the pigeons be the people, so <b>N = 400</b>.  Then, the holes are the days of the year, of which there are 365.  Since <b>K = 365 &lt N</b>, then we can conclude by the pigeonhole principle that at least two people have the same birthday
+											</p>
+
+											<h2>
+												Example 2: Fire Alarm Sock Rush 🧦 🧑🏿‍🚒
+											</h2>
+											<p>
+												My freshman fall of college I was a light sleeper, so I slept with earplugs.  As a result, the fire alarm went off at 3AM one day and I didn't wake up to it.  When I finally did wake up, I wanted to make sure I looked as classy as possible stepping outside to the lobby, so I decided to reach into my sock drawer next to me to grab some socks.  To make sure I was indeed classy, I wanted to make sure the socks were the same color, but it was dark and I couldn't see, so I had to reach in and grab some individual socks blindly.  My wardrobe was simple, so I only had black socks and white socks.  Prove that I only needed to grab 3 socks to make sure I could find two socks of the same color among them
+											</p>
+
+											<p>
+												<b>Proof: </b> In this case, the pigeons are the individual socks, and the holes are the 2 possible colors of the socks.  I claim that I need 3 socks, so <b>N = 3</b>, and <b>K = 2 &lt N</b>.  Therefore, I can conclude by the pigeonhole principle that I'm good to go.
+											</p>
+
+											<h2>
+												Example 3: Snake Oil Compression Software 📁💾🐍
+											</h2>
+											<p>
+												If someone presents you with <a href = "https://en.wikipedia.org/wiki/Lossless_compression">lossless compression</a> software that claims to be able to reduce the file size of any file, you know they're lying.
+											</p>
+
+											<p>
+												<b>Proof:</b> This is an interesting example of a combination <b>proof by contradiction</b> with the pigeonhole principle baked into it (<a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/Proofs.html#proof-by-contradiction">Click here</a> to review proofs by contradiction).  What we'll do is assume the snake oil salesman is telling the truth, and then we'll show that we reach an absurd conclusion, catching them red handed.  So let's assume that it is possible to compress any file losslessly.  As an example, let's consider all possible files with <b>B</b> bits, of which there are <b>2<SUP>B</SUP></b>.  Let's be very generous and declare a victory if this software reduces our file size by a single bit to <b>B-1</b> bits.  There are <b>2<SUP>B-1</SUP></b> such possible compressed files.  In terms of the pigeonhole principle, we're saying that <b>N = 2<SUP>B</SUP></b> files must be mapped to <b>K = 2<SUP>B-1</SUP> &lt N</b> locations.  By the pigeonhole principle, this means that at least one of the compressed files must have come from two or more original files.  But this violates the fact that this is a <b>lossless</b> compression algorithm, because we need to be able to reconstruct the file perfectly from its compressed form, but there are compressed files which will be ambiguous since they came from multiple sources, and we don't know which one was the original if we were just handed the compressed form.  Therefore, by contradiction, we know that the salesman is lying, and we conclude the proof.
+											</p>
+
+											<HR>
+												<h2>Binary Logic And Truth Tables</h2>
+												<p>
+													Take a moment to review the <b>boolean logic</b> section in Sipser 0.2.  A <b>truth table</b> is a way to exhaustively enumerate the result of a boolean expression on all possible values of the variables that make it up.  We'll be using boolean expressions a lot more in the last unit of the course, but I want to plant the seed now.  Here are the truth tables for AND (^), OR (v), NOT (&#172;), and XOR (⊕)
+												</p>
+
+												<table>
+													<tr>
+														<td>
+															<table style="width:200px;">
+																<tr>
+																	<td>x</td>
+																	<td>y</td>
+																	<td>x ^ y (AND)</td>
+																</tr>
+																<tr>
+																	<td>0</td>
+																	<td>0</td>
+																	<td>0</td>
+																</tr>
+																<tr>
+																	<td>0</td>
+																	<td>1</td>
+																	<td>0</td>
+																</tr>
+			
+																<tr>
+																	<td>1</td>
+																	<td>0</td>
+																	<td>0</td>
+																</tr>
+			
+																<tr>
+																	<td>1</td>
+																	<td>1</td>
+																	<td>1</td>
+																</tr>
+															</table>
+														</td>
+														<td>
+															<table style="width:200px;">
+																<tr>
+																	<td>x</td>
+																	<td>y</td>
+																	<td>x v y (OR)</td>
+																</tr>
+																<tr>
+																	<td>0</td>
+																	<td>0</td>
+																	<td>0</td>
+																</tr>
+																<tr>
+																	<td>0</td>
+																	<td>1</td>
+																	<td>1</td>
+																</tr>
+			
+																<tr>
+																	<td>1</td>
+																	<td>0</td>
+																	<td>1</td>
+																</tr>
+			
+																<tr>
+																	<td>1</td>
+																	<td>1</td>
+																	<td>1</td>
+																</tr>
+															</table>
+														</td>
+														<td>
+															<table style="width:200px;">
+																<tr>
+																	<td>x</td>
+																	<td>y</td>
+																	<td>x ⊕ y (OR)</td>
+																</tr>
+																<tr>
+																	<td>0</td>
+																	<td>0</td>
+																	<td>0</td>
+																</tr>
+																<tr>
+																	<td>0</td>
+																	<td>1</td>
+																	<td>1</td>
+																</tr>
+			
+																<tr>
+																	<td>1</td>
+																	<td>0</td>
+																	<td>1</td>
+																</tr>
+			
+																<tr>
+																	<td>1</td>
+																	<td>1</td>
+																	<td>0</td>
+																</tr>
+															</table>
+														</td>
+														<td>
+															<table style="width:200px;">
+																<tr>
+																	<td>x</td>
+																	<td>&#172;x (NOT)</td>
+																</tr>
+																<tr>
+																	<td>0</td>
+																	<td>1</td>
+																</tr>
+																<tr>
+																	<td>1</td>
+																	<td>0</td>
+																</tr>
+																
+															</table>
+														</td>
+													</tr>
+												</table>
+
+												<p>
+													Let's now look at an expression involving three variables and some of these operators
+												</p>
+												<h3>
+													\[ \neg (x \vee y) \wedge z \]
+												</h3>
+												<p>
+													For these truth tables, it's often helpful to add a column for intermediate computations to help show our work.  For this example, I'll add a column for <b>(x v y) and then &#172;(x v y)</b> before adding the final result
+												</p>
+
+												<table style="width:400px;">
+													<tr>
+														<td>x</td>
+														<td>y</td>
+														<td>z</td>
+														<td>x v y</td>
+														<td>&#172;(x v y)</td>
+														<td>&#172;(x v y) ^ z</td>
+													</tr>
+													<tr>
+														<td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td>
+													</tr>
+													<tr>
+														<td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td>
+													</tr>
+													<tr>
+														<td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td>
+													</tr>
+													<tr>
+														<td>0</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td>
+													</tr>
+													<tr>
+														<td>1</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td>
+													</tr>
+													<tr>
+														<td>1</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td>
+													</tr>
+													<tr>
+														<td>1</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td>
+													</tr>
+													<tr>
+														<td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td>
+													</tr>
+												</table>
+
+												<p>
+													What we find in the end is that there's only one <i>assignment</i> of values to x, y, and z that makes this statement true.  As we will discuss in section 4, it is computationally hard to design an algorithm to find such an assignment to certain classes of boolean statements in general.
+												</p>
+
+
+												
+
+												
+
+
+
+
+
+
+
+                                    
+                                </div>
+						</div>
+					</div>
+
+					<!--LaTeX in Javascript!-->
+					<script src="../../../../jsMath/easy/load.js"></script>
+					<!--Syntax highlighting in Javascript!-->
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shCore.js"></script>
+					<script type="text/javascript" src="../../../syntaxhighlighter/scripts/shBrushJScript.js"></script>
+                    <script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushCpp.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushXml.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushMatlabSimple.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushPython.js"></script>
+					<link type="text/css" rel="stylesheet" href="../../../../syntaxhighlighter/styles/shCoreDefault.css"/>
+					<script type="text/javascript">SyntaxHighlighter.all();</script>
+
+<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+                                        <li>
+											<span class="opener">General</span>
+											<ul>
+												<li><a href = "../../index.html#overview">Overview</a></li>
+												<li><a href = "../../index.html#logistics">Technology Logistics</a></li>
+												<li><a href = "../../index.html#readings">Readings</a></li>
+												<li><a href = "../../index.html#deliverables">Deliverables</a></li>
+												<li><a href = "../../index.html#schedule">Schedule</a></li>
+												<li><a href = "../../index.html#grading">Grading</a></li>
+												<li><a href = "../../index.html#environment">Classroom Environment</a></li>
+												<li><a href = "../../index.html#collaboration">Collaboration Policy</a></li>
+												<li><a href = "../../index.html#other">Other Resources / Policies</a></li>
+											</ul> 
+										</li>
+										<li><a href = "../../Software/index.html">Software</a></li>
+										<li><a href = "../../index.html#schedule">Schedule</a></li>
+										<li><a href = "../../FinalProject/index.html">Final Project</a></li>
+                                        <li>
+											<span class="opener">Assignments</span>
+											<ul>
+												<li>
+													<a href = "../../Assignments/HW1_Discrete/index.html">HW1: Discrete Math Practice</a>
+												</li>
+											</ul>
+										</li>
+                                        <li>
+											<span class="opener">Class Exercises</span>
+											<ul>
+												<li><a href = "../../ClassExercises/Week1_Unplugged">Week 1: Acting Out DFAs</a></li>
+												<li><a href = "../../ClassExercises/Week1_Discrete">Week 1: Discrete Math Review</a></li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; <a href = "http://www.ctralie.com">Christopher J. Tralie</a>. All rights reserved.  Contact chris.tralie@gmail.com. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+			
+            <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+            <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- End Sidebar !-->
+
+<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/skel.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="../../assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../../assets/js/main.js"></script>
+<!-- End Scripts -->
