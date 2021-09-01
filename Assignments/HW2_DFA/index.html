@@ -57,12 +57,17 @@
                                             For all of the problems below, you should save your JFLAP file as "DFAx.jff", where x is the problem number, and then upload them to canvas.
                                         </p>
 
-                                        <h3>Problem 2</h3>
+										<h3>Problem 1.1 (3 Points)</h3>
                                         <p>
-                                            Complete <a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/DFAExercises2.html#exercise-1">problem 3.3.2</a> in the PIFLSA21 book.  In particular, give a DFA that accepts the language over &Sigma; = {a, b} of a nonzero and even number of a's, followed by at least one b, followed by zero or an odd number of a's.  Running your DFA on <a href = "tests2.txt">the following test file</a> should give these results (you should come up with your own tests as well)
+                                            Construct a DFA that accepts the language over &Sigma; = {a, b} of strings with an odd number of a's or an even number of b's
                                         </p>
 
-                                        <table>
+                                        <h3>Problem 1.2 (3 Points)</h3>
+                                        <p>
+                                            Construct a DFA that accepts the language over &Sigma; = {a, b} of strings with a nonzero and even number of a's, followed by at least one b, followed by zero or an odd number of a's.  Running your DFA on <a href = "tests2.txt">the following test file</a> should give these results (you should come up with your own tests as well)
+                                        </p>
+
+                                        <table style="width: 40%;">
                                             <tr><td>Input</td><td>Output</td>
                                             <tr><td>aaaaaa</td><td>Reject</td></tr>
                                             <tr><td>aaaab</td><td>Accept</td></tr>
@@ -74,9 +79,58 @@
                                             <tr><td>bbb</td><td>Reject</td></tr>
                                         </table>
 
+										<h3>Problem 1.3 (3 Points)</h3>
+										<p>
+											Construct a DFA that accepts the language over &Sigma; = {0, 1} of all binary digits of natural numbers that are evenly divisible by 8. Running your DFA on <a href = "tests3.txt">the following test file</a> should give these results (you should come up with your own tests as well)
+										</p>
+
+										<table style="width: 40%;"><tr><td>Input</td><td>Decimal Number</td><td>Result</td></tr>
+											<tr><td> 0 </td><td> 0 </td><td> Accept </td></tr>
+											<tr><td> 1 </td><td> 1 </td><td> Reject </td></tr>
+											<tr><td> 100101 </td><td> 37 </td><td> Reject </td></tr>
+											<tr><td> 1100 </td><td> 12 </td><td> Reject </td></tr>
+											<tr><td> 1001000 </td><td> 72 </td><td> Accept </td></tr>
+											<tr><td> 1001 </td><td> 9 </td><td> Reject </td></tr>
+											<tr><td> 1001011 </td><td> 75 </td><td> Reject </td></tr>
+											<tr><td> 101 </td><td> 5 </td><td> Reject </td></tr>
+											<tr><td> 1001111 </td><td> 79 </td><td> Reject </td></tr>
+											<tr><td> 1000000 </td><td> 64 </td><td> Accept </td></tr>
+											<tr><td> 10000 </td><td> 16 </td><td> Accept </td></tr>
+										</table>
+
+										<!--<h3>Problem 4 (4 Points)</h3>
+										<p>
+											Design a finite state transducer to delete comments
+										</p>!-->
+											
 
                                         
+										<h2>Part 2: Formal DFA Descriptions / Proofs</h2>
 
+										<h3>Problem 1 (3 Points)</h3>
+										<p>
+											Provide a formal description of the following DFA
+										</p>
+
+										<h3>Problem 2 (3 Points)</h3>
+										<p>
+											Provide a formal description of a DFA over the alphabet &Sigma; of all valid characters in C++ code that recognizes the languages of all possible comments.
+										</p>
+										<div style="width:100px;">
+										
+											<h3>
+												\[(Q, \Sigma, \delta, q, F) \]
+											</h3>
+										</div>
+										<p>
+											
+										</p>
+
+										<h3>Problem 3 (3 Points)</h3>
+										<p>
+											Given a fixed <b>N > 0</b>, prove that the language of binary strings corresponding to numbers divisible by <b>N</b> is regular.  Note that problem 1.3 was a specific example of such a regular language with <b>N = 8</b>.
+										</p>
+										
 
 
                                     
@@ -120,6 +174,7 @@
 											</ul> 
 										</li>
 										<li><a href = "../../Software/index.html">Software</a></li>
+										<li><a href = "../../index.html#schedule">Schedule</a></li>
 										<li><a href = "../../FinalProject/index.html">Final Project</a></li>
                                         <li>
 											<span class="opener">Assignments</span>
