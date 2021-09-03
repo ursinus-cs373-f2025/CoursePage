@@ -4,7 +4,7 @@
 Assignment 1 Due
 
 2021-09-05
-Assignment 2: DFAs Out
+<a href = "Assignments/HW2_DFA">Assignment 2: DFAs</a> Out
 
 2021-09-03
 Assignment 2 Due

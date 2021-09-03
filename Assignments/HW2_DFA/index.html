@@ -42,6 +42,7 @@
 								<section>
 									<header class="main">
                                         <h2>Homework 2: DFAs</h2>
+										<h3><a href = "http://www.ctralie.com">Chris Tralie</a></h3>
 									</header>
 
 									<div id="page-content">
@@ -51,7 +52,8 @@
                                             The purpose of this problem set is to give you practice with DFAs
                                         </p>
                                         
-                                        <h2>Part 1: Constructing DFAs</h2>
+                                        <h2>Part 1: Constructing DFAs 
+											🚧 🏗️ 👷🏽‍♀️</h2>
 
                                         <p>
                                             For all of the problems below, you should save your JFLAP file as "DFAx.jff", where x is the problem number, and then upload them to canvas.
@@ -59,12 +61,31 @@
 
 										<h3>Problem 1.1 (3 Points)</h3>
                                         <p>
-                                            Construct a DFA that accepts the language over &Sigma; = {a, b} of strings with an odd number of a's or an even number of b's
+                                            Construct a DFA in JFLAP that accepts the language over &Sigma; = {0, 1} of strings with an odd number of 1's or an even number of 0's.   Running your DFA on <a href = "tests1.txt">the following test file</a> should give these results (you should come up with your own tests as well to convince yourself it's working)
                                         </p>
+
+										<table style="width:40%;">
+											<tr><td>Input</td><td>Result</td></tr>
+											<tr><td>10001000000</td><td>Reject</td></tr>
+											<tr><td>10001111001</td><td>Reject</td></tr>
+											<tr><td>10001111101</td><td>Accept</td></tr>
+											<tr><td>10010100100</td><td>Reject</td></tr>
+											<tr><td>10101001111</td><td>Accept</td></tr>
+											<tr><td>11001010110</td><td>Reject</td></tr>
+											<tr><td>11010010111</td><td>Accept</td></tr>
+											<tr><td>11100000010</td><td>Reject</td></tr>
+											<tr><td>11111110111</td><td>Reject</td></tr>
+											<tr><td>110000000100</td><td>Accept</td></tr>
+										</table>
+
+										<p>
+											<b>Hint: </b> You may want to use more than one accept state in your DFA.
+										</p>
+											
 
                                         <h3>Problem 1.2 (3 Points)</h3>
                                         <p>
-                                            Construct a DFA that accepts the language over &Sigma; = {a, b} of strings with a nonzero and even number of a's, followed by at least one b, followed by zero or an odd number of a's.  Running your DFA on <a href = "tests2.txt">the following test file</a> should give these results (you should come up with your own tests as well)
+                                            Construct a DFA in JFLAP that accepts the language over &Sigma; = {a, b} of strings with a nonzero and even number of a's, followed by at least one b, followed by zero or an odd number of a's.  Running your DFA on <a href = "tests2.txt">the following test file</a> should give these results (you should come up with your own tests as well to convince yourself it's working)
                                         </p>
 
                                         <table style="width: 40%;">
@@ -81,7 +102,7 @@
 
 										<h3>Problem 1.3 (3 Points)</h3>
 										<p>
-											Construct a DFA that accepts the language over &Sigma; = {0, 1} of all binary digits of natural numbers that are evenly divisible by 8. Running your DFA on <a href = "tests3.txt">the following test file</a> should give these results (you should come up with your own tests as well)
+											Construct a DFA in JFLAP that accepts the language over &Sigma; = {0, 1} of all binary digits of natural numbers that are evenly divisible by 8. Running your DFA on <a href = "tests3.txt">the following test file</a> should give these results (you should come up with your own tests as well to convince yourself it's working)
 										</p>
 
 										<table style="width:100px;"><tr><td>Decimal Number</td><td>Input</td><td>Result</td></tr>
@@ -96,10 +117,85 @@
 											<tr><td> 85 </td><td> 1010101 </td><td> Accept </td></tr>
 											<tr><td> 47 </td><td> 101111 </td><td> Reject </td></tr>
 										</table>
+
+										<h3>Problem 1.4 (3 Points)</h3>
+
+										<p>
+											In this problem, you will create a DFA that recognizes the language of binary strings that have been correctly added together.  Since we can only feed a single symbol to a DFA at a time, we will have to setup a slightly more intricate language that we have so far with 8 elements
+										</p>
+
+										<div style="width:400px">
+										<h3>
+											\[ \Sigma = \left\{ \left[\begin{array}{c}0\\0\\0\end{array}\right],\left[\begin{array}{c}0\\0\\1\end{array}\right],\left[\begin{array}{c}0\\1\\0\end{array}\right],\left[\begin{array}{c}0\\1\\1\end{array}\right],\left[\begin{array}{c}1\\0\\0\end{array}\right],\left[\begin{array}{c}1\\0\\1\end{array}\right],\left[\begin{array}{c}1\\1\\0\end{array}\right],\left[\begin{array}{c}1\\1\\1\end{array}\right]  \right\}  \]
+										</h3>
+										</div>
+
+										<p>
+											Each element of the language is a column with three numbers: the top one is a digit in the first binary number, the middle one is the corresponding digit in the second binary number, and the third is the corresponding digit in the result that we're checking.  You should design your DFA to read the binary digits <b>from right to left</b> (this is easier than left to right actually).  For instance, to check the result 1011101<SUB>2</SUB> + 101100<SUB>2</SUB> = 10001001<SUB>2</SUB>
+										</p>
+
+										<img src = "BinaryAddEx.svg">
+
+										<p>
+											you would input the sequence
+										</p>
+
+										<div style="width:400px">
+											<h3>
+												\[ \left[\begin{array}{c}1\\0\\1\end{array}\right]\left[\begin{array}{c}0\\0\\0\end{array}\right]\left[\begin{array}{c}1\\1\\0\end{array}\right]\left[\begin{array}{c}1\\1\\1\end{array}\right]\left[\begin{array}{c}1\\0\\0\end{array}\right]\left[\begin{array}{c}0\\1\\0\end{array}\right]\left[\begin{array}{c}1\\0\\0\end{array}\right]\left[\begin{array}{c}0\\0\\1\end{array}\right]  \]
+											</h3>
+										</div>
+
+										<p>And your machine should accept.  Not every binary addition result will be correct, though.  So if you see, for example, a sequence like this</p>
+
+										<div style="width:400px">
+											<h3>
+												\[ \left[\begin{array}{c}0\\1\\1\end{array}\right]\left[\begin{array}{c}1\\0\\0\end{array}\right] \]
+											</h3>
+										</div>
+
+										<p>
+											The machine should reject, because that would be like saying 10<SUB>2</SUB> + 01<SUB>2</SUB> = 10<SUB>2</SUB>, which is false; the result should be 11<SUB>2</SUB>.
+										</p>
+
+										<p>
+											Create a DFA in JFLAP to recognize the language of correctly added binary numbers.  You can unroll the inputs in "column major order" so that your language consists of symbols of 3 binary digits back to back.  So, for instance, the input 
+										</p>
+
+										<div style="width:200px">
+											<h3>
+												\[ \left[\begin{array}{c}1\\0\\1\end{array}\right]\left[\begin{array}{c}0\\0\\0\end{array}\right]\left[\begin{array}{c}1\\1\\0\end{array}\right] \]
+											</h3>
+										</div>
+
+										<p>
+											would be inputted to JFLAP as <b>101000110</b>.
+										</p>
+
+										<p>
+											This one is particularly tedious to create test cases for, so <a href = "tests4.txt">click here</a> to download some tests for JFLAP.  You should get the following results:
+										</p>
+
+										<table style="width:400px;"><tr><td>Input</td><td>Result</td></tr>
+											<tr><td>011011011000011011110001</td><td>Accept</td></tr>
+											<tr><td>111100101111010010111001</td><td>Reject</td></tr>
+											<tr><td>101000110111100111100001</td><td>Accept</td></tr>
+											<tr><td>000110111010100010010001</td><td>Accept</td></tr>
+											<tr><td>110001000101011101101000</td><td>Accept</td></tr>
+											<tr><td>101110100010100111100001</td><td>Accept</td></tr>
+											<tr><td>111000111001110110100000</td><td>Reject</td></tr>
+											<tr><td>100110001101111001111001</td><td>Reject</td></tr>
+											<tr><td>100000001110001001111001</td><td>Reject</td></tr>
+											<tr><td>100001011100011011011001</td><td>Reject</td></tr>
+										</table>
+											
+											
+
+
 											
 
 										<!--<p>
-											Construct a DFA that accepts the language over &Sigma; = {0, 1} of all binary digits of natural numbers that are evenly divisible by 8. Running your DFA on <a href = "tests3.txt">the following test file</a> should give these results (you should come up with your own tests as well)
+											Construct a DFA that accepts the language over &Sigma; = {0, 1} of all binary digits of natural numbers that are evenly divisible by 8. Running your DFA on <a href = "tests3.txt">the following test file</a> should give these results (you should come up with your own tests as well to convince yourself it's working)
 										</p>
 
 										<table style="width: 40%;"><tr><td>Input</td><td>Decimal Number</td><td>Result</td></tr>
@@ -126,31 +222,92 @@
 										</p>!-->
 											
 
-                                        
-										<h2>Part 2: Formal DFA Descriptions / Proofs</h2>
+                                        <HR>
+										<h2>Part 2: Formal DFA Descriptions 👔 👠 🎩</h2>
+										<p>
+											The only problem you need to submit a JFLAP file for is 2.1.  The other two are pen and paper (or better yet, LaTeX)
+										</p>
 
 										<h3>Problem 2.1 (3 Points)</h3>
 										<p>
-											Provide a formal description of the following DFA
+											Convert the following formal description into a DFA in JFLAP, and submit your JFLAP file
 										</p>
+
+										<ul>
+											<li>
+												<p>
+													Q = { q0, q1, q2, q3, q4 }
+												</p>
+											</li>
+											<li>
+												<p>
+													&Sigma; = {0, 1}
+												</p>
+												
+											</li>
+											<li>
+												<table style="width:300px;">
+													<tr>
+														<td>
+															<h3>&delta; = </h3>
+														</td>
+														<td>
+															<table>
+																<tr>
+																	<td></td><td>0</td><td>1</td>
+																</tr>
+																<tr>
+																	<td>q0</td><td>q0</td><td>q1</td>
+																</tr>
+																<tr>
+																	<td>q1</td><td>q2</td><td>q1</td>
+																</tr>
+																<tr>
+																	<td>q2</td><td>q0</td><td>q3</td>
+																</tr>
+																<tr>
+																	<td>q3</td><td>q4</td><td>q1</td>
+																</tr>
+																<tr>
+																	<td>q4</td><td>q4</td><td>q4</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+												</table>
+											</li>
+											<li>
+												q = q0
+											</li>
+											<li>
+												F = {q0, q1, q2, q3}
+											</li>
+										</ul>
+
+										<p>
+											<b>What language does this DFA recognize?</b>
+										</p>
+
 
 										<h3>Problem 2.2 (3 Points)</h3>
 										<p>
-											Provide a formal description of a DFA over the alphabet &Sigma; of all valid characters in C++ code that recognizes the languages of all possible comments.
+											Provide a formal description of the following DFA (<a href = "Problem2_2.jff">Click here</a> to download the corresponding JFLAP file)
 										</p>
-										<div style="width:100px;">
-										
-											<h3>
-												\[(Q, \Sigma, \delta, q, F) \]
-											</h3>
-										</div>
+
+										<img src = "Problem2_2.png">
+
 										<p>
-											
+											That is, define all of the symbols in the 5-tuple <b>(Q, &Sigma;, &delta;, q, F)</b>, as we talked about in class and as is discussed in Sipser 1.1.  <b>What language does this DFA recognize?</b>
 										</p>
+
+										<!--<h3>Problem 2.3 (3 Points)</h3>
+										<p>
+											Provide a formal description of a DFA over the alphabet &Sigma; of all valid characters in C++ code that recognizes the languages of all possible comments.
+										</p>!-->
 
 										<h3>Problem 2.3 (3 Points)</h3>
 										<p>
-											Given a fixed <b>N > 0</b>, prove by construction that the language of binary strings corresponding to numbers divisible by <b>N</b> is regular.  Note that problem 1.3 was a specific example of such a regular language with <b>N = 8</b>.
+											Given a fixed <b>N > 0</b>, prove by construction that the language of binary strings corresponding to numbers divisible by <b>N</b> is regular.  In other words, provide a general specification for <b>(Q, &Sigma;, &delta;, q, F)</b> for a particular <b>N</b>.  Note that problem 1.3 was a specific example of such a regular language with <b>N = 8</b>.
 										</p>
 										
 
@@ -203,6 +360,9 @@
 											<ul>
 												<li>
 													<a href = "../../Assignments/HW1_Discrete/index.html">HW1: Discrete Math Practice</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW2_DFA/index.html">HW2: DFAs</a>
 												</li>
 											</ul>
 										</li>
