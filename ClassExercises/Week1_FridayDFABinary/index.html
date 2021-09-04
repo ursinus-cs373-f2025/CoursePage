@@ -1,0 +1,298 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<!-- Header !-->
+	<head>
+		<title>Ursinus CS 373: Theory of Computation, Fall 2021</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="../../assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="../../assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="../../assets/css/ie8.css" /><![endif]-->
+        <style>
+        .image_off, #home:hover .image_on{
+           display:none
+        }
+        .image_on, #home:hover .image_off{
+           display:block
+        }
+        </style>
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="../../index.html" class="logo"><strong>Ursinus CS 373: Theory of Computation, Fall 2021</strong></a>
+								</header>
+<!-- End Header !-->
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+                                        <h2>Week 1 Exercise: Binary, DFAs, And JFLAP</h2>
+                                        <h3><a href = "http://www.ctralie.com">Chris Tralie</a>
+									</header>
+
+									<div id="page-content">
+
+                                        <h3><a name = "binary">Binary</a></h3>
+										<p>
+                                            We first discussed binary representations today.  As you recall, instead of 10 digits in each place and powers of 10 in each place, binary numbers have only 0s and 1s as digits and powers of 2.  In particular, we have the 1s place, the 2s place, the 4s place, the 8s place, the 16s place, etc.  
+                                        </p>
+										<p>
+											I've coded up a few applets below so you can practice representing binary numbers.  The first two are drills on converting back and forth between binary and base 10, and the last one shows binary addition step by step.  Do these until you feel comfortable.
+										</p>
+
+
+										<script src="BinaryUtils.js"></script>
+
+
+										<h2><a name = "binarytobase10">Binary To Base 10 Drills</a></h2>
+										<button type = "button" onclick = "new_binaryBase10()" id="new_binaryBase10">New Example</button></td></tr>
+
+										<table cellpadding = 10 border = "1">
+											<tr>
+												<td><h3>Binary</h3></td>
+												<td><div id = "query_binaryBase10"></div></td>
+											</tr>
+											<tr>
+												<td>
+													<h3>Base 10</h3>
+													<button type = "button" onclick = "checkBinaryBase10()">Check</button></td>
+												</td>
+												<td><input type="text" id = "check_binaryBase10" size="24"></input></td>
+											</tr>
+											<tr>
+												<td><h3>Answer</h3></td>
+												<td><div id="answer_binaryBase10"></div></td>
+											</tr>
+										</table>
+
+										
+										<h2><a name = "base10tobinary">Base 10 To Binary Drills</a></h2>
+										<button type = "button" onclick = "new_base10Binary()" id="new_base10Binary">New Example</button>
+
+										<table cellpadding = 10 border = "1">
+											<tr>
+												<td><h3>Base 10</h3></td>
+												<td><div id = "query_base10Binary"></div></td>
+											</tr>
+											<tr>
+												<td>
+													<h3>Binary</h3>
+													<button type = "button" onclick = "checkBase10Binary()">Check</button></td>
+												</td>
+												<td><input type="text" id = "check_base10Binary" size="24"></input></td>
+											</tr>
+											<tr>
+												<td><h3>Answer</h3></td>
+												<td><div id="answer_base10Binary"></div></td>
+											</tr>
+										</table>
+										
+										<h2><a name = "binaryaddition">Binary Addition Animation</a></h2>
+										<button type = "button" onclick = "new_binaryAdd()" id="new_binaryAdd">New Example</button>
+										<div id = "binaryAdding"></div>
+
+
+
+										<script>
+											let base10 = -1;
+											let binary = "0";
+											let query_base10Binary = document.getElementById("query_base10Binary");
+											let check_base10Binary = document.getElementById("check_base10Binary");
+											let answer_base10Binary = document.getElementById("answer_base10Binary");
+										
+											let query_binaryBase10 = document.getElementById("query_binaryBase10");
+											let check_binaryBase10 = document.getElementById("check_binaryBase10");
+											let answer_binaryBase10 = document.getElementById("answer_binaryBase10");
+
+											let adder = new Adder("binaryAdding");
+										
+											function new_binaryAdd() {
+												const x = Math.round(Math.random()*64);
+												const y = Math.round(Math.random()*64);
+												adder.setupAdder(x, y);
+											}
+
+											function new_base10Binary() {
+												base10 = Math.round(Math.random()*64);
+												query_base10Binary.innerHTML = "<h2>" + base10 + "</h2>";
+												answer_base10Binary.innerHTML = "";
+												check_base10Binary.value = "";
+											}
+
+										
+											function new_base10Binary() {
+												base10 = Math.round(Math.random()*64);
+												query_base10Binary.innerHTML = "<h2>" + base10 + "</h2>";
+												answer_base10Binary.innerHTML = "";
+												check_base10Binary.value = "";
+											}
+										
+											function new_binaryBase10() {
+												binary = base10ToBinary(Math.round(Math.random()*64));
+												query_binaryBase10.innerHTML = "<h2>" + binary + "</h2>";
+												answer_binaryBase10.innerHTML = "";
+												check_binaryBase10.value = "";
+											}
+										
+											function checkBase10Binary() {
+												if (base10 >= 0) {
+													let b = check_base10Binary.value;
+													let myans = binaryToBase10(b);
+													if (myans == base10) {
+														let s = "<h2><font color=green>Correct!</font></h2>";
+														s += "<button type = \"button\" onclick = \"new_base10Binary()\">Try another example</button>";
+														answer_base10Binary.innerHTML = s;
+													}
+													else {
+														b = base10ToBinary(base10);
+														let s = "<h2><font color=red>Whoops!</font></h2>";
+														s += base10 + " in binary is <BR><code><h3>";
+														s += makeBinaryTableStr(b) + makeShowBinarySumStr(b);
+														s += "<button type = \"button\" onclick = \"new_base10Binary()\">Try another example</button>";
+														answer_base10Binary.innerHTML = s;
+													}
+												}
+												else {
+													alert("Generate an example first!");
+												}
+											}
+										
+											function checkBinaryBase10() {
+												if (binary.length > 0) {
+													let x = parseInt(check_binaryBase10.value);
+													let myans = base10ToBinary(x);
+													if (myans == binary) {
+														let s = "<h2><font color=green>Correct!</font></h2>";
+														s += "<button type = \"button\" onclick = \"new_binaryBase10()\">Try another example</button>";
+														answer_binaryBase10.innerHTML = s;
+													}
+													else {
+														x = binaryToBase10(binary);
+														let s = "<h2><font color=red>Whoops!</font></h2>";
+														s += makeBinaryTableStr(binary) + makeShowBinarySumStr(binary);
+														s += "<button type = \"button\" onclick = \"new_binaryBase10()\">Try another example</button>";
+														answer_binaryBase10.innerHTML = s;
+													}
+												}
+												else {
+													alert("Generate an example first!");
+												}
+											}
+										</script>
+
+
+										<!--
+                                        <script type="syntaxhighlighter" class="brush: python"><![CDATA[
+                                            ]]></script>  
+										-->
+
+
+                                            
+
+
+
+
+
+
+                                    
+                                </div>
+						</div>
+					</div>
+
+					<!--LaTeX in Javascript!-->
+					<script src="../../../../jsMath/easy/load.js"></script>
+					<!--Syntax highlighting in Javascript!-->
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shCore.js"></script>
+					<script type="text/javascript" src="../../../syntaxhighlighter/scripts/shBrushJScript.js"></script>
+                    <script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushCpp.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushXml.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushMatlabSimple.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushPython.js"></script>
+					<link type="text/css" rel="stylesheet" href="../../../../syntaxhighlighter/styles/shCoreDefault.css"/>
+					<script type="text/javascript">SyntaxHighlighter.all();</script>
+
+<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+                                        <li>
+											<span class="opener">General</span>
+											<ul>
+												<li><a href = "../../index.html#overview">Overview</a></li>
+												<li><a href = "../../index.html#logistics">Technology Logistics</a></li>
+												<li><a href = "../../index.html#readings">Readings</a></li>
+												<li><a href = "../../index.html#deliverables">Deliverables</a></li>
+												<li><a href = "../../index.html#schedule">Schedule</a></li>
+												<li><a href = "../../index.html#grading">Grading</a></li>
+												<li><a href = "../../index.html#environment">Classroom Environment</a></li>
+												<li><a href = "../../index.html#collaboration">Collaboration Policy</a></li>
+												<li><a href = "../../index.html#other">Other Resources / Policies</a></li>
+											</ul> 
+										</li>
+										<li><a href = "../../Software/index.html">Software</a></li>
+										<li><a href = "../../index.html#schedule">Schedule</a></li>
+										<li><a href = "../../FinalProject/index.html">Final Project</a></li>
+                                        <li>
+											<span class="opener">Assignments</span>
+											<ul>
+												<li>
+													<a href = "../../Assignments/HW1_Discrete/index.html">HW1: Discrete Math Practice</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW2_DFA/index.html">HW2: DFAs</a>
+												</li>
+											</ul>
+										</li>
+                                        <li>
+											<span class="opener">Class Exercises</span>
+											<ul>
+												<li><a href = "../../ClassExercises/Week1_Unplugged">Week 1: Acting Out DFAs</a></li>
+												<li><a href = "../../ClassExercises/Week1_Discrete">Week 1: Discrete Math Review</a></li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; <a href = "http://www.ctralie.com">Christopher J. Tralie</a>. All rights reserved.  Contact chris.tralie@gmail.com. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+			
+            <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+            <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- End Sidebar !-->
+
+<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/skel.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="../../assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../../assets/js/main.js"></script>
+<!-- End Scripts -->
+	</
