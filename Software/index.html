@@ -43,6 +43,65 @@
 									<header class="main">
 										<h1>Software Environment</h1>
 									</header>
+
+									<p>
+										The main software package we'll be using in this class is known as <a href = "https://www.jflap.org/">JFLAP</a>, which is a visual tool we can use to "program" the mathematical machine models we're building in the course.  You should have gotten JFLAP installed on your computer the first week of class.  There's a nice youtube playlist <a href = "https://www.youtube.com/playlist?list=PLeaAjeNjt7tTAH3LvvMVeR_rOVOgLLx6D">at this link</a> with more information, but below are a few GIFs to help you with a quickstart
+									</p>
+
+									<h3>DFAs</h3>
+									<p>
+										Below are steps to how to manipulate DFAs in JFLAP.  As an example, we will build a DFA that accepts the language of binary strings with between one and three 1s and an arbitrary number of 0s (<a href = "DFA_1To3Ones.jff">Click here</a> to download the resulting JFLAP file).
+									</p>
+
+									<p></p><p></p><h3>Adding States</h3>
+									<p>
+										Click the circle button, then left click at different locations on the canvas to add states
+									</p>
+
+									<img src = "DFA1.gif">
+
+									<p></p><p></p><h3>Renaming States</h3>
+									<p>
+										To rename a state, click on the mouse cursor button, then right click on the node whose name you wnat to change and click "Set Name"
+									</p>
+
+									<img src = "DFA2.gif">
+
+									<p></p><p></p><h3>Setting Initial State And Accept States</h3>
+									<p>
+										To designate a node as an initial state or an accept state, make sure you're in the mouse cursor mode, then right click on the node and select "Initial" and "Final," respectively
+									</p>
+									<img src = "DFA3.gif">
+
+									<p></p><p></p><h3>Repositioning Nodes</h3>
+									<p>
+										Sometimes you'll want to reposition nodes, particularly when the transitions are getting all tangled up.  To do this, makes sure you're in cursor mode, then <b>left click on a node and drag</b>
+									</p>
+									<img src = "DFA4.gif">
+
+									<p></p><p></p><h3>Creating Transitions</h3>
+									<p>
+										To create a transition from one state to thenext, select the arrow button, then <b>left click and drag</b> from the starting node to the end node.  A text area will come up where you can enter the element from your alphabet that gives rise to this transition.  Note that the starting node and the end node can be the same (a self transition), in which case you have to drag away from the node and then right back to it
+									</p>
+									<img src = "DFA5.gif">
+
+									<p></p><p></p><h3>Deleting Nodes / Transitions</h3>
+									<p>
+										To delete a node or a transition, click on the skull and crossbones button, then left click on what you want to delete
+									</p>
+									<img src = "DFA6.gif">
+
+									<p></p><p></p><h3>Stepping Through An Example</h3>
+									<p>
+										To step through a single example like a debugger, click on the menu <code>Input->Step By State</code>.  Then, you can enter the string you want to test and step through it.  If the string accepts, the box showing you the steps will turn green.  If it rejects, that box will turn red.
+									</p>
+									<img src = "DFA7.gif">
+
+									<p></p><p></p><h3>Stepping Through Multiple Examples</h3>
+									<p>
+										To rapidly test multiple examples in a row, click on the menu <code>Input->Multiple Run</code>.  Then you can enter a different on each row of the Input column that pops up, and when you're ready, you can click <code>Run Inputs</code>.  At that point, the Result column will indicate whether each input accepted or rejected.  I will often provide test files with lots of cases for you to see if your DFAs are working
+									</p>
+									<img src = "DFA8.gif">
 									
 
 
