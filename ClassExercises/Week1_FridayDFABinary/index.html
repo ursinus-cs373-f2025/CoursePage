@@ -41,21 +41,23 @@
 							<!-- Content -->
 								<section>
 									<header class="main">
-                                        <h2>Week 1 Exercise: Binary, DFAs, And JFLAP</h2>
+                                        <h2>Week 1 Friday Class: Binary And JFLAP</h2>
                                         <h3><a href = "http://www.ctralie.com">Chris Tralie</a>
 									</header>
 
 									<div id="page-content">
 
-                                        <h3><a name = "binary">Binary</a></h3>
+                                        <h2><a name = "binary">Binary Review</a></h2>
 										<p>
-                                            We first discussed binary representations today.  As you recall, instead of 10 digits in each place and powers of 10 in each place, binary numbers have only 0s and 1s as digits and powers of 2.  In particular, we have the 1s place, the 2s place, the 4s place, the 8s place, the 16s place, etc.  
+                                            We first discussed binary representations today.  <i>Binary is great for this class because it will give us a lot of interesting CS relevant examples to play with</i>, so it is worth learning well.  
+										</p>
+										<p>
+											As you recall, instead of 10 digits in each place and powers of 10 in each place, binary numbers have only 0s and 1s as digits and powers of 2.  In particular, we have the 1s place, the 2s place, the 4s place, the 8s place, the 16s place, etc.  
                                         </p>
 										<p>
-											I've coded up a few applets below so you can practice representing binary numbers.  The first two are drills on converting back and forth between binary and base 10, and the last one shows binary addition step by step.  Do these until you feel comfortable.
+											I've coded up a few applets below so you can practice representing binary numbers.  The first two are drills on converting back and forth between binary and base 10, and the last one shows binary addition step by step.  Do these until you feel comfortable.  If you are <b>totally new</b> to binary, you should have a look at Wiki How's articles on <a href = "https://www.wikihow.com/Read-Binary">reading binary</a> and <a href = "https://www.wikihow.com/Add-Binary-Numbers">adding binary</a> (sections 1 and 2) before you do the drills.
 										</p>
-
-
+										
 										<script src="BinaryUtils.js"></script>
 
 
@@ -101,10 +103,19 @@
 												<td><div id="answer_base10Binary"></div></td>
 											</tr>
 										</table>
-										
+
 										<h2><a name = "binaryaddition">Binary Addition Animation</a></h2>
 										<button type = "button" onclick = "new_binaryAdd()" id="new_binaryAdd">New Example</button>
 										<div id = "binaryAdding"></div>
+
+										<h2><a name = "binaryclock">Binary Clock</a></h2>
+										<p>
+											Below is an example of a binary clock, which Professor Schilling and I both have in our offices (hers is blue though).  Top row is hours in military time, middle row is minutes, bottom row is seconds
+										</p>
+										<canvas id = "clockCanvas" width = "550" height = "220"></canvas>
+
+										<HR>
+											<h2><a name = "jflap">JFLAP Exercises</a></h2>
 
 
 
@@ -120,6 +131,7 @@
 											let answer_binaryBase10 = document.getElementById("answer_binaryBase10");
 
 											let adder = new Adder("binaryAdding");
+											let clock = new BinaryClock();
 										
 											function new_binaryAdd() {
 												const x = Math.round(Math.random()*64);
@@ -268,6 +280,11 @@
 											<ul>
 												<li><a href = "../../ClassExercises/Week1_Unplugged">Week 1: Acting Out DFAs</a></li>
 												<li><a href = "../../ClassExercises/Week1_Discrete">Week 1: Discrete Math Review</a></li>
+												<li><a href = "../../ClassExercises/Week1_FridayDFABinary">Week 1: Binary And JFLAP</a>
+													<ul>
+														<li><a href = "../../ClassExercises/Week1_FridayDFABinary/index.html#binary">Binary Drills</a></li>
+													</ul>
+												</li>
 											</ul>
 										</li>
 									</ul>

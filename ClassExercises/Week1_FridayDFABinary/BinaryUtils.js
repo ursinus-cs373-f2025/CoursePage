@@ -180,6 +180,94 @@ class Adder {
     }
 }
 
+CIRCLE_WIDTH= 50;
+class BinaryClock {
+    constructor() {
+        let canvas = document.getElementById('clockCanvas');
+        let ctx = canvas.getContext("2d"); //For drawing
+        this.ctx = ctx;
+        this.canvas = canvas;
+        ctx.font = "16px Arial";
+        //Need this to disable that annoying menu that pops up on right click
+        canvas.addEventListener("contextmenu", function(e){ e.stopPropagation(); e.preventDefault(); return false; }); 
+        this.repaint();
+    }
+
+    repaint() {
+        const W = this.canvas.width;
+        const H = this.canvas.height;
+        const ctx = this.ctx;
+        ctx.clearRect(0, 0, W, H);
+        // Hours
+        let date = new Date();
+        let b = base10ToBinary(date.getHours());
+        while (b.length < 5) {
+            b = "0" + b;
+        }
+        let y = CIRCLE_WIDTH*0.8;
+        for (let i = 0; i < 5; i++) {
+            ctx.beginPath();
+            let x = CIRCLE_WIDTH*(i+2)*1.5;
+            ctx.arc(x, y, CIRCLE_WIDTH/2, 0, 2*Math.PI, false);
+            if (b[i] == "1") {
+                ctx.fillStyle = 'red';
+            }
+            else {
+                ctx.fillStyle = 'black';
+            }
+            ctx.fill();
+            ctx.lineWidth = 5;
+            ctx.strokeStyle = '#003300';
+            ctx.stroke();
+        }
+
+        // Minutes
+        b = base10ToBinary(date.getMinutes());
+        while (b.length < 6) {
+            b = "0" + b;
+        }
+        y = CIRCLE_WIDTH*2;
+        for (let i = 0; i < 6; i++) {
+            ctx.beginPath();
+            let x = CIRCLE_WIDTH*(i+1)*1.5;
+            ctx.arc(x, y, CIRCLE_WIDTH/2, 0, 2*Math.PI, false);
+            if (b[i] == "1") {
+                ctx.fillStyle = 'red';
+            }
+            else {
+                ctx.fillStyle = 'black';
+            }
+            ctx.fill();
+            ctx.lineWidth = 5;
+            ctx.strokeStyle = '#003300';
+            ctx.stroke();
+        }
+
+        // Seconds
+        b = base10ToBinary(date.getSeconds());
+        while (b.length < 6) {
+            b = "0" + b;
+        }
+        y = CIRCLE_WIDTH*3.2;
+        for (let i = 0; i < 6; i++) {
+            ctx.beginPath();
+            let x = CIRCLE_WIDTH*(i+1)*1.5;
+            ctx.arc(x, y, CIRCLE_WIDTH/2, 0, 2*Math.PI, false);
+            if (b[i] == "1") {
+                ctx.fillStyle = 'red';
+            }
+            else {
+                ctx.fillStyle = 'black';
+            }
+            ctx.fill();
+            ctx.lineWidth = 5;
+            ctx.strokeStyle = '#003300';
+            ctx.stroke();
+        }
+        setTimeout(this.repaint.bind(this), 100);
+    }
+}
+
 
 /**
  * 
