@@ -117,6 +117,50 @@
 										<HR>
 											<h2><a name = "jflap">JFLAP Exercises</a></h2>
 
+											<p>
+												Next, we got JFLAP installed and we practiced designing and testing DFAs in JFLAP.  <a href = "../../Software/index.html#dfas">Click here</a> to review detailed instructions on how to create and test DFAs in JFLAP.
+											</p>
+
+											<h3>Example 1</h3>
+											<p>
+												As a first example, we created a DFA to accept binary strings with <b>at most three 1s</b>.  Below is a solution (<a href = "DFA_AtMost3Ones.jff">Click here</a> to download the JFLAP file)
+											</p>
+
+											<img src = "DFA_AtMost3Ones.png">
+
+											<h3>Example 2</h3>
+											<p>
+												We also designed a DFA that accepts binary strings corresponding to even numbers.  We saw that reading in the binary strings from left to right was tricky because we never knew quite where we would end (we'll address this later with something called an NFA), so we decided to read the binary strings <b>from right to left</b> to make it easier; that is, we'll start at the 1s place, then go to the 2s place, then go to the 4s place, etc.
+											</p>
+
+											<p>
+												Binary representations are very convenient for spotting even numbers, as the only rule is the <b>1s place has to have a zero</b>.  This is because all other places are even numbers, so we can only make an odd number <b>2k + 1</b> by having a one in the 1s place.  The machine below implements a right to left even binary detector (<a href = "DFA_EvenBinaryStrings.jff">Click here</a> to download the JFLAP file)
+											</p>
+
+											<img src = "DFA_EvenBinaryStrings.png">
+
+											<h3>Example 3</h3>
+											<p>
+												As a challenge, we wanted to see how to design a DFA that would accept binary numbers that, when read <b>from left to right</b>, were <b>evenly divisible by 3</b> (note that this includes 0), and which would reject all others.  We didn't have much time to tackle this in class, but as participation credit for the week, <b>students should submit a JFLAP file on Canvas with an attempt to this problem before class on Monday.</b>  It doesn't matter if it's correct, but do spend somewhere between 10 and 20 minutes thinking about it.  We'll discuss a solution on Monday, which will help prepare you for problems 1.3 and 2.3 on <a href = "../../Assignments/HW2_DFA/">homework 2</a>.
+											</p>
+
+											<p>
+												Below are some tests you can use to test this, along with the result that they should give.  <a href = "testsdiv3.txt">Click here</a> to download these tests as a file which you can load into the <a href = "../../Software/index.html#multiplerundfa">multiple run</a> tester in JFLAP.
+											</p>
+											<table style="width:200px;"><tr><td>Decimal Number</td><td>Input</td><td>Result</td></tr>
+												<tr><td> 72 </td><td> 1001000 </td><td> Accept </td></tr>
+												<tr><td> 12 </td><td> 1100 </td><td> Accept </td></tr>
+												<tr><td> 5 </td><td> 101 </td><td> Reject </td></tr>
+												<tr><td> 0 </td><td> 0 </td><td> Accept </td></tr>
+												<tr><td> 28 </td><td> 11100 </td><td> Reject </td></tr>
+												<tr><td> 27 </td><td> 11011 </td><td> Accept </td></tr>
+												<tr><td> 71 </td><td> 1000111 </td><td> Reject </td></tr>
+												<tr><td> 75 </td><td> 1001011 </td><td> Accept </td></tr>
+												<tr><td> 85 </td><td> 1010101 </td><td> Reject </td></tr>
+												<tr><td> 47 </td><td> 101111 </td><td> Reject </td></tr>
+											</table>
+												
+
 
 
 										<script>
@@ -283,6 +327,7 @@
 												<li><a href = "../../ClassExercises/Week1_FridayDFABinary">Week 1: Binary And JFLAP</a>
 													<ul>
 														<li><a href = "../../ClassExercises/Week1_FridayDFABinary/index.html#binary">Binary Drills</a></li>
+														li><a href = "../../ClassExercises/Week1_FridayDFABinary/index.html#jflap">JFLAP Exercises</a></li>
 													</ul>
 												</li>
 											</ul>
