@@ -1,0 +1,16 @@
+* Define formal descriptions of DFAs (Q, Sigma, delta, q, F) [10 minutes]
+
+Exercise: Draw a DFA from a description [5 minutes]
+
+
+* Talk about what a regular language is [10 minutes]
+Connect to the definition with existence of sequence of states r0, r1, ..., rn in Q so that
+1. r0 = q0
+2. detla(ri, wi+1) = ri+1
+3. rn in F
+
+* Group Exercise: Define a DFA formally that accepts binary strings with at most K ones [15 minutes]
+
+* Exercise: Show that given a language, its reverse is a regular language [10 minutes]
+
+

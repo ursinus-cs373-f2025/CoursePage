@@ -1,0 +1,452 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<!-- Header !-->
+	<head>
+		<title>Ursinus CS 373: Theory of Computation, Fall 2021</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="../../assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="../../assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="../../assets/css/ie8.css" /><![endif]-->
+        <style>
+        .image_off, #home:hover .image_on{
+           display:none
+        }
+        .image_on, #home:hover .image_off{
+           display:block
+        }
+        </style>
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="../../index.html" class="logo"><strong>Ursinus CS 373: Theory of Computation, Fall 2021</strong></a>
+								</header>
+<!-- End Header !-->
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+                                        <h2>Week 2: Formal Descriptions of DFAs 🎩 </h2>
+                                        <h3><a href = "http://www.ctralie.com">Chris Tralie</a>
+									</header>
+
+									<div id="page-content">
+
+										<p>
+                                            Today we discussed formal descriptions of DFAs. What we learned is that a DFA can be described as a "5-tuple" <b>(Q, &Sigma;, &delta;, q, F)</b>.  The meaning of each of these terms is as follows
+                                        </p>
+										<ul>
+											<li>
+												<b>Q</b>: A set of all of the states in the DFA
+											</li>
+											<li>
+												<b>&Sigma;</b>: A set of all characters in the <b>alphabet</b>
+											</li>
+											<li>
+												<b>&delta;</b>: A function describing the arrows in the diagram
+											</li>
+											<li>
+												<b>q</b>: The start state
+											</li>
+											<li>
+												<b>F</b>: A <b>set</b> of the accept states or "final states"
+											</li>
+										</ul>
+
+										<p>
+											Note that the start state <b>q</b> is a single element, because we can only have one start state, and the accept states are actually in a <b>set</b> because there can be multiple of them
+										</p>
+
+										<h3>Example 1</h3>
+										<p>
+											It's easiest to see what these are with an example.  Let's consider the following DFA that accepts all binary strings containing <b>001</b> (<a href = "001.jff">Click here</a> for the JFLAP file)
+										</p>
+
+										<img src = "001.png">
+
+										<p>
+											Below is a table showing the definition of the 5-tuple for this DFA
+										</p>
+
+										<table style="width:400px;">
+											<tr><td><h3>Q</h3></td><td><h3>{start, q0, q00, q01}</h3></td></tr>
+											<tr><td><h3>&Sigma;</h3></td><td><h3>{0, 1}</h3></td></tr>
+											<tr>
+												<td><h3>&delta;</h3></td>
+												<td>
+													<table>
+														<tr>
+															<td></td>
+															<td>0</td>
+															<td>1</td>
+														</tr>
+														<tr>
+															<td>start</td>
+															<td>q0</td>
+															<td>start</td>
+														</tr>
+														<tr>
+															<td>q0</td>
+															<td>q00</td>
+															<td>start</td>
+														</tr>
+														<tr>
+															<td>q00</td>
+															<td>q00</td>
+															<td>q001</td>
+														</tr>
+														<tr>
+															<td>q001</td>
+															<td>q001</td>
+															<td>q001</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+											<tr>
+												<td><h3>q</h3></td>
+												<td><h3>start</h3></td>
+											</tr>
+											<tr>
+												<td><h3>F</h3></td>
+												<td><h3>{q001}</h3></td>
+											</tr>
+										</table>
+
+										<p>
+											Note that while it's convenient to define <b>&delta;</b> as a table, we will sometimes hone in on particular inputs of the function with the notation <b>&delta;(state, symbol)</b>.  For instance, <b>&delta;(q00, 1) = q001</b> in this example
+										</p>
+
+
+                                        <script type="syntaxhighlighter" class="brush: python"><![CDATA[
+                                        ]]></script>   
+
+										<h3>Example 2</h3>
+										<p>
+											In this example, we'll go the other way around; that is, given a 5-tuple, we'll create a state diagram that realizes it visually.  The 5-tuple is as follows
+										</p>
+
+										<table style="width:400px;">
+											<tr><td><h3>Q</h3></td><td><h3>{q0, q1, q2}</h3></td></tr>
+											<tr><td><h3>&Sigma;</h3></td><td><h3>{0, 1, 2}</h3></td></tr>
+											<tr>
+												<td><h3>&delta;</h3></td>
+												<td>
+													<table>
+														<tr>
+															<td></td>
+															<td>0</td>
+															<td>1</td>
+															<td>2</td>
+														</tr>
+														<tr>
+															<td>q0</td>
+															<td>q0</td>
+															<td>q1</td>
+															<td>q2</td>
+														</tr>
+														<tr>
+															<td>q1</td>
+															<td>q1</td>
+															<td>q2</td>
+															<td>q0</td>
+														</tr>
+														<tr>
+															<td>q2</td>
+															<td>q2</td>
+															<td>q0</td>
+															<td>q1</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+											<tr>
+												<td><h3>q</h3></td>
+												<td><h3>q0</h3></td>
+											</tr>
+											<tr>
+												<td><h3>F</h3></td>
+												<td><h3>{q0}</h3></td>
+											</tr>
+										</table>
+
+										<p>
+											Below is the picture we came up with in class for this (<a href = "Mod3.jff">Click here</a> to download the JFLAP file)
+										</p>
+
+										<img src = "Mod3.png">
+
+										<p>
+											Notice how there are actually three arrows coming out of each state since there are three symbols in the alphabet &Sigma;.  As for an interpretation of this machine, the one I had in mind was that it would accept a string of 0s, 1s, and 2s whose sum was divisible by 3 (i.e. had a zero remainder).  
+										</p>
+
+										<div style="background-color: rgb(251, 245, 234); padding: 10px;">
+										<p>
+											<b>Optional Aside: </b>Interestingly, in class, Kevin noticed that this is equivalent to the condition that the number of 1s and the number of 2s is equal <b>mod 3</b> (i.e. the remainder of the number of 1s is equal to the remainder of the number of 2s when divided by 3).  To see why this is, let's write the sum of our numbers as <b>1a + 2b</b> where <b>a</b> is the number of 1s and <b>b</b> is the number of 2s.  If this is evenly divisible by 3, then we're saying that 
+
+											\[ a + 2b \text{ mod3} = 0  \text{ mod3}\]
+
+											we can then rewrite this as 
+
+											\[ a \text{ mod3} = -2b \text{ mod3} \]
+
+											One interesting rule from modular arithmetic is that 
+
+											\[ xy \text{ mod n} = (x \text{ mod n}) (y \text{ mod n}) \text{ mod n} \]
+										</p>
+
+										<p>
+											In particular, what this means is that 
+										</p>
+
+										\[ -2b \text{ mod3} = (-2 \text{ mod3})(b \text{ mod3}) \text{ mod3} \]
+
+										<p>And actually, -2 mod 3 is simply 1, so we conclude that </p>
+
+										\[ a \text{ mod3} = -2b \text{ mod3} = b \text{ mod3} \]
+									</div>
+									<p></p>
+
+									<h3>Example 3</h3>
+									<p>
+										So why the big deal about this formal notation?  Well, it makes it easier for us to specify more huge machines or more general classes machines more succinctly and without having to draw them.  Let's consider an example of a machine that <b>accepts a binary string with at most K zeros</b>, where <b>K</b> here is left open as a variable.  We couldn't draw this as a picture in general (unless we wanted to draw infinitely many pictures for each case).  But we can describe it symbolically:
+									</p>
+
+									<table style="width:400px;">
+										<tr><td><h3>Q</h3></td><td><h3>{q<SUB>0</SUB>, q<SUB>1</SUB>, q<SUB>2</SUB>, ..., q<SUB>K</SUB>, q<SUB>K+1</SUB>}</h3></td></tr>
+										<tr><td><h3>&Sigma;</h3></td><td><h3>{0, 1}</h3></td></tr>
+										<tr>
+											<td><h3>&delta;</h3></td>
+											<td>
+												We'll split this definition into two cases:
+												<ol>
+													<li>If i <= k, then 
+														<ul>
+															<li>
+																&delta;(q<SUB>i</SUB>, 0) = q<SUB>i+1</SUB>
+															</li>
+															<li>
+																&delta;(q<SUB>i</SUB>, 1) = q<SUB>i</SUB>
+															</li>
+														</ul>
+													</li>
+													<li>
+														<ul>
+															<li>
+																&delta;(q<SUB>K+1</SUB>, 0) = q<SUB>K+1</SUB>
+															</li>
+															<li>
+																&delta;(q<SUB>K+1</SUB>, 1) = q<SUB>K+1</SUB>
+															</li>
+														</ul>
+													</li>
+												</ol>
+											</td>
+										</tr>
+										<tr>
+											<td><h3>q</h3></td>
+											<td><h3>q0</h3></td>
+										</tr>
+										<tr>
+											<td><h3>F</h3></td>
+											<td><h3>{q0}</h3></td>
+										</tr>
+									</table>
+
+									<HR>
+										<h2>Formal Languages</h2>
+										<p>
+											We now have the terminology we need to formally define what is meant by a <b>regular language</b>.  We'll need a few other definitions first
+										</p>
+
+										<div style="background-color: rgb(251, 245, 234); padding: 10px;">
+										<b>Def. Language</b>: A language <b>L</b> over an alphabet <b>&Sigma;</b> is simply a set of strings made from the elements in &Sigma;
+										</div>
+
+										<p>
+											For instance, the set of all binary strings ending in 1 is a language over the alphabet &Sigma; = {0, 1}.
+										</p>
+
+										<div style="background-color: rgb(251, 245, 234); padding: 10px;">
+											<b>Def. DFA Acceptance</b>: </b> if for every string <b>s = w<SUB>1</SUB>w<SUB>2</SUB>...w<SUB>n</SUB></b> in <b>L</b> there exists (i.e. it is possible to find) a sequence of states <b>r<SUB>0</SUB>, r<SUB>1</SUB>, r<SUB>2</SUB>, ..., r<SUB>n</SUB></b> so that 
+											<ol>
+												<li>r<SUB>0</SUB> = q<SUB>0</SUB></li>
+												<li>
+													&delta;(r<SUB>i</SUB>, w<SUB>i+1</SUB>) = r<SUB>i+1</SUB>
+												</li>
+												<li>r<SUB>n</SUB> is in <b>F</b></li>
+											</ol>
+											In other words, we need a sequence of states so that the first state is the start state, the last state is one of the accept states, and the transitions in between agree with the string <b>s</b>.
+										</div>
+										<p>
+											Notice how there is one more element in the accepting sequence than there is in the string.  This is because we start at the start state before we process any characters.
+										</p>
+										<p>
+											As a sanity for the notation, it's sometimes helpful to look through an example and plug in some numbers.  If we look back at example 2 and we're given the string 112122, then we can give the sequence q0, q1, q2, q1, q2, q1, q0, and the 3 conditions above will be satisfied.
+										</p>
+                                            
+
+										<div style="background-color: rgb(251, 245, 234); padding: 10px;">
+											<b>Def. Language recognition:</b> A language <b>L</b> over an alphabet <b>&Sigma;</b> is <b>recognized</b> by a DFA <b>M = (Q, &Sigma;, &delta;, q, F)</b> if for all strings <b>s</b> in <b>L</b>, <b>M</b> accepts <b>s</b>, and for all strings <b>t</b> not in <b>L</b>, <b>M</b> rejects <b>t</b>.  In other words, we can construct the language set <b>L</b> in set notation as 
+
+											<h3>
+												\[ L = \{s | M \text{ accepts } s\} \]
+											</h3>
+										</div>
+										<p>
+											We're now <b>finally</b> ready to define a regular language
+										</p>
+
+										<div style="background-color: rgb(251, 245, 234); padding: 10px;">
+											A language <b>L</b> is <b>regular</b> if it is possible to find a DFA <b>M</b> that recognizes <b>L</b>
+										</div>
+										<p></p>
+										<p>
+											At this point, you may wonder if all languages are regular.  Certainly if we can design a DFA, then it implies a language that is regular, so that encompasses everything we've looked at in this class so far.  However, there are certain languages that are not regular.  For instance, the language of all binary palindromes (e.g. 10111101, 10000001, 1101111011), is not regular.  It seems like it would be tough to prove, because we'd somehow have to rule out infinitely many possible DFAs we could consider!  But next week we will go over some tricks to show that certain proposed languages are not regular.
+										</p>
+
+										<HR>
+										<h2>Binary Divisibility Checks</h2>
+										<p>
+											As some final helpful notes for you, you have a problem on your problem set about divisibility by 5 of binary numbers read <b>from left to right</b>.  Let's complete the divisibility by 3 example to elucidate a strategy that can be used to design DFAs for general divisibility.  This time I'll actually give the solution first and then I'll explain it.  Below is a state diagram that accomplishes this in JFLAP (<a href = "Div3.jff">Click here</a> to download the JFLAP file)
+										</p>
+
+										<img src = "Div3.png">
+
+										<p>
+											As a sanity check, we see that 3 (binary 11), 6 (binary 110), 9 (binary 1001), 12 (binary 1100), and 15 (binary 1111) are accepted.  But how the heck do we come up with this?  
+										</p>
+										<p>
+											First, we use the fact that all numbers have either a remainder of 0, 1, or 2 when divided by 3.  We'll make a state for each of these possibilities and move between them as we get more information.  If we stop at the remainder 0 state, then we accept, since that implies it's evenly divisible by 3
+										</p>
+
+										<p>
+											Now, to come up with the transitions, we have to think about what happens when we get an addition bit of information from left to right.  What this means is what we thought we had actually <b>shifts over to the left by 1 place</b>.  A binary left shift is actually multiplication by 2, just like shifting the digits of an ordinary base 10 number to the left is like multiplying by 10.  So we can use this fact to help us.  For instance, if we had the string 111 and were in the divisible by 1 state, and then we got a new bit <b>b</b>, the string we now have would be <b>111b</b>.  Our new string is then <b>1110 + b</b>.  If <b>b = 0</b>, then we move to the divisible by 2 state.  If <b>b = 1</b>, then we move to the divisible by 0 state.
+										</p>
+
+										<p>
+											To treat the state transitions in general, we consider the three cases
+											<ul>
+												<li>
+													If we currently have a remainder of 0, that means our number is <b>3k</b> for some natural number <b>k</b>.  We get a new bit <b>b</b> and shift to the left, which makes this <b>6k + b</b>.  <b>6k</b> divides evenly by 3, so that part doesn't matter, and we are just left with <b>b</b>.  So if <b>b = 0</b>, we stay with a remainder of 0, and if <b>b = 1</b>, we have a remainder of 1
+												</li>
+												<li>
+													If we currently have a remainder of 1, that means our number is <b>3k + 1</b>.  We get a new bit <b>b</b> and shift this to the left, and it turns into <b>2(3k+1) + b = 6k + 2 + b</b>.  Again, the <b>6k</b> part drops out, and we're just left with <b>2+b</b>.  We see then if <b>b = 0</b>, we move to be divisible by 2, and if <b>b = 1</b>, we move to be divisible by 0
+												</li>
+												<li>
+													If we currently have a remainder of 2, that means our number is <b>3k + 2</b>.  We get a new bit <b>b</b> and shift this to the left, and it turns into <b>2(3k+2) + b = 6k + 4 + b</b>.  Again, the <b>6k</b> part drops out, and we're just left with <b>4+b</b>, which we can remove a factor of 3 from to get <b>1 + b</b>.  We see then if <b>b = 0</b>, we move to be divisible by 1, and if <b>b = 1</b>, we stay divisible by 2.
+												</li>
+											</ul>
+										</p>
+
+
+
+
+                                    
+                                </div>
+						</div>
+					</div>
+
+					<!--LaTeX in Javascript!-->
+					<script src="../../../../jsMath/easy/load.js"></script>
+					<!--Syntax highlighting in Javascript!-->
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shCore.js"></script>
+					<script type="text/javascript" src="../../../syntaxhighlighter/scripts/shBrushJScript.js"></script>
+                    <script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushCpp.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushXml.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushMatlabSimple.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushPython.js"></script>
+					<link type="text/css" rel="stylesheet" href="../../../../syntaxhighlighter/styles/shCoreDefault.css"/>
+					<script type="text/javascript">SyntaxHighlighter.all();</script>
+
+<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+                                        <li>
+											<span class="opener">General</span>
+											<ul>
+												<li><a href = "../../index.html#overview">Overview</a></li>
+												<li><a href = "../../index.html#logistics">Technology Logistics</a></li>
+												<li><a href = "../../index.html#readings">Readings</a></li>
+												<li><a href = "../../index.html#deliverables">Deliverables</a></li>
+												<li><a href = "../../index.html#schedule">Schedule</a></li>
+												<li><a href = "../../index.html#grading">Grading</a></li>
+												<li><a href = "../../index.html#environment">Classroom Environment</a></li>
+												<li><a href = "../../index.html#collaboration">Collaboration Policy</a></li>
+												<li><a href = "../../index.html#other">Other Resources / Policies</a></li>
+											</ul> 
+										</li>
+										<li><a href = "../../Software/index.html">Software</a></li>
+										<li><a href = "../../index.html#schedule">Schedule</a></li>
+										<li><a href = "../../FinalProject/index.html">Final Project</a></li>
+                                        <li>
+											<span class="opener">Assignments</span>
+											<ul>
+												<li>
+													<a href = "../../Assignments/HW1_Discrete/index.html">HW1: Discrete Math Practice</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW2_DFA/index.html">HW2: DFAs</a>
+												</li>
+											</ul>
+										</li>
+                                        <li>
+											<span class="opener">Class Exercises</span>
+											<ul>
+												<li><a href = "../../ClassExercises/Week1_Unplugged">Week 1: Acting Out DFAs</a></li>
+												<li><a href = "../../ClassExercises/Week1_Discrete">Week 1: Discrete Math Review</a></li>
+												<li><a href = "../../ClassExercises/Week1_FridayDFABinary">Week 1: Binary And JFLAP</a>
+													<ul>
+														<li><a href = "../../ClassExercises/Week1_FridayDFABinary/index.html#binary">Binary Drills</a></li>
+														<li><a href = "../../ClassExercises/Week1_FridayDFABinary/index.html#jflap">JFLAP Exercises</a></li>
+													</ul>
+												</li>
+												<li><a href = "../../ClassExercises/Week2_Formal">Week 2: Formal Description of DFAs, Divisibility</a></li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; <a href = "http://www.ctralie.com">Christopher J. Tralie</a>. All rights reserved.  Contact chris.tralie@gmail.com. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+			
+            <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+            <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- End Sidebar !-->
+
+<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/skel.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="../../assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../../assets/js/main.js"></script>
+<!-- End Scripts -->
