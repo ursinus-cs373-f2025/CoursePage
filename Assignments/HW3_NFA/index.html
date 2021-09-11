@@ -1,0 +1,299 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<!-- Header !-->
+	<head>
+		<title>Ursinus CS 373: Theory of Computation, Fall 2021</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="../../assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="../../assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="../../assets/css/ie8.css" /><![endif]-->
+        <style>
+        .image_off, #home:hover .image_on{
+           display:none
+        }
+        .image_on, #home:hover .image_off{
+           display:block
+        }
+        </style>
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="../../index.html" class="logo"><strong>Ursinus CS 373: Theory of Computation, Fall 2021</strong></a>
+								</header>
+<!-- End Header !-->
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+                                        <h2>Homework 2: NFAs</h2>
+										<h3><a href = "http://www.ctralie.com">Chris Tralie</a></h3>
+									</header>
+
+									<div id="page-content">
+
+										<p>
+                                            The purpose of this problem set is to give you practice with NFAs and their interplay with DFAs and regular operations.  At the heart of what we're doing is the idea that if we've done the hard work to design DFAs to recognize some language(s), we can do a little more work to treat them as modules and to combine them in clever ways to make DFAs that recognize other languages.
+										</p>
+										<p>
+											For all problems that require you to construct an NFA or a DFA, <b>you should submit a JFLAP file</b>.  For all other problems, submit a picture of pen + paper work or a PDF document of a writeup.  Enjoy!
+                                        </p>
+
+										<b>(Q, &Sigma;, &delta;, q, F)</b>
+
+										<h3>Problem 1: The Union of Regular Languages (4 Points)</h3>
+										<p>
+											Design a DFA that recognizes strings over the alphabet {a, b, c} that contain ab <b>or</b> that contain bc.  Then, design an NFA with fewer states that also recognizes this language
+										</p>
+
+										<p>
+											Below are some tests you can try in JFLAP (<a href = "tests1.txt">Click here</a> to download them)
+										</p>
+
+										<table style="width:200px;"><tr><td>Input</td><td>Result</td></tr>
+											<tr><td> abbcac </td><td> Accept </td></tr>
+											<tr><td> aacbccabb </td><td> Accept </td></tr>
+											<tr><td> babaabcaca </td><td> Accept </td></tr>
+											<tr><td> bc </td><td> Accept </td></tr>
+											<tr><td> abbbacac </td><td> Accept </td></tr>
+											<tr><td> aca </td><td> Reject </td></tr>
+											<tr><td> a </td><td> Reject </td></tr>
+											<tr><td> bcaaba </td><td> Accept </td></tr>
+											<tr><td> ccabbbbccc </td><td> Accept </td></tr>
+											<tr><td> c </td><td> Reject </td></tr>
+											</table>
+											
+
+										<h3>Problem 2: The Intersection of Regular Languages (3 Points)</h3>
+										<p>
+											Prove by construction that regular languages are closed under intersection
+										</p>
+
+										<p>
+											<b>Hint:</b> You can do a similar construction to the proof that regular languages are closed under union, but all you need to change is the accept state
+										</p>
+
+										<h3>Problem 3: NFA Design (3 Points)</h3>
+										<p>
+											Design an NFA that recognizes the language of odd binary numbers that have a 1 in the 32s place, when read <i>from left to right</i>.
+										</p>
+
+										<p>
+											Below are some tests you can try in JFLAP (<a href = "tests3.txt">Click here</a> to download them)
+										</p>
+										<p>
+											<table style="width:200px;"><tr><td>Decimal Number</td><td>Input</td><td>Result</td></tr>
+												<tr><td> 99 </td><td> 1100011 </td><td> Accept </td></tr>
+												<tr><td> 206 </td><td> 11001110 </td><td> Reject </td></tr>
+												<tr><td> 239 </td><td> 11101111 </td><td> Accept </td></tr>
+												<tr><td> 189 </td><td> 10111101 </td><td> Accept </td></tr>
+												<tr><td> 230 </td><td> 11100110 </td><td> Reject </td></tr>
+												<tr><td> 118 </td><td> 1110110 </td><td> Reject </td></tr>
+												<tr><td> 144 </td><td> 10010000 </td><td> Reject </td></tr>
+												<tr><td> 73 </td><td> 1001001 </td><td> Reject </td></tr>
+												<tr><td> 8 </td><td> 1000 </td><td> Reject </td></tr>
+												<tr><td> 228 </td><td> 11100100 </td><td> Reject </td></tr>
+											</table>
+												
+										</p>
+
+										<h3>Problem 4: The Complement of Regular Languages (3 Points)</h3>
+										<p>
+											We've seen some examples where swapping the accept and non-accept states of a DFA that recognizes a language <b>L</b> over the alphabet &Sigma; yields a DFA which recognizes the <b>complement</b> of <b>L</b>; that is, all strings made up of characters from &Sigma; that are <b>not</b> in L.  For instance, the machine below accepts binary strings that contain 1010 somewhere (<a href = "Contains1010.jff">Click here</a> for the JFLAP file)
+										</p>
+										<img src = "Contains1010.png">
+										<p>
+											and the machine below accepts binary strings that <b>do not</b> contain 1010 (<a href = "NotContains1010.jff">Click here</a> for the JFLAP file)
+										</p>
+										<img src = "NotContains1010.png">
+
+										<p>
+											Does this same property hold for NFAs?  If so, provide a proof in general.  If not, show a counter-example (an example where this is not true), along with the inputs that break it.
+										</p>
+
+										<h3>Problem 5: The Concatenation of Regular Languages (3 Points)</h3>
+										<p>
+											Create an NFA that recognizes the the language of strings with a nonzero and even number of a's or with a nonzero and even number of bs, followed by at least one b, followed by a zero or an odd number of a's or a odd number of b's
+										</p>
+
+										<h3>Problem 6: The Reverse of Regular Languages (3 Points)</h3>
+										<p>
+											Construct a <b>DFA</b> that recognizes binary strings divisible by 3 when read <i>from right to left</i> 
+										</p>
+										<p>
+											<b>Hint: </b> You may want to try constructing an NFA first and then following a NFA to DFA translation procedure
+										</p>
+
+
+										<h3>Problem 7: Ordered Mixing of Regular Languages (3 Points)</h3>
+										<p>
+											Define an <b>ordered mixing</b> of two regular languages <b>A</b> and <b>B</b> over the alphabet <b>&Sigma;</b> to be the set of all strings <b>s</b> so that 
+										</p>
+
+										<div style="width:200px;">
+											<h3>
+												\[ s = a_1b_1a_2b_2 ... a_kb_k \]
+											</h3>
+
+											where the string 
+
+											<h3>
+												\[ a_1a_2 ... a_k \in A \]
+											</h3>
+
+											and the string
+
+											<h3>
+												\[ b_1b_2 ... b_k \in B \]
+											</h3>
+
+										</div>
+										<p>
+											and each <b>a<SUB>k</SUB>, b<SUB>k</SUB></b> is a <i>chunk</i> of a string; formally
+										</p>
+										<div style="width:200px;">
+
+
+											<h3>
+												\[ a_k, b_k \in \Sigma^* \]
+											</h3>
+
+										</div>
+
+										<p>
+											For instance, suppose that we have the string <span style="color:blue">computerscience</span> in the first language and the string <span style="color: red">philosophy</span> in the second language.  Then here are a few ordered mixings we can create from just these two words:
+										</p>
+										<ul>
+											<li> <span style="color:blue">c</span><span style="color:red">ph</span><span style="color:blue">o</span><span style="color:red">il</span><span style="color:blue">mp</span><span style="color:red">oso</span><span style="color:blue">u</span><span style="color:red">phy</span><span style="color:blue"></span><span style="color:blue"></span><span style="color:blue"></span><span style="color:blue">te</span><span style="color:blue">r</span><span style="color:blue">sc</span><span style="color:blue">ien</span><span style="color:blue">ce</span> </li>
+											<li> <span style="color:blue">com</span><span style="color:red">p</span><span style="color:blue">pu</span><span style="color:red">hi</span><span style="color:blue">te</span><span style="color:red">lo</span><span style="color:blue">r</span><span style="color:red">so</span><span style="color:blue">s</span><span style="color:red">p</span><span style="color:blue">ci</span><span style="color:red">hy</span><span style="color:blue">enc</span><span style="color:blue">e</span> </li>
+											<li> <span style="color:blue">c</span><span style="color:red">phi</span><span style="color:blue">o</span><span style="color:red">lo</span><span style="color:blue">mp</span><span style="color:red">sop</span><span style="color:blue">u</span><span style="color:red">hy</span><span style="color:blue">t</span><span style="color:blue">e</span><span style="color:blue">rsc</span><span style="color:blue"></span><span style="color:blue">ien</span><span style="color:blue">ce</span> </li>
+											<li> <span style="color:blue">c</span><span style="color:red">phi</span><span style="color:blue">omp</span><span style="color:red">l</span><span style="color:blue">ute</span><span style="color:red">o</span><span style="color:blue">r</span><span style="color:red">s</span><span style="color:blue">sc</span><span style="color:red">op</span><span style="color:blue">ien</span><span style="color:red">h</span><span style="color:blue">c</span><span style="color:red">y</span><span style="color:blue">e</span> </li>
+											<li> <span style="color:blue">c</span><span style="color:red">ph</span><span style="color:blue">omp</span><span style="color:red">ilo</span><span style="color:blue">u</span><span style="color:red">so</span><span style="color:blue">te</span><span style="color:red">ph</span><span style="color:blue">rs</span><span style="color:red">y</span><span style="color:blue">cie</span><span style="color:blue">nce</span> </li>
+										</ul>
+
+										<p>
+											Your task in this problem is to prove by construction that an ordered mixing of two regular languages is a regular language.
+										</p>
+										<p>
+											<b>Hint #1: </b> You should consider making cartesian product states so you can keep track of where you are in each string that you're mixing
+										</p>
+										<p>
+											<b>Hint #2: </b> It may be easier to first think about how to make a DFA to recognize a simpler type of mixing where each chunk is a single character.  Then see if you can extend this idea with an NFA to define a full ordered mixing
+										</p>
+										
+										
+
+
+											
+
+										
+
+
+                                    
+                                </div>
+						</div>
+					</div>
+
+					<!--LaTeX in Javascript!-->
+					<script src="../../../../jsMath/easy/load.js"></script>
+					<!--Syntax highlighting in Javascript!-->
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shCore.js"></script>
+					<script type="text/javascript" src="../../../syntaxhighlighter/scripts/shBrushJScript.js"></script>
+                    <script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushCpp.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushXml.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushMatlabSimple.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushPython.js"></script>
+					<link type="text/css" rel="stylesheet" href="../../../../syntaxhighlighter/styles/shCoreDefault.css"/>
+					<script type="text/javascript">SyntaxHighlighter.all();</script>
+
+<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+                                        <li>
+											<span class="opener">General</span>
+											<ul>
+												<li><a href = "../../index.html#overview">Overview</a></li>
+												<li><a href = "../../index.html#logistics">Technology Logistics</a></li>
+												<li><a href = "../../index.html#readings">Readings</a></li>
+												<li><a href = "../../index.html#deliverables">Deliverables</a></li>
+												<li><a href = "../../index.html#schedule">Schedule</a></li>
+												<li><a href = "../../index.html#grading">Grading</a></li>
+												<li><a href = "../../index.html#environment">Classroom Environment</a></li>
+												<li><a href = "../../index.html#collaboration">Collaboration Policy</a></li>
+												<li><a href = "../../index.html#other">Other Resources / Policies</a></li>
+											</ul> 
+										</li>
+										<li><a href = "../../Software/index.html">Software</a></li>
+										<li><a href = "../../index.html#schedule">Schedule</a></li>
+										<li><a href = "../../FinalProject/index.html">Final Project</a></li>
+                                        <li>
+											<span class="opener">Assignments</span>
+											<ul>
+												<li>
+													<a href = "../../Assignments/HW1_Discrete/index.html">HW1: Discrete Math Practice</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW2_DFA/index.html">HW2: DFAs</a>
+												</li>
+											</ul>
+										</li>
+                                        <li>
+											<span class="opener">Class Exercises</span>
+											<ul>
+												<li><a href = "../../ClassExercises/Week1_Unplugged">Week 1: Acting Out DFAs</a></li>
+												<li><a href = "../../ClassExercises/Week1_Discrete">Week 1: Discrete Math Review</a></li>
+												<li><a href = "../../ClassExercises/Week1_FridayDFABinary">Week 1: Binary And JFLAP</a>
+													<ul>
+														<li><a href = "../../ClassExercises/Week1_FridayDFABinary/index.html#binary">Binary Drills</a></li>
+														<li><a href = "../../ClassExercises/Week1_FridayDFABinary/index.html#jflap">JFLAP Exercises</a></li>
+													</ul>
+												</li>
+												<li><a href = "../../ClassExercises/Week2_Formal">Week 2: Formal Description of DFAs, Divisibility</a></li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; <a href = "http://www.ctralie.com">Christopher J. Tralie</a>. All rights reserved.  Contact chris.tralie@gmail.com. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+			
+            <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+            <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- End Sidebar !-->
+
+<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/skel.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="../../assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../../assets/js/main.js"></script>
+<!-- End Scripts -->
