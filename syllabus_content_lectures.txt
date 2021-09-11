@@ -19,15 +19,15 @@ Formal Description of Finite Automata, Regular Languages
 
 <ul><li><a href = "ClassExercises/Week2_Formal">Class exercises / notes</a></li><li><a href = "#readings">Sipser</a> Ch. 1.1</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/DFA.html">PIFLSA21 Ch. 3.1-3.3</a></li></ul>
 LECTURE
-Cartesian Product, Closure Under Union
+Practice with Formal Descriptions of DFAs, Begin Union
 
 <ul><li><a href = "#readings">Sipser</a> Ch. 1.1</li></ul>
 LECTURE
-Nondeterministic Finite Automata (NFAs)
+The Union Operation, Begin Nondeterministic Finite Automata (NFAs)
 
-<ul><li><a href = "#readings">Sipser</a> Ch. 1.2</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/NFA.html">PIFLSA21 Ch. 3.4-3.6</a></li></ul>
+<ul><li><a href = "#readings">Sipser</a> Ch. 1.1, 1.2</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/NFA.html">PIFLSA21 Ch. 3.4-3.6</a></li></ul>
 LECTURE
-Equivalence of NFAs and DFAs
+Formal Description of NFAs, Equivalence of NFAs and DFAs
 
 <ul><li><a href = "#readings">Sipser</a> Ch. 1.2</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/NFA.html">PIFLSA21 Ch. 3.4-3.6</a></li></ul>
 LECTURE

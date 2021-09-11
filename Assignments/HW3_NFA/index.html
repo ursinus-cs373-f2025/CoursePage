@@ -41,14 +41,16 @@
 							<!-- Content -->
 								<section>
 									<header class="main">
-                                        <h2>Homework 2: NFAs</h2>
+                                        <h2>Homework 3: NFAs And DFAs</h2>
 										<h3><a href = "http://www.ctralie.com">Chris Tralie</a></h3>
 									</header>
 
 									<div id="page-content">
 
+                                        <h2>Overview / Logistics</h2>
+										
 										<p>
-                                            The purpose of this problem set is to give you practice with NFAs and their interplay with DFAs and regular operations.  At the heart of what we're doing is the idea that if we've done the hard work to design DFAs to recognize some language(s), we can do a little more work to treat them as modules and to combine them in clever ways to make DFAs that recognize other languages.
+                                            The purpose of this problem set is to give you practice with NFAs and their interplay with DFAs.  At the heart of what we're doing is the idea that if we've done the hard work to design DFAs to recognize some language(s), we can do a little more work to treat them as modules and to combine them in clever ways to make DFAs that recognize other languages.  Sometimes an NFA will help as an intermediate step.
 										</p>
 										<p>
 											For all problems that require you to construct an NFA or a DFA, <b>you should submit a JFLAP file</b>.  For all other problems, submit a picture of pen + paper work or a PDF document of a writeup.  Enjoy!
@@ -56,7 +58,7 @@
 
 										<b>(Q, &Sigma;, &delta;, q, F)</b>
 
-										<h3>Problem 1: The Union of Regular Languages (4 Points)</h3>
+										<h3>Problem 1: The Union of Regular Languages (3 Points)</h3>
 										<p>
 											Design a DFA that recognizes strings over the alphabet {a, b, c} that contain ab <b>or</b> that contain bc.  Then, design an NFA with fewer states that also recognizes this language
 										</p>
@@ -126,21 +128,74 @@
 											Does this same property hold for NFAs?  If so, provide a proof in general.  If not, show a counter-example (an example where this is not true), along with the inputs that break it.
 										</p>
 
-										<h3>Problem 5: The Concatenation of Regular Languages (3 Points)</h3>
+										<h3>Problem 5: The Union And Concatenation of Regular Languages (3 Points)</h3>
 										<p>
-											Create an NFA that recognizes the the language of strings with a nonzero and even number of a's or with a nonzero and even number of bs, followed by at least one b, followed by a zero or an odd number of a's or a odd number of b's
+											Create an NFA that recognizes the the language of strings with a nonzero and even number of a's or with a nonzero and even number of bs, followed by one or more bs, followed by an odd number of a's or an odd number of b's.
 										</p>
 
-										<h3>Problem 6: The Reverse of Regular Languages (3 Points)</h3>
 										<p>
-											Construct a <b>DFA</b> that recognizes binary strings divisible by 3 when read <i>from right to left</i> 
-										</p>
-										<p>
-											<b>Hint: </b> You may want to try constructing an NFA first and then following a NFA to DFA translation procedure
+											Below are some tests you can try in JFLAP (<a href = "tests5.txt">Click here</a> to download them).  If you don't agree on a particular test case, take advantage of JFLAP's NFA branch explorer by trying that test out with <code>Input->Step By State</code>
 										</p>
 
+										<table style="width:200px;"><tr><td>Input</td><td>Result</td></tr>
+											<tr><td>aaaab</td><td>Reject</td></tr>
+											<tr><td>bbaabbb</td><td>Accept</td></tr>
+											<tr><td>bbaabaa</td><td>Reject</td></tr>
+											<tr><td>aabbbb</td><td>Accept</td></tr>
+											<tr><td>ababab</td><td>Accept</td></tr>
+											<tr><td>abab</td><td>Reject</td></tr>
+											<tr><td>ababb</td><td>Accept</td></tr>
+											<tr><td>aaaba</td><td>Reject</td></tr>
+											<tr><td>bbb</td><td>Reject</td></tr>
+											<tr><td>bbbb</td><td>Accept</td></tr>
+											<tr><td>bbbbbbbbbbbbbb</td><td>Accept</td></tr>
+											<tr><td>aaaaaaaaaaa</td><td>Reject</td></tr>
+										</table>
 
-										<h3>Problem 7: Ordered Mixing of Regular Languages (3 Points)</h3>
+										
+
+
+										<h3>Problem 6: The Reverse of Regular Languages Part 1 (3 Points)</h3>
+										<p>
+											Prove that if a binary string is divisible by 3, then its reverse is also divisible by 3.
+										</p>
+
+										<h3>Problem 7: The Reverse of Regular Languages Part 2 (3 Points)</h3>
+										<p>
+											If a binary string is divisible by 6, then its reverse is not necessarily divisible by 6.  For instance, the string 1100 (12) is divisible by 6, but its reverse 0011 (3) is not divisible by 6.  Construct a DFA that recognize the language of binary strings whose reverse is divisible by 6.  These strings should be inputted <i>from left to right</i>.
+										</p>
+
+										<p>
+											<b>Hint:</b> First construct and test an NFA that recognizes this language, then convert this to a DFA using the technique we described in class.  If you've only expanded the states you needed to expand, the DFA should have even fewer states than the one that recognizes strings divisible by 6!
+										</p>
+
+										<p>
+											Below are some tests you can try in JFLAP (<a href = "tests7.txt">Click here</a> to download them)
+										</p>
+
+										<table style="width:200px;"><tr><td>Input</td><td>Decimal Number</td><td>Reverse Binary</td><td>Reverse Decimal</td><td>Result</td></tr>
+											<tr><td><b> 1010111 </b></td><td> 87 </td><td> 1110101 </td><td> 117 </td><td><b> Reject </b></td></tr>
+											<tr><td><b> 00100001 </b></td><td> 33 </td><td> 10000100 </td><td> 132 </td><td><b> Accept </b></td></tr>
+											<tr><td><b> 001101 </b></td><td> 13 </td><td> 101100 </td><td> 44 </td><td><b> Reject </b></td></tr>
+											<tr><td><b> 00000011 </b></td><td> 3 </td><td> 11000000 </td><td> 192 </td><td><b> Accept </b></td></tr>
+											<tr><td><b> 0010011 </b></td><td> 19 </td><td> 1100100 </td><td> 100 </td><td><b> Reject </b></td></tr>
+											<tr><td><b> 0110011 </b></td><td> 51 </td><td> 1100110 </td><td> 102 </td><td><b> Accept </b></td></tr>
+											<tr><td><b> 01101111 </b></td><td> 111 </td><td> 11110110 </td><td> 246 </td><td><b> Accept </b></td></tr>
+											<tr><td><b> 11010111 </b></td><td> 215 </td><td> 11101011 </td><td> 235 </td><td><b> Reject </b></td></tr>
+											<tr><td><b> 0010101 </b></td><td> 21 </td><td> 1010100 </td><td> 84 </td><td><b> Accept </b></td></tr>
+											<tr><td><b> 00010001 </b></td><td> 17 </td><td> 10001000 </td><td> 136 </td><td><b> Reject </b></td></tr>
+										</table>
+											
+											
+
+																					
+											
+											
+											
+											
+											
+
+										<h3>Problem 8: Ordered Mixing of Regular Languages (3 Points)</h3>
 										<p>
 											Define an <b>ordered mixing</b> of two regular languages <b>A</b> and <b>B</b> over the alphabet <b>&Sigma;</b> to be the set of all strings <b>s</b> so that 
 										</p>
@@ -196,13 +251,6 @@
 											<b>Hint #2: </b> It may be easier to first think about how to make a DFA to recognize a simpler type of mixing where each chunk is a single character.  Then see if you can extend this idea with an NFA to define a full ordered mixing
 										</p>
 										
-										
-
-
-											
-
-										
-
 
                                     
                                 </div>
@@ -255,6 +303,9 @@
 												</li>
 												<li>
 													<a href = "../../Assignments/HW2_DFA/index.html">HW2: DFAs</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW3_NFA/index.html">HW3: DFAs And NFAs</a>
 												</li>
 											</ul>
 										</li>

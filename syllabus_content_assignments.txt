@@ -10,60 +10,54 @@ Assignment 1 Due
 Assignment 2 Due
 
 2021-09-10
-<HR>Assignment 3: NFAs / Regular Operations Out
+<HR><a href = "Assignments/HW3_NFA">Assignment 3: DFAs And NFAs</a> Out
 
 2021-09-10
 Assignment 3 Due
 
-2021-09-17
+2021-09-20
 <HR>Assignment 4: Regular Expressions, Nonregular Languages Out
 
-2021-09-17
+2021-09-20
 Assignment 4 Due
 
-2021-09-24
-<HR>Assignment 5: Context Free Grammars Out
+2021-09-29
+<HR>Assignment 5: Context Free Grammars, Pushdown Automata Out
 
-2021-09-24
+2021-09-29
 Assignment 5 Due
 
-2021-10-01
-<HR>Assignment 6: Pushdown Automata Out
+2021-10-08
+<HR>Assignment 6: Non CFGs, Turing Machines Part 1 Out
 
-2021-10-01
+2021-10-08
 Assignment 6 Due
 
-2021-10-08
-<HR>Assignment 7: Non CFGs, Turing Machines Part 1 Out
-
-2021-10-08
-Assignment 7 Due
-
 2021-10-15
-Assignment 8: Turing Machines Part 2 Out
+Assignment 7: Turing Machines Part 2 Out
 
 2021-10-20
+Assignment 7 Due
+
+2021-10-29
+<HR>Assignment 8: (Un)Decidability Out
+
+2021-10-29
 Assignment 8 Due
 
-2021-10-29
-<HR>Assignment 9: (Un)Decidability Out
+2021-11-05
+<HR>Assignment 9: Reductions Out
 
-2021-10-29
+2021-11-05
 Assignment 9 Due
 
-2021-11-05
-<HR>Assignment 10: Reductions Out
-
-2021-11-05
-Assignment 10 Due
-
 2021-11-17
-<HR>Assignment 11: NP Complete Problems Out
+<HR>Assignment 10: NP Complete Problems Out
 
 2021-11-17
 <a href = "FinalProject">Final Project</a> Out
 
 2021-11-22
-Assignment 11 Due
+Assignment 10 Due
 
 2021-12-06
