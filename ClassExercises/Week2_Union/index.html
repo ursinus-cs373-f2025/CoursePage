@@ -41,83 +41,101 @@
 							<!-- Content -->
 								<section>
 									<header class="main">
-                                        <h2>Week 1 Exercise: Acting out DFAs</h2>
+                                        <h2>Week 2: Union of DFAs </h2>
                                         <h3><a href = "http://www.ctralie.com">Chris Tralie</a>
 									</header>
 
 									<div id="page-content">
-
-                                        <h3>Debrief</h3>
 										<p>
-                                            Today we physically enacted deterministic finite automata (DFAs), also known as finite state machines (FSMs).  We eventually ended up at the Collegeville Wawa (figuratively speaking)
-                                        </p>
+											Now that we're getting the hang of designing DFAs, we'll start thinking about how to combine them together.  The first such <b>regular operation</b> is called the union: if we have a regular language <b>L1</b> and a regular language <b>L2</b>, then <b>L1 union L2</b> is the language with strings that are either in <b>L1</b> or in <b>L1</b>.  In other words, if a DFA <b>M1</b> recognizes <b>L1</b> and a DFA <b>M2</b> recognizes <b>L2</b>, then a string is in the union of <b>L1</b> and <b>L2</b> if and only if at least one of <b>M1</b> or <b>M2</b> accepts this string.  We showed in class how it's possible to design a language that recognizes the union by using the <a href = "https://en.wikipedia.org/wiki/Cartesian_product">Cartesian product</a> on the states between <b>M1</b> and <b>M2</b>
+										</p>
 
-                                        <img src = "WAWAFINISH.svg" width=250>
+										<h3>Example 1</h3>
+										<p>
+											As our first example, let's consider the following two languages
+										</p>
+										<ol>
+											<li>L1 = {binary strings with no more than 1 ones}</li>
+											<li>L2 = {binary strings with an odd number of zeroes}</li>
+										</ol>
 
-                                        <p>
-                                            <a href = "https://classic.csunplugged.org/finite-state-automata/">Click here</a> to see a similar exercise that's geared towards a K-12 environment in case you ever end up teaching in that context and you want to do something similar.
-                                        </p>
+										<p>
+											Here's a machine that recognizes <b>L1</b> (<a href = "atmost1one.jff">Click here</a> to download JFLAP file)
+										</p>
+										<img src = "atmost1one.png">
+										<p>
+											Here's a machine that recognizes <b>L2</b> (<a href = "oddzeros.jff">Click here</a> to download the JFLAP file)
+										</p>
+										<img src = "oddzeros.png">
+										<p>
+											Here's a machine that puts them together using the cartesian product (<a href = "atmost1one_or_oddzeros.jff">Click here</a> to view JFLAP file)
+										</p>
 
-                                        <h3>Code</h3>
-                                        <p>
-                                            You may be wondering how to code up DFAs.  We won't be coding too much in this class, but it's worth showing an example in python, since it's so succinct to encode a DFA specification using python lists and <a href = "https://www.geeksforgeeks.org/python-dictionary/">python dictionaries</a>.
-                                        </p>
+										<img src = "atmost1one_or_oddzeros.png">
 
-                                        <p>
-                                            Below is a picture of the last DFA we went over in class today (<a href = "DFAEndingIn11.jff">Click here</a> to download the JFLAP file for it)
-                                        </p>
-                                        <img src = "DFAEndingIn11.png">
+										<p>
+											To come up with this, given M1 = (Q1, &Sigma;1, &delta;1, q1, F1), M2 = (Q2, &Sigma;2, &delta;2, q2, F2) that recognize L1 and L2, respectively, we define the following 5-tuple for a machine that recognizes the union
+										</p>
 
-                                        <p>
-                                            As you may recall, this DFA accepts all binary strings that end in 11.
-                                        </p>
-                                        <p>    
-                                            Here's one way to realize this in python.  We loop through every character and look in the <code>transitions</code> dictionary to see what comes next based on what our character is.  For convenience, I also have an outer loop that goes through many examples at a time.
-                                        </p>
+										<ul>
+											<li><h3>\[ Q = Q_1 \times Q_2 \]</h3> In other words, we actually have the machine follow two states at a time: one state in the first machine and one state in the second machine.  If there are <b>M</b> states in the first machine and <b>N</b> states in the second machine, then this is <b>MN</b> possible pairs to consider</li>
+											
+											<li>
+												For simplicity, we'll assume that <b>&Sigma;</b> is the same alphabet for L1, L2, and their union
+											</li>
 
+											<li>
+												The new function is defined as
 
-                                        <script type="syntaxhighlighter" class="brush: python"><![CDATA[
-transitions = {}
-transitions['q00'] = {'0':'q00', '1':'q01'}
-transitions['q01'] = {'0':'q10', '1':'q11'}
-transitions['q10'] = {'0':'q00', '1':'q01'}
-transitions['q11'] = {'0':'q10', '1':'q11'}
-start = 'q00'
-accept = set(['q11']) # This is a set because there can be more than one accept state
+												<H3>
+													\[ \delta( (a, b), x ) = (\delta_1(a, x), \delta_2(b, x)) \]
+												</H3>
 
-test_cases = ['011', '1101', '1111', '1110', '1010', '10101100011']
-for bstr in test_cases:
-    state = start
-    # Loop through each character in the string
-    for c in bstr:
-        state = transitions[state][c]
-    result = 'reject'
-    if state in accept:
-        result = 'accept'
-    print(bstr, ":", result)
-                                        ]]></script>   
+												In other words, we think independently about what the first machine does when it's at state <b>a</b> and receives an <b>x</b> character and what the second machine does when it's at state <b>b</b> and it receives an <b>x</b> character.  For example, when we're in the above machines and we're at (q1, podd), we notice that a 0 moves q1 to q0 and a 0 keeps podd at podd; therefore, (q1, podd) has an arrow to (q0, podd) when a zero is inputted.
+											</li>
+											<li>
+												The start state is simply 
+												<h3>
+													\[ q = (q_1, q_2) \] 
+												</h3>
+												That is, we start in the start state of each machine
+											</li>
+											<li>
+												The accept states are all of the states that include an accept in the first machine OR an accept in the second machine.  Said differently, it doesn't matter what state I'm in in the second machine if I'm in an accept state in the first machine: I will accept.  Conversely, it doesn't matter what state I'm in in the first machine if I'm in an accept state in the second machine: I will accept.  We can translate these last two sentences into set notation by saying:
 
-                                            <p>
-                                                Running this code in python outputs the following
-                                            </p>
+												<H3>
+													\[ F = F_1 \times Q_2 \cup F_2 \times Q_1 \]
+												</H3>
 
-                                            <script type="syntaxhighlighter" class="brush: python"><![CDATA[
-011 : accept
-1101 : reject
-1111 : accept
-1110 : reject
-1010 : reject
-10101100011 : accept
-                                            ]]></script>  
+												<p>
+													For example, in the above machines, any state that has a podd in it will accept, regardless of what the first machine is doing.  So we see that (q0, podd), (q1, podd), and (q2, podd) all accept.  Likewise, any state that has a q0 or a q1 in it will accept.  This includes (q0, peven), (q0, podd), (q1, peven), and (q1, podd).
+												</p>
+											</li>
+										</ul>
 
-                                        <p>
-                                            In a week, we'll talk about how to formally specify a DFA using set notation, but it's really just another way to write what we've already shown both with the picture and in the code above, so you can always keep those modalities in mind as well
-                                        </p>
+										<h3>Example 2</h3>
+										<p>
+											For one more example, let's consider the machine that accepts binary strings that contain a 01 or binary strings that are divisible by 2.  Below is a machine that recognizes strings that contain a 01 (<a href = "contains01.jff">Click here</a> to download the JFLAP file)
+										</p>
 
+										<img src = "contains01.png">
 
-                                            
+										<p>
+											And here's the machine to recognizes binary strings divisible by 3 (<a href = "../Week2_Formal/Div3.jff">Click here</a> to view JFLAP file)
+										</p>
+										<img src = "../Week2_Formal/Div3.png">
 
+										<p>
+											And below is a machine that recognizes the union (<a href = "contains01_or_divby3.jff">Click here</a> to download the JFLAP file)
+										</p>
 
+										<img src = "contains01_or_divby3.png">
+
+										<p>
+											We can actually simplify this slightly because there are two states that can never be reached from the start:
+										</p>
+										<img src = "contains01_or_divby3_simp.png">
+										
 
 
 

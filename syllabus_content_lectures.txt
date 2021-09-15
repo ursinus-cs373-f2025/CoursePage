@@ -25,7 +25,7 @@ Practice with Formal Descriptions of DFAs, Begin Union
 LECTURE
 The Union Operation, Begin Nondeterministic Finite Automata (NFAs)
 
-<ul><li><a href = "#readings">Sipser</a> Ch. 1.1, 1.2</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/NFA.html">PIFLSA21 Ch. 3.4-3.6</a></li></ul>
+<ul><li><a href = "#readings">Sipser</a> Ch. 1.1, 1.2</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/NFA.html">PIFLSA21 Ch. 3.4-3.6</a></li><li><a href = "ClassExercises/Week2_Union">Class notes</a></li></ul>
 LECTURE
 Formal Description of NFAs, Equivalence of NFAs and DFAs
 
