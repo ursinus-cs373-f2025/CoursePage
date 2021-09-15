@@ -152,6 +152,50 @@
 											<tr><td>aaaaaaaaaaa</td><td>Reject</td></tr>
 										</table>
 
+										<p>
+											Let's highlight a couple of the accept strings to show how they get split up
+										</p>
+
+										<h4>Example 1: ababab</h4>
+										<p>
+											We can split this up as follows
+										</p>
+										<table style="width:500px;">
+											<tr>
+												<td>A <b>nonzero and even number of a's</b> or with a nonzero and even number of bs</td>
+												<td>
+													One or more bs
+												</td>
+												<td>
+													An <b>odd number of a's</b> or an <b>odd number of b's</b>
+												</td>
+											</tr>
+											<tr>
+												<td>aba</td>
+												<td>b</td>
+												<td>ab</td>
+											</tr>
+										</table>
+
+										<h4>Example 2: ababb</h4>
+
+										<table style="width:500px;">
+											<tr>
+												<td>A <b>nonzero and even number of a's</b> or with a nonzero and even number of bs</td>
+												<td>
+													One or more bs
+												</td>
+												<td>
+													An odd number of a's or an <b>odd number of b's</b>
+												</td>
+											</tr>
+											<tr>
+												<td>aba</td>
+												<td>b</td>
+												<td>b</td>
+											</tr>
+										</table>
+
 										
 
 
