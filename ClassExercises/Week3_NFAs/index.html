@@ -1,0 +1,329 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<!-- Header !-->
+	<head>
+		<title>Ursinus CS 373: Theory of Computation, Fall 2021</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="../../assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="../../assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="../../assets/css/ie8.css" /><![endif]-->
+        <style>
+        .image_off, #home:hover .image_on{
+           display:none
+        }
+        .image_on, #home:hover .image_off{
+           display:block
+        }
+        </style>
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="../../index.html" class="logo"><strong>Ursinus CS 373: Theory of Computation, Fall 2021</strong></a>
+								</header>
+<!-- End Header !-->
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+                                        <h2>Week 3: Introduction To NFAs </h2>
+                                        <h3><a href = "http://www.ctralie.com">Chris Tralie</a>
+									</header>
+
+									<div id="page-content">
+
+
+									<HR>
+										<h2><a name = "nfas">Nondeterministic Finite Automata (NFAs)</a></h2>
+										<p>
+											At this point in the course, we talked about a generalization of DFAs called <b>Nondeterministic Finite Automata (NFAs)</b>.  The idea here is that we can have more than one arrow with the same symbol coming out of a state, none at all, or a special symbol called <b>&lambda;</b>.  The machine is "nondeterministic" because it clones itself into a sort of "parallel universe" situation to explore multiple paths in parallel, and it can keep branching.  If one or more branches ends up persisting to an accept state, then we consider the NFA to have accepted a language.  Let's look at an example
+										</p>
+
+										<h3>
+											<a name = "example11">Example 1</a>
+										</h3>
+										<p>
+											We'll create an NFA that accepts a binary string that, when read from left to right, has a 1 in the 2s place.  Below is a picture of an NFA that accomplishes this (<a href = "1in2splace.jff">Click here</a> to download the JFLAP file)
+										</p>
+										<img src = "1in2splace.png">
+										<p>
+											Let's consider the input <b>11010</b>.  We know by looking at it that it does indeed have a 1 in the 2s place.  But what does the NFA do?  We can keep track of the branching using a tree that follows the different possibilities as new characters are read:
+										</p>
+										<p>
+											<img src = "1In2sPlaceInput.svg" width=250>
+										</p>
+										<p>
+											Notice how when we are at a state that has multiple arrows coming out of it for a particular input, we branch off into each possibility.  Also, as soon as we reach a dead end, a particular path dies off.  In this case, the only path that survives until the end is the one that stays at q until the 4th character comes in, when it jumps to <b>q2</b> and then <b>q0</b>, which is an accept state.  Since it ends at an accept state, the string is said to be accepted by the machine.
+										</p>
+										<p>
+											We can interpret the above machine as taking a gamble on when it's actually reading the 2s place.  If it's reading the 2s place and it sees a 1 as it should, it jumps from the start to <b>q2</b>.  If it hasn't read the 2s place yet, it stays at <b>q</b> regardless.  We can see that the rightmost branches in the above evaluation guessed incorrectly that they were in the 2s place, and this is what caused them to die off when they had more characters than anticipated. 
+										</p>
+										<p>
+											You can also explore NFA evaluations in JFLAP by stepping through, as shown below for this example
+										</p>
+										<img src = "1in2splace.gif">
+										<P></P><p></p>
+
+										<h3>
+											Example 2: A Union
+										</h3>
+										<p>
+											Let's go back to the union example from last time and see how we can do the same thing more simply with an NFA.  Recall that a machine that recognizes binary strings with at most 1 one looks like this:
+										</p>
+										<img src = "../Week2_Union/atmost1one.png">
+										<p>
+											and a machine that recognizes an odd number of zeros looks like this
+										</p>
+										<img src = "../Week2_Union/oddzeros.png">
+										<p>
+											We used the cartesian product to create a DFA to recognize both
+										</p>
+
+										<img src = "../Week2_Union/atmost1one_or_oddzeros.png">
+
+										<p>
+											But we can express the union in an even more intuitive way if we use the <b>&lambda;</b> symbol, which starts a branch that jumps to the next symbol without any input, as shown below (<a href = "UnionExample.jff">Click here</a> to view the JFLAP file)
+										</p>
+										<img src = "UnionExample.png">
+										<p>
+											Below is a trace for the input <b>00011</b>.  We see it branches right away and explores both machines in parallel.  In this case, they both happen to accept, though only one of them has to accept
+										</p>
+											<img src = "UnionExampleInput.svg" width=200>
+										<p>
+											Below is what such a parallel exploration looks like in JFLAP
+										</p>
+
+										<img src = "UnionExample.gif">
+
+										<HR>
+											<h2>Reversing Regular Languages</h2>
+											<p>NFAs give us a nice tool to design machines that recognize the reverse of particular languages if we're given a DFA for the original language.  If the original DFA accepts a string <b>s0 s1 s2 ... sm</b>, then this means that there is a sequence of states <b>q, q0, q1, q2, ..., qm</b> that is compatible with the string, where <b>qm</b> is an accept state.  Were we to visit the string in reverse, we would visit the states in reverse, starting at <b>qm</b> and ending at <b>q</b>.  What this means is that we should take the following steps to devise an NFA that accepts the reverse string:</p>
+
+											<ol>
+												<li>Reverse all of the arrows</li>
+												<li>
+													Make the start state the accept state (since this is where we want to end for the reverse string)
+												</li>
+												<li>
+													<p>
+														If there's only one end state in the original DFA, make this the start state in the reverse DFA.
+													</p>  
+													<p>
+														Otherwise, if there are multiple end states, we have to think a little harder, because, like a DFA, an NFA only has one start state.  We're also not sure which end state a particular string in the original language would have accepted on.  So we create a dummy start node in the reverse that branches to all of the original end states with a &lambda;
+													</p>
+												</li>
+											</ol>
+
+											<p>
+												Let's look at a couple of examples to see how this works
+											</p>
+
+											<h3>Example 1</h3>
+											<p>
+												Let's recall the DFA that accepts strings that contain a 01:
+											</p>
+											<img src = "../Week2_Union/contains01.png">
+											<p>
+												Here's what we get if we follow the above recipe (<a href = "contains01rev.jff">Click here</a> to view the JFLAP file)
+											</p>
+											<img src = "contains01rev.png">
+											<p>
+												We can see right away it's an NFA and not a DFA, because p01 has two arrows coming out for a 1 input, and p0 has two arrows coming out for a 0 input.  The new accept state, p, will also kill off any branches that have a 0 on them.
+											</p>
+
+											<h3>Example 2</h3>
+											<p>
+												Let's consider a DFA that recognizes the languages of strings over &Sigma;={a, b} that do not contain the substring <b>ba</b>.  The DFA below accomplishes this (<a href = "noba.jff">Click here</a> to view the JFLAP file)
+											</p>
+											<img src = "noba.png">
+											<p>
+												If we follow the recipe to reverse the arrows, we get the following (<a href = "nobarev.jff">Click here</a> for the JFLAP file)
+											</p>
+											<img src = "nobarev.png">
+											<p>
+												This is an example where the original DFA had multiple accept states, so we needed to be able to start the reverse at any of them.  We accomplish this by including a dummy start state that immediately branches to all of them with a &lambda;.
+											</p>
+											<p>
+												Actually, we can simplify this a bit by noticing that it's impossible to reach the state q2 from any of the start states:
+											</p>
+											<img src = "nobarevsimp.png">
+
+											<HR>
+												<h2>NFA to DFA</h2>
+												<p>
+													It might seem at this point like NFAs are way more powerful than DFAs.  Every DFA is trivially an NFA with no branching, but it seems like we can represent more complicated things with an NFA.  Amazingly, though, NFAs are no more powerful than DFAs, in the sense that it is possible to construct a DFA for any NFA.  In other words, like DFAs, <b>NFAs also recognize the class of regular languages</b>.  We'll demonstrate a procedure to prove by construction how to convert NFAs to DFAs.
+												</p>
+												
+												<h3>Example 1</h3>
+												<p>
+													Let's return to the last example to start with 
+												</p>
+
+												<img src = "nobarevsimp.png">
+
+												<p>
+													We're going to do something like we did when constructing DFAs to <a href = "../Week2_Union/">recognize the union</a> of two regular languages; that is, we'll create "meta states" that are a tuple of all states we could possibly be in after observing some amount of symbols.  For instance, in <a href = "#example11">example 1</a> at the beginning of this document, we were in q by itself, but we were also in (q, q2), (q, q2, q0), (q, q0), q2, and q0.  We'll have to consider all such possibilities.
+												</p>
+
+												<p>
+													Returning to our current simpler example, we have the following transition table
+												</p>
+
+												<table style="width:200px">
+													<tr>
+														<td></td>
+														<td>a</td>
+														<td>b</td>
+													</tr>
+													<tr>
+														<td><b>(q0, q1)</b></td>
+														<td>q0</td>
+														<td>(q0, q1)</td>
+													</tr>
+													<tr>
+														<td><b>q0</b></td>
+														<td>q0</td>
+														<td>{}</td>
+													</tr>
+													<tr>
+														<td>{}</td>
+														<td>{}</td>
+														<td>{}</td>
+													</tr>
+												
+												</table>
+
+												A few things to notice here:
+												<ul>
+													<li>We start off in states q0 and q1, which we represent with the meta state (q0, q1), and we consider what happens to each of these.  When we see an a, q0 stays at q0, but q1 actually has a dead end, so this collapses to just q0.  When we see a b, q0 has a dead end, but q1 splits into q0 and q1, so this can be viewed as a self transition (q0, q1) -> (q0, q1)</li>
+													<li>
+														When we're at q0, a causes is to stay there, but there's a dead end at b, so we actually transition to a null, which I indicated with {}
+													</li>
+													<li>
+														Nulls (or as some in class call, "Azkaban") are like places that we get stuck at and can never recover from, so they transition to themselves for all characters
+													</li>
+													<li>
+														Accept states are bolded in the left column.  An accept state in an DFA we construct from an NFA is any meta state that contains at least one accept state from the NFA.
+													</li>
+												</ul>
+
+												<p>
+													When we draw this out graphically, we see the following (<a href = "nobarevdfa.jff">Click here</a> to view the JFLAP file)
+												</p>
+
+												<img src = "nobarevdfa.png">
+
+												<p>
+													And actually, if we stare at this, we can see that it accepts anything that doesn't contain an "ab".  This is neat, because we just discovered that this is precisely the language that's the reverse of the language we started with of strings that don't contain a "ba."
+												</p>
+
+
+
+
+
+                                    
+                                </div>
+						</div>
+					</div>
+
+					<!--LaTeX in Javascript!-->
+					<script src="../../../../jsMath/easy/load.js"></script>
+					<!--Syntax highlighting in Javascript!-->
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shCore.js"></script>
+					<script type="text/javascript" src="../../../syntaxhighlighter/scripts/shBrushJScript.js"></script>
+                    <script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushCpp.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushXml.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushMatlabSimple.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushPython.js"></script>
+					<link type="text/css" rel="stylesheet" href="../../../../syntaxhighlighter/styles/shCoreDefault.css"/>
+					<script type="text/javascript">SyntaxHighlighter.all();</script>
+
+<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+                                        <li>
+											<span class="opener">General</span>
+											<ul>
+												<li><a href = "../../index.html#overview">Overview</a></li>
+												<li><a href = "../../index.html#logistics">Technology Logistics</a></li>
+												<li><a href = "../../index.html#readings">Readings</a></li>
+												<li><a href = "../../index.html#deliverables">Deliverables</a></li>
+												<li><a href = "../../index.html#schedule">Schedule</a></li>
+												<li><a href = "../../index.html#grading">Grading</a></li>
+												<li><a href = "../../index.html#environment">Classroom Environment</a></li>
+												<li><a href = "../../index.html#collaboration">Collaboration Policy</a></li>
+												<li><a href = "../../index.html#other">Other Resources / Policies</a></li>
+											</ul> 
+										</li>
+										<li><a href = "../../Software/index.html">Software</a></li>
+										<li><a href = "../../index.html#schedule">Schedule</a></li>
+										<li><a href = "../../FinalProject/index.html">Final Project</a></li>
+                                        <li>
+											<span class="opener">Assignments</span>
+											<ul>
+												<li>
+													<a href = "../../Assignments/HW1_Discrete/index.html">HW1: Discrete Math Practice</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW2_DFA/index.html">HW2: DFAs</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW3_NFA/index.html">HW3: DFAs And NFAs</a>
+												</li>
+											</ul>
+										</li>
+                                        <li>
+											<span class="opener">Class Exercises</span>
+											<ul>
+												<li><a href = "../../ClassExercises/Week1_Unplugged">Week 1: Acting Out DFAs</a></li>
+												<li><a href = "../../ClassExercises/Week1_Discrete">Week 1: Discrete Math Review</a></li>
+												<li><a href = "../../ClassExercises/Week1_FridayDFABinary">Week 1: Binary And JFLAP</a>
+													<ul>
+														<li><a href = "../../ClassExercises/Week1_FridayDFABinary/index.html#binary">Binary Drills</a></li>
+														<li><a href = "../../ClassExercises/Week1_FridayDFABinary/index.html#jflap">JFLAP Exercises</a></li>
+													</ul>
+												</li>
+												<li><a href = "../../ClassExercises/Week2_Formal">Week 2: Formal Description of DFAs, Divisibility</a></li>
+												<li><a href = "../../ClassExercises/Week2_Union">Week 2: Union of Regular Languages</a></li>
+												<li><a href = "../../ClassExercises/Week3_NFAs">Week 3: NFAs</a></li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; <a href = "http://www.ctralie.com">Christopher J. Tralie</a>. All rights reserved.  Contact chris.tralie@gmail.com. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+			
+            <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+            <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- End Sidebar !-->
+
