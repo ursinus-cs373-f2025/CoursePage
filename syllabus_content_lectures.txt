@@ -31,11 +31,11 @@ NFA Practice, NFA Reversing, Equivalence of NFAs and DFAs
 
 <ul><li><a href = "#readings">Sipser</a> Ch. 1.2</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/NFA.html">PIFLSA21 Ch. 3.4-3.6</a></li><li><a href = "ClassExercises/Week3_NFAs">Class notes</a></li></ul>
 LECTURE
-The Regular Operations, Closure Under Star And Concatenation, Begin Regular Expressions
+The Regular Operations, Closure Under Star And Concatenation
 
 <ul><li><a href = "#readings">Sipser</a> Ch. 1.2, 1.3</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/RegEx.html">PIFLSA21 Ch. 4.1-4.3, 4.7</a></li></ul>
 LECTURE
-Regular Languages And Regular Expressions
+Regular Expressions
 
 <ul><li><a href = "#readings">Sipser</a> Ch. 1.2, 1.3</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/RegEx.html">PIFLSA21 Ch. 4.1-4.3, 4.7</a></li></ul>
 LECTURE
