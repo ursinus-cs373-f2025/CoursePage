@@ -1,8 +1,8 @@
-function problem2(regexp) {
+function problem1(regexp) {
     let re = new RegExp('^(' + regexp + ')$');
-    let table = document.getElementById("problem2res");
+    let table = document.getElementById("problem1res");
     table.innerHTML = "<tr><td>Input</td><td>Expected Result</td><td>Your Result</td></tr>";
-    let tests = ["aba", "abaa", "aaaccaaba", "abacccaa", "abaccaa"];
+    let tests = ["aba", "abaa", "aaaccaaba", "abacccaa", "bbbaaaab","abaccaa", "bbbaabbb", "abbabbbabbaaaaab"];
     for (let i = 0; i < tests.length; i++) {
         const test = tests[i];
         let tr = document.createElement("tr");
@@ -21,7 +21,7 @@ function problem2(regexp) {
                 cs += 1;
             }
         }
-        let gtres = as%2 == 0 && (cs == 0 || cs%2 != 0);
+        let gtres = as%2 == 0 && (cs == 0 || cs == 0);
         td = document.createElement("td");
         td.innerHTML = gtres;
         tr.appendChild(td);
@@ -41,8 +41,8 @@ function problem2(regexp) {
     }
 }
 
-function clearProblem2() {
-    let table = document.getElementById("problem2res");
+function clearProblem1() {
+    let table = document.getElementById("problem1res");
     table.innerHTML = "";
 }
 
@@ -53,9 +53,9 @@ function clearProblem2() {
 
 
 
-function problem3(regexp) {
+function problem2(regexp) {
     let re = new RegExp('^(' + regexp + ')$');
-    let table = document.getElementById("problem3res");
+    let table = document.getElementById("problem2res");
     table.innerHTML = "<tr><td>Input</td><td>Expected Result</td><td>Your Result</td></tr>";
     let tests = ["abcabcaa", "ababcbca", "aaaaabcaaa", "bbbbb", "cccc", "acabacab", "aaaaa"];
     for (let i = 0; i < tests.length; i++) {
@@ -96,8 +96,8 @@ function problem3(regexp) {
     }
 }
 
-function clearProblem3() {
-    let table = document.getElementById("problem3res");
+function clearProblem2() {
+    let table = document.getElementById("problem2res");
     table.innerHTML = "";
 }
 
@@ -109,9 +109,9 @@ function clearProblem3() {
 
 
 
-function problem4(regexp) {
+function problem3(regexp) {
     let re = new RegExp('^(' + regexp + ')$');
-    let table = document.getElementById("problem4res");
+    let table = document.getElementById("problem3res");
     table.innerHTML = "<tr><td>Decimal</td><td>Binary</td><td>Reported Div By 5</td></tr>";
     for (let i = 0; i <= 4000; i++) {
         let tr = document.createElement("tr");
@@ -140,7 +140,7 @@ function problem4(regexp) {
     }
 }
 
-function clearProblem4() {
-    let table = document.getElementById("problem4res");
+function clearProblem3() {
+    let table = document.getElementById("problem3res");
     table.innerHTML = "";
 }

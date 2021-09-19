@@ -59,6 +59,10 @@
                                         </p>
 
 										<p>
+											<b>What to hand in: </b> You should hand in pictures or typed solutions to all problems, showing work where necessary for full credit.
+										</p>
+
+										<p>
 											<b>NOTE: </b>  For the problems that ask you to build regular expressions, I have provided a built-in tester for you with test cases to help you check that your regular expressions are correct.  To input your regular expression into the browser, use <b>|</b> for the union, and use no text for the empty string &lambda;.  For instance, the regular expression
 										</p>
 
@@ -77,26 +81,43 @@
 
 										<!--<b>(Q, &Sigma;, &delta;, q, F)</b>!-->
 
-										<h3>Problem 1</h3>
+
+										<h3>Problem 1 (3 Points)</h3>
 										<p>
-											Given a regular language <b>A</b> and a regular language <b>B</b>, define <b>L</b> to be the language
+											Devise a regular expression that describes the language of strings over the alphabet &Sigma;={a, b, c} which have a nonzero even number of as, but which <b>do not</b> contain any cs.
+										</p>
+										<p>
+											Below is a series of test cases you can apply to debug your expression
 										</p>
 
-										<div style="width:200px;">
-											<h3>
-												\[ L = \{ x | x \in A, x \notin B \} \]
-											</h3>
-										</div>
 
-										<p>
-											Prove that <b>L</b> is regular
-										</p>
+										<table>
+											<tr>
+												<td>
+													<input type="text" id="problem1">
+												</td>
+												<td>
+													<button type="button" onclick="checkProblem1()">Check</button>
+													<button type="button" onclick="clearProblem1()">Clear</button>
+												</td>
+											</tr>
+										</table>
+										<table id="problem1res" style="width:800px;"></table>
+										<script>
+											function checkProblem1() {
+												let textElem = document.getElementById("problem1");
+												problem1(textElem.value);
+											}
+										</script>
+
 
 										<h3>Problem 2 (3 Points)</h3>
 										<p>
-											Devise a regular expression that describes the language of strings over the alphabet &Sigma;={a, b, c} which have a nonzero even number of as, but which do <b>not</b> have a nonzero even number of cs.
+											Devise a regular expression whose language is strings over &Sigma;={a, b, c} where the total number of bs and cs sums to 4.  For instance, <b>abcabcaa</b> is in the language, but <b>ababcbca</b> is not.
 										</p>
-
+										<p>
+											Below is a series of test cases you can apply to debug your expression
+										</p>
 
 										<table>
 											<tr>
@@ -118,10 +139,16 @@
 										</script>
 
 
-										<h3>Problem 3 (3 Points)</h3>
+
+										<h3>Problem 3 (4 Points)</h3>
 										<p>
-											Devise a regular expression whose language is strings over &Sigma;={a, b, c} where the total number of bs and cs sums to 4.  For instance, <b>abcabcaa</b> is in the language, but <b>ababcbca</b> is not.
+											Devise a regular expression to describe the language of binary strings divisible by 5.  Note that there are many possible answers, so you should <b>show your work</b>.  
 										</p>
+
+										<p>
+											Below is a live program you can use to test your regular expression.  It will show all of the multiples of 5 up to 4000, along with the result that your regular expression gives.  It will also show any erroneous values not divisible by 5 that your regular expression accepts.
+										</p>
+										
 
 										<table>
 											<tr>
@@ -142,38 +169,30 @@
 											}
 										</script>
 
-
-
-										<h3>Problem 4 (5 Points)</h3>
-										<p>
-											Devise a regular expression to describe the language of binary strings divisible by 5.  Note that there are many possible answers, so you should <b>show your work</b>.  
-										</p>
-
-										<p>
-											Below is a live program you can use to test your regular expression.  It will show all of the multiples of 5 up to 4000, along with the result that your regular expression gives.  It will also show any erroneous values not divisible by 5 that your regular expression accepts.
-										</p>
 										
+										<h3>Problem 4</h3>
+										<p>
+											Given a regular language <b>A</b> and a regular language <b>B</b>, define <b>L</b> to be the language
+										</p>
 
-										<table>
-											<tr>
-												<td>
-													<input type="text" id="problem4">
-												</td>
-												<td>
-													<button type="button" onclick="checkProblem4()">Check</button>
-													<button type="button" onclick="clearProblem4()">Clear</button>
-												</td>
-											</tr>
-										</table>
-										<table id="problem4res" style="width:800px;"></table>
-										<script>
-											function checkProblem4() {
-												let textElem = document.getElementById("problem4");
-												problem4(textElem.value);
-											}
-										</script>
+										<div style="width:200px;">
+											<h3>
+												\[ L = \{ x | x \in A, x \notin B \} \]
+											</h3>
+										</div>
 
-                                    
+										<p>
+											Prove that <b>L</b> is regular
+										</p>                                    
+
+										<h3>Problem 5</h3>
+										<p>
+											Let &Sigma; = {0, 1, +, =}, and the language ADD = {x=y+z| x, y, z are binary integers and x is the sum of y and z}.  Prove that ADD is nonregular.
+										</p>
+										<p>
+											Note the similarity to <a href = "../HW2_DFA/#problem1dot4">homework 2 problem 1.4</a>, which we proved was actually regular, but where we had to define quite a different alphabet and input format.  Interesting, eh?
+										</p>
+
                                 </div>
 						</div>
 					</div>
