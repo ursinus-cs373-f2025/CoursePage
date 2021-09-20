@@ -59,22 +59,22 @@
                                         </p>
 
 										<p>
-											<b>What to hand in: </b> You should hand in pictures or typed solutions to all problems, showing work where necessary for full credit.
+											<b>What to hand in: </b> You should hand in pictures or typed solutions to all problems, showing work where necessary for full credit.  For problem 7, you should also upload a JFLAP file.
 										</p>
 
 										<p>
-											<b>NOTE: </b>  For the problems that ask you to build regular expressions, I have provided a built-in tester for you with test cases to help you check that your regular expressions are correct.  To input your regular expression into the browser, use <b>|</b> for the union, and use no text for the empty string &lambda;.  For instance, the regular expression
+											<b>NOTE: </b>  For the problems that ask you to build regular expressions, I have provided built-in testers for you with test cases to help you check that your regular expressions are correct.  To input your regular expression into the browser, use <b>|</b> for the union, and use no text for the empty string &lambda;.  For instance, the regular expression
 										</p>
 
 										<div style="width:200px;">
 											<h3>
-												\[ ab \cup b \cup \lambda \]
+												\[ ab \cup \lambda \cup b \]
 											</h3>
 										</div>
 
 
 										<p>
-											would be typed in as <b>a|ab|</b>
+											would be typed in as <b>ab||b</b>
 										</p>
 
 
@@ -170,7 +170,7 @@
 										</script>
 
 										
-										<h3>Problem 4</h3>
+										<h3>Problem 4 (3 Points)</h3>
 										<p>
 											Given a regular language <b>A</b> and a regular language <b>B</b>, define <b>L</b> to be the language
 										</p>
@@ -182,16 +182,79 @@
 										</div>
 
 										<p>
-											Prove that <b>L</b> is regular
+											Prove that <b>L</b> is <b>regular</b>.  Be sure your proof is written generally in terms of 5-tuples of DFAs that recognize A and B.
 										</p>                                    
 
-										<h3>Problem 5</h3>
+										<h3>Problem 5 (3 Points)</h3>
 										<p>
-											Let &Sigma; = {0, 1, +, =}, and the language ADD = {x=y+z| x, y, z are binary integers and x is the sum of y and z}.  Prove that ADD is nonregular.
+											Let &Sigma; = {0, 1, +, =}, and the language ADD = {x=y+z| x, y, z are binary integers and x is the sum of y and z}.  Prove that ADD is <b>nonregular</b>.
 										</p>
 										<p>
 											Note the similarity to <a href = "../HW2_DFA/#problem1dot4">homework 2 problem 1.4</a>, which we proved was actually regular, but where we had to define quite a different alphabet and input format.  Interesting, eh?
 										</p>
+
+										<h3>Problem 6 (3 Points)</h3>
+										<p>
+											Now we will use an alphabet more similar in spirit to that of <a href = "../HW2_DFA/#problem1dot4">homework 2 problem 1.4</a>.  Let &Sigma;<SUB>2</SUB> be the alphabet
+										</p>
+										<div style="width:300px;">
+											<h3>
+												\[ \Sigma_2 = \left\{  \left[ \begin{array}{c} 0 \\ 0 \end{array} \right], \left[ \begin{array}{c} 0 \\ 1 \end{array} \right], \left[ \begin{array}{c} 1 \\ 0 \end{array} \right], \left[ \begin{array}{c} 1 \\ 1 \end{array} \right] \right\} \]
+											</h3>
+										</div>
+										<p>
+											And let L be the language 
+										</p>
+										<div style="width:300px;">
+											<h3>
+												\[  \{  s \in \Sigma_2^*  | \text{ the top row of s is the reverse of the bottom row of s }\}  \]
+											</h3>
+										</div>
+										<p>
+											For instance, the string 
+										</p>
+										<div style="width:300px;">
+											<h3>
+												\[  \left[ \begin{array}{c} 1 \\ 1 \end{array} \right] \left[ \begin{array}{c} 1 \\ 0 \end{array} \right] \left[ \begin{array}{c} 1 \\ 0 \end{array} \right] \left[ \begin{array}{c} 0 \\ 1 \end{array} \right] \left[ \begin{array}{c} 0 \\ 1 \end{array} \right] \left[ \begin{array}{c} 1 \\ 1 \end{array} \right]  \in L \]
+											</h3>
+										</div>
+										<p>
+											but the string 
+										</p>
+
+										<div style="width:300px;">
+											<h3>
+												\[  \left[ \begin{array}{c} 1 \\ 1 \end{array} \right] \left[ \begin{array}{c} 1 \\ 1 \end{array} \right] \left[ \begin{array}{c} 0 \\ 0 \end{array} \right] \left[ \begin{array}{c} 0 \\ 0 \end{array} \right]  \notin L \]
+											</h3>
+										</div>
+
+										<p>
+											is in L.  Prove that L is <b>nonregular</b>.
+										</p>
+
+										<h3>Problem 7 (3 Points)</h3>
+										<p>
+											We showed in class that the language of binary strings with an equal number of 0s and 1s is nonregular.  Let's consider the seemingly very similar language of binary strings with an equal number of 01 and 10 substrings.  For instance, 010 is in this language because it contains a single 01 and a single 10, but 0101 is not in this language because it contains two 01 substrings and only a single 01 substring.   Surprisingly, this language is regular!  Prove that this is the case by constructing a DFA in JFLAP to recognize this language.
+										</p>
+
+										<p>
+											Below are some tests you can run (<a href = "tests7.txt">Click here</a> to download these tests in a file you can run in JFLAP's multiple run tab)
+										</p>
+
+										<table style="width:700px;"><tr><td>Input</td><td>01 Count</td><td>10 Count</td><td>Result</td></tr>
+											<tr><td> 11000001110111001000 </td><td> 110000<span style="color:red">01</span>11<span style="color:red">01</span>110<span style="color:red">01</span>000  (3)</td><td> 1<span style="color:red">10</span>000011<span style="color:red">10</span>11<span style="color:red">10</span>0<span style="color:red">10</span>0 (4)</td><td> Reject </td></tr>
+											<tr><td> 1101100111011110101 </td><td> 11<span style="color:red">01</span>10<span style="color:red">01</span>11<span style="color:red">01</span>111<span style="color:red">01</span><span style="color:red">01</span>  (5)</td><td> 1<span style="color:red">10</span>1<span style="color:red">10</span>011<span style="color:red">10</span>111<span style="color:red">10</span><span style="color:red">10</span> (5)</td><td> Accept </td></tr>
+											<tr><td> 11000001111110001100 </td><td> 110000<span style="color:red">01</span>1111100<span style="color:red">01</span>100  (2)</td><td> 1<span style="color:red">10</span>000011111<span style="color:red">10</span>001<span style="color:red">10</span> (3)</td><td> Reject </td></tr>
+											<tr><td> 110000101010000101 </td><td> 11000<span style="color:red">01</span><span style="color:red">01</span><span style="color:red">01</span>000<span style="color:red">01</span><span style="color:red">01</span>  (5)</td><td> 1<span style="color:red">10</span>000<span style="color:red">10</span><span style="color:red">10</span><span style="color:red">10</span>000<span style="color:red">10</span> (5)</td><td> Accept </td></tr>
+											<tr><td> 10101011111101110111 </td><td> 1<span style="color:red">01</span><span style="color:red">01</span><span style="color:red">01</span>11111<span style="color:red">01</span>11<span style="color:red">01</span>11  (5)</td><td> <span style="color:red">10</span><span style="color:red">10</span><span style="color:red">10</span>11111<span style="color:red">10</span>11<span style="color:red">10</span>11 (5)</td><td> Accept </td></tr>
+											<tr><td> 10011001100110000000 </td><td> 10<span style="color:red">01</span>10<span style="color:red">01</span>10<span style="color:red">01</span>10000000  (3)</td><td> <span style="color:red">10</span>01<span style="color:red">10</span>01<span style="color:red">10</span>01<span style="color:red">10</span>00000 (4)</td><td> Reject </td></tr>
+											<tr><td> 11011100100010011100 </td><td> 11<span style="color:red">01</span>110<span style="color:red">01</span>00<span style="color:red">01</span>0<span style="color:red">01</span>1100  (4)</td><td> 1<span style="color:red">10</span>11<span style="color:red">10</span>0<span style="color:red">10</span>00<span style="color:red">10</span>011<span style="color:red">10</span> (5)</td><td> Reject </td></tr>
+											<tr><td> 1000101010011011 </td><td> 100<span style="color:red">01</span><span style="color:red">01</span><span style="color:red">01</span>0<span style="color:red">01</span>1<span style="color:red">01</span>1  (5)</td><td> <span style="color:red">10</span>00<span style="color:red">10</span><span style="color:red">10</span><span style="color:red">10</span>01<span style="color:red">10</span>1 (5)</td><td> Accept </td></tr>
+											<tr><td> 1010110011000111 </td><td> 1<span style="color:red">01</span><span style="color:red">01</span>10<span style="color:red">01</span>100<span style="color:red">01</span>11  (4)</td><td> <span style="color:red">10</span><span style="color:red">10</span>1<span style="color:red">10</span>01<span style="color:red">10</span>0011 (4)</td><td> Accept </td></tr>
+											<tr><td> 10000111011011001011 </td><td> 1000<span style="color:red">01</span>11<span style="color:red">01</span>1<span style="color:red">01</span>10<span style="color:red">01</span><span style="color:red">01</span>1  (5)</td><td> <span style="color:red">10</span>00011<span style="color:red">10</span>1<span style="color:red">10</span>1<span style="color:red">10</span>0<span style="color:red">10</span>1 (5)</td><td> Accept </td></tr>
+											</table>
+											
+
 
                                 </div>
 						</div>
