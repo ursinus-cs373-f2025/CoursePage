@@ -58,89 +58,105 @@
 											<a name = "regexpnfa">Regular Expression To NFA</a>
 										</h2>
 										<p>
-											Sipser has a great explanation of this, so I won't rehash it here.  But I'll go through one example of a concatenation and star operation.  
+											Sipser has a great explanation of this, so I won't rehash it here.  But I'll go through an example that uses all of the operations
 										</p>
 										
 
 										<h3><a name = "example1">Example 1</a></h3>
 
 										<p>
-											Let's consider the alphabet &Sigma;={a, b} and the regular expression <b> (ab&Sigma;<SUP>*</SUP>)<SUP>*</SUP> </b>.  Let's start with a machine that recognizes <b>ab</b> (which, if we're being very pedantic, is itself the concatenation of the language {a} and the language {b})
+											Let's consider the alphabet &Sigma;={a, b} and the regular expression <b> (ab|ba)<SUP>*</SUP> a </b>  (the <b>|</b> here means "union," which is also sometimes written as <b>U</b>).  Let's start with an NFA that recognizes <b>ab</b> (which, if we're being very pedantic, is itself the concatenation of the language {a} and the language {b})
 										</p>
 
 										<img src = "ab.png">
 
 										<p>
-											Now, let's consider the machine that recognizes <b>&Sigma;<SUP>*</SUP></b>, or the language of any strings made up of a and b
+											Similarly, we can make an NFA that recognizes ba
 										</p>
 
-										<img src = "SigmaStar.png">
+										<img src = "ba.png">
 
 										<p>
-											If we follow the concatenation rules and lambda transition the accept states from ab to the start state of &Sigma;<SUP>*</SUP>, then we get this:
+											First, we put these together with the <b>union</b> operation to recognize <b>(ab|ba)</b>
 										</p>
 
-										<img src = "abSigmaStar.png">
+										<img src = "abORba.png">
 
 										<p>
-											Finally, to implement the star, we can lambda transition the accept state back to the start state and change the start state into an accept state (our book does this slightly differently, but it's equivalent)
+											To turn this into <b>(ab|ba)*</b>, we loop the accept states back to a state at the beginning with a &lambda; transition.  This state is itself an accept state, and it transitions with a &lambda; back through the machine so the string can loop an arbitrary number of times through it 
 										</p>
 
-										<img src = "abSigmaStarStar.png">
+										<img src = "abORbaStar.png">
+										
+										<p>
+											Finally, we <b>concatenate</b> an <b>a</b> onto the end by sending lambda transitions from all accept states to the start state of a machine that accepts <b>a</b>.  Then, the new accept state of the full machine is the accept state of the machine that accepts <b>a</b>
+										</p>
+
+										<img src = "abORbaStara.png">
 
 										<p>
-											We know that every NFA can be converted to a DFA, proving that this is regular.  But let's actually do the conversion out of curiosity.  First, we'll simplify the machine a bit
+											We could stop here, but we'll continue the exercise to convert the machine into a DFA, following the steps from <a href = "../Week3_NFAs/index.html#nfatodfa">last week</a>.  First, let's simplify it a bit by consolidating the start states
 										</p>
 
-										<img src = "abSigmaStarStarSimplified.png">
+										<img src = "abORbaStaraSimp.png">
 
 										<p>
-											Now, let's start at the start state and fill out tuples of states that we branch to like <a href = "../Week3_NFAs/#nfatodfa">we always do</a>.  The one subtle point is that whenever we transition to q3, we also immediately transition to q0 because of the &lambda; transition from q3 to q0
+											We'll start at <b>q</b>, which immediately transitions to <b>q0</b>, <b>p0</b>, and <b>r</b>.  So we'll start with the state tuple <b>(q0, p0, r)</b> and track those individual states
 										</p>
 
-										<table style="width:300px">
+
+										<table style="width:400px">
 											<tr>
 												<td></td>
 												<td>a</td>
 												<td>b</td>
 											</tr>
 											<tr>
-												<td><b>q0</b></td>
-												<td>q1</td>
+												<td>(q0, p0, r)</td>
+												<td>(q1, ra)</td>
+												<td>p1</td>
+											</tr>
+											<tr>
+												<td><b>(q1, ra)</b></td>
+												<td>
+													{}
+												</td>
+												<td>
+													(q2, r, q0, p0)
+												</td>
+											</tr>
+											<tr>
+												<td>(q2, r, q0, p0)</td>
+												<td>(q1, ra)</td>
+												<td>p1</td>
+											</tr>
+											<tr>
+												<td>p1</td>
+												<td>(p2, r, q0, p0)</td>
 												<td>{}</td>
 											</tr>
 											<tr>
-												<td>q1</td>
-												<td>{}</td>
-												<td>(q0, q3)</td>
-											</tr>
-											<tr>
-												<td><b>(q0, q3)</b></td>
-												<td>(q0, q1, q3)</td>
-												<td>(q0, q3)</td>
-											</tr>
-											<tr>
-												<td><b>(q0, q1, q3)</b></td>
-												<td>(q0, q1, q3)</td>
-												<td>(q0, q3)</td>
+												<td>(p2, r, q0, p0)</td>
+												<td>(q1, ra)</td>
+												<td>p1</td>
 											</tr>
 											<tr>
 												<td>{}</td>
 												<td>{}</td>
 												<td>{}</td>
 											</tr>
+											
 										
 										</table>
 
-										<p>
-											Below is a state transition diagram for this DFA (<a href = "abSigmaStarStarDFA.jff">Click here</a> to download the JFLAP file)
-										</p>
+										<p>If we draw this as a state diagram, it looks like this (<a href = "abORbaStaraDFA.jff">Click here</a> to download the JFLAP file)</p>
 
-										<img src = "abSigmaStarStarDFA.png">
+										<img src = "abORbaStaraDFA.png">
 
 										<p>
-											If we stare at it, we can see that we accept either if we're the empty string, or if we're ab followed by a completely arbitrary set of symbols.  This is consistent with the regular expression above.
+											If you stare at this for long enough, you should be able to convince yourself that this does indeed recognize the language (ab|ba)*a
 										</p>
+
 
 
 										<HR>
