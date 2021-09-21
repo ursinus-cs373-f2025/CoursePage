@@ -41,84 +41,123 @@
 							<!-- Content -->
 								<section>
 									<header class="main">
-                                        <h2>Week 1 Exercise: Acting out DFAs</h2>
+                                        <h2>Week 4: Converting Regular Expressions To DFAs And Back</h2>
                                         <h3><a href = "http://www.ctralie.com">Chris Tralie</a>
 									</header>
 
 									<div id="page-content">
-
-                                        <h3>Debrief</h3>
+										
 										<p>
-                                            Today we physically enacted deterministic finite automata (DFAs), also known as finite state machines (FSMs).  We eventually ended up at the Collegeville Wawa (figuratively speaking)
-                                        </p>
+											We worked through some examples of regular expressions in class last Friday.  What's neat about these is that in terms of regular languages, they are equally as expressive as DFAs.  In other words, everything that can be expressed as a DFA can be equivalently expressed as a regular expression, and every regular expression can be converted into a DFA.  The means that, amazingly, the operations of union, concatenation, and star can be used to build up <i>any</i> regular language from scratch.
+										</p>
+										<p>
 
-                                        <img src = "WAWAFINISH.svg" width=250>
+										</p>
 
-                                        <p>
-                                            <a href = "https://classic.csunplugged.org/finite-state-automata/">Click here</a> to see a similar exercise that's geared towards a K-12 environment in case you ever end up teaching in that context and you want to do something similar.
-                                        </p>
+										<h2>
+											<a name = "regexpnfa">Regular Expression To NFA</a>
+										</h2>
+										<p>
+											Sipser has a great explanation of this, so I won't rehash it here.  But I'll go through one example of a concatenation and star operation.  
+										</p>
+										
 
-                                        <h3>Code</h3>
-                                        <p>
-                                            You may be wondering how to code up DFAs.  We won't be coding too much in this class, but it's worth showing an example in python, since it's so succinct to encode a DFA specification using python lists and <a href = "https://www.geeksforgeeks.org/python-dictionary/">python dictionaries</a>.
-                                        </p>
+										<h3><a name = "example1">Example 1</a></h3>
 
-                                        <p>
-                                            Below is a picture of the last DFA we went over in class today (<a href = "DFAEndingIn11.jff">Click here</a> to download the JFLAP file for it)
-                                        </p>
-                                        <img src = "DFAEndingIn11.png">
+										<p>
+											Let's consider the alphabet &Sigma;={a, b} and the regular expression <b> (ab&Sigma;<SUP>*</SUP>)<SUP>*</SUP> </b>.  Let's start with a machine that recognizes <b>ab</b> (which, if we're being very pedantic, is itself the concatenation of the language {a} and the language {b})
+										</p>
 
-                                        <p>
-                                            As you may recall, this DFA accepts all binary strings that end in 11.
-                                        </p>
-                                        <p>    
-                                            Here's one way to realize this in python.  We loop through every character and look in the <code>transitions</code> dictionary to see what comes next based on what our character is.  For convenience, I also have an outer loop that goes through many examples at a time.
-                                        </p>
+										<img src = "ab.png">
+
+										<p>
+											Now, let's consider the machine that recognizes <b>&Sigma;<SUP>*</SUP></b>, or the language of any strings made up of a and b
+										</p>
+
+										<img src = "SigmaStar.png">
+
+										<p>
+											If we follow the concatenation rules and lambda transition the accept states from ab to the start state of &Sigma;<SUP>*</SUP>, then we get this:
+										</p>
+
+										<img src = "abSigmaStar.png">
+
+										<p>
+											Finally, to implement the star, we can lambda transition the accept state back to the start state and change the start state into an accept state (our book does this slightly differently, but it's equivalent)
+										</p>
+
+										<img src = "abSigmaStarStar.png">
+
+										<p>
+											We know that every NFA can be converted to a DFA, proving that this is regular.  But let's actually do the conversion out of curiosity.  First, we'll simplify the machine a bit
+										</p>
+
+										<img src = "abSigmaStarStarSimplified.png">
+
+										<p>
+											Now, let's start at the start state and fill out tuples of states that we branch to like <a href = "../Week3_NFAs/#nfatodfa">we always do</a>.  The one subtle point is that whenever we transition to q3, we also immediately transition to q0 because of the &lambda; transition from q3 to q0
+										</p>
+
+										<table style="width:300px">
+											<tr>
+												<td></td>
+												<td>a</td>
+												<td>b</td>
+											</tr>
+											<tr>
+												<td><b>q0</b></td>
+												<td>q1</td>
+												<td>{}</td>
+											</tr>
+											<tr>
+												<td>q1</td>
+												<td>{}</td>
+												<td>(q0, q3)</td>
+											</tr>
+											<tr>
+												<td><b>(q0, q3)</b></td>
+												<td>(q0, q1, q3)</td>
+												<td>(q0, q3)</td>
+											</tr>
+											<tr>
+												<td><b>(q0, q1, q3)</b></td>
+												<td>(q0, q1, q3)</td>
+												<td>(q0, q3)</td>
+											</tr>
+											<tr>
+												<td>{}</td>
+												<td>{}</td>
+												<td>{}</td>
+											</tr>
+										
+										</table>
+
+										<p>
+											Below is a state transition diagram for this DFA (<a href = "abSigmaStarStarDFA.jff">Click here</a> to download the JFLAP file)
+										</p>
+
+										<img src = "abSigmaStarStarDFA.png">
+
+										<p>
+											If we stare at it, we can see that we accept either if we're the empty string, or if we're ab followed by a completely arbitrary set of symbols.  This is consistent with the regular expression above.
+										</p>
 
 
-                                        <script type="syntaxhighlighter" class="brush: python"><![CDATA[
-transitions = {}
-transitions['q00'] = {'0':'q00', '1':'q01'}
-transitions['q01'] = {'0':'q10', '1':'q11'}
-transitions['q10'] = {'0':'q00', '1':'q01'}
-transitions['q11'] = {'0':'q10', '1':'q11'}
-start = 'q00'
-accept = set(['q11']) # This is a set because there can be more than one accept state
+										<HR>
+											<h2>
+												<a name = "dfa2regexp">DFA To Regular Expression</a>
+											</h2>
+											<p>
+												Now let's try to go the other way and show that it's possible to convert a DFA to a regular expression.  Actually, the Sipser book explains a proof in quite a lot of detail, I'm just going to go through a few examples below.  For convenience of construction, I'll be more concise than Sipser and leave out all of the null transitions (which he includes to make the formal inductive proof easier, but which become cumbersome when we're actually trying to create the regular expression).
+											</p>
 
-test_cases = ['011', '1101', '1111', '1110', '1010', '10101100011']
-for bstr in test_cases:
-    state = start
-    # Loop through each character in the string
-    for c in bstr:
-        state = transitions[state][c]
-    result = 'reject'
-    if state in accept:
-        result = 'accept'
-    print(bstr, ":", result)
-                                        ]]></script>   
+											<h3>Example 1</h3>
 
-                                            <p>
-                                                Running this code in python outputs the following
-                                            </p>
-
-                                            <script type="syntaxhighlighter" class="brush: python"><![CDATA[
-011 : accept
-1101 : reject
-1111 : accept
-1110 : reject
-1010 : reject
-10101100011 : accept
-                                            ]]></script>  
-
-                                        <p>
-                                            In a week, we'll talk about how to formally specify a DFA using set notation, but it's really just another way to write what we've already shown both with the picture and in the code above, so you can always keep those modalities in mind as well
-                                        </p>
-
-
-                                            
-
-
-
+											<h3>Example 4</h3>
+											<p>
+												<a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/RegEx.html#converting-regular-languages-to-regular-expressions-example">Click here</a> to see an interactive example in the Virginia Tech book
+											</p>
+										
 
 
 
