@@ -231,6 +231,124 @@
 													And actually, if we stare at this, we can see that it accepts anything that doesn't contain an "ab".  This is neat, because we just discovered that this is precisely the language that's the reverse of the language we started with of strings that don't contain a "ba."
 												</p>
 
+												<h3>Example 2</h3>
+												<p>
+													Let's look at a divisibility example.  First, we'll consider a DFA that recognizes the language of binary strings divisible by 4 when read <i>from left to right</i>.  Recall that we need states for each remainder: 0, 1, 2, and 3, and the transition between the states is 
+												</p>
+
+												<div style="width:200px;">
+												<h3>
+													\[ \delta(q_k, b) = q_{(2k + b) \% 4} \]
+												</h3>
+												</div>
+
+												<p>
+													This leads to the following DFA (<a href = "DivBy4.jff">Click here</a> for the JFLAP file)
+												</p>
+
+												<img src = "DivBy4.png">
+
+												<p>
+													When we reverse the arrows and the accept/final states, we get the following NFA (<a href = "DivBy4Rev.png">Click here</a> for the JFLAP)
+												</p>
+
+												<img src = "DivBy4Rev.png">
+
+												<p>
+													Here's the transition table we get, starting at the start state q0 and keeping track of what states emerge on different paths that come out of that.  I've bolded the states that contain the original accept state <b>q0</b> as one of the options, and these will be the accept states in the new machine.
+												</p>
+
+												<table style="width:400px;">
+													<tr>
+														<td></td><td>0</td><td>1</td>
+													</tr>
+													<tr>
+														<td><b>q0</b></td><td>(q0, q2)</td><td>{}</td>
+													</tr>
+													<tr>
+														<td><b>(q0, q2)</b></td>
+														<td>(q0, q1, q2, q3)</td>
+														<td>{}</td>
+													</tr>
+													<tr>
+														<td><b>(q0, q1, q2, q3)</b></td>
+														<td>(q0, q1, q2, q3)</td>
+														<td>(q0, q1, q2, q3)</td>
+													</tr>
+													<tr>
+														<td>{}</td>
+														<td>{}</td>
+														<td>{}</td>
+													</tr>
+												</table>
+
+												<p>
+													Shown as a state diagram, this is what it looks like (<a href = "DivBy4RevDFA.jff">Click here</a>) to download the JFLAP file):
+												</p>
+
+												<img src = "DivBy4RevDFA.png">
+
+												<p>
+													Actually, if we examine this DFA, what we notice is that all strings that start with 00 and are followed by anything are accepted.  This makes perfect sense for binary numbers divisible by 4, which, from right to left means that the 1s place and the 2s place are 0.
+												</p>
+
+
+												<h3>Example 3</h3>
+												<p>
+													Below is an example of an NFA that recognizes the language of binary strings that have a 1 in the 2s place (<a href = "NFA1In2s.jff">Click here</a> to download the JFLAP file).  You'll notice that it has two 1 transitions out of the initial state <b>q</b>.  We can think of this as the machine "hedging its bets" when it reads a 1: it can decide it's about to look at the 2s place (transitioning to q2) or whether it hasn't gotten there yet (staying at q).
+												</p>
+
+												<img src = "NFA1In2s.png">
+
+												<p>
+													Below is filling in the NFA to DFA table keeping track of the states as we go along, starting at the start state <b>q</b>, and filling in state tuple transition rules as we see new tuples, bolding the tuples that contain the accept state <b>q1</b> as one of the states
+												</p>
+
+												<table style="width:400px;">
+													<tr>
+														<td></td><td>0</td><td>1</td>
+													</tr>
+													<tr>
+														<td>q</td><td>q</td><td>(q, q2)</td>
+													</tr>
+													<tr>
+														<td>(q, q2)</td>
+														<td>(q, q1)</td>
+														<td>(q, q1, q2)</td>
+													</tr>
+													<tr>
+														<td><b>(q, q1)</b></td>
+														<td>q</td>
+														<td>
+															(q, q2)
+														</td>
+													</tr>
+													<tr>
+														<td>(<b>q, q1, q2)</b></td>
+														<td>(q, q1)</td>
+														<td>(q, q1, q2)</td>
+													</tr>
+												</table>
+
+												<p>
+													Below is a state diagram for this DFA (<a href = "DFA1In2s.jff">Click here</a> to download the JFLAP file)
+												</p>
+
+												<img src = "DFA1In2s.png">
+
+												<p>
+													Actually, if we rename the states, we get some insight into what this machine is doing
+												</p>
+
+												<img src = "DFA1In2s_Relabeled.png">
+												<p>
+													In fact, it's just keeping track of the last two characters it's processed (assuming leading zeros), and if the second to last one happens to be a 1 when it finishes, it accepts.  We can see then how this is logically equivalent to what we specified with the NFA.
+												</p>
+
+												
+
+
+
 
 
 
