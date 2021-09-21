@@ -101,7 +101,7 @@
 										<img src = "abORbaStaraSimp.png">
 
 										<p>
-											We'll start at <b>q</b>, which immediately transitions to <b>q0</b>, <b>p0</b>, and <b>r</b>.  So we'll start with the state tuple <b>(q0, p0, r)</b> and track those individual states
+											We'll start at <b>q</b>, which immediately transitions to <b>q0</b>, <b>p0</b>, and <b>r</b>.  So we'll start with the state tuple <b>(q0, p0, r)</b> and track those individual states.  Whenever there's a &lambda; transition, we'll include the states at the other end of the &lambda;.  For instance, when we end up at <b>q2</b>, we'll immediately jump to <b>r</b>, which also immediately jumps to <b>q0</b> and <b>p0</b>.  So, all together, we'd have the tuple <b>(q2, r, q0, p0)</b>.
 										</p>
 
 
@@ -167,7 +167,127 @@
 												Now let's try to go the other way and show that it's possible to convert a DFA to a regular expression.  Actually, the Sipser book explains a proof in quite a lot of detail, I'm just going to go through a few examples below.  For convenience of construction, I'll be more concise than Sipser and leave out all of the null transitions (which he includes to make the formal inductive proof easier, but which become cumbersome when we're actually trying to create the regular expression).
 											</p>
 
+											<p>
+												What we're going to do is add a start state that has a lambda transition to the start state of the machine, and then add arrows from all of the accept states to a new end state that we add
+											</p>
+
+											<img src = "SetupGNFA.svg" width=600>
+												
+											<p>
+												Then, we'll rip out a state that's not qstart or qend and then "repair" the machine to make sure that it accepts the same transitions that were there before.  To do this, we'll <b>allow arrows to have regular expressions instead of just characters from the alphabet</b>.  We refer to this construction as a "generalized NFA" (<b>GNFA</b>).  When repairing the machine, <b>we have to check all possible transitions between all pairs of states that are left in the machine after we rip one out to see if they need to be fixed</b>.  This includes the transitions that were there before, plus transitions that would have gone through the ripped out state on the way from one to another, or from a state to itself.  In state diagram format, what this means is the following: anything that looks like this
+											</p>
+
+											<img src = "qiqjqrip.png">
+
+											<p>
+												turns into this
+											</p>
+
+											<img src = "qiqj.png">
+											<p>
+												Note also the specific case of a self transition: this scenario
+											</p>
+
+											<img src = "qiqrip.png">
+											<p>
+												turns into
+											</p>
+
+											<img src = "qi.png">
+
+											<p>
+												We continue this process, ripping out one state at a time, until all that is left is qstart with an arrow towards qend
+											</p>
+
+											<img src = "qstartqend.png">
+
+											<p>
+												This arrow has the regular expression <b>R</b> that describes the whole machine.
+											</p>
+
+											<p>
+												<b>NOTE: </b> One important note about this process is that there are many ways to do the ripping, since we choose an arbitrary state at each machine to rip out at any point.  In fact, for a DFA with <b>N</b> states, there could potentially be <b>N!</b> different regular expressions you get from this!.  So, for instance, a machine with 5 states could end up with 5*4*3*2*1 = 120 states (so there are potentially 120 unique answers for <a href = "../../Assignments/HW4_Regexp/#problem3">problem 3 on hw4</a>).  But these regular expressions will all be equivalent if you've followed the recipe above.
+
+											</p>
+
+											<HR>
 											<h3>Example 1</h3>
+
+											<p>
+												Let's consider the machine that accepts binary strings with none or an even number of zeros
+											</p>
+
+											<img src = "evenzeros.png">
+
+											<p>
+												We start the GNFA out by adding the start and end states with the appropriate &lambda; transitions
+											</p>
+
+											<img src = "qevenqoddgnfastart.png">
+
+											<p>
+												We can start by ripping out <b>qodd</b>.  Let's consider the transitions between what remains of qstart, qeven, and qodd, and qend
+											</p>
+
+											<table style="width:400px">
+											<tr>
+												<td></td><td>qeven</td><td>qend</td>
+											</tr>
+											<tr>
+												<td>qstart</td><td>&lambda;</td><td>{}</td>
+											</tr>
+											<tr>
+												<td>qeven</td><td>1 U 01*0</td>
+												<td>&lambda;</td>
+											</tr>
+											</table>
+											<p>
+												We get the above table by simply applying our rip repair equations over and over again.  For instance, we see that qeven still transitions to itself with a 1, but we also have to account for the paths 01*0 that could go through qodd before we ripped qodd out.  The state diagram now looks like this:
+											</p>
+
+											<img src = "qevenqoddrip11.png">
+
+											<p>
+												At this point, we only have one option left of what to rip out, and we end up with the following
+											</p>
+
+											<img src = "qevenqoddrip12.png">
+											<p>
+												Hence, or final regular expression is <b>(1 U (01*0))*</b>.  If we look at this, we can see it accounts for all strings with a zero or even number of 0s.
+											</p>
+
+											<p>
+												As we mentioned, there are 2! ways to do the ripping.  In this case, we could have ripped out qeven before qodd.  Let's try this instead.  So we'll start again with the initial GNFA
+											</p>
+											<img src = "qevenqoddgnfastart.png">
+
+											<p>
+												Looking at the transitions that remain between qstart, qodd, and qend, we devise the following transitions
+											</p>
+
+											<table style="width:400px">
+												<tr>
+													<td></td><td>qodd</td><td>qend</td>
+												</tr>
+												<tr>
+													<td>qstart</td><td>&lambda; 1* 0</td><td>&lambda; 1* &lambda;</td>
+												</tr>
+												<tr>
+													<td>qodd</td><td>1 U 01*0</td>
+													<td>0 1* &lambda;</td>
+												</tr>
+												</table>
+											
+											<p>
+												Drawn as a state diagram, the result looks like this (where I've excluded a concatenated &lambda; in any expressions since that's simply the empty string)
+											</p>
+
+											<img src = "qevenqoddrip21.png">
+
+											<p>
+												Finally, we just need to rip out qodd.  We'll end up with the result <b>(1*)U((1*0)(1U01*0)*(01*))</b>, which is also correct, but much uglier and more convoluted than the other way of doing it in this problem.
+											</p>
+
 
 											<h3>Example 4</h3>
 											<p>
