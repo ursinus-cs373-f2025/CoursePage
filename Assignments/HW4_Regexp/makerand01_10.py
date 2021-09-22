@@ -1,16 +1,18 @@
 import numpy as np
 
-num_examples = 10
+num_examples = 20
 to_print = False
-for seed in [15]:
+for seed in [1]:
     np.random.seed(seed)
     n_accept = 0
     results = []
     if to_print:
         print("<table><tr><td>Input</td><td>01 Count</td><td>10 Count</td><td>Result</td></tr>")
     for i in range(num_examples):
-        x = np.random.randint(2**20)
-        bstr = format(x, 'b')
+        L = np.random.randint(10, 25)
+        bstr = ""
+        for i in range(L):
+            bstr += np.random.choice(["0", "1"])
         res = "Reject"
         counts01 = 0
         s01 = ""
