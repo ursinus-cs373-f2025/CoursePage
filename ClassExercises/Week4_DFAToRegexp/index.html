@@ -288,15 +288,15 @@
 												Finally, we just need to rip out qodd.  We'll end up with the result <b>(1*)U((1*0)(1U01*0)*(01*))</b>, which is also correct, but much uglier and more convoluted than the other way of doing it in this problem.
 											</p>
 
-											<h3>Example 3</h3>
+											<h3><a name = "div3">Example 3</a></h3>
 
 											<p>
-												Start with DFA
+												Let's suppose we want to derive a regular expression to describe all binary strings that are evenly divisible by 3.  Let's start with the DFA <a href = "../Week2_Formal/#divisibility">we made before</a>
 											</p>
 
 											<img src = "Div3Start.png">
 
-											<p>Convert to GNFA by adding lambda transition to q0 and from q0 to finish</p>
+											<p>Our first step towards making a regular expression is to convert to GNFA by adding lambda transition to q0 and from q0 to finish</p>
 
 											<img src = "Div3GNFAStart.png">
 
@@ -364,6 +364,14 @@
 												</table>
 											
 											<p>Since &lambda; is the empty string, I can simplify to <b>(0 U 1(01*0)*1)*</b></p>
+
+											<p>
+												There are a lot of interesting things we can see in this regular expression.  For example, if a string is divisible by 3, we can add any number of 0s either before or after it, and that string will also be divisible by 3.  We can also see the symmetric of this expression, which helps us to see that the reverse of a binary string that's divisible by 3 is still divisible by 3.
+											</p>
+
+											<p>
+												We did make a particularly good choice by ripping out things first that would cause the least damage by ripping out q2, then q1, then q2.  If we had instead ripped out q0, then q2, then q1, for instance, we would have gotten the regular expression <b>(0*1)((10*1) U (01*0))*(10*)</b>.  While this is definitely still correct and we still see some nice symmetry, it's harder to read than the other one.
+											</p>
 
 
 
