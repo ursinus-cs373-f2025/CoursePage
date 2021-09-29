@@ -288,6 +288,84 @@
 												Finally, we just need to rip out qodd.  We'll end up with the result <b>(1*)U((1*0)(1U01*0)*(01*))</b>, which is also correct, but much uglier and more convoluted than the other way of doing it in this problem.
 											</p>
 
+											<h3>Example 3</h3>
+
+											<p>
+												Start with DFA
+											</p>
+
+											<img src = "Div3Start.png">
+
+											<p>Convert to GNFA by adding lambda transition to q0 and from q0 to finish</p>
+
+											<img src = "Div3GNFAStart.png">
+
+											
+
+											<p>Rip out q2 first</p>
+
+											<table style="width:400px">
+												<tr>
+													<td></td><td>q0</td><td>q1</td><td>qend</td>
+												</tr>
+												<tr>
+													<td>qstart</td>
+													<td>&lambda;</td>
+													<td>{}</td>
+													<td>{}</td>
+												</tr>
+												<tr>
+													<td>q0</td>
+													<td>0</td>
+													<td>1</td>
+													<td>&lambda;</td>
+												</tr>
+												<tr>
+													<td>q1</td>
+													<td>1</td>
+													<td>01*0</td>
+													<td>{}</td>
+												</tr>
+
+												</table>
+
+											<img src = "Div3Ripq2.png">
+
+											<p>Now we'll rip out q1</p>
+
+											<table style="width:400px">
+												<tr>
+													<td></td><td>q0</td><td>qend</td>
+												</tr>
+												<tr>
+													<td>qstart</td>
+													<td>&lambda;</td>
+													<td>{}</td>
+												</tr>
+												<tr>
+													<td>q0</td>
+													<td>0 U 1(01*0)*1</td>
+													<td>&lambda;</td>
+												</tr>
+												</table>
+
+											<img src = "Div3Rip2Rip1.png">
+												
+											<p>There's only one thing left to do!  Rip out q0. There's only 1 arrow left</p>
+
+											<table style="width:400px">
+												<tr>
+													<td></td><td>qend</td>
+												</tr>
+												<tr>
+													<td>qstart</td>
+													<td>&lambda; (0 U 1(01*0)*1)* &lambda;</td>
+												</tr>
+												</table>
+											
+											<p>Since &lambda; is the empty string, I can simplify to <b>(0 U 1(01*0)*1)*</b></p>
+
+
 
 											<h3>Example 4</h3>
 											<p>
