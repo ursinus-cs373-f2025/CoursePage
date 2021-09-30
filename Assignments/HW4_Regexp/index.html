@@ -106,7 +106,12 @@
 										<script>
 											function checkProblem1() {
 												let textElem = document.getElementById("problem1");
-												problem1(textElem.value);
+												try {
+													problem1(textElem.value);
+												}
+												catch(err) {
+													alert(err.message);
+												}
 											}
 										</script>
 
@@ -133,8 +138,13 @@
 										<table id="problem2res" style="width:800px;"></table>
 										<script>
 											function checkProblem2() {
-												let textElem = document.getElementById("problem2");
-												problem2(textElem.value);
+												try {
+													let textElem = document.getElementById("problem2");
+													problem2(textElem.value);
+												}
+												catch(err) {
+													alert(err.message);
+												}
 											}
 										</script>
 
@@ -164,8 +174,13 @@
 										<table id="problem3res" style="width:800px;"></table>
 										<script>
 											function checkProblem3() {
-												let textElem = document.getElementById("problem3");
-												problem3(textElem.value);
+												try {
+													let textElem = document.getElementById("problem3");
+													problem3(textElem.value);
+												}
+												catch(err) {
+													alert(err.message);
+												}
 											}
 										</script>
 
@@ -346,6 +361,7 @@
 												<li><a href = "../../ClassExercises/Week2_Union">Week 2: Union of Regular Languages</a></li>
 												<li><a href = "../../ClassExercises/Week3_NFAs">Week 3: NFAs, Converting NFAs To DFAs</a></li>
 												<li><a href = "../../ClassExercises/Week4_DFAToRegexp">Week 4: Converting Regular Expressions To DFAs And Back</a></li>
+												<li><a href = "../../ClassExercises/Week5_PumpingLemma">Week 5: The Pumping Lemma</a></li>
 											</ul>
 										</li>
 									</ul>
