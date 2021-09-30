@@ -211,7 +211,7 @@
 											</p>
 
 											<HR>
-											<h3>Example 1</h3>
+											<h3>Example 1: Even Zeros</h3>
 
 											<p>
 												Let's consider the machine that accepts binary strings with none or an even number of zeros
@@ -288,7 +288,8 @@
 												Finally, we just need to rip out qodd.  We'll end up with the result <b>(1*)U((1*0)(1U01*0)*(01*))</b>, which is also correct, but much uglier and more convoluted than the other way of doing it in this problem.
 											</p>
 
-											<h3><a name = "div3">Example 3</a></h3>
+											<HR>
+											<h3><a name = "div3">Example 2: Divisible by 3</a></h3>
 
 											<p>
 												Let's suppose we want to derive a regular expression to describe all binary strings that are evenly divisible by 3.  Let's start with the DFA <a href = "../Week2_Formal/#divisibility">we made before</a>
@@ -373,6 +374,84 @@
 												We did make a particularly good choice by ripping out things first that would cause the least damage by ripping out q2, then q1, then q2.  If we had instead ripped out q0, then q2, then q1, for instance, we would have gotten the regular expression <b>(0*1)((10*1) U (01*0))*(10*)</b>.  While this is definitely still correct and we still see some nice symmetry, it's harder to read than the other one.
 											</p>
 
+											<HR>
+											<h3>Example 3: No more than 2 1s</h3>
+											<p>
+												Finally, let's derive a regular expression for the DFA that accepts binary strings with no more than 2 1s, to illustrate a case where there are multiple accept states.  Below is the DFA we'll start with
+											</p>
+
+											<img src = "NoMoreThan2_1s.png">
+
+											<p>
+												First, we convert it to a GNFA by adding qstart and qend
+											</p>
+
+											<img src = "NoMoreThan2_1s_GNFA.png">
+
+											<p>
+												Actually, we can immediately rip q3 out because it's a dead end
+											</p>
+
+											<img src = "NoMoreThan2_1s_q3.png">
+
+											<p>
+												Let's rip out q2 now.  We now have to see if we need to repair any arrows coming out of qstart, q0, and q1, and going into q0, q1, and qend.  The only one we actually have to repair is q1 -> qend
+											</p>
+
+											<table style="width:400px">
+												<tr>
+													<td></td><td>q0</td><td>q1</td><td>qend</td>
+												</tr>
+												<tr>
+													<td>qstart</td>
+													<td>&lambda;</td>
+													<td>{}</td>
+													<td>{}</td>
+												</tr>
+												<tr>
+													<td>q0</td>
+													<td>0</td>
+													<td>1</td>
+													<td>&lambda;</td>
+												</tr>
+												<tr>
+													<td>q1</td>
+													<td>{}</td>
+													<td>0</td>
+													<td>&lambda; U 10* &lambda;</td>
+												</tr>
+											</table>
+
+											<p>Noting that we can simplify &lambda; U 10* &lambda; to simply &lambda; U 10*, we have</p>
+
+											<img src = "NoMoreThan2_1s_q3_q2.png">
+
+											<p>
+												Let's rip out q1 now
+											</p>
+
+											<table style="width:400px">
+												<tr>
+													<td></td><td>q0</td><td>qend</td>
+												</tr>
+												<tr>
+													<td>qstart</td>
+													<td>&lambda;</td>
+													<td>{}</td>
+												</tr>
+												<tr>
+													<td>q0</td>
+													<td>0</td>
+													<td>&lambda; U ( 10*(&lambda; U 10*) )</td>
+												</tr>
+											</table>
+
+											<img src = "NoMoreThan2_1s_q3_q2_q1.png">
+
+											<p>
+												Finally, we end up with the regular expression <b>&lambda; 0* &lambda; U ( 10*(&lambda; U 10*) )</b> which we can simplify to <b>0* U ( 10*(&lambda; U 10*) )</b>.  If you stare at it, this definitely accepts all strings with at most two 1s!
+											</p>
+
 
 
 											<h3>Example 4</h3>
@@ -380,6 +459,7 @@
 												<a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/RegEx.html#converting-regular-languages-to-regular-expressions-example">Click here</a> to see an interactive example in the Virginia Tech book
 											</p>
 										
+											
 
 
 
