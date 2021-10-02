@@ -41,7 +41,7 @@
 							<!-- Content -->
 								<section>
 									<header class="main">
-                                        <h2>Homework 5: Context Free Grammars</h2>
+                                        <h2>Homework 5: Context Free Grammars (12 Points)</h2>
 										<h3>Chris Tralie</h3>
 									</header>
 
@@ -77,9 +77,14 @@
 											</h3>
 										</div>
 
-										<p>
+										<!--<p>
 											Below are some test cases you can use in JFLAP
 										</p>
+
+										<table style="width:200px;">
+											<tr><td>Input</td><td>result</td></tr>
+											<tr><td>abbccc</td><td>Reject</td></tr>
+										</table>!-->
 
 										<h3>Problem 2 (3 Points)</h3>
 										<p>
@@ -91,26 +96,25 @@
 										</p>
 
 
-										<h3>Problem 3 (4 Points)</h3>
+										<h3>Problem 3 (3 Points)</h3>
 										<p>
-											Consider the language <b>L</b> of binary strings with three times as many 0s as 1s (including the empty string).  Prove by induction that if <b>s &isin; L</b> is non-empty, then it must contain a 0010, 0010, a 0100, or a 1000 as a substring somewhere.  Use this fact to design a provably correct CFG that generates <b>L</b>.
+											Consider the language <b>L</b> of binary strings with three times as many 0s as 1s (including the empty string).  Prove by induction that if <b>s &isin; L</b> is non-empty, then it must contain a 0001, 0010, a 0100, or a 1000 as a substring somewhere.  Use this fact to design a provably correct CFG that generates <b>L</b>.
 										</p>
 
 										<p>
-											<b>Hint: </b> 
+											<b>Hint: </b> For the inductive proof, notice that any string in this language has a length divisible by 4, so you can chunk it up into contiguous sets of 4 characters.  For instance, 01000010 can be divided up into 0100 and 0010.  There are 16 possibilities for each chunk.  If one of the chunks happens to be a 0001, a 0010, a 0100, or a 1000, then you're set.  If none of them are, then argue that one of them has to be a 0000.  Use that fact to show that you can find a substring somewhere else that's a 0001 or a 1000. 
 										</p>
-
-										<p>
-											Below are some test cases you can try in JFLAP to make sure your CFG is correct
-										</p>
-
+										
 										<h3>Problem 4 (3 Points)</h3>
 										<p>
-											Show two languages which are each nonregular but which can be each generated with CFGs, and whose union is regular.
+											We know that the union of two CFGs is a CFG, and that CFG generated languages are a superset of regular languages.  Show two languages which are each nonregular but which can be each generated with CFGs, and whose union is regular.
+										</p>
+										<p>
+											<b>Hint:</b> If you're stuck, try consider languages of strings with a bunch of 0s followed by a bunch of 1s
 										</p>
 
-										<h3>Problem 5 (4 Points)</h3>
-										Sipser 2.27
+										<!--<h3>Problem 5 (4 Points)</h3>
+										Sipser 2.27!-->
 
                                     
                                 </div>
@@ -169,6 +173,9 @@
 												</li>
 												<li>
 													<a href = "../../Assignments/HW4_Regexp/index.html">HW4: (Non)Regular Languages And Regular Expressions</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW5_CFGs/index.html">HW5: Context Free Grammars</a>
 												</li>
 											</ul>
 										</li>
