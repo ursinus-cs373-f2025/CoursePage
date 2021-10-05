@@ -67,7 +67,7 @@ Intro To Context Free Grammars (CFGs)
 
 <ul><li><a href = "#readings">Sipser</a> Ch. 2.1</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/ContexFreeLanguages.html">PIFLSA21 Ch. 6.1, 6.2</a></li></ul>
 LECTURE
-Ambiguity of CFGs, Chomsky Normal Form
+CFG Practice, Ambiguity of CFGs
 
 <ul><li><a href = "#readings">Sipser</a> Ch. 2.1</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/ContexFreeLanguages.html">PIFLSA21 Ch. 6.1, 6.2</a></li><li><a href = "#readings">Sipser</a> Ch. 2.1</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/ContexFreeLanguages.html#ambiguity">PIFLSA21 Ch. 6.1.8</a></li></ul>
 LECTURE
