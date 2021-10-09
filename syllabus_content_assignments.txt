@@ -28,7 +28,7 @@ Assignment 4 Due
 Assignment 5 Due
 
 2021-10-08
-<HR>Assignment 6: Pushdown Automata, Non CFGs Out
+<HR><a href = "Assignments/HW6_PDAs">Assignment 6: Pushdown Automata, Non CFGs</a> Out
 
 2021-10-08
 Assignment 6 Due
