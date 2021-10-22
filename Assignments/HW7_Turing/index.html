@@ -41,7 +41,7 @@
 							<!-- Content -->
 								<section>
 									<header class="main">
-                                        <h2>Homework 5: Context Free Grammars (13 Points)</h2>
+                                        <h2>Homework 7: Turing Machines (18 Points)</h2>
 										<h3>Chris Tralie</h3>
 									</header>
 
@@ -49,129 +49,97 @@
 
                                         <h2>Overview / Logistics</h2>
 										<p>
-                                            The purpose of this problem set is to get you experience designing and reasoning about context free grammars.
+                                            The purpose of this problem set is to get you practice designing and reasoning about Turing machines.  As we've seen, they are very similar to DFAs, but they have two seemingly innocuous twists: they can write to the tape (which has an infinite capacity in both directions), and they can move the tape both to the left <b>and</b> to the right.  Amazingly, these are the only changes we need to make to a DFA to create a mathematical model of a machine powerful enough to compute everything that we can compute with ordinary programming languages like Java.
                                         </p>
 
-										<h3>Problem 1 (4 Points)</h3>
-										<p>
-											Consider the grammar with variables <b>V = {S, R}</b>, terminals <b>&Sigma; = {0, 1}</b> and the following rules (where <b>S</b> is the start variable)
+										<h3>Problem 1 (3 Points)</h3>
 
+										<p>
+											<a href = "https://sitn.hms.harvard.edu/flash/2012/turing-biography/">Click here</a> to read a brief biography of Alan Turing, the inventor of the Turing machine.  His story is as tragic as it is fascinating.  Reflect on the following in a brief writeup:
 											<ul>
-												<li>S &rightarrow; RR</li>
-												<li>R &rightarrow; RRR</li>
-												<li>R &rightarrow; 0</li>
-												<li>R &rightarrow; 1R</li>
-												<li>R &rightarrow; R1</li>
+												<li>
+													What were Turing's major technical accomplishments/contributions?</li>
+												<li>
+													What was Turing's "crime" for which he was convicted?  What was his sentence?  How long did it take for him to get pardoned for this "crime"?  Does this surprise you?
+												</li>
+												<li>
+													What do you think would have happened if Turing had been allowed to be who he was and he had continued to make contributions into the internet age?  What kinds of problems would he have worked on in the '90s given his thought style?
+												</li>
 											</ul>
 										</p>
 
-										<ol>
-											<li>(2 points) <p>Which strings can be generated with 4 or fewer substitutions?</p></li>
-											<!--<li>(2 Points) <p>Give at least 4 distinct derivations of the string <b>101101</b>. </p>
-											<p>
-												<b>NOTE: </b> Two derivations are distinct if their <b>leftmost derivations</b> are different; that is, the version of their derivation where the leftmost remaining variable is the one replaced at each step.  This gives us a "canonical order" with which to compare derivations.  For example, 
-											</p>
-											<p>
-												S &rightarrow; RR &rightarrow; R1R &rightarrow; R11R &rightarrow;  R111R &rightarrow; 0111R &rightarrow; 0111R1 &rightarrow; 011101
-											</p>
-											<p>
-												is actually the same as 
-											</p>
-											<p>
-												S &rightarrow; RR &rightarrow; 0R &rightarrow; 01R &rightarrow; 011R &rightarrow; 0111R &rightarrow; 0111R1 &rightarrow; 011101
-											</p>
-											<p>
-												because all of the same rules are applied in the same places, but the second version is a leftmost derivation, while the first one isn't.  By contrast, the derivation
-											</p>
-											<p>
-												S &rightarrow; RR &rightarrow; RR1 &rightarrow; 0RR &rightarrow; 0
-											</p>
-											<p>
-												So we'll use the leftmost derivation as our representative of a distinct set of derivations.
-											</p>
-											
-											
-											</li>!-->
-											<li>(2 Points) 
-												<p>For arbitrary a, b, c &geq; 0, describe a derivation (sequence of rules repeating in terms of a, b, and c) that lead to the terminal string <b>1<SUP>a</SUP>01<SUP>b</SUP>01<SUP>c</SUP></b>.  For instance, you could write "repeat rule X a times" as part of it.
-												</p>	
-											</li>
-										</ol>
-										
-										<!--<h3>Problem 1 (3 Points)</h3>
-										<p>
-											Devise a context-free grammar that generates the language
-										</p>
-										<div style="width:200px;">
-											<h3>
-												\[ L_1 = \{a^ib^jc^k | i = j \text{ or } j = k, i, j, k \geq 0 \} \]
-											</h3>
-										</div>
-										<p>
-											Draw parse trees for a string that can be derived ambiguously by your CFG
-										</p>!-->
-
-										<h4>JFLAP</h4>
-										<p>
-											To help you out, you can take advantage of JFLAP's built-in <a href = "https://en.wikipedia.org/wiki/CYK_algorithm">CYK parser</a> which finds a valid derivation if it exists.  Open up the <code>Grammar</code> program in JFLAP, then write in the rules for the grammar.  Then, go to the menu <code>Input &rightarrow; CYK Parse</code>.  You can put in a string here.  If the string is in the language, JFLAP will find a derivation using the CYK algorithm, which you can display either as a derivation table
-										</p>
-										<img src = "JFLAPDerivationTable.png">
-										<p>or as a parse tree, which you can go through step by step</p>
-										<img src = "JFLAPParseTree.png">
-										<p>
-											If the string you input is not in the language generated by the CFG, then it will say it was rejected.
-										</p>
-
-
 										<h3>Problem 2 (3 Points)</h3>
 										<p>
-											Devise a context free grammar that generates the language
+											Create a Turing machine that recognizes the language with twice as many zeros as ones.  (Note that this language is also context free, but sometimes it's interesting to see how to change it up with a different computational model).
 										</p>
-
-										<div style="width:200px;">
-											<h3>
-												\[ L_2 = \{a^ib^jc^k | i, j, k \geq 0 \text{ and if } i = 1, \text{ then } j = k \} \]
-											</h3>
-										</div>
-
-										<!--<p>
-											Below are some test cases you can use in JFLAP
-										</p>
-
-										<table style="width:200px;">
-											<tr><td>Input</td><td>result</td></tr>
-											<tr><td>abbccc</td><td>Reject</td></tr>
-										</table>!-->
 
 										<h3>Problem 3 (3 Points)</h3>
 										<p>
-											Prove that it's impossible to recognize the above language <b>L<SUB>2</SUB></b> with a DFA.
+											We saw in class that it is possible to design a Turing machine that recognizes the language
 										</p>
 
+										<h3>
+											\[ L = \{ 0^{2^N}, N \geq 0 \} \]
+										</h3>
+
 										<p>
-											<b>Hint: </b> Believe it or not, <b>L<SUB>2</SUB></b> actually satisfies the regular pumping lemma!  But this doesn't imply it's regular.  Recall that being regular implies the pumping lemma, but the converse is not necessarily true; that is, a language that satisfies the pumping lemma is not necessarily regular.  In fact, this is a counter-example to the converse of the pumping lemma.  Instead, assume <b>L<SUB>2</SUB></b> is regular and use other properties of regular languages to transform it into something else that's nonregular, which would be a contradiction.
+											Or, in other words, the language of strings of 0s in which the number of 0s is a power of 2.  As it turns out, the Turing machine is the only model we've seen so far powerful enough to recognize this language.  Prove that this language is not context free.
 										</p>
 
-
-										<!--<h3>Problem 3 (3 Points)</h3>
-										<p>
-											Consider the language <b>L</b> of binary strings with three times as many 0s as 1s (including the empty string).  Prove by induction that if <b>s &isin; L</b> is non-empty, then it must contain a 0001, 0010, a 0100, or a 1000 as a substring somewhere.  Use this fact to design a provably correct CFG that generates <b>L</b>.
-										</p>
-
-										<p>
-											<b>Hint: </b> For the inductive proof, notice that any string in this language has a length divisible by 4, so you can chunk it up into contiguous sets of 4 characters.  For instance, 01000010 can be divided up into 0100 and 0010.  There are 16 possibilities for each chunk.  If one of the chunks happens to be a 0001, a 0010, a 0100, or a 1000, then you're set.  If none of them are, then argue that one of them has to be a 0000.  Use that fact to show that you can find a substring somewhere else that's a 0001 or a 1000. 
-										</p>!-->
-										
 										<h3>Problem 4 (3 Points)</h3>
 										<p>
-											We know that the union of two CFGs is a CFG, and that CFG generated languages are a superset of regular languages.  Show two languages which are each nonregular but which can be each generated with CFGs, and whose union is regular.
+											Given the input alphabet Σ = {0, 1, +, =}, create a multi-tape Turing machine in JFLAP to recognize the language ADD = {a=b+c| a, b, c are binary strings and a is the sum of b and c}.  
 										</p>
 										<p>
-											<b>Hint:</b> If you're stuck, try consider languages of strings with a bunch of 0s followed by a bunch of 1s
+											<b>NOTE: </b> It's neat that we can finally do this, because we showed that this language is nonregular in <a href = "../HW4_Regexp/index.html#problem5">homework 4</a>, and you can use the CFG pumping lemma to show that it's also not context free.
 										</p>
 
-										<!--<h3>Problem 5 (4 Points)</h3>
-										Sipser 2.27!-->
+										<h3>Problem 5 (3 Points)</h3>
+										<p>
+											Turing's ghost visited Dr. Tralie in his sleep and left him with a very special gift of a Turing machine that can actually stay put in addition to moving left and right, so the transitions were of the form
+										</p>
+
+										<h3>
+											\[ \delta: Q \times \Gamma \rightarrow Q \times \Gamma \times \{ L, S, R \} \]
+										</h3>
+
+										(where you recall that Q are the states and &Gamma; is the tape alphabet).  Dr. Tralie brought this machine in to show the class, but unfortunately, while he left the class unattended for a moment, someone jammed the "move left" mechanism and it that doesn't work anymore, so it can only stay in place or move to the right, with transitions of the form
+
+										<h3>
+											\[ \delta: Q \times \Gamma \rightarrow Q \times \Gamma \times \{ S, R \} \]
+										</h3>
+
+										<p>
+											This is a real pity, because this <b>really</b> weakens the machine.  In particular, it's no more powerful than a DFA now.  <b>Prove this.</b>  You will have to show both directions; i.e. any DFA can be converted into a machine of this form, and that any machine of this form can be converted to a DFA.  This will establish that the recognize the same class of languages.
+										</p>
+
+										<h3>Problem 6 (3 Points)</h3>
+										<p>
+											Someone asked in class what would happen if we replaced the stack in a PDA with a queue; that is, a data structure that only removes/reads things from the left and adds things to the right (like a line).  Prove that with this change, such a "queue automaton" is as powerful as a Turing machine.  As in the above problem, you will have to prove two directions to establish that they recognize the same classes of languages
+											<ol>
+												<li>
+													Any queue automaton can be converted into an equivalent Turing Machine
+												</li>
+												<li>
+													Any Turing machine can be converted into an equivalent queue automaton
+												</li>
+											</ol>  
+											<p>
+												As a hint, the first direction is more straightforward if you use a multi-tape Turing machine, which we know has the same power as a regular Turing machine.  For the other direction, you will need to use what seems like a pretty limited data structure (the queue) to simulate moving left/right on a tape.  To this end, consider how you might use a queue in a "circular fashion" by removing things from the left and adding them back to the right, while also keeping track of where the end of the tape is.  Then, explain how to use this technique to move either left or right on the tape.  Do not worry about efficiency.
+											</p>
+											
+											
+											<!--In particular, consider such a machine with the following specifications
+											<ul>
+												<li>
+													The input tape is a read-only tape that can only move from left to right, and which ends in a blank symbol so the end can be detected
+												</li>
+												<li>
+													Unlike the regular PDA, this machine has special accept states 
+												</li>
+											</ul>!-->
+										</p>
+										
 
                                     
                                 </div>

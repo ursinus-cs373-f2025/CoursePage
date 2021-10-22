@@ -85,7 +85,7 @@ PDAs and CFGs
 LECTURE
 Non Context-Free Languages, CFG Pumping Lemma
 
-<ul><li><a href = "#readings">Sipser</a> Ch. 2.3</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/CFLProp.html">PIFLSA21 Ch. 8</a></li></ul>
+<ul><li><a href = "#readings">Sipser</a> Ch. 2.3</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/CFLProp.html">PIFLSA21 Ch. 8</a></li><li><a href = "https://www.youtube.com/watch?v=xg5IRsPs5E8">Trouble Funk: Pump Me Up</a></li></ul>
 SECTION
 Unit 3: Turing Machines
 

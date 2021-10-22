@@ -34,9 +34,9 @@ Assignment 5 Due
 Assignment 6 Due
 
 2021-10-15
-Assignment 7: Turing Machines Out
+<a href = "Assignments/HW7_Turing">Assignment 7: Turing Machines</a> Out
 
-2021-10-20
+2021-10-21
 Assignment 7 Due
 
 2021-10-29
