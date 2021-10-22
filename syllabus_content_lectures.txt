@@ -93,7 +93,7 @@ Unit 3: Turing Machines
 LECTURE
 Intro To Turing Machines
 
-<ul><li><a href = "#readings">Sipser</a> Ch. 3.1</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/TuringIntro.html">PIFLSA21 Ch. 9.1, 9.2.1, 9.2.2</a></li></ul>
+<ul><li><a href = "ClassExercises/Week7_Turing">Turing Machine Examples</a></li><li><a href = "#readings">Sipser</a> Ch. 3.1</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/TuringIntro.html">PIFLSA21 Ch. 9.1, 9.2.1, 9.2.2</a></li></ul>
 LECTURE
 Recognizability, Decidability
 
