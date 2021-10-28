@@ -149,7 +149,7 @@ Formal Runtime Analysis: Big-O
 LECTURE
 Formal Runtime Analysis: Little-o, Complexity Relationships Among Models
 
-<ul><li><a href = "#readings">Sipser</a> Ch. 7.1</li><li><a href = "https://ursinus-cs371-s2021.github.io/Modules/Module5/Video1">CS 371 Module on Little-o</a></li><li>Class Exercise: Multitape -> Single Tape Turing Machine Reduction</li></ul>
+<ul><li><a href = "#readings">Sipser</a> Ch. 7.1</li><li><a href = "https://ursinus-cs371-s2021.github.io/Modules/Module5/Video1">CS 371 Module on Little-o</a></li><li>Class Exercise: Multitape -> Single Tape Turing Machine Reduction Time Complexity</li></ul>
 LECTURE
 The Class P
 
