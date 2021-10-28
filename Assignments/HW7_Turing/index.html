@@ -41,7 +41,7 @@
 							<!-- Content -->
 								<section>
 									<header class="main">
-                                        <h2>Homework 7: Turing Machines (18 Points)</h2>
+                                        <h2>Homework 7: Turing Machines (19 Points)</h2>
 										<h3>Chris Tralie</h3>
 									</header>
 
@@ -73,6 +73,26 @@
 											Create a Turing machine that recognizes the language with twice as many zeros as ones.  (Note that this language is also context free, but sometimes it's interesting to see how to change it up with a different computational model).
 										</p>
 
+										<p>
+											Below are some tests you can try (<a href = "tests2.txt">Click here</a> to download them for loading into multiple run)
+										</p>
+
+										<table style="width:300px;"><tr><td>Input</td><td>Result</td></tr>
+											<tr><td>101001010001001000</td><td>Accept</td></tr>
+											<tr><td>110000001001000111000010</td><td>Accept</td></tr>
+											<tr><td>001001</td><td>Accept</td></tr>
+											<tr><td>100011001001001000</td><td>Accept</td></tr>
+											<tr><td>0010100010101001</td><td>Reject</td></tr>
+											<tr><td>0100000010</td><td>Reject</td></tr>
+											<tr><td>100111000111000010010100</td><td>Reject</td></tr>
+											<tr><td>110010000001010</td><td>Accept</td></tr>
+											<tr><td>0001000100001011111101001001</td><td>Reject</td></tr>
+											<tr><td>0001000101</td><td>Reject</td></tr>
+										</table>
+											
+											
+
+
 										<h3>Problem 3 (3 Points)</h3>
 										<p>
 											We saw in class that it is possible to design a Turing machine that recognizes the language
@@ -86,13 +106,32 @@
 											Or, in other words, the language of strings of 0s in which the number of 0s is a power of 2.  As it turns out, the Turing machine is the only model we've seen so far powerful enough to recognize this language.  Prove that this language is not context free.
 										</p>
 
-										<h3>Problem 4 (3 Points)</h3>
+										<h3>Problem 4 (4 Points)</h3>
 										<p>
-											Given the input alphabet Σ = {0, 1, +, =}, create a multi-tape Turing machine in JFLAP to recognize the language ADD = {a=b+c| a, b, c are binary strings and a is the sum of b and c}.  
+											Given the input alphabet Σ = {0, 1, +, =}, create a multi-tape Turing machine in JFLAP to recognize the language ADD = {a=b+c| a, b, c are binary strings and a is the sum of b and c}. It's neat that we can finally do this, because we showed that this language is nonregular in <a href = "../HW4_Regexp/index.html#problem5">homework 4</a>, and you can use the CFG pumping lemma to show that it's also not context free.
 										</p>
+
 										<p>
-											<b>NOTE: </b> It's neat that we can finally do this, because we showed that this language is nonregular in <a href = "../HW4_Regexp/index.html#problem5">homework 4</a>, and you can use the CFG pumping lemma to show that it's also not context free.
+											Below are some random tests you can apply to your machine.  Your machine should handle a's, b's, and c's of different lengths.  
 										</p>
+										<P>
+											<b>NOTE: </b> I was seeing some strange nondeterministic behavior when trying to do "Fast Run" or "Multiple Run," but these should all give correct answers if you "step"
+										</P>
+
+										<table style="width:300px;"><tr><td>Input</td><td>Result</td></tr>
+											<tr><td>1011010=11+0</td><td>Reject</td></tr>
+											<tr><td>10000=100+1100</td><td>Accept</td></tr>
+											<tr><td>11110000=1101110+10000010</td><td>Accept</td></tr>
+											<tr><td>100101=11011+1010</td><td>Accept</td></tr>
+											<tr><td>100000110=110101+1111110</td><td>Reject</td></tr>
+											<tr><td>1101000=1+1</td><td>Reject</td></tr>
+											<tr><td>10010=1001+1001</td><td>Accept</td></tr>
+											<tr><td>110011=10111+11100</td><td>Accept</td></tr>
+											<tr><td>101100=1101+11111</td><td>Accept</td></tr>
+											<tr><td>10100=111+101</td><td>Reject</td></tr>
+											</table>
+											
+											
 
 										<h3>Problem 5 (3 Points)</h3>
 										<p>

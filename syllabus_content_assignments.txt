@@ -45,17 +45,17 @@ Assignment 7 Due
 2021-11-01
 Assignment 8 Due
 
-2021-11-10
-<HR>Assignment 9: Reductions Out
+2021-11-12
+<HR>Assignment 9: Complexity Out
 
-2021-11-10
+2021-11-12
 Assignment 9 Due
 
-2021-11-17
-<HR>Assignment 10: NP Complete Problems Out
+2021-11-22
+<HR>Assignment 10: Reductions / NP Complete Problems Out
 
-2021-11-17
-<a href = "FinalProject">Final Project</a> Out
+2021-11-22
+<HR><a href = "FinalProject">Final Project</a> Out
 
 2021-11-22
 Assignment 10 Due

@@ -87,7 +87,7 @@ Non Context-Free Languages, CFG Pumping Lemma
 
 <ul><li><a href = "#readings">Sipser</a> Ch. 2.3</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/CFLProp.html">PIFLSA21 Ch. 8</a></li><li><a href = "https://www.youtube.com/watch?v=xg5IRsPs5E8">Trouble Funk: Pump Me Up</a></li></ul>
 SECTION
-Unit 3: Turing Machines
+Unit 3: Turing Machines / Decidability
 
 
 LECTURE
@@ -103,11 +103,15 @@ Multi-Tape Turing Machines
 
 <ul><li><a href = "#readings">Sipser</a> Ch. 3.2</li></ul>
 LECTURE
-Nondeterministic Turing Machines
+Intro To Reductions
+
+<ul><li><a href = "#readings">Sipser</a> Ch. 5.3</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/PairToSortCONPI.html">PIFLSA21 Ch. 11.1 - 11.3</a></li></ul>
+LECTURE
+More Reductions, Begin Nondeterministic Turing Machines
 
 <ul><li><a href = "#readings">Sipser</a> Ch. 3.2</li></ul>
 LECTURE
-Enumerators, Turing Equivalence
+Finish Nondeterministic TMS, Turing Enumerators/Transducers
 
 <ul><li><a href = "#readings">Sipser</a> Ch. 3.2</li></ul>
 LECTURE
@@ -130,22 +134,14 @@ LECTURE
 Diagonalization, The Halting Problem Is Unsolvable
 
 <ul><li><a href = "#readings">Sipser</a> Ch. 4.2</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/UnsolveableProblems2.html">PIFLSA21 Ch. 11.9</a></li></ul>
-SECTION
-Unit 4: Algorithms And Complexity Hierarchies
-
-
-LECTURE
-Algorithm Reductions
-
-<ul><li><a href = "#readings">Sipser</a> Ch. 4.2</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/PairToSortCONPI.html">PIFLSA21 Ch. 11.1 - 11.3</a></li></ul>
 LECTURE
 Reduction from Accepting To Halting
 
 <ul><li><a href = "#readings">Sipser</a> Ch. 5.1</li></ul>
-LECTURE
-Mapping Reductions
+SECTION
+Unit 4: Algorithms And Complexity Hierarchies
 
-<ul><li><a href = "#readings">Sipser</a> Ch. 5.3</li></ul>
+
 LECTURE
 Formal Runtime Analysis: Big-O
 
