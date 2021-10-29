@@ -105,7 +105,7 @@ Multi-Tape Turing Machines
 LECTURE
 Intro To Reductions
 
-<ul><li><a href = "#readings">Sipser</a> Ch. 5.3</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/PairToSortCONPI.html">PIFLSA21 Ch. 11.1 - 11.3</a></li></ul>
+<ul><li><a href = "ClassExercises/Week8_MultitapeTuring">Multitape Turing Machine Examples</a></li><li><a href = "#readings">Sipser</a> Ch. 5.3</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/PairToSortCONPI.html">PIFLSA21 Ch. 11.1 - 11.3</a></li></ul>
 LECTURE
 More Reductions, Begin Nondeterministic Turing Machines
 
