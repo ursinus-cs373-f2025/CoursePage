@@ -117,7 +117,7 @@ Finish Nondeterministic TMS, Turing Enumerators/Transducers
 LECTURE
 The Church-Turing Thesis
 
-<ul><li><a href = "#readings">Sipser</a> Ch. 3.3</li></ul>
+<ul><li><a href = "#readings">Sipser</a> Ch. 3.3</li><li><a href = "http://aurellem.org/vba-clojure/html/total-control.html">Pokemon Yellow is Turing Complete</a></li><li><a href = "https://xkcd.com/505/">XKCD: A Bunch of Rocks</a></li></ul>
 LECTURE
 Decidable Languages
 

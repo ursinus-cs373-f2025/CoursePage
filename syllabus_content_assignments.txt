@@ -40,9 +40,9 @@ Assignment 6 Due
 Assignment 7 Due
 
 2021-11-01
-<HR>Assignment 8: (Un)Decidability Out
+<a href = "Assignments/HW8_Turing2">Assignment 8: Turing Machines Part 2</a> Out
 
-2021-11-01
+2021-11-03
 Assignment 8 Due
 
 2021-11-12

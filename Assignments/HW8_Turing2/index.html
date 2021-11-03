@@ -41,7 +41,7 @@
 							<!-- Content -->
 								<section>
 									<header class="main">
-                                        <h2>Homework 7: Turing Machines (19 Points)</h2>
+                                        <h2>Homework 8: Turing Machines Part 2 (16 Points)</h2>
 										<h3>Chris Tralie</h3>
 									</header>
 
@@ -49,124 +49,84 @@
 
                                         <h2>Overview / Logistics</h2>
 										<p>
-                                            The purpose of this problem set is to get you practice designing and reasoning about Turing machines.  As we've seen, they are very similar to DFAs, but they have two seemingly innocuous twists: they can write to the tape (which has an infinite capacity in both directions), and they can move the tape both to the left <b>and</b> to the right.  Amazingly, these are the only changes we need to make to a DFA to create a mathematical model of a machine powerful enough to compute everything that we can compute with ordinary programming languages like Java.
+                                            Here's another small-ish homework to keep you engaged and practicing with Turing machines while we go over the background for decidability. 
                                         </p>
-
+										
 										<h3>Problem 1 (3 Points)</h3>
-
 										<p>
-											<a href = "https://sitn.hms.harvard.edu/flash/2012/turing-biography/">Click here</a> to read a brief biography of Alan Turing, the inventor of the Turing machine.  His story is as tragic as it is fascinating.  Reflect on the following in a brief writeup:
-											<ul>
-												<li>
-													What were Turing's major technical accomplishments/contributions?</li>
-												<li>
-													What was Turing's "crime" for which he was convicted?  What was his sentence?  How long did it take for him to get pardoned for this "crime"?  Does this surprise you?
-												</li>
-												<li>
-													What do you think would have happened if Turing had been allowed to be who he was and he had continued to make contributions into the internet age?  What kinds of problems would he have worked on in the '90s given his thought style?
-												</li>
-											</ul>
+											This is a retry on problem 5 from <a href = "../HW7_Turing/">homework 7</a>.  We want to show that if we have a "restricted Turing machine" (RTM) that can only move the tape to the right or stay in place, then it's equally powerful as a DFA; in other words, disabling the "move left" function significantly weakens the Turing machine.  To reduce from a DFA to an RTM, it's basically the same proof as reducing to an ordinary Turing machine, since we only ever move right anyway and we don't use the left function.  However, reducing the other way is more tricky.  <b>Show that any RTM can be reduced to a DFA; that is, explain in detail how a sequence of states in an RTM would be mapped to a sequence of states in a DFA that recognizes equivalent languages</b>.  You will have to carefully consider the cases when the Turing machine's tape head stays still and possibly makes substitutions, as this never happens in a DFA.  But you can simulate the equivalent result with a DFA.
 										</p>
 
 										<h3>Problem 2 (3 Points)</h3>
 										<p>
-											Create a Turing machine that recognizes the language with twice as many zeros as ones.  (Note that this language is also context free, but sometimes it's interesting to see how to change it up with a different computational model).
+											We can show that Turing machines are at least as powerful as pushdown automata with the following series of reductions
+											<ol>
+												<li>Pushdown automaton to multitape nondeterministic Turing machine, which has one tape for the input that only moves right, and one tape for the stack which is always at the edge of blanks</li>
+												<li>
+													Multitape nondeterministic Turing machine to single tape nondeterministic Turing machine, following a similar reduction for the deterministic case where we store all of the tapes on one separated by a delimeter # and we store where the tape heads are by putting a dot over each character
+												</li>
+												<li>
+													Single tape nondeterministic Turing machine to multitape deterministic Turing machine using the reduction we talked about in class that uses 3 tapes: one for input, one for simulation of one branch, and another to store the branch.
+												</li>
+												<li>
+													Multitape deterministic Turing machine to single tape deterministic Turing machine.
+												</li>
+											</ol>
 										</p>
 
 										<p>
-											Below are some tests you can try (<a href = "tests2.txt">Click here</a> to download them for loading into multiple run)
-										</p>
-
-										<table style="width:300px;"><tr><td>Input</td><td>Result</td></tr>
-											<tr><td>101001010001001000</td><td>Accept</td></tr>
-											<tr><td>110000001001000111000010</td><td>Accept</td></tr>
-											<tr><td>001001</td><td>Accept</td></tr>
-											<tr><td>100011001001001000</td><td>Accept</td></tr>
-											<tr><td>0010100010101001</td><td>Reject</td></tr>
-											<tr><td>0100000010</td><td>Reject</td></tr>
-											<tr><td>100111000111000010010100</td><td>Reject</td></tr>
-											<tr><td>110010000001010</td><td>Accept</td></tr>
-											<tr><td>0001000100001011111101001001</td><td>Reject</td></tr>
-											<tr><td>0001000101</td><td>Reject</td></tr>
-										</table>
-											
-											
-
-
-										<h3>Problem 3 (3 Points)</h3>
-										<p>
-											We saw in class that it is possible to design a Turing machine that recognizes the language
-										</p>
-
-										<h3>
-											\[ L = \{ 0^{2^N}, N \geq 0 \} \]
-										</h3>
-
-										<p>
-											Or, in other words, the language of strings of 0s in which the number of 0s is a power of 2.  As it turns out, the Turing machine is the only model we've seen so far powerful enough to recognize this language.  Prove that this language is not context free.
-										</p>
-
-										<h3>Problem 4 (4 Points)</h3>
-										<p>
-											Given the input alphabet Σ = {0, 1, +, =}, create a multi-tape Turing machine in JFLAP to recognize the language ADD = {a=b+c| a, b, c are binary strings and a is the sum of b and c}. It's neat that we can finally do this, because we showed that this language is nonregular in <a href = "../HW4_Regexp/index.html#problem5">homework 4</a>, and you can use the CFG pumping lemma to show that it's also not context free.
+											Actually, there's an even easier way if we recognize that all PDAs can be implemented with context free grammars, because we can create a nondeterministic Turing machine to enumerate all possible substitutions and accept if one of them happens to be our string.  Regardless, we've shown that Turing machines are at least as powerful as PDAs, and we in fact know that they are more powerful because we've shown they can recognize certain languages that PDAs count.  
 										</p>
 
 										<p>
-											Below are some random tests you can apply to your machine.  Your machine should handle a's, b's, and c's of different lengths.  
+											However, if we have two stacks in our PDA, then the PDA becomes equally powerful to a Turing machine.  Your job will be to prove this.  It's straightforward to prove that Turing machines are at least as powerful as 2-stack PDAs with a minor tweak at step 1 that includes an additional tape for the second stack, so you don't need to bother proving that.  But you do need to <b>prove that any deterministic Turing machine can be reduced to a 2-stack PDA</b> to complete the proof that they are equally powerful.
 										</p>
-										<P>
-											<b>NOTE: </b> I was seeing some strange nondeterministic behavior when trying to do "Fast Run" or "Multiple Run," but these should all give correct answers if you "step"
-										</P>
 
-										<table style="width:300px;"><tr><td>Input</td><td>Result</td></tr>
-											<tr><td>1011010=11+0</td><td>Reject</td></tr>
-											<tr><td>10000=100+1100</td><td>Accept</td></tr>
-											<tr><td>11110000=1101110+10000010</td><td>Accept</td></tr>
-											<tr><td>100101=11011+1010</td><td>Accept</td></tr>
-											<tr><td>100000110=110101+1111110</td><td>Reject</td></tr>
-											<tr><td>1101000=1+1</td><td>Reject</td></tr>
-											<tr><td>10010=1001+1001</td><td>Accept</td></tr>
-											<tr><td>110011=10111+11100</td><td>Accept</td></tr>
-											<tr><td>101100=1101+11111</td><td>Accept</td></tr>
-											<tr><td>10100=111+101</td><td>Reject</td></tr>
-											</table>
-											
-											
+										<p>As a corollary, this means that 3 stack PDAs are equally powerful as 2 stack PDAs, since 2 stack PDAs are already as powerful as Turing machines.</p>
+
+										<h3>Problem 3 (4 Points)</h3>
+										<p>
+											Create a Turing enumerator to enumerate all strings over the alphabet <b>{a, b, c}</b> in lexographic order.  In particular, your machine should start with the sequence 
+										</p>
+
+										<p>
+											a, b, c, aa, ab, ac, ba, bb, bc, ca, cb, cc, aaa, aab, aac, ...
+										</p>
+
+										<p>
+											You can think of this like doing counting in base 3 until you overflow to the next place, and when you do, resetting to all a's with one more digit.
+										</p>
+
+										<p>
+											Since JFLAP doesn't support enumerators, you'll have to hack a multitape machine to do this.  Have one tape which is the "printer" which fills the output, and a special state that you go to every time it's ready to print whatever is on that tape.  You can check that this is working properly by stepping through your machine in a blank input in JFLAP.
+										</p>
+
+										<h3>Problem 4 (3 Points)</h3>
+										<p>
+											Watch <a href = "https://www.youtube.com/watch?v=uNjxe8ShM-8">this video</a>, and explain using the Church-Turing thesis why the Powerpoint app is theoretically in violation of the Apple Store's app guidelines.
+										</p>
 
 										<h3>Problem 5 (3 Points)</h3>
 										<p>
-											Turing's ghost visited Dr. Tralie in his sleep and left him with a very special gift of a Turing machine that can actually stay put in addition to moving left and right, so the transitions were of the form
+											Let's now dive into an important problem in the history of algorithms/computing: Hilbert's 10th problem.  It was very surprising to mathematicians that a problem could be posed that might not be able to be solved at all in general in our universe.  But there is a special case that's solvable, and we'll explore it in this problem.  Let
 										</p>
 
 										<h3>
-											\[ \delta: Q \times \Gamma \rightarrow Q \times \Gamma \times \{ L, S, R \} \]
-										</h3>
-
-										(where you recall that Q are the states and &Gamma; is the tape alphabet).  Dr. Tralie brought this machine in to show the class, but unfortunately, while he left the class unattended for a moment, someone jammed the "move left" mechanism and it that doesn't work anymore, so it can only stay in place or move to the right, with transitions of the form
-
-										<h3>
-											\[ \delta: Q \times \Gamma \rightarrow Q \times \Gamma \times \{ S, R \} \]
+											\[f(x) =  c_1 x^n + c_2x^{n-1} + ... + c_nx + c_{n+1} \]
 										</h3>
 
 										<p>
-											This is a real pity, because this <b>really</b> weakens the machine.  In particular, it's no more powerful than a DFA now.  <b>Prove this.</b>  You will have to show both directions; i.e. any DFA can be converted into a machine of this form, and that any machine of this form can be converted to a DFA.  This will establish that the recognize the same class of languages.
+											be a single variable polynomial with at least one real root (i.e. a value of <b>x</b> that makes it 0).  Let <b>c<SUB>max</SUB></b> be the largest absolute value of any coefficient <b>c<SUB>i</SUB></b>.  Show that each real root <b>x</b> of <b>f(x)</b> must exist in the interval
 										</p>
 
-										<h3>Problem 6 (3 Points)</h3>
+										<h3>
+											\[ -| \frac{cmax}{c_1}(n+1) | \leq x \leq | \frac{cmax}{c_1}(n+1) |   \]
+										</h3>
+
 										<p>
-											Someone asked in class what would happen if we replaced the stack in a PDA with a queue; that is, a data structure that only removes/reads things from the left and adds things to the right (like a line).  Prove that with this change, such a "queue automaton" is as powerful as a Turing machine.  As in the above problem, you will have to prove two directions to establish that they recognize the same classes of languages
-											<ol>
-												<li>
-													Any queue automaton can be converted into an equivalent Turing Machine
-												</li>
-												<li>
-													Any Turing machine can be converted into an equivalent queue automaton
-												</li>
-											</ol>  
-											<p>
-												As a hint, the first direction is more straightforward if you use a multi-tape Turing machine, which we know has the same power as a regular Turing machine.  For the other direction, you will need to use what seems like a pretty limited data structure (the queue) to simulate moving left/right on a tape.  To this end, consider how you might use a queue in a "circular fashion" by removing things from the left and adding them back to the right, while also keeping track of where the end of the tape is.  Then, explain how to use this technique to move either left or right on the tape.  Do not worry about efficiency.
-											</p>
-											
+											Explain how this implies that Hilbert's 10th problem is actually decidable <i>over single variable polynomials</i> by describing at a high level a Turing machine to decide the language given the above bound (see Sipser 3.3 for some hints).  To justify why it's decidable, explain why your machine would never have an infinite loop, even if it did take a while.
+										</p>
+
 											
 											<!--In particular, consider such a machine with the following specifications
 											<ul>
