@@ -45,16 +45,16 @@ Assignment 7 Due
 2021-11-03
 Assignment 8 Due
 
-2021-11-12
+2021-11-10
 <HR>Assignment 9: (Un)Decidability Out
 
-2021-11-12
+2021-11-10
 Assignment 9 Due
 
-2021-11-22
+2021-11-19
 <HR>Assignment 10: Complexity / NP Complete Problems Out
 
-2021-11-22
+2021-11-19
 <HR><a href = "FinalProject">Final Project</a> Out
 
 2021-11-22
