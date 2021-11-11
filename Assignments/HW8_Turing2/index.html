@@ -98,8 +98,24 @@
 										</p>
 
 										<p>
-											Since JFLAP doesn't support enumerators, you'll have to hack a multitape machine to do this.  Have one tape which is the "printer" which fills the output, and a special state that you go to every time it's ready to print whatever is on that tape.  You can check that this is working properly by stepping through your machine in a blank input in JFLAP.
+											Since JFLAP doesn't support enumerators, you'll have to hack an ordinary turing machine to do this, which has one designated tape as the "printing tape."  You can do this with multiple tapes if you'd like, but it's possible to do it with one tape.  You should just special state that you go to every time it's ready to print whatever is on the printing tape.  You can check that this is working properly by stepping through your machine in a blank input in JFLAP.
 										</p>
+
+										<p>
+											For example, here is what I get when I start with an empty string and step through a, b, c, aa, ab, ac, ba, bb, bc, ca, cb, cc, aaa, aab, aac, aba, abb, abc, aca, acb, acc, baa, and bab.  I paused the animation every time it entered the "qprint" state.  I had multiple other states, but I called them all "q" so I wouldn't give away too much of the solution
+										</p>
+
+										<img src = "sol3step1.gif">
+
+										<p>
+											Here's a turbo charge through a bunch more iterations
+										</p>
+
+										<img src = "sol3step2.gif">
+
+
+
+
 
 										<h3>Problem 4 (3 Points)</h3>
 										<p>
