@@ -142,30 +142,22 @@ LECTURE
 Finish Halting Problem, Reductions for Undecidability
 
 <ul><li><a href = "#readings">Sipser</a> Ch. 4.2, 5.1</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/UnsolveableProblems1.html">PIFLSA21 Ch. 11.8</a></li></ul>
-LECTURE
-Finish Halting Problem, Reductions for Undecidability
-
-<ul><li><a href = "#readings">Sipser</a> Ch. 5</li></ul>
 SECTION
-Unit 4: Algorithms And Complexity Hierarchies
+Unit 4: Algorithms And Computational Complexity
 
 
 LECTURE
-Formal Runtime Analysis: Big-O
+Reductions for Undecidability, Begin Formal Runtime Analysis: Big-O
 
-<ul><li><a href = "#readings">Sipser</a> Ch. 7.1</li><li><a href = "https://www.youtube.com/watch?v=0oDAlMwTrLo">Asymptotic Bounding 101: Big O, Big Omega, & Theta</a> (NOTE: We won't need to worry about omega or theta in this course, but they're good to know)</li><li><a href = "https://www.bigocheatsheet.com/">https://www.bigocheatsheet.com/</a></li></ul>
+<ul><li><a href = "#readings">Sipser</a> Ch. 5, 7.1</li><li><a href = "https://www.youtube.com/watch?v=0oDAlMwTrLo">Asymptotic Bounding 101: Big O, Big Omega, & Theta</a> (NOTE: We won't need to worry about omega or theta in this course, but they're good to know)</li></ul>
 LECTURE
-Formal Runtime Analysis: Little-o, Complexity Relationships Among Models
+Continue Big-O, Little-o, Complexity Relationships Among Models
 
-<ul><li><a href = "#readings">Sipser</a> Ch. 7.1</li><li><a href = "https://ursinus-cs371-s2021.github.io/Modules/Module5/Video1">CS 371 Module on Little-o</a></li><li>Class Exercise: Multitape -> Single Tape Turing Machine Reduction Time Complexity</li></ul>
+<ul><li><a href = "https://www.bigocheatsheet.com/">https://www.bigocheatsheet.com/</a></li><li><a href = "https://ursinus-cs371-s2021.github.io/Modules/Module5/Video1">CS 371 Module on Little-o</a></li><li>Class Exercise: Multitape -> Single Tape Turing Machine Reduction Time Complexity</li></ul>
 LECTURE
-The Class P
+The Class P, The Class NP, P = NP?
 
-<ul><li><a href = "#readings">Sipser</a> Ch. 7.2</li></ul>
-LECTURE
-The Class NP, P = NP?
-
-<ul><li><a href = "#readings">Sipser</a> Ch. 7.3</li><li><a href = "https://www.claymath.org/millennium-problems/p-vs-np-problem">Clay Institute $1M Prize</a></li></ul>
+<ul><li><a href = "#readings">Sipser</a> Ch. 7.2, 7.3</li><li><a href = "https://www.claymath.org/millennium-problems/p-vs-np-problem">Clay Institute $1M Prize</a></li></ul>
 LECTURE
 The Satisfiability Problem (SAT), NP Completeness
 
@@ -175,10 +167,18 @@ Vertex Cover, Hamiltonian Paths
 
 <ul><li><a href = "#readings">Sipser</a> Ch. 7.5</li></ul>
 LECTURE
+Nondeterministic Turing Machine Definition of NP
+
+<ul><li><a href = "#readings">Sipser</a> Ch. 7.3</li></ul>
+LECTURE
 The Cook-Levin Theorem
 
 <ul><li><a href = "#readings">Sipser</a> Ch. 7.4</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/SATProof.html">PIFLSA21 Ch. 11.6</a></li></ul>
 LECTURE
-NP Hardness, Mario Kart is Hard
+NP Hardness
+
+
+LECTURE
+Mario Kart is Hard
 
 <ul><li><a href = "https://dspace.mit.edu/bitstream/handle/1721.1/111596/Mario%20kart%20is%20hard.pdf?sequence=1&isAllowed=y">Bosboom et. al Paper Sections 1-3</a></li></ul>

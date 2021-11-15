@@ -45,19 +45,25 @@ Assignment 7 Due
 2021-11-03
 Assignment 8 Due
 
-2021-11-10
-<HR>Assignment 9: (Un)Decidability Out
+2021-11-12
+<HR><a href = "Assignments/HW9_Decidability">Assignment 9: Decidability</a> Out
 
-2021-11-10
+2021-11-12
+<a href = "https://ursinus.instructure.com/courses/12825/quizzes/16473/">Big-O Module</a> Due Before Class
+
+2021-11-17
+<a href = "https://ursinus.instructure.com/courses/12825/quizzes/16475">Little-o Module</a> Due Before Class
+
+2021-11-19
 Assignment 9 Due
 
-2021-11-19
-<HR>Assignment 10: Complexity / NP Complete Problems Out
-
-2021-11-19
-<HR><a href = "FinalProject">Final Project</a> Out
+2021-11-22
+<HR>Assignment 10: Undecidability / Complexity Out
 
 2021-11-22
+<a href = "FinalProject">Final Project</a> Out
+
+2021-11-29
 Assignment 10 Due
 
 2021-12-06
