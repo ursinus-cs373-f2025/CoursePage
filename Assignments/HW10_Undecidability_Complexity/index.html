@@ -1,0 +1,222 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<!-- Header !-->
+	<head>
+		<title>Ursinus CS 373: Theory of Computation, Fall 2021</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="../../assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="../../assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="../../assets/css/ie8.css" /><![endif]-->
+        <style>
+        .image_off, #home:hover .image_on{
+           display:none
+        }
+        .image_on, #home:hover .image_off{
+           display:block
+        }
+        </style>
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="../../index.html" class="logo"><strong>Ursinus CS 373: Theory of Computation, Fall 2021</strong></a>
+								</header>
+<!-- End Header !-->
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+                                        <h2>Homework 10: Undecidability And Complexity</h2>
+										<h3>Chris Tralie</h3>
+									</header>
+
+									<div id="page-content">
+
+                                        <h2>Overview / Logistics</h2>
+										<p>
+                                            In this homework we'll explore some limits of computation: in particular, languages that cannot be decided.  We will also explore 
+                                        </p>
+
+										<p>
+											There are no JFLAP problems on this homework.  You should submit a single typed document with the answers to each question.  You can use Microsoft Word, LaTeX, or anything else you're comfortable with.
+										</p>
+										
+										<HR>
+											<h3>Problem 1 (3 Points)</h3>
+
+											<p>
+												Consider the language <b>L</b> of turing machines <b>M</b> that have the property that if <b>M</b> accepts <b>w</b>, then <b>M</b> also accepts the reverse <b>w<SUP>R</SUP></b>.  Show that <b>L</b> is undecidable
+											</p>
+
+											<p>
+												<b>Hint: </b> You can use a very similar trick to the proof that <b>E<SUB>TM</SUB></b> is undecidable
+											</p>
+
+										<HR>
+											<h3>Problem 2 (3 Points)</h3>
+											<p>
+												We'll explore something called the <b>Collatz conjecture</b> in this problem.  This is a seemingly innocuous math problem that's very easy to state, but it has served as a "black hole" that has sucked in many an aspiring mathematician, because it still eludes a proof after almost a century from when it was first posed.  The problem is as follows: given the following piecewise function
+											</p>
+
+											<div style="width:200px;">
+												<h3>
+													\[ f(x) = \left\{ \begin{array}{cc} 3x + 1 & x \text{ is odd} \\ x/2 & x \text{ is even} \end{array} \right\} \]
+												</h3>
+											</div>
+
+											<p>
+												Determine whether it is possible to iterate this function and end up at a 1.  Take the following examples, which all end at a 1 (in fact, it's been exhaustively verified that every natural number up to <b>2<SUP>68</SUP></b> eventually ends up at 1)
+											</p>
+
+											<iframe src="collatz.html" width=800 height=400></iframe>
+												
+												
+
+											<p>
+												Hence, the problem is sometimes referred to as the "3x + 1" problem
+											</p>
+
+												
+
+
+
+											</p>
+												The author of this <a href = "https://www.quantamagazine.org/why-mathematicians-still-cant-solve-the-collatz-conjecture-20200922/">popular math article on the conjecture</a> recommends that we <i>do not try to solve this math problem.</i>.  However, let's cheat for a moment and suppose that <b>Halt<SUB>TM</SUB></b> is decidable.  Provide a high level description of a machine that outputs whether the Collatz conjecture is true or not, using this hypothetical decidable <b>Halt<SUB>TM</SUB></b> to help you.
+											</p>
+										
+
+                                    
+                                </div>
+						</div>
+					</div>
+
+					<!--LaTeX in Javascript!-->
+					<script src="../../../../jsMath/easy/load.js"></script>
+					<!--Syntax highlighting in Javascript!-->
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shCore.js"></script>
+					<script type="text/javascript" src="../../../syntaxhighlighter/scripts/shBrushJScript.js"></script>
+                    <script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushCpp.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushXml.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushMatlabSimple.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushPython.js"></script>
+					<link type="text/css" rel="stylesheet" href="../../../../syntaxhighlighter/styles/shCoreDefault.css"/>
+					<script type="text/javascript">SyntaxHighlighter.all();</script>
+
+<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+                                        <li>
+											<span class="opener">General</span>
+											<ul>
+												<li><a href = "../../index.html#overview">Overview</a></li>
+												<li><a href = "../../index.html#logistics">Technology Logistics</a></li>
+												<li><a href = "../../index.html#readings">Readings</a></li>
+												<li><a href = "../../index.html#deliverables">Deliverables</a></li>
+												<li><a href = "../../index.html#schedule">Schedule</a></li>
+												<li><a href = "../../index.html#grading">Grading</a></li>
+												<li><a href = "../../index.html#environment">Classroom Environment</a></li>
+												<li><a href = "../../index.html#collaboration">Collaboration Policy</a></li>
+												<li><a href = "../../index.html#other">Other Resources / Policies</a></li>
+											</ul> 
+										</li>
+										<li><a href = "../../Software/index.html">Software</a></li>
+										<li><a href = "../../index.html#schedule">Schedule</a></li>
+										<li><a href = "../../FinalProject/index.html">Final Project</a></li>
+                                        <li>
+											<span class="opener">Assignments</span>
+											<ul>
+												<li>
+													<a href = "../../Assignments/HW1_Discrete/index.html">HW1: Discrete Math Practice</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW2_DFA/index.html">HW2: DFAs</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW3_NFA/index.html">HW3: DFAs And NFAs</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW4_Regexp/index.html">HW4: (Non)Regular Languages And Regular Expressions</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW5_CFGs/index.html">HW5: Context Free Grammars</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW6_PDAs/index.html">HW6: Pushdown Automata</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW7_Turing/index.html">HW7: Turing Machines</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW8_Turing2/index.html">HW8: Turing Machines Part 2</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW9_Decidability/index.html">HW9: Decidability</a>
+												</li>
+											</ul>
+										</li>
+                                        <li>
+											<span class="opener">Class Exercises</span>
+											<ul>
+												<li><a href = "../../ClassExercises/Week1_Unplugged">Week 1: Acting Out DFAs</a></li>
+												<li><a href = "../../ClassExercises/Week1_Discrete">Week 1: Discrete Math Review</a></li>
+												<li><a href = "../../ClassExercises/Week1_FridayDFABinary">Week 1: Binary And JFLAP</a>
+													<ul>
+														<li><a href = "../../ClassExercises/Week1_FridayDFABinary/index.html#binary">Binary Drills</a></li>
+														<li><a href = "../../ClassExercises/Week1_FridayDFABinary/index.html#jflap">JFLAP Exercises</a></li>
+													</ul>
+												</li>
+												<li><a href = "../../ClassExercises/Week2_Formal">Week 2: Formal Description of DFAs, Divisibility</a></li>
+												<li><a href = "../../ClassExercises/Week2_Union">Week 2: Union of Regular Languages</a></li>
+												<li><a href = "../../ClassExercises/Week3_NFAs">Week 3: NFAs, Converting NFAs To DFAs</a></li>
+												<li><a href = "../../ClassExercises/Week4_DFAToRegexp">Week 4: Converting Regular Expressions To DFAs And Back</a></li>
+												<li><a href = "../../ClassExercises/Week5_PumpingLemma">Week 5: The Pumping Lemma</a></li>
+												<li><a href = "../../ClassExercises/Week7_Turing">Week 7/8: Turing Machine Examples</a></li>
+												<li><a href = "../../ClassExercises/Week8_MultitapeTuring">Week 8: Multitape Turing Machine Examples</a></li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; <a href = "http://www.ctralie.com">Christopher J. Tralie</a>. All rights reserved.  Contact chris.tralie@gmail.com. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+			
+            <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+            <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- End Sidebar !-->
+
+<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/skel.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="../../assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../../assets/js/main.js"></script>
+<!-- End Scripts -->
