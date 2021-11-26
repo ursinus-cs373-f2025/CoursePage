@@ -41,7 +41,7 @@
 							<!-- Content -->
 								<section>
 									<header class="main">
-                                        <h2>Homework 10: Undecidability And Complexity</h2>
+                                        <h2>Homework 10: Undecidability And Uncomputability (17 Points)</h2>
 										<h3>Chris Tralie</h3>
 									</header>
 
@@ -49,7 +49,7 @@
 
                                         <h2>Overview / Logistics</h2>
 										<p>
-                                            In this homework we'll explore some limits of computation: in particular, languages that cannot be decided.  We will also explore 
+                                            In this homework we'll explore some limits of computation: in particular, languages that are at the edge of decidability and functions that are at the edge of computability.
                                         </p>
 
 										<p>
@@ -64,13 +64,28 @@
 											</p>
 
 											<p>
-												<b>Hint: </b> You can use a very similar trick to the proof that <b>E<SUB>TM</SUB></b> is undecidable
+												<b>Hint: </b> You can use a very similar trick to the proof that <b>E<SUB>TM</SUB></b> is undecidable, or you can show how <a href = "../../ClassExercises/Week12_Halting_Computability/index.html#rice">Rice's theorem</a> applies.
 											</p>
 
 										<HR>
 											<h3>Problem 2 (3 Points)</h3>
+
 											<p>
-												We'll explore something called the <b>Collatz conjecture</b> in this problem.  This is a seemingly innocuous math problem that's very easy to state, but it has served as a "black hole" that has sucked in many an aspiring mathematician, because it still eludes a proof after almost a century from when it was first posed.  The problem is as follows: given the following piecewise function
+												Define a <b>useless state</b> in a Turing machine as a state that is never reached on any possible input to the machine.  It would be nice to detect and remove these states for a more parsimonious Turing machine.  Unfortunately, the language
+											</p>
+
+											<h3>
+												L<SUB>U</SUB> = { &lt;M, q&gt; | q is a useless state in M}
+											</h3>
+
+											<p>
+												is undecidable.  Prove this by contradiction by showing that L<SUB>U</SUB> can be used to decide <b>E<SUB>TM</SUB></b>, or show how <a href = "../../ClassExercises/Week12_Halting_Computability/index.html#rice">Rice's theorem</a> applies.
+											</p>
+
+										<HR>
+											<h3>Problem 3 (3 Points)</h3>
+											<p>
+												We'll explore something called the <b>Collatz conjecture</b> in this problem.  This is a seemingly innocuous math problem that's very easy to state, but it has served as a "black hole" that has sucked in many an aspiring mathematician, because it still eludes a proof after almost a century from when it was first posed.  The conjecture is as follows: given the following piecewise function
 											</p>
 
 											<div style="width:200px;">
@@ -80,7 +95,7 @@
 											</div>
 
 											<p>
-												Determine whether it is possible to iterate this function and end up at a 1.  Take the following examples, which all end at a 1 (in fact, it's been exhaustively verified that every natural number up to <b>2<SUP>68</SUP></b> eventually ends up at 1)
+												It is thought that it is always possible to iterate this function and end up at a 1, starting <b>at any natural number</b>.  Take the following examples, which all end at a 1 (in fact, it's been exhaustively verified that every natural number up to <b>2<SUP>68</SUP></b> eventually ends up at 1)
 											</p>
 
 											<iframe src="collatz.html" width=800 height=400></iframe>
@@ -91,15 +106,101 @@
 												Hence, the problem is sometimes referred to as the "3x + 1" problem
 											</p>
 
-												
-
 
 
 											</p>
-												The author of this <a href = "https://www.quantamagazine.org/why-mathematicians-still-cant-solve-the-collatz-conjecture-20200922/">popular math article on the conjecture</a> recommends that we <i>do not try to solve this math problem.</i>.  However, let's cheat for a moment and suppose that <b>Halt<SUB>TM</SUB></b> is decidable.  Provide a high level description of a machine that outputs whether the Collatz conjecture is true or not, using this hypothetical decidable <b>Halt<SUB>TM</SUB></b> to help you.
+												The author of this <a href = "https://www.quantamagazine.org/why-mathematicians-still-cant-solve-the-collatz-conjecture-20200922/">popular math article on the conjecture</a> recommends that we <i>do not try to solve this math problem.</i>.  However, let's cheat for a moment and suppose that <b>Halt<SUB>TM</SUB></b> is decidable.  Provide a high level description of a machine that outputs whether the Collatz conjecture is true or not, using this hypothetical decidable <b>Halt<SUB>TM</SUB></b> oracle to help you.
 											</p>
 										
 
+
+											<HR>
+												<h3>Problem 4 (5 Points)</h3>
+
+												<p>
+													We're going to think about some <b>very</b> large numbers now.  Consider a function over the natural numbers known as the <b>Busy Beaver Function BB(N)</b>, whose output value at <b>N</b> is the maximum number of steps that any Turing machine of a special form with <b>N</b> states can take before halting, <b>if it halts</b><SUP><a href = "#shift">[1]</a></SUP>.  The Turing machines used in the Busy Beavers have the following properties
+
+													<h5><a name = "bbformat">Busy Beaver Format</a></h5>
+													<ul>
+														<li>
+															The tape alphabet <b>&Gamma;</b> is {0, 1}
+														</li>
+														<li>The tape starts off with all 0's stretching to infinity on the right and left side (there is otherwise no input)</li>
+														<li>
+															There is a single accept state that <i>does not count towards the <b>N</b> states that are used.</i>
+														</li>
+													</ul>
+
+													<i><SUP><a name = "shift">[1]</a></SUP> Technically I'm referring here to something called the "Radó shift function," but it's related and makes our proofs slightly easier</i>
+
+													<P></P>
+													
+
+													<ol>
+														<li>
+															<p>
+															<b>(1 Point)</b> What input/output pair of the Busy Beaver function can you bound from below by the following Turing machine?  What value is the lower bound?	(This value actually turns out to achieve the maximum for this number of states)
+															</p>
+
+															<img src = "BB3.png">
+
+
+															<p>
+																<a href = "BB3.jff">Click here</a> to download the JFLAP file, which you can use to help answer this question.  Note that JFLAP does not have the capability to start the tape with all 0s, so blanks are treated as 0s in this machine.
+															</p>
+
+															
+	
+														</li>
+
+														<li>
+															<b>(2 Points)</b> A function from the natural numbers to the natural numbers is <b>computable</b> if, starting with the input to the function, the machine halts with just the output to the function on the tape. <b>Prove that the busy beaver function is not computable</b>, supposing by contradiction that it is computable and using it as a subroutine to decide something undecidable.
+														</li>
+
+														<li>
+															<b>(2 Points)</b> Suppose for a moment that the halting problem is decidable.  Then, it would be theoretically possible to compute <b>BB(N)</b> by the following very slow but simple algorithm
+															
+															<ul>
+																<li>Start BB(N) at 0</li>
+																<li>For each machine <b>M</b> with <b>N</b> states in <a href = "#bbformat">busy beaver format</a>
+																<ul>
+																	<li>
+																		If <b>M</b> halts, run <b>M</b> and record the number of steps <b>s</b> that it takes.  If <b>s &gt; BB(N)</b>, then update <b>BB(N)</b> to be <b>s</b>
+																	</li>
+																</ul>
+																</li>
+															</ul>
+															
+															How many Turing machines would you have to check in the outer loop for <b>BB(N)</b>?
+
+															<P>
+																<b>Hint: </b> How many possible arrows can you draw when you're at a particular state and you see a <b>0</b>?  How about if you see a <b>1</b>?  How would you multiply these possibilities across all states?  (Go back and think about the <a href = "https://brilliant.org/wiki/fundamental-counting-principle/">fundamental counting principle</a> if you're rusty)
+															</P>
+														</li>
+
+
+													</ol>
+
+
+													
+													
+												</p>
+											<HR>
+											<h3>Problem 5 (3 Points)</h3>					
+												<p>
+													The busy beaver function grows <b>very quickly</b>.  In fact, <b>BB(18)</b> already exceeds <a href = "https://en.wikipedia.org/wiki/Graham%27s_number">Graham's number</a>, one of the biggest numbers ever used in mathematical research (check out <a href = "https://www.youtube.com/watch?v=HX8bihEe3nA">this video</a>, <a href = "https://www.youtube.com/watch?v=txajrEOTkuY">this video</a>, and <a href = "https://www.youtube.com/watch?v=GuigptwlVHo">this video</a>).  But we can show something even stronger and more general about the busy beaver's asymptotic growth.  Let <b>f</b> be <i>any computable function</i> over natural numbers expressed in binary.  Prove that there exists and <b>N<SUB>c</SUB></b> so that <b>BB(N) > f(N)</b> for all <b>N > N<SUB>c</SUB></b>.
+												</p>
+
+												<p>
+													<b>Hint: </b> Since <b>f</b> is computable, you can devise a Turing machine for it.  Suppose this Turing machine has <b>C</b> states, which is a constant independent of <b>N</b>.  Now fix <b>N</b> and consider how you would devise a machine in <a href = "#bbformat">busy beaver format</a> to compute <b>f(N)</b> and then to take a number of steps at least as long as this.  <b>How many states does this machine have, in terms of <b>C</b> and <b>N</b></b>? 
+
+													
+												</p>
+
+												<p>
+													<b>Hint within hint(!):</b> Since the busy beaver machine starts off with a tape of all 0's, you have to use state memory to load in the input <b>N</b> to <b>f(N)</b>.
+												</p>
+												
                                     
                                 </div>
 						</div>
@@ -172,6 +273,9 @@
 												</li>
 												<li>
 													<a href = "../../Assignments/HW9_Decidability/index.html">HW9: Decidability</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW10_Undecidability_Uncomputability/index.html">HW10: Undecidability And Uncomputability</a>
 												</li>
 											</ul>
 										</li>
