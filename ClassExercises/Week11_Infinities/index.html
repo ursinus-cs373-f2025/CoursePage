@@ -41,16 +41,11 @@
 							<!-- Content -->
 								<section>
 									<header class="main">
-                                        <h2>Weeks 10-12: Decidability And Undecidability</h2>
+                                        <h2>Weeks 11: Countable And Uncountable Infinities</h2>
                                         <h3><a href = "http://www.ctralie.com">Chris Tralie</a>
 									</header>
 
 									<div id="page-content">
-										<p>
-											It's now time to consider some languages that are not decidable.  If a language <b>L</b> is not decidable, it means that while it may be possible to design a Turing machine to recognize <b>L</b>, we can't hope to avoid an infinite loop on all strings not in the language.
-										</p>
-
-										<h2><a name = "undecidability">Countable And Uncountable Infinities</a></h2>
 
 										<p>
 											We're going to take a brief diversion and to talk about infinities, but this will help us to understand some of the limits of computation related to decidability.  As it turns out, some infinities are bigger than others.  To get at this, let's first think about a tool we can design to measure how big sets are.  We formally define a <b>bijection</b> or a <b>1-1 correspondence</b> between two sets <b>A</b> and <b>B</b> as a subset of the Cartesian product <b>A x B</b> so that every element of <b>A</b> shows up in exactly one tuple and every element of <b>B</b> shows up in exactly one tuple.  Visually, a bijection is a <a href = "https://en.wikipedia.org/wiki/Bipartite_graph">bipartite graph</a> between two sets in which exactly one edge is incident to every element.  Below are two examples of bijections between the sets {a, b, c, d, e} and the sets {1, 2, 3, 4, 5}, as well as a non bijection between these two sets and a non bijection between {a, b, c, d, e} and {1, 2, 3, 4}:
@@ -122,7 +117,7 @@
 											This is pretty intuitive for finite sets, such as {a, b, c, d, e} and {1, 2, 3, 4, 5}.  And it shows us that no matter how hard we try, we can't come up with a bijection between {a, b, c, d, e} and {1, 2, 3, 4} because there aren't enough elements in the second set to match with the first set.  What's interesting is that this notion of size correspondence applies to infinite sets as well, and it allows us to draw much less obvious conclusions:
 										</p>
 
-										<h3><a name = "countable">Countably Infinite Sets</a></h3>
+										<h2><a name = "countable">Countably Infinite Sets</a></h2>
 										<p>
 											Now let's talk about infinities of a very particular size, known as <b>countable infinities</b>
 										</p>
@@ -235,7 +230,7 @@
 										</p>
 
 										<p>
-											To construct a bijection with the natural numbers, we could create the bijection <b>(x, 1/x)</b>.  But this will only cover the first row of the table.  Instead, we should zig zag through the table starting at the upper left, skipping numbers that we've already identified.  
+											To construct a bijection with the natural numbers, we could create the bijection <b>(x, 1/x)</b>.  But this will only cover the first row of the table.  Instead, we should zig zag through the table starting at the upper left, skipping numbers whose reduced fractions we've already matched with a natural number.  The animation below shows the first 31 such numbers in the bijection.  Notice how we skip numbers whose reduced fraction have already been matched
 										</p>
 
 										<button id = "startAnimation" onclick="startAnimation()">Start Animation</button>
@@ -279,27 +274,199 @@
 											}
 											stopAnimation();
 										</script>
+										<p></p>
+										<p>
+											This also seems like a surprising result since all of the natural numbers are in the first row of the rational numbers, but we were able to get creative enough to find a different bijection.
+										</p>
+
+										<h3>Example 4: Strings in An Alphabet</h3>
 
 										<p>
+											<b>Claim: </b> The set of the strings <b>&Sigma;<SUP>*</SUP></b> in an alphabet <b>&Sigma;</b> are countable.
+										</p>
+
+										<p>
+											<b>Proof: </b> We simply order the strings by <b>lexographic order</b> and put them into a correspondence with the natural numbers in this order.
+										</p>
+
+										<p>
+											As an example, suppose we have the alphabet <b>&Sigma; = {a, b, c}</b>
+										</p>
+
+										<table style="width:100px;">
+											<tr>
+												<td>1</td>
+												<td>a</td>
+											</tr>
+											<tr>
+												<td>2</td>
+												<td>b</td>
+											</tr>
+											<tr>
+												<td>3</td>
+												<td>c</td>
+											</tr>
+											<tr>
+												<td>4</td>
+												<td>aa</td>
+											</tr>
+											<tr>
+												<td>5</td>
+												<td>ab</td>
+											</tr>
+											<tr>
+												<td>6</td>
+												<td>ac</td>
+											</tr>
+											<tr>
+												<td>7</td>
+												<td>ba</td>
+											</tr>
+											<tr>
+												<td>8</td>
+												<td>bb</td>
+											</tr>
+											<tr>
+												<td>9</td>
+												<td>bc</td>
+											</tr>
+											<tr>
+												<td>10</td>
+												<td>ca</td>
+											</tr>
+											<tr>
+												<td>..</td>
+												<td>..</td>
+											</tr>
+											
+										</table>
+
+										<h3>Example 5: Turing Machines</h3>
+										<p><b>Finally</b> we get to something related to theory of computation!  Consider the set of all Turing machines as string encodings <b>&lt;M&gt;</b> (<a href = "../Week10_Decidability/index.html#encodings">click here</a> to review how Turing machine string encodings work).  If we fix an input alphabet <b>&Sigma;</b> and a tape alphabet <b>&Gamma;</b>, and we number each state as <b>q<SUB>x</SUB></b>, where <b>x</b> is (for instance) a number in base 10, then we can describe all possible Turing machines that use this alphabet as strings in the following alphabet:
+
+										<h3>
+											{q,0,1,2,3,4,5,6,7,8,9,L,S,R,,(,),{,},▢} &cup; &Sigma; &cup; &Gamma;
+										</h3>
 
 										</p>
 
+										<p>
+											These Turing machine encodings form an infinite subset of all possible strings in this alphabet, which we just showed in the prior example are countable.  We could enumerate a 1-1 correspondence for Turing machines by looking at all strings in lexographic order and skipping those that do not form valid encodings, much like we skipped the rational numbers that we would be double counting while zig zagging.
+										</p>
 
-
-										* Proof of undecidability of ATM
-										
-										* Go over undecidability and reductions
-										Examples: Halting, ETM, RegTM, Sipser 5.10
-										
-										* Rice's theorem
-										
+										<p>
+											So far, it seems like we're able to put all infinite sets into bijection with the natural numbers.  However, as we will see momentarily, this is not always possible.  This means that there are sets that have more elements than all possible Turing machines
+										</p>
 
 										<HR>
-											<h3><a name = "rice">Rice's Theorem</a></h3>
-											<p>
-												It may seem like we keep doing a similar thing for all of these problems, and we'd be able to save ourselves some work if we came up with a more general theorem for a class of undecidable languages that all have certain things in common.  Here, we'll explore one such theorem known as <b>Rice's Theorem</b>.
-											</p>
+										<h2><a name = "uncountable">Uncountably Infinite Sets</a></h2>
 
+										<p>
+											Anything infinite that's too big to be put into bijection with the natural numbers is known as <b>uncountable</b>.  Let's consider such an infinite set
+										</p>
+
+										<h3>Example 1: The Set of Infinite Binary Strings</h3>
+
+										<p>
+											<b>Claim: </b>  The set of infinite length binary strings is uncountably infinite
+										</p>
+
+										<p>
+											<b>Proof:</b>  We proceed via contradiction by assuming that this set is countable.  In the spirit of being overly generous, we'll allow ourselves to construct <b>any</b> bijection with the rational numbers.  Take the first 10 elements of a random bijection, for example
+										</p>
+
+										<table style="width:800px;"><tr><td></td><td>j = 1</td><td>j = 2</td><td>j = 3</td><td>j = 4</td><td>j = 5</td><td>j = 6</td><td>j = 7</td><td>j = 8</td><td>j = 9</td><td>j = 10</td></tr><tr><td>i = 1</td><td style="color:red;">0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>...</td></tr><tr><td>i = 2</td><td>1</td><td style="color:red;">0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>...</td></tr><tr><td>i = 3</td><td>0</td><td>1</td><td style="color:red;">1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>...</td></tr><tr><td>i = 4</td><td>1</td><td>0</td><td>1</td><td style="color:red;">0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td><td>...</td></tr><tr><td>i = 5</td><td>0</td><td>1</td><td>0</td><td>1</td><td style="color:red;">1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td><td>...</td></tr><tr><td>i = 6</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td style="color:red;">0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>...</td></tr><tr><td>i = 7</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td style="color:red;">0</td><td>0</td><td>0</td><td>0</td><td>...</td></tr><tr><td>i = 8</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td style="color:red;">0</td><td>1</td><td>0</td><td>...</td></tr><tr><td>i = 9</td><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td style="color:red;">1</td><td>0</td><td>...</td></tr><tr><td>i = 10</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td style="color:red;">0</td><td>...</td></tr><tr><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr></table>
+
+										<p>
+											Let's focus on the elements along the diagonal of this table rendering of the bijection.  In particular, let's consider the sequence of the <b>i<SUP>th</SUP></b> digit of infinite binary string associate to the <b>i<SUP>th</SUP></b> natural number, as shown in red in the table.  We can now construct a binary string that never could have possibly been enumerated by taking the complement of this string.  In the above example, the first 10 digits
+										</p>
+
+										<h3>
+											0010100010...
+										</h3>
+
+										<p>
+											would turn into 
+										</p>
+
+										<h3>
+											1101011101...
+										</h3>
+
+										<p>Since this string always disagrees with at least one character of every row, it could not possibly have existed in any rows.  Hence, we've shown a way to construct a string that is missing in the bijection, regardless of the bijection, which is a contradiction.  Hence, no possible bijection exists which puts the set of infinite binary strings into correspondence with the natural numbers.  Hence, this set is <b>uncountable</b></p>
+
+
+										<h3>Example 2: The Set of Languages</h3>
+										<p>
+											Now we arrive at some bad news for Turing machines
+										</p>
+
+										<p><b>Claim: </b> The set of all languages over an alphabet <b>&Sigma;</b> is uncountable</p>
+
+										<p><b>Proof:</b> Each language consists of a subset of all possible strings in the alphabet.  We can describe each such subset as a unique infinite binary string.  For example, consider the alphabet <b>&Sigma; = {0, 1}</b> and the language of all binary strings with an even number of 0's.  We let each digit of the binary string correspond to the <b>i<SUP>th</SUP></b> binary number in lexographic order, and we construct the beginning of the string as follows</p>
+
+										<table>
+											<tr>
+												<td>&lambda;</td>
+												<td>0</td>
+												<td>1</td>
+												<td>00</td>
+												<td>01</td>
+												<td>10</td>
+												<td>11</td>
+												<td>000</td>
+												<td>001</td>
+												<td>010</td>
+												<td>011</td>
+												<td>100</td>
+												<td>101</td>
+												<td>110</td>
+												<td>111</td>
+												<td>0000</td>
+												<td>0001</td>
+												<td>0010</td>
+												<td>0011</td>
+												<td>0100</td>
+												<td>0101</td>
+												<td>...</td>
+											</tr>
+											<tr>
+												<td>0</td>
+												<td>0</td>
+												<td>0</td>
+												<td>1</td>
+												<td>0</td>
+												<td>0</td>
+												<td>0</td>
+												<td>0</td>
+												<td>1</td>
+												<td>1</td>
+												<td>0</td>
+												<td>1</td>
+												<td>0</td>
+												<td>0</td>
+												<td>0</td>
+												<td>1</td>
+												<td>0</td>
+												<td>0</td>
+												<td>1</td>
+												<td>0</td>
+												<td>1</td>
+												<td>...</td>
+											</tr>
+										</table>
+
+										<p>
+											We just showed that the set of all infinite binary strings is uncountable.  Therefore, the set of all possible languages is uncountable.
+										</p>
+
+										<p>
+											Since the set of all Turing machines, on the other hand, is countable, this means that there are <b>tons</b> of languages that cannot even be <i>recognized</i>, let alone decided, by a Turing machine.  
+										</p>
+
+										<p>
+											This is an instance of what's known as <b>Cantor's diagonal argument</b>.  We will use a similar argument soon as the backbone behind proofs that certain languages are <a href = "../Week12_Undecidability/">undecidable</a>
+										</p>
 
 
 
@@ -376,6 +543,9 @@
 												<li>
 													<a href = "../../Assignments/HW9_Decidability/index.html">HW9: Decidability</a>
 												</li>
+												<li>
+													<a href = "../../Assignments/HW10_Undecidability_Uncomputability/index.html">HW10: Undecidability And Uncomputability</a>
+												</li>
 											</ul>
 										</li>
                                         <li>
@@ -396,6 +566,8 @@
 												<li><a href = "../../ClassExercises/Week5_PumpingLemma">Week 5: The Pumping Lemma</a></li>
 												<li><a href = "../../ClassExercises/Week7_Turing">Week 7/8: Turing Machine Examples</a></li>
 												<li><a href = "../../ClassExercises/Week8_MultitapeTuring">Week 8: Multitape Turing Machine Examples</a></li>
+												<li><a href = "../../ClassExercises/Week10_Decidability">Week 10: Decidability</a></li>
+												<li><a href = "../../ClassExercises/Week11_Infinities">Week 11: Countable And Uncountable Infinities</a></li>
 											</ul>
 										</li>
 									</ul>
