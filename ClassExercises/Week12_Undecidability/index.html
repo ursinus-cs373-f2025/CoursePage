@@ -1,0 +1,479 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<!-- Header !-->
+	<head>
+		<title>Ursinus CS 373: Theory of Computation, Fall 2021</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="../../assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="../../assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="../../assets/css/ie8.css" /><![endif]-->
+        <style>
+        .image_off, #home:hover .image_on{
+           display:none
+        }
+        .image_on, #home:hover .image_off{
+           display:block
+        }
+        </style>
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="../../index.html" class="logo"><strong>Ursinus CS 373: Theory of Computation, Fall 2021</strong></a>
+								</header>
+<!-- End Header !-->
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+                                        <h2>Week 12: Undecidability</h2>
+                                        <h3><a href = "http://www.ctralie.com">Chris Tralie</a>
+									</header>
+
+									<div id="page-content">
+										<p>
+											It's now time to consider some languages that are not decidable.  If a language <b>L</b> is not decidable, it means that while it may be possible to design a Turing machine to recognize <b>L</b>, we can't hope to avoid an infinite loop on all strings not in the language.
+										</p>
+
+										<p>
+											We'll start with a very specific example of an undecidable language known as <b>A<SUP>TM</SUP></b>, which we will use as the canonical undecidable language when proving that other languages are undecidable.  It will be one very short step after this to prove that the ever famous <b>Halting problem</b> is undecidable, but that is <i>just the tip of the iceberg of interesting problems we can't hope to solve in general</i>, as we will see 😿😿😿.
+										</p>
+
+										<HR>
+										<h2><a name = "atm">A<SUB>TM</SUB> Is Undecidable</a></h2>
+
+										<p>
+											We define a language called <b>A<SUB>TM</SUB></b> which is the Turing machine version of <a href = "../Week10_Decidability/index.html#adfa">A<SUB>DFA</SUB></a> and <a href = "../Week10_Decidability/index.html#acfg">A<SUB>CFG</SUB></a>
+										</p>
+
+										<h4>
+											A<SUB>TM</SUB> = {&lt;M,w&gt; | M is a Turing machine and M accepts the string w}
+										</h4>
+
+										<p>
+											<b>Claim: </b>Unlike <b>A<SUB>DFA</SUB></b> and <b>A<SUB>CFG</SUB></b>, however, <b>A<SUB>TM</SUB></b> is <b>not</b> decidable.  
+										</p>
+
+										<p>
+											<b>Proof: </b> Intuitively, there's something about the fact that Turing machines can throw infinite loops that prevent us from being able to rule out a particular string from just taking a long time to accept/reject or from actually infinitely looping.  But we need a more rigorous argument for this.
+										</p>
+										<p>
+											<a name = "atmdecidable">Suppose by contradiction that <b>A<SUB>TM</SUB></b> is actually decidable</a>.  Then we can use it as a subroutine to build another decidable universal Turing machine which I'll call <b>weird</b> (following <a href = "https://www.youtube.com/watch?v=r__GZ7ubU0M">Thorsten Altenkirch's convention</a>).  Below is a high level description of this machine, which feeds a <a href = "../Week10_Decidability/index.html#encodings">string encoding</a> of <b>M</b> to itself:
+										</p>
+
+										<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+											def weird(M):
+												if (ATM(<M, <M>>)) accepts: # We run ATM to say if M accepts the string representation of itself, and we do the opposite
+													weird rejects
+												else:
+													weird accepts
+										</script> 
+
+										<p>
+											In other words, <b>weird</b> does the opposite of <b>A<SUB>TM</SUB></b> on the string encoding of a machine and itself.  Since <b>A<SUB>TM</SUB></b> is assumed to be a decidable Turing machine, so is <b>weird</b>.  But here's where <a href = "../Week11_Infinities/index.html#uncountable">Cantor's diagonal argument</a> can run us into trouble.  Since the <a href = "../Week11_Infinities/index.html#turingcountable">set of all Turing machines is countable</a>, we can arrange all possible Turing machines along the rows of a table in some order (such as the lexographic order of their string encoding).  We'll then order their string encodings in the same order across the columns.  In the entries of the table, let's record <b>Accept</b> or <b>Reject</b> to indicate whether the machine on the row accepts or rejects the string encoding of the machine on the column.  Since we've assumed that <b>A<SUB>TM</SUB></b> is decidable, then these are the only two possibilities for <b>A<SUB>TM</SUB></b>.  For instance, here's that table on six arbitrary Turing machines <b>M<SUB>1</SUB> ... M<SUB>6</SUB></b>
+										</p>
+
+										<table style="width:600px;">
+											<tr><td></td>
+												<td><h4>&lt;M<SUB>1</SUB>&gt;</h4></td>
+												<td><h4>&lt;M<SUB>2</SUB>&gt;</h4></td>
+												<td><h4>&lt;M<SUB>3</SUB>&gt;</h4></td>
+												<td><h4>&lt;M<SUB>4</SUB>&gt;</h4></td>
+												<td><h4>&lt;M<SUB>5</SUB>&gt;</h4></td>
+												<td><h4>&lt;M<SUB>6</SUB>&gt;</h4></td>
+												<td>...</td>
+											</tr>
+											<tr>
+												<td><h4>M1</h4></td>
+												<td><h3><span style="color: red;">Accept</span></h3></td>
+												<td><h3>Accept</h3></td>
+												<td><h3>Accept</h3></td>
+												<td><h3>Reject</h3></td>
+												<td><h3>Accept</h3></td>
+												<td><h3>Accept</h3></td>
+												<td>...</td>
+											</tr>
+											<tr>
+												<td><h4>M2</h4></td>
+												<td><h3>Accept</h3></td>
+												<td><h3><span style="color: red;">Accept</span></h3></td>
+												<td><h3>Reject</h3></td>
+												<td><h3>Accept</h3></td>
+												<td><h3>Accept</h3></td>
+												<td><h3>Accept</h3></td>
+												<td>...</td>
+											</tr>
+											<tr>
+												<td><h4>M3</h4></td>
+												<td><h3>Accept</h3></td>
+												<td><h3>Accept</h3></td>
+												<td><h3><span style="color: red;">Accept</span></h3></td>
+												<td><h3>Accept</h3></td>
+												<td><h3>Accept</h3></td>
+												<td><h3>Reject</h3></td>
+												<td>...</td>
+											</tr>
+											<tr>
+												<td><h4>M4</h4></td>
+												<td><h3>Accept</h3></td>
+												<td><h3>Reject</h3></td>
+												<td><h3>Accept</h3></td>
+												<td><h3><span style="color: red;">Reject</span></h3></td>
+												<td><h3>Reject</h3></td>
+												<td><h3>Reject</h3></td>
+												<td>...</td>
+											</tr>
+											<tr>
+												<td><h4>M5</h4></td>
+												<td><h3>Accept</h3></td>
+												<td><h3>Accept</h3></td>
+												<td><h3>Accept</h3></td>
+												<td><h3>Accept</h3></td>
+												<td><h3><span style="color: red;">Reject</span></h3></td>
+												<td><h3>Accept</h3></td>
+												<td>...</td>
+											</tr>
+											<tr>
+												<td><h4>M6</h4></td>
+												<td><h3>Accept</h3></td>
+												<td><h3>Accept</h3></td>
+												<td><h3>Reject</h3></td>
+												<td><h3>Accept</h3></td>
+												<td><h3>Accept</h3></td>
+												<td><h3><span style="color: red;">Accept</span></h3></td>
+												<td>...</td>
+											</tr>
+											<tr>
+												<td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td>
+											</tr>
+										</table>
+
+										<p>
+											<i>But we just argued a moment ago that <b>weird</b> is a valid Turing machine</i>, so we should be able to have a row and column for <b>weird</b> and its string encoding <b>&lt;weird&gt;</b>, respectively, in our table.  Since weird does the reverse behavior of <b>A<SUB>TM</SUB></b> on a machine and its string encoding, the value of <b>weird</b>'s row at the <b>i<SUP>th</SUP></b> column should be the opposite of the <b>i<SUP>th</SUP></b> diagonal entry of the table.  Let's try to do this:
+										</p>
+
+										<table style="width:600px;">
+											<tr><td></td>
+												<td><h4>&lt;M<SUB>1</SUB>&gt;</h4></td>
+												<td><h4>&lt;M<SUB>2</SUB>&gt;</h4></td>
+												<td><h4>&lt;M<SUB>3</SUB>&gt;</h4></td>
+												<td><h4>&lt;M<SUB>4</SUB>&gt;</h4></td>
+												<td><h4>&lt;M<SUB>5</SUB>&gt;</h4></td>
+												<td><h4>&lt;M<SUB>6</SUB>&gt;</h4></td>
+												<td>...</td>
+												<td>
+													<h4>&lt;weird&gt;</h4>
+												</td>
+												<td>...</td>
+											</tr>
+											<tr>
+												<td><h4>M1</h4></td>
+												<td><h3><span style="color: red;">Accept</span></h3></td>
+												<td><h3>Accept</h3></td>
+												<td><h3>Accept</h3></td>
+												<td><h3>Reject</h3></td>
+												<td><h3>Accept</h3></td>
+												<td><h3>Accept</h3></td>
+												<td>...</td>
+												<td><h3>Reject</h3></td>
+												<td>...</td>
+											</tr>
+											<tr>
+												<td><h4>M2</h4></td>
+												<td><h3>Accept</h3></td>
+												<td><h3><span style="color: red;">Accept</span></h3></td>
+												<td><h3>Reject</h3></td>
+												<td><h3>Accept</h3></td>
+												<td><h3>Accept</h3></td>
+												<td><h3>Accept</h3></td>
+												<td>...</td>
+												<td><h3>Reject</h3></td>
+												<td>...</td>
+											</tr>
+											<tr>
+												<td><h4>M3</h4></td>
+												<td><h3>Accept</h3></td>
+												<td><h3>Accept</h3></td>
+												<td><h3><span style="color: red;">Accept</span></h3></td>
+												<td><h3>Accept</h3></td>
+												<td><h3>Accept</h3></td>
+												<td><h3>Reject</h3></td>
+												<td>...</td>
+												<td><h3>Reject</h3></td>
+												<td>...</td>
+											</tr>
+											<tr>
+												<td><h4>M4</h4></td>
+												<td><h3>Accept</h3></td>
+												<td><h3>Reject</h3></td>
+												<td><h3>Accept</h3></td>
+												<td><h3><span style="color: red;">Reject</span></h3></td>
+												<td><h3>Reject</h3></td>
+												<td><h3>Reject</h3></td>
+												<td>...</td>
+												<td><h3>Accept</h3></td>
+												<td>...</td>
+											</tr>
+											<tr>
+												<td><h4>M5</h4></td>
+												<td><h3>Accept</h3></td>
+												<td><h3>Accept</h3></td>
+												<td><h3>Accept</h3></td>
+												<td><h3>Accept</h3></td>
+												<td><h3><span style="color: red;">Reject</span></h3></td>
+												<td><h3>Accept</h3></td>
+												<td>...</td>
+												<td><h3>Reject</h3></td>
+												<td>...</td>
+											</tr>
+											<tr>
+												<td><h4>M6</h4></td>
+												<td><h3>Accept</h3></td>
+												<td><h3>Accept</h3></td>
+												<td><h3>Reject</h3></td>
+												<td><h3>Accept</h3></td>
+												<td><h3>Accept</h3></td>
+												<td><h3><span style="color: red;">Accept</span></h3></td>
+												<td>...</td>
+												<td><h3>Accept</h3></td>
+												<td>...</td>
+											</tr>
+											<tr>
+												<td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td>
+											</tr>
+											<tr>
+												<td><h4>weird</h4></td>
+												<td><h3><span style="color: #31caca;">Reject</span></h3></td>
+												<td><h3><span style="color: #31caca;">Reject</span></h3></td>
+												<td><h3><span style="color: #31caca;">Reject</span></h3></td>
+												<td><h3><span style="color: #31caca;">Accept</span></h3></td>
+												<td><h3><span style="color: #31caca;">Accept</span></h3></td>
+												<td><h3><span style="color: #31caca;">Reject</span></h3></td>
+												<td>...</td>
+												<td><h3>🙀🙀???🙀🙀</h3></td>
+												<td>...</td>
+											</tr>
+											<tr>
+												<td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td>
+											</tr>
+										</table>
+
+										<p>
+											We start off just fine by having <b>weird</b> do the opposite on other machines.  However, when we get to <b>weird</b> itself, we reach a contradiction, because we define its accept/reject status to be the opposite of what it is.  But it's impossible to choose either accept or reject to be the opposite of itself.  So we've arrived at a contradiction.  The only falsifiable assumption we made this whole time is that <a href = "#atmdecidable">A<SUB>TM</SUB> is decidable</a>.  Therefore, A<SUB>TM</SUB> must not be decidable!
+										</p>
+
+										<HR>
+											<h2><a name = "halttm">Halt<SUB>TM</SUB> Is Undecidable</a></h2>
+
+											<p>
+												We can now talk about the problem that everyone mentions as the canonical undecidable problem: the halting problem:
+											</p>
+
+											<h4>
+												Halt<SUB>TM</SUB> = {&lt;M,w&gt; | M is a Turing machine and M halts (either accepts or rejects, but does not loop) on the string w}
+											</h4>
+
+											<p>
+												Personally, I think <b>A<SUB>TM</SUB></b> is easier to use as the canonical undecidable problem, but it doesn't matter, because it's relatively straightforward to reduce <b>A<SUB>TM</SUB></b> to the halting problem.  We will use the following theorem to our advantage
+											</p>
+
+											<div style="background-color: blanchedalmond; padding:10px;">
+												<a name = "reduction"><h4>Reduction Strategy for Proving Undecidability</h4></a>
+
+												<p>
+													If a problem <b>A</b> is undecidable and we can use problem <b>B</b> as a subroutine to solve problem <b>A</b> with otherwise decidable steps, then problem <b>B</b> must also be undecidable.  Otherwise, we would arrive at a contradiction with a decidable procedure to solve problem <b>A</b>.
+												</p>
+
+											</div>
+											<p></p>
+											<p>
+												Let's use this strategy to prove that <b>Halt<SUB>TM</SUB></b> is undecidable.  We'll use <b>A<SUB>TM</SUB></b> as problem <b>A</b> and <b>Halt<SUB>TM</SUB></b> as problem <b>B</b>.  If we assume by contradiction that <b>Halt<SUB>TM</SUB></b> is decidable, then we can define the following machine to decide <b>A<SUB>TM</SUB></b>
+											</p>
+
+											<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+												def ATM(<M, w>):
+													if (HaltTM(<M, w>)) accepts: 
+														# Our presumed decidable halting machine tells indicates that M halts on w
+														# Therefore, it is safe to run it to see if it accepts/rejects
+														Run M on w
+														if M accepts w:
+															Accept
+														else:
+															Reject
+													else:
+														# If HaltTM rejects, this means M goes into an infinite
+														# loop on w.  Therefore, M does not accept w
+														Reject 
+											</script> 
+
+											<p>
+												This is, of course, a contradiction, since we know that <b>A<SUB>TM</SUB></b> is undecidable.  Therefore, our assumption that <b>Halt<SUB>TM</SUB></b> is decidable is false, so <b>Halt<SUB>TM</SUB></b> must be undecidable.
+											</p>
+
+										<HR>
+											<h2><a name = "ettm">E<SUB>TM</SUB> Is Undecidable</a></h2>
+
+											<p>
+												A lot of times the halting problem is stated as the be all end all of undecidability.  But there are (sadly) so many other useful problems that we cannot hope to solve in general.  Let's now consider one called <b>E<SUB>TM</SUB></b>, which is the Turing machine equivalent of <a href = "../Week10_Decidability/index.html#edfa">E<SUB>DFA</SUB></a> and <a href = "../Week10_Decidability/index.html#ecfg">E<SUB>CFG</SUB></a>
+											</p>
+
+											<h4>
+												E<SUB>TM</SUB> = {&lt;M&gt; | M is a Turing machine that does not accept anything}
+											</h4>
+										
+										* Go over undecidability and reductions
+										Examples: Halting, ETM, RegTM, Sipser 5.10
+										
+										* Rice's theorem
+										
+
+										<HR>
+											<h3><a name = "rice">Rice's Theorem</a></h3>
+											<p>
+												It may seem like we keep doing a similar thing for all of these problems, and we'd be able to save ourselves some work if we came up with a more general theorem for a class of undecidable languages that all have certain things in common.  Here, we'll explore one such theorem known as <b>Rice's Theorem</b>.
+											</p>
+
+
+
+
+                                    
+                                </div>
+						</div>
+					</div>
+
+					<!--LaTeX in Javascript!-->
+					<script src="../../../../jsMath/easy/load.js"></script>
+					<!--Syntax highlighting in Javascript!-->
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shCore.js"></script>
+					<script type="text/javascript" src="../../../syntaxhighlighter/scripts/shBrushJScript.js"></script>
+                    <script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushCpp.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushXml.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushMatlabSimple.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushPython.js"></script>
+					<link type="text/css" rel="stylesheet" href="../../../../syntaxhighlighter/styles/shCoreDefault.css"/>
+					<script type="text/javascript">SyntaxHighlighter.all();</script>
+
+<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+                                        <li>
+											<span class="opener">General</span>
+											<ul>
+												<li><a href = "../../index.html#overview">Overview</a></li>
+												<li><a href = "../../index.html#logistics">Technology Logistics</a></li>
+												<li><a href = "../../index.html#readings">Readings</a></li>
+												<li><a href = "../../index.html#deliverables">Deliverables</a></li>
+												<li><a href = "../../index.html#schedule">Schedule</a></li>
+												<li><a href = "../../index.html#grading">Grading</a></li>
+												<li><a href = "../../index.html#environment">Classroom Environment</a></li>
+												<li><a href = "../../index.html#collaboration">Collaboration Policy</a></li>
+												<li><a href = "../../index.html#other">Other Resources / Policies</a></li>
+											</ul> 
+										</li>
+										<li><a href = "../../Software/index.html">Software</a></li>
+										<li><a href = "../../index.html#schedule">Schedule</a></li>
+										<li><a href = "../../FinalProject/index.html">Final Project</a></li>
+                                        <li>
+											<span class="opener">Assignments</span>
+											<ul>
+												<li>
+													<a href = "../../Assignments/HW1_Discrete/index.html">HW1: Discrete Math Practice</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW2_DFA/index.html">HW2: DFAs</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW3_NFA/index.html">HW3: DFAs And NFAs</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW4_Regexp/index.html">HW4: (Non)Regular Languages And Regular Expressions</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW5_CFGs/index.html">HW5: Context Free Grammars</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW6_PDAs/index.html">HW6: Pushdown Automata</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW7_Turing/index.html">HW7: Turing Machines</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW8_Turing2/index.html">HW8: Turing Machines Part 2</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW9_Decidability/index.html">HW9: Decidability</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW10_Undecidability_Uncomputability/index.html">HW10: Undecidability And Uncomputability</a>
+												</li>
+											</ul>
+										</li>
+                                        <li>
+											<span class="opener">Class Exercises</span>
+											<ul>
+												<li><a href = "../../ClassExercises/Week1_Unplugged">Week 1: Acting Out DFAs</a></li>
+												<li><a href = "../../ClassExercises/Week1_Discrete">Week 1: Discrete Math Review</a></li>
+												<li><a href = "../../ClassExercises/Week1_FridayDFABinary">Week 1: Binary And JFLAP</a>
+													<ul>
+														<li><a href = "../../ClassExercises/Week1_FridayDFABinary/index.html#binary">Binary Drills</a></li>
+														<li><a href = "../../ClassExercises/Week1_FridayDFABinary/index.html#jflap">JFLAP Exercises</a></li>
+													</ul>
+												</li>
+												<li><a href = "../../ClassExercises/Week2_Formal">Week 2: Formal Description of DFAs, Divisibility</a></li>
+												<li><a href = "../../ClassExercises/Week2_Union">Week 2: Union of Regular Languages</a></li>
+												<li><a href = "../../ClassExercises/Week3_NFAs">Week 3: NFAs, Converting NFAs To DFAs</a></li>
+												<li><a href = "../../ClassExercises/Week4_DFAToRegexp">Week 4: Converting Regular Expressions To DFAs And Back</a></li>
+												<li><a href = "../../ClassExercises/Week5_PumpingLemma">Week 5: The Pumping Lemma</a></li>
+												<li><a href = "../../ClassExercises/Week7_Turing">Week 7/8: Turing Machine Examples</a></li>
+												<li><a href = "../../ClassExercises/Week8_MultitapeTuring">Week 8: Multitape Turing Machine Examples</a></li>
+												<li><a href = "../../ClassExercises/Week10_Decidability">Week 10: Decidability</a></li>
+												<li><a href = "../../ClassExercises/Week11_Infinities">Week 11: Countable And Uncountable Infinities</a></li>
+												<li><a href = "../../ClassExercises/Week12_Undecidability">Week 12: Undecidability</a></li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; <a href = "http://www.ctralie.com">Christopher J. Tralie</a>. All rights reserved.  Contact chris.tralie@gmail.com. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+			
+            <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+            <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- End Sidebar !-->
+
+<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/skel.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="../../assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../../assets/js/main.js"></script>
+<!-- End Scripts -->
