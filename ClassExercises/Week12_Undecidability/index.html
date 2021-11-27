@@ -1,0 +1,425 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<!-- Header !-->
+	<head>
+		<title>Ursinus CS 373: Theory of Computation, Fall 2021</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="../../assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="../../assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="../../assets/css/ie8.css" /><![endif]-->
+        <style>
+        .image_off, #home:hover .image_on{
+           display:none
+        }
+        .image_on, #home:hover .image_off{
+           display:block
+        }
+        </style>
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="../../index.html" class="logo"><strong>Ursinus CS 373: Theory of Computation, Fall 2021</strong></a>
+								</header>
+<!-- End Header !-->
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+                                        <h2>Weeks 10-12: Decidability And Undecidability</h2>
+                                        <h3><a href = "http://www.ctralie.com">Chris Tralie</a>
+									</header>
+
+									<div id="page-content">
+										<p>
+											It's now time to consider some languages that are not decidable.  If a language <b>L</b> is not decidable, it means that while it may be possible to design a Turing machine to recognize <b>L</b>, we can't hope to avoid an infinite loop on all strings not in the language.
+										</p>
+
+										<h2><a name = "undecidability">Countable And Uncountable Infinities</a></h2>
+
+										<p>
+											We're going to take a brief diversion and to talk about infinities, but this will help us to understand some of the limits of computation related to decidability.  As it turns out, some infinities are bigger than others.  To get at this, let's first think about a tool we can design to measure how big sets are.  We formally define a <b>bijection</b> or a <b>1-1 correspondence</b> between two sets <b>A</b> and <b>B</b> as a subset of the Cartesian product <b>A x B</b> so that every element of <b>A</b> shows up in exactly one tuple and every element of <b>B</b> shows up in exactly one tuple.  Visually, a bijection is a <a href = "https://en.wikipedia.org/wiki/Bipartite_graph">bipartite graph</a> between two sets in which exactly one edge is incident to every element.  Below are two examples of bijections between the sets {a, b, c, d, e} and the sets {1, 2, 3, 4, 5}, as well as a non bijection between these two sets and a non bijection between {a, b, c, d, e} and {1, 2, 3, 4}:
+										</p>
+
+										<table>
+											<tr>
+												<td style="background-color: #80ff0081;">
+													<img src = "5bijection1.svg" width=150>
+												</td>
+												<td  style="background-color: #80ff0081;">
+													<img src = "5bijection2.svg" width=150>
+												</td>
+												<td  style="background-color: #ffa4a4d7;">
+													<img src = "5bijection3_no.svg" width=150>
+												</td>
+												<td  style="background-color: #ffa4a4d7;">
+													<img src = "5bijection4_no.svg" width=150>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<h3>
+														{(a, 1), (b, 2), (c, 3), (d, 4), (e, 5)}
+													</h3>
+													<P>
+														This is a bijection
+													</P>
+												</td>
+												<td>
+													<h3>
+														{(a, 3), (b, 2), (c, 5), (d, 4), (e, 1)}
+													</h3>
+													<p>
+														This is a bijection
+													</p>
+												</td>
+												<td>
+													<h3>
+														{(a, 3), (b, 2), (<u>c</u>, 1), (<u>c</u>, <u>5</u>), (d, 4), (e, <u>5</u>)}
+													</h3>
+													<p>
+														This is not a bijection because <b>c</b> and <b>5</b> each show up in two tuples
+													</p>
+												</td>
+												<td>
+													<h3>
+														{(a, 3), (b, 2), (c, 4), (e, 1)}
+													</h3>
+													<p>
+														This is not a bijection because <b>d</b> does not show up in any tuples.
+													</p>
+												</td>
+											</tr>
+										</table>
+
+										<p>
+											Now we're ready to state a theorem that will help us measure the size of sets
+										</p>
+
+										<div style="background-color: blanchedalmond; padding:10px;">
+											<h3>Lemma: Relative Size of Sets</h3>
+											<p>
+												It is possible to devise a bijection between two sets <b>A</b> and <b>B</b> if and only if <b>A</b> and <b>B</b> are the same size.
+											</p>										
+										</div>
+
+										<p>
+											This is pretty intuitive for finite sets, such as {a, b, c, d, e} and {1, 2, 3, 4, 5}.  And it shows us that no matter how hard we try, we can't come up with a bijection between {a, b, c, d, e} and {1, 2, 3, 4} because there aren't enough elements in the second set to match with the first set.  What's interesting is that this notion of size correspondence applies to infinite sets as well, and it allows us to draw much less obvious conclusions:
+										</p>
+
+										<h3><a name = "countable">Countably Infinite Sets</a></h3>
+										<p>
+											Now let's talk about infinities of a very particular size, known as <b>countable infinities</b>
+										</p>
+										<h4>Example 1: Even Natural Numbers</h4>
+										<p>
+											<b>Claim:</b> The set of even natural numbers is the same size as the set of natural numbers
+										</p>
+
+										<p>
+											<b>Proof: </b> We can come up with the 1-1 correspondence <b>(x, 2x)</b>, where <b>x</b> varies over all natural numbers.  Every natural number shows up exactly once on the left side of the tuple, and every even natural number shows up exactly once on the right side.  The table below shows the first few tuples in the 1-1 correspondence:
+											
+											<table style="width:100px;">
+												<tr>
+													<td>1</td>
+													<td>2</td>
+												</tr>
+												<tr>
+													<td>2</td>
+													<td>4</td>
+												</tr>
+												<tr>
+													<td>3</td>
+													<td>6</td>
+												</tr>
+												<tr>
+													<td>...</td>
+													<td>...</td>
+												</tr>
+											</table>
+											
+											Therefore, these two sets are the same size.
+										</p>
+
+										<p>
+											This is a bit surprising because it seems like there are fewer even natural numbers than natural numbers.  But this is not the case when we think about all infinitely many of them.  In fact, the even natural numbers are an instance of what are called <b>countably infinite sets</b>
+										</p>
+
+										<div style="background-color: blanchedalmond; padding: 10px;">
+										<h3>Def. Countably Infinite Sets</h3>
+										<p>
+											A set is <b>countably infinite</b> if it can be put into a 1-1 correspondence with the natural numbers.  In this case, we say it is the same size as the natural numbers.
+										</p>
+										</div>
+
+										<p>
+											Let's look at some more examples of countably infinite sets.
+										</p>
+
+										<h4>Example 2: Even Integers</h4>
+										<p>
+											<b>Claim: </b> The even integers are countable
+										</p>
+
+										<p>
+											<b>Proof: </b> We can use the 1-1 correspondence
+										</p>
+
+										<div style="width:100px;">
+										<h3>
+											\[ \left( x, (-1)^{x} (2 \lfloor \frac{x+1}{2} \rfloor) \right) \]
+										</h3>
+										</div>
+
+										<p>
+											where <b>&lfloor; u &rfloor;</b> is the "floor function" of <b>u</b>, which rounds <b>u</b> down to the nearest integer.  This expression is a bit nasty, so let's look at the first few entries in the table
+										</p>
+
+										<table style="width:100px;">
+											<tr>
+												<td>1</td>
+												<td>-2</td>
+											</tr>
+											<tr>
+												<td>2</td>
+												<td>2</td>
+											</tr>
+											<tr>
+												<td>3</td>
+												<td>-4</td>
+											</tr>
+											<tr>
+												<td>4</td>
+												<td>4</td>
+											</tr>
+											<tr>
+												<td>5</td>
+												<td>-6</td>
+											</tr>
+
+											<tr>
+												<td>6</td>
+												<td>6</td>
+											</tr>
+											<tr>
+												<td>...</td>
+												<td>...</td>
+											</tr>
+										</table>
+										<p>
+											From this pattern, we can see more easily that we pair all even natural numbers with even positive integers, and we pair the odd numbers <b>x</b> with the even negative integers <b>-x-1</b>.  We'll use this sort of "zig zagging" in a slightly more complicated example next:
+										</p>
+
+										<h3>Example 3: Positive Rational Numbers</h3>
+										<p>
+											<b>Claim: </b> The positive rational numbers <b>a/b</b>, where <b>a</b> and <b>b</b> are natural numbers, are countable.
+										</p>
+
+										<p>
+											<b>Proof: </b> We can think of the positive rational numbers as a subset of the cartesian product of the natural numbers with themselves.  Each element <b>(a, b)</b> in this set is identified with the rational number <b>a/b</b>.  Some rational numbers are counted more than once this way, such as <b>1/4</b> and <b>2/8</b>.  But all rational numbers are covered.
+										</p>
+
+										<p>
+											To construct a bijection with the natural numbers, we could create the bijection <b>(x, 1/x)</b>.  But this will only cover the first row of the table.  Instead, we should zig zag through the table starting at the upper left, skipping numbers that we've already identified.  
+										</p>
+
+										<button id = "startAnimation" onclick="startAnimation()">Start Animation</button>
+										<button id = "stopAnimation" onclick="stopAnimation()">Stop Animation</button>
+
+										<div id="zigzagrational"></div>
+
+										<script src="zigzagrational.js"></script>
+										
+										<script>
+											let animating = false;
+											let startButton = document.getElementById("startAnimation");
+											let stopButton = document.getElementById("stopAnimation");
+											let zigzagrational = document.getElementById("zigzagrational");
+											let i = 0;
+											function incrementTable() {
+												if (animating) {
+													zigzagrational.innerHTML = zigzag[i];
+													i += 1;
+													if (i < NZigzags) {
+														setTimeout(incrementTable, 1000);
+													}
+													else {
+														stopAnimation();
+													}
+												}
+											}
+
+											function startAnimation() {
+												startButton.style.display = "none";
+												stopButton.style.display = "block";
+												i = 0;
+												animating = true;
+												incrementTable();
+											}
+
+											function stopAnimation() {
+												startButton.style.display = "block";
+												stopButton.style.display = "none";
+												animating = false;
+											}
+											stopAnimation();
+										</script>
+
+										<p>
+
+										</p>
+
+
+
+										* Proof of undecidability of ATM
+										
+										* Go over undecidability and reductions
+										Examples: Halting, ETM, RegTM, Sipser 5.10
+										
+										* Rice's theorem
+										
+
+										<HR>
+											<h3><a name = "rice">Rice's Theorem</a></h3>
+											<p>
+												It may seem like we keep doing a similar thing for all of these problems, and we'd be able to save ourselves some work if we came up with a more general theorem for a class of undecidable languages that all have certain things in common.  Here, we'll explore one such theorem known as <b>Rice's Theorem</b>.
+											</p>
+
+
+
+
+                                    
+                                </div>
+						</div>
+					</div>
+
+					<!--LaTeX in Javascript!-->
+					<script src="../../../../jsMath/easy/load.js"></script>
+					<!--Syntax highlighting in Javascript!-->
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shCore.js"></script>
+					<script type="text/javascript" src="../../../syntaxhighlighter/scripts/shBrushJScript.js"></script>
+                    <script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushCpp.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushXml.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushMatlabSimple.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushPython.js"></script>
+					<link type="text/css" rel="stylesheet" href="../../../../syntaxhighlighter/styles/shCoreDefault.css"/>
+					<script type="text/javascript">SyntaxHighlighter.all();</script>
+
+<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+                                        <li>
+											<span class="opener">General</span>
+											<ul>
+												<li><a href = "../../index.html#overview">Overview</a></li>
+												<li><a href = "../../index.html#logistics">Technology Logistics</a></li>
+												<li><a href = "../../index.html#readings">Readings</a></li>
+												<li><a href = "../../index.html#deliverables">Deliverables</a></li>
+												<li><a href = "../../index.html#schedule">Schedule</a></li>
+												<li><a href = "../../index.html#grading">Grading</a></li>
+												<li><a href = "../../index.html#environment">Classroom Environment</a></li>
+												<li><a href = "../../index.html#collaboration">Collaboration Policy</a></li>
+												<li><a href = "../../index.html#other">Other Resources / Policies</a></li>
+											</ul> 
+										</li>
+										<li><a href = "../../Software/index.html">Software</a></li>
+										<li><a href = "../../index.html#schedule">Schedule</a></li>
+										<li><a href = "../../FinalProject/index.html">Final Project</a></li>
+                                        <li>
+											<span class="opener">Assignments</span>
+											<ul>
+												<li>
+													<a href = "../../Assignments/HW1_Discrete/index.html">HW1: Discrete Math Practice</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW2_DFA/index.html">HW2: DFAs</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW3_NFA/index.html">HW3: DFAs And NFAs</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW4_Regexp/index.html">HW4: (Non)Regular Languages And Regular Expressions</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW5_CFGs/index.html">HW5: Context Free Grammars</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW6_PDAs/index.html">HW6: Pushdown Automata</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW7_Turing/index.html">HW7: Turing Machines</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW8_Turing2/index.html">HW8: Turing Machines Part 2</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW9_Decidability/index.html">HW9: Decidability</a>
+												</li>
+											</ul>
+										</li>
+                                        <li>
+											<span class="opener">Class Exercises</span>
+											<ul>
+												<li><a href = "../../ClassExercises/Week1_Unplugged">Week 1: Acting Out DFAs</a></li>
+												<li><a href = "../../ClassExercises/Week1_Discrete">Week 1: Discrete Math Review</a></li>
+												<li><a href = "../../ClassExercises/Week1_FridayDFABinary">Week 1: Binary And JFLAP</a>
+													<ul>
+														<li><a href = "../../ClassExercises/Week1_FridayDFABinary/index.html#binary">Binary Drills</a></li>
+														<li><a href = "../../ClassExercises/Week1_FridayDFABinary/index.html#jflap">JFLAP Exercises</a></li>
+													</ul>
+												</li>
+												<li><a href = "../../ClassExercises/Week2_Formal">Week 2: Formal Description of DFAs, Divisibility</a></li>
+												<li><a href = "../../ClassExercises/Week2_Union">Week 2: Union of Regular Languages</a></li>
+												<li><a href = "../../ClassExercises/Week3_NFAs">Week 3: NFAs, Converting NFAs To DFAs</a></li>
+												<li><a href = "../../ClassExercises/Week4_DFAToRegexp">Week 4: Converting Regular Expressions To DFAs And Back</a></li>
+												<li><a href = "../../ClassExercises/Week5_PumpingLemma">Week 5: The Pumping Lemma</a></li>
+												<li><a href = "../../ClassExercises/Week7_Turing">Week 7/8: Turing Machine Examples</a></li>
+												<li><a href = "../../ClassExercises/Week8_MultitapeTuring">Week 8: Multitape Turing Machine Examples</a></li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; <a href = "http://www.ctralie.com">Christopher J. Tralie</a>. All rights reserved.  Contact chris.tralie@gmail.com. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+			
+            <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+            <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- End Sidebar !-->
+
+<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/skel.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="../../assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../../assets/js/main.js"></script>
+<!-- End Scripts -->
