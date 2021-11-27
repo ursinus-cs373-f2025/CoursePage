@@ -279,7 +279,7 @@
 											This also seems like a surprising result since all of the natural numbers are in the first row of the rational numbers, but we were able to get creative enough to find a different bijection.
 										</p>
 
-										<h3>Example 4: Strings in An Alphabet</h3>
+										<h3><a name = "alphabet">Example 4: Strings in An Alphabet</a></h3>
 
 										<p>
 											<b>Claim: </b> The set of the strings <b>&Sigma;<SUP>*</SUP></b> in an alphabet <b>&Sigma;</b> are countable.
@@ -341,7 +341,7 @@
 											
 										</table>
 
-										<h3>Example 5: Turing Machines</h3>
+										<h3><a name = "turingcountable">Example 5: Turing Machines</a></h3>
 										<p><b>Finally</b> we get to something related to theory of computation!  Consider the set of all Turing machines as string encodings <b>&lt;M&gt;</b> (<a href = "../Week10_Decidability/index.html#encodings">click here</a> to review how Turing machine string encodings work).  If we fix an input alphabet <b>&Sigma;</b> and a tape alphabet <b>&Gamma;</b>, and we number each state as <b>q<SUB>x</SUB></b>, where <b>x</b> is (for instance) a number in base 10, then we can describe all possible Turing machines that use this alphabet as strings in the following alphabet:
 
 										<h3>
@@ -395,6 +395,10 @@
 
 										<p>Since this string always disagrees with at least one character of every row, it could not possibly have existed in any rows.  Hence, we've shown a way to construct a string that is missing in the bijection, regardless of the bijection, which is a contradiction.  Hence, no possible bijection exists which puts the set of infinite binary strings into correspondence with the natural numbers.  Hence, this set is <b>uncountable</b></p>
 
+										<p>
+											Intuitively, there's something about the fact that these binary strings are infinite in length that makes this set bigger than the <a href = "#alphabet">set of all strings in an alphabet</a> (which are finite).
+										</p>
+
 
 										<h3>Example 2: The Set of Languages</h3>
 										<p>
@@ -403,7 +407,7 @@
 
 										<p><b>Claim: </b> The set of all languages over an alphabet <b>&Sigma;</b> is uncountable</p>
 
-										<p><b>Proof:</b> Each language consists of a subset of all possible strings in the alphabet.  We can describe each such subset as a unique infinite binary string.  For example, consider the alphabet <b>&Sigma; = {0, 1}</b> and the language of all binary strings with an even number of 0's.  We let each digit of the binary string correspond to the <b>i<SUP>th</SUP></b> binary number in lexographic order, and we construct the beginning of the string as follows</p>
+										<p><b>Proof:</b> Each language consists of a subset of all possible strings in the alphabet.  We can describe each such subset as a unique infinite binary string.  For example, consider the alphabet <b>&Sigma; = {0, 1}</b> and the language of all binary strings with an even number of 0's.  We let each digit of the binary string correspond to the <b>i<SUP>th</SUP></b> binary string in lexographic order.  If this string is in our language, we'll put a 1 at that digit.  Otherwise, we'll put a 0. Below is the beginning of this string</p>
 
 										<table>
 											<tr>
@@ -568,6 +572,7 @@
 												<li><a href = "../../ClassExercises/Week8_MultitapeTuring">Week 8: Multitape Turing Machine Examples</a></li>
 												<li><a href = "../../ClassExercises/Week10_Decidability">Week 10: Decidability</a></li>
 												<li><a href = "../../ClassExercises/Week11_Infinities">Week 11: Countable And Uncountable Infinities</a></li>
+												<li><a href = "../../ClassExercises/Week12_Undecidability">Week 12: Undecidability</a></li>
 											</ul>
 										</li>
 									</ul>

@@ -75,7 +75,7 @@
 										<h3>({q0,q1,q2},{0,1},{0,1,▢},{(q0,1,0,L,q0),(q0,0,0,R,q1),(q1,0,0,R,q0),(q1,1,0,R,q1),(q1,▢,▢,R,q2),{q2},q0})</h3>
 
 										<p>
-											This 106 character string may not be the most intuitive way to write the above machine, but it uniquely identifies the Turing machine with a string over the alphabet <b>{q,0,1,2,3,4,5,6,7,8,9,L,S,R,,(,),{,},▢}</b>
+											This 106 character string may not be the most intuitive way to write the above machine, but it uniquely identifies the Turing machine with a string over the alphabet <b>{q,0,1,2,3,4,5,6,7,8,9,L,S,R,,(,),{,},▢}</b>.  If we zoom out a bit and think about the Church-Turing thesis, what we're really just saying is that every program has a string representation, which of course true in our everyday experience of writing programs.
 										</p>
 
 										<h2><a name = "decidability">Decidability</a></h2>
@@ -106,7 +106,7 @@
 											In what follows, I'll briefly go through a few examples of languages that are decidable by describing high level descriptions of machines that decide them, explaining why they never infinite loop.  I'll then start to hint at undecidability of some related languages.  Refer to Sipser chapter 4 for more details.
 										</p>
 
-										<h3>Example 1: A<SUB>DFA</SUB></h3>
+										<h3><a name = "adfa">Example 1: A<SUB>DFA</SUB></a></h3>
 
 										<p>
 											Let 
@@ -155,7 +155,7 @@
 										</p>
 
 
-										<h3>Example 4: E<SUB>DFA</SUB></h3>
+										<h3><a name = "edfa">Example 4: E<SUB>DFA</SUB></a></h3>
 
 										<p>
 											Let 
@@ -225,7 +225,7 @@
 											I'll briefly state some facts about context free languages that are useful for proving decidability of collections of context free languages, which will help you on <a href = "../../Assignments/HW9_Decidability/">homework 9</a>.  I'll leave some more details to Sipser
 										</p>
 
-										<h3>1. A<SUB>CFG</SUB> is decidable</h3>
+										<h3><a name = "acfg">1. A<SUB>CFG</SUB> is decidable</a></h3>
 										<p>
 											The language 
 										</p>
@@ -239,7 +239,7 @@
 										</p>
 
 
-										<h3>2. E<SUB>CFG</SUB> is decidable</h3>
+										<h3><a name = "ecfg">2. E<SUB>CFG</SUB> is decidable</a></h3>
 
 										<h4>
 											E<SUB>CFG</SUB> = {G | G does not generate any strings}
@@ -434,6 +434,7 @@
 												<li><a href = "../../ClassExercises/Week8_MultitapeTuring">Week 8: Multitape Turing Machine Examples</a></li>
 												<li><a href = "../../ClassExercises/Week10_Decidability">Week 10: Decidability</a></li>
 												<li><a href = "../../ClassExercises/Week11_Infinities">Week 11: Countable And Uncountable Infinities</a></li>
+												<li><a href = "../../ClassExercises/Week12_Undecidability">Week 12: Undecidability</a></li>
 											</ul>
 										</li>
 									</ul>

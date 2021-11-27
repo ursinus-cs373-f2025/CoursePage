@@ -51,7 +51,7 @@
 										</p>
 
 										<p>
-											We'll start with a very specific example of an undecidable language known as <b>A<SUP>TM</SUP></b>, which we will use as the canonical undecidable language when proving that other languages are undecidable.  It will be one very short step after this to prove that the ever famous <b>Halting problem</b> is undecidable, but that is <i>just the tip of the iceberg of interesting problems we can't hope to solve in general</i>, as we will see 😿😿😿.
+											We'll start with a very specific example of an undecidable language known as <b>A<SUP>TM</SUP></b>, which we will use as the canonical undecidable language when proving that other languages are undecidable.  It will be one very short step after this to prove that the ever famous <b>Halting problem</b> is undecidable, but that is <b>just the tip of the iceberg of interesting problems we can't hope to solve in general</b>, as we will see 😿😿😿.
 										</p>
 
 										<HR>
@@ -307,11 +307,11 @@
 
 											<script type="syntaxhighlighter" class="brush: python"><![CDATA[
 												def ATM(<M, w>):
-													if (HaltTM(<M, w>)) accepts: 
+													if (HaltTM(<M, w>)) Accepts: 
 														# Our presumed decidable halting machine tells indicates that M halts on w
-														# Therefore, it is safe to run it to see if it accepts/rejects
+														# Therefore, it is safe to run it to see if it accepts/Rejects
 														Run M on w
-														if M accepts w:
+														if M Accepts w:
 															Accept
 														else:
 															Reject
@@ -335,18 +335,185 @@
 											<h4>
 												E<SUB>TM</SUB> = {&lt;M&gt; | M is a Turing machine that does not accept anything}
 											</h4>
+
+											<p>
+												<b>Claim: </b> E<SUB>TM</SUB> is undecidable
+											</p>
+
+											<p>
+												<b>Proof: </b> We'll follow the same strategy by assuming by contradiction that <b>E<SUB>TM</SUB></b> is decidable and using it to create a machine to decide <b>A<SUB>TM</SUB></b>.  To do this, let's define a third machine that will help us:
+											</p>
+
+											<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+												def EmptyIndicator_M_w(s):
+													if M Accepts w:
+														if s == "CS 373 Rocks": # This could be any string
+															Accept
+														else:
+															Reject
+													else:
+														Reject
+											</script> 
+
+											<p>
+												This is kind of a weird trick, but we've defined a machine <b>EmptyIndicator_M_w</b> whose definition depends on a machine <b>M</b> and a string <b>w</b>, so the machine will actually change for a different <b>M</b> and <b>w</b>.  But when we fix <b>M</b> and <b>w</b>, we see that the language <b>L(EmptyIndicator_M_w)</b> is empty if <b>M</b> does not accept <b>w</b>, or it consists of a single string <b>"CS 373 Rocks"</b> if <b>M</b> does accept <b>w</b>.  Therefore, we can create a decider for <b>A<SUB>TM</SUB></b>
+											</p>
+
+											<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+												def ATM(<M, w>):
+													if ETM Accepts <EmptyIndicator_M_w>:
+														# The language accepted by the machine is only empty
+														# if M rejects w
+														Reject 
+													else:
+														Accept
+											</script> 
+
+											<p>
+												Since we know that <b>A<SUB>TM</SUB></b> is undecidable, we've reached a contradiction, and <b>E<SUB>TM</SUB></b> must not be decidable.
+											</p>
+
+											<p>
+												The thing that's weird about this proof is that the machine <b>EmptyIndicator_M_w</b> does not have to be a decider for us to decide whether it's empty by our assumption; we assumed that <b>E<SUB>TM</SUB></b> can decide whether <i>any</i> machine is empty.  And this was enough for us to complete the proof by contradiction.
+											</p>
+
+										<HR>
+											<h2><a name = "regtm">Reg<SUB>TM</SUB> Is Undecidable</a></h2>
+
+										<p>
+											There's another fact we might love to know about a Turing machine we have (or about a computer program that we have, as per the Church-Turing Thesis): did we go way overkill but it can actually just be implemented as a DFA?  This machine could have told us the answer to problem 1 on <a href = "../../Assignments/HW8_Turing2/index.html">homework 8</a>, for example.  For a more specific example, let's consider the following Turing machine:
+										</p>
+
+										<img src = "RegTM_TM.png">
 										
-										* Go over undecidability and reductions
-										Examples: Halting, ETM, RegTM, Sipser 5.10
+										<p>
+											This Turing machine decides the language of binary strings with at least one 0.  But this can be implemented more simply by just using a DFA
+										</p>
+
+										<img src = "RegTM_DFA.png">
+
+										<p>
+											Let's now state the language in question more formally
+										</p>
+
+										<h4>
+											Reg<SUB>TM</SUB> = {&lt;M&gt; | M is a Turing machine and the language L(M) generated by M can be recognized by a DFA}
+										</h4>
+
+										<p>
+											<b>Claim: </b> <b>Reg<SUB>TM</SUB></b> is undecidable
+										</p>
+
+										<p>
+											<b>Proof: </b> As per procedure, we'll assume by contradiction that <b>Reg<SUB>TM</SUB></b> is decidable and use it to create a decider for <b>A<SUB>TM</SUB></b>.  We'll use a similar trick to the one we used for <b>E<SUB>TM</SUB></b> and design an auxiliary machine that we'll eventually feed to <b>Reg<SUB>TM</SUB></b>
+										</p>
+
+										<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+											def RegIndicator_M_w(s):
+												if M Accepts w:
+													if s is in 0*1*: # This could be any regular expression
+														Accept
+													else:
+														Reject
+												else:
+													if s is in {0^n1^n, n >= 0}: # This could be any nonregular language
+														Accept
+													else:
+														Reject
+										</script> 
+
+										<p>
+											When we fix <b>M</b> and <b>w</b>, we see that the language <b>L(RegIndicator_M_w)</b> happens to be regular if <b>M</b> accepts <b>w</b>, or it happens to be nonregular if <b>M</b> does not accept <b>w</b>.  Therefore, we can create a decider for <b>A<SUB>TM</SUB></b> by using <b>Reg<SUB>TM</SUB></b> on <b>RegIndicator_M_w</b>
+											</p>
+
+											<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+												def ATM(<M, w>):
+													if RegTM Accepts <RegIndicator_M_w>:
+														# The language accepted by the machine is only
+														# regular if M accepts w
+														Accept
+													else:
+														Reject
+											</script> 
+										</p>
+										<p>
+											We know <b>A<SUB>TM</SUB></b> is undecidable, so we've reached a contradiction, and <b>Reg<SUB>TM</SUB></b> must be undecidable as well.
+										</p>
+
 										
-										* Rice's theorem
+										<HR>
+											<h2><a name = "TwoWritetm">TwoWrite<SUB>TM</SUB> Is Undecidable</a></h2>
+
+											<p>
+												Let's consider one more language for good measure.  Suppose we have a 2-tape turing machine.  Then we claim the language 
+											</p>
+
+											<h4>
+												TwoWrite<SUB>TM</SUB> = {&lt;M,w&gt; | M is a 2-tape Turing machine that writes a non-blank symbol to its second tape while processing w}
+											</h4>
+
+											<p>
+												is undecidable
+											</p>
+
+											<p>
+												<b>Proof: </b> We can create a fairly straightforward decider for <b>A<SUB>TM</SUB></b> if we assume by contradiction that <b>TwoWrite<SUB>TM</SUB></b> is decidable.  Let's create an auxiliary "wrapper machine" <b>TwoWrite_Accept_M</b> for any single tape turing machine <b>M</b>.  This machine runs <b>M</b> on an input as normal, and if <b>M</b> accepts <b>w</b>, then it writes a single <b>1</b> on the second tape.  Hence, this machine writes a non-blank symbol on the second tape if and only if <b>M</b> accepts <b>w</b>.  Written out in pseudocode, we have:
+											</p>
+
+											<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+												def TwoWrite_Accept_M(w):
+													Run M on w using the first tape 
+													if M accepts w:
+														Write a 1 to the second tape
+											</script>
+
+											<p>
+												Used to decide <b>A<SUB>TM</SUB></b>, we then have
+											</p>
+
+											<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+												def ATM(<M, w>):
+													if TwoWriteTM(<TwoWrite_Accept_M>) Accepts:
+														Accept
+													else:
+														Reject
+											</script>
+
+											<p>
+												Hence, <b>TwoWrite<SUB>TM</SUB></b> cannot be decidable.
+											</p>
 										
 
 										<HR>
-											<h3><a name = "rice">Rice's Theorem</a></h3>
+											<h2><a name = "rice">Rice's Theorem</a></h2>
 											<p>
 												It may seem like we keep doing a similar thing for all of these problems, and we'd be able to save ourselves some work if we came up with a more general theorem for a class of undecidable languages that all have certain things in common.  Here, we'll explore one such theorem known as <b>Rice's Theorem</b>.
 											</p>
+
+											<div style="background-color: blanchedalmond; padding:10px;">
+												<h4>Rice's Theorem</h4>
+
+												<p>
+													Let <b>P</b> be a language of Turing machine string encodings satisfying some property that meets two conditions
+												</p>
+												<ol>
+													<li>
+														<p>
+															This property is <b>nontrivial</b>; there is at least one Turing machine that satisfies this property, but not all Turing machines satisfy this property.
+														</p>
+													</li>
+													<li>
+														<p>
+															This property applies to the <b>language</b> associated to Turing machines, not to specific implementation details of Turing machines; that is, if the language <b>L(M<SUB>1</SUB>)</b> associated to machine <b>M<SUB>1</SUB></b> fulfills this property (and hence <b>&lt;M<SUB>1</SUB>&gt; &isin; P</b>), then <b>M<SUB>2</SUB></b> satisfies this property (<b>&lt;M<SUB>2</SUB>&gt; &isin; P</b>) if and only if <b>L(M<SUB>1</SUB>) = L(M<SUB>2</SUB>)</b>.
+														</p>
+													</li>
+												</ol>
+
+												<p>
+													Rice's theorem states that if <b>P's</b> property meets these two conditions, then <b>P</b> is an undecidable language.
+												</p>
+
+											</div>
 
 
 
