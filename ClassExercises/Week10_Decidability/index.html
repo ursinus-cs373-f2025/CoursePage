@@ -1,0 +1,462 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<!-- Header !-->
+	<head>
+		<title>Ursinus CS 373: Theory of Computation, Fall 2021</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="../../assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="../../assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="../../assets/css/ie8.css" /><![endif]-->
+        <style>
+        .image_off, #home:hover .image_on{
+           display:none
+        }
+        .image_on, #home:hover .image_off{
+           display:block
+        }
+        </style>
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="../../index.html" class="logo"><strong>Ursinus CS 373: Theory of Computation, Fall 2021</strong></a>
+								</header>
+<!-- End Header !-->
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+                                        <h2>Weeks 10: Decidability</h2>
+                                        <h3><a href = "http://www.ctralie.com">Chris Tralie</a>
+									</header>
+
+									<div id="page-content">
+
+										<p>
+											At this stage of the course, we're finally ready to talk about the limits of what can be computed.  Surprisingly, some things cannot be computed at all!  But we'll start by characterizing some things that can be computed.
+										</p>
+
+										<h3><a name = "encodings">String Encodings of automata</a></h3>
+										<p>
+											In the notes below, we'll sometimes refer to the <b>string encoding &lt;M&gt;</b> of some automaton <b>M</b>.  Since languages are defined over strings in some alphabet, this will allow us to define languages where automata are the members of that language, such as the language of all Turing machines that accept the string "0".  This would be written as 
+											
+										</p>
+
+										<h3>
+											L = {&lt;M&gt; | M accepts "0"}
+										</h3>
+
+										<p>
+											
+											The string encoding of the Turing machine below would be in this language.
+										</p>
+
+										<img src = "MEncoding.png">
+
+										<p>
+											Recall that a Turing machine can be <a href = "../Week7_Turing/">written as a 6-Tuple</a> <b>(Q, &Sigma;, &Gamma;, &delta;, F, q)</b>.  In particular, the above example could be written as 
+										</p>
+
+										<h3>({q0,q1,q2},{0,1},{0,1,▢},{(q0,1,0,L,q0),(q0,0,0,R,q1),(q1,0,0,R,q0),(q1,1,0,R,q1),(q1,▢,▢,R,q2),{q2},q0})</h3>
+
+										<p>
+											This 106 character string may not be the most intuitive way to write the above machine, but it uniquely identifies the Turing machine with a string over the alphabet <b>{q,0,1,2,3,4,5,6,7,8,9,L,S,R,,(,),{,},▢}</b>
+										</p>
+
+										<h2><a name = "decidability">Decidability</a></h2>
+
+										<p>
+											Before we think about things that can't be computed, let's talk about some things that can be computed. A language is <b>decidable</b> if it is possible to design a Turing machine that decides it.  Recall that this means there are only two options for this Turing machine over all possible inputs: <b>accept</b> or <b>reject</b>; that is, the constructed machines <b>halt</b>.  We do not allow the third possible Turing machine option, <b>infinite looping</b>, on any inputs to a machine that decides a language.  
+										</p>
+
+										<p>
+											Note that the definition of decidable does not say that <i>every</i> Turing machine that <b>recognizes</b> the language in question also decides it, just that there exists one (i.e. it's possible to design such a Turing machine).  Let's consider a simple language that's decidable: the language of all binary strings with at least two 1s.  Here's a Turing machine that recognizes this language (<a href = "2OnesBad.jff">Click here</a> to download the corresponding JFLAP file):
+										</p>
+
+										<img src = "2OnesBad.png">
+
+										<p>
+											This machine definitely recognizes the language.  However, some strings that are not in the language cause the machine to loop, such as the input below
+										</p>
+
+										<img src = "2OnesBadLoop.gif">
+
+										<p>
+											On the other handle, the machine below will never go into a loop, and will only <b>accept</b> or <b>reject</b> every possible input string (<a href = "2OnesGood.jff">Click here</a> to download the corresponding JFLAP file)
+										</p>
+
+										<img src = "2OnesGood.png">
+
+										<p>
+											In what follows, I'll briefly go through a few examples of languages that are decidable by describing high level descriptions of machines that decide them, explaining why they never infinite loop.  I'll then start to hint at undecidability of some related languages.  Refer to Sipser chapter 4 for more details.
+										</p>
+
+										<h3>Example 1: A<SUB>DFA</SUB></h3>
+
+										<p>
+											Let 
+										</p>
+
+										<h4>
+											A<SUB>DFA</SUB> = {&lt;B,w&gt; | B is a DFA that accepts w}
+										</h4>
+
+										<p>
+											This language is decidable.  In class we discussed we can reduce a DFA to a Turing machine by having the head only ever move to the right.  The only technicality is that a Turing machine accepts instantly, while a DFA must run through the whole string before we consider a state as accepting.  We can fix this by transitioning all accept states of the DFA to a final state upon reading a blank.  Regardless, a Turing machine simulating a DFA as such will always halt, as it either rejects or accepts once it's run through the entire input.
+										</p>
+
+										<p>
+											<b>Note</b>: This is an example of a <b>Universal Turing Machine</b> that stores the instructions for another automaton on its tape, as well as the working memory for the other machine's execution.  The <a href = "https://en.wikipedia.org/wiki/Von_Neumann_architecture">Von Neumann architecture</a> is a similar idea contemporary to the Universal Turing Machine's conception.
+										</p>
+
+
+										<h3>Example 2: A<SUB>NFA</SUB></h3>
+
+										<p>
+											Let 
+										</p>
+
+										<h4>
+											A<SUB>NFA</SUB> = {&lt;B,w&gt; | B is an NFA that accepts w}
+										</h4>
+
+										<p>
+											This language is also decidable.  Since we've already proved that <b>A<SUB>DFA</SUB></b> is decidable, we can use it as a subroutine to decide <b>A<SUB>NFA</SUB></b>.  In particular, we'll make a Turing machine that first follows the <a href = "../Week3_NFAs/index.html#nfatodfa">NFA to DFA translation procedure</a>, which eventually halts.  The machine then calls <b>A<SUB>DFA</SUB></b> on the resulting DFA, which also halts by our above argument.
+										</p>
+
+
+										<h3>Example 3: A<SUB>REG</SUB></h3>
+
+										<p>
+											Let 
+										</p>
+
+										<h4>
+											A<SUB>REG</SUB> = {&lt;R,w&gt; | R is a regular expression that generates w}
+										</h4>
+
+										<p>
+											We will use <B>A<SUB>NFA</SUB></B> as a subroutine to do this.  In particular, we'll make a Turing machine that starts by following the <a href = "../Week4_DFAToRegexp/index.html#regexpnfa">regular expression to NFA translation procedure</a>, which eventually halts.  Then, the machine calls <b>A<SUB>NFA</SUB></b> on the resulting NFA, which also halts by our above argument.
+										</p>
+
+
+										<h3>Example 4: E<SUB>DFA</SUB></h3>
+
+										<p>
+											Let 
+										</p>
+
+										<h4>
+											E<SUB>DFA</SUB> = {&lt;M&gt; | M is a DFA that does not accept anything}
+										</h4>
+
+										<p>
+											In other words, it is the language of all "empty" DFAs.  The three examples below are all examples of DFAs whose string encodings would be in this language
+										</p>
+
+										<table>
+											<tr>
+												<td><img src = "EDFA1.png" width=300></td>
+												<td><img src = "EDFA2.png" width=230></td>
+												<td><img src = "EDFA3.png" width=300></td>
+											</tr>
+										</table>
+											
+										<p>
+											The proof that this is decidable will require a bit more ingenuity.  We can see by the above examples that it's not enough to simply check to see if the set of final states is empty.  Moreover, a naive approach that runs all possible strings through the DFA will fail to halt, since there are infinitely many strings over an alphabet.  Instead, we'll use a <b>directed graph search</b> approach, where we see if, starting at the start state, it is possible to reach an accept state by following a sequence of arrows.  Any blind graph search algorithm, such as <a href = "https://ursinus-cs477-f2021.github.io/CoursePage/ClassExercises/Week2_BasicSearch/index.html#bfsgraph">breadth-first search</a>, will suffice.  If any of the nodes it encounters along the way are an accept state, then the machine rejects.  Otherwise, if it runs out of states to visit, it will accept, as there is no possible string that will reach an accept state starting at the beginning.  This algorithm will halt on a finite graph, as it will run out of nodes to process.
+										</p>
+
+										<h3>Example 5: EQ<SUB>DFA</SUB></h3>
+										<p>
+											Let 
+										</p>
+										<h4>
+											EQ<SUB>DFA</SUB> = {&lt;M<SUB>1</SUB>,M<SUB>2</SUB>&gt; | M<SUB>1</SUB> and M<SUB>2</SUB> are DFAs that recognize the same language}
+										</h4>
+
+										<p>
+											This language is decidable.  We can actually use a clever trick to invoke <b>E<SUB>DFA</SUB></b> as a subroutine to decide <b>EQ<SUB>DFA</SUB></b>.  Consider the disjoint union of two sets <b>A</b> and <b>B</b>, which is defined as  
+										</p>
+
+										<div style="width:200px;">
+											<H3>
+												\[ A \Delta B = (A \cap \overline{B}) \cup (\overline{A} \cap B) \]
+											</H3>
+										</div>
+
+										<p>
+											In English, the disjoint union of <b>A</b> and <b>B</b> is the set of all elements which are in <b>A</b> but not <b>B</b>, or which are in <b>B</b> but not <b>A</b>.  The highlighted region of the Venn diagram below shows this:
+										</p>
+
+										<img src = "ADeltaB.svg" width=300>
+
+										<p>
+											If M<SUB>1</SUB> and M<SUB>2</SUB> accept the same language, then the disjoint union of <b>L(M<SUB>1</SUB>) &Delta; L(M<SUB>2</SUB>)</b> will be empty.  This is just a fancy way of saying that the languages the machines recognize have everything in common and nothing not in common.  We can use this fact to devise a new DFA which is 
+										</p>
+
+										<p>
+											<h3>
+												<div style="width:200px;">
+													\[ M = (M_1 \cap \overline{M_2}) \cup (M_2 \cap \overline{M_1})  \]
+													</div>
+											</h3>
+											We now have to use the fact that DFAs are "closed" under intersection &cap;, union &cup;, and complementation; that is, the result of these operations on DFAs is still a DFA.  These are all things that we have proved at various points, so we can affirm that <b>M</b> is a DFA.  So our decider can construct <b>M</b> via these different operations, and then call <b>E<SUB>DFA</SUB></b>.  If <b>E<SUB>DFA</SUB></b> accepts, then accept; otherwise, reject.
+										</p>
+
+										
+
+										<h2><a name = "cfgs">Some Facts About Conext Free Languages</a></h2>
+										<p>
+											I'll briefly state some facts about context free languages that are useful for proving decidability of collections of context free languages, which will help you on <a href = "../../Assignments/HW9_Decidability/">homework 9</a>.  I'll leave some more details to Sipser
+										</p>
+
+										<h3>1. A<SUB>CFG</SUB> is decidable</h3>
+										<p>
+											The language 
+										</p>
+
+										<h4>
+											A<SUB>CFG</SUB> = {&lt;G,w&gt; | G is a context free grammar that generates w}
+										</h4>
+
+										<p>
+											is decidable.  There is an algorithm known as the <a href = "https://en.wikipedia.org/wiki/CYK_algorithm">CYK algorithm</a> (Sipser Theorem 7.15) which decides this once the grammar is converted into "Chomsky Normal Form" (Sipser 2.1), which is a process that halts.
+										</p>
+
+
+										<h3>2. E<SUB>CFG</SUB> is decidable</h3>
+
+										<h4>
+											E<SUB>CFG</SUB> = {G | G does not generate any strings}
+										</h4>
+
+										<p>
+											is decidable. See Sipser theorem 4.8 for details
+										</p>
+
+										<h3>3. EQ<SUB>CFG</SUB> is not(!) decidable</h3>
+
+										<h4>
+											EQ<SUB>CFG</SUB> = {&lt;G<SUB>1</SUB>,G<SUB>2</SUB>&gt; | G<SUB>1</SUB> and G<SUB>2</SUB> generate the same language}
+										</h4>
+
+										<p>
+											is <b>not</b> decidable.  We can't use the disjoint union trick we used with EQ<SUB>DFA</SUB>, because though context free grammars are closed under union (we can simply branch to one or the other from the start), context free grammars are <b>not closed under intersection</b>.  For instance, consider the following context free grammars <b>G<SUB>1</SUB></b> and <b>G<SUB>2</SUB></b>
+										</p>
+
+										<table style="width: 800px;">
+											<tr>
+												<td></td>
+												<td>
+													<h4>G<SUB>1</SUB></h4>
+												</td>
+												<td>
+													<h4>G<SUB>2</SUB></h4>
+												</td>
+											</tr>
+											<tr>
+												<td><h3>Grammar</h3></td>
+												<td>
+													<ul>
+														<li>S &rightarrow; A</li>
+														<li>A &rightarrow; aA</li>
+														<li>A &rightarrow; B</li>
+														<li>B &rightarrow; bBc</li>
+														<li>B &rightarrow; &lambda;</li>
+													</ul>
+												</td>
+												<td>
+													<ul>
+														<li>S &rightarrow; A</li>
+														<li>A &rightarrow; aAb</li>
+														<li>A &rightarrow; C</li>
+														<li>C &rightarrow; Cc</li>
+														<li>C &rightarrow; &lambda;</li>
+													</ul>
+												</td>
+											</tr>
+											<tr>
+												<td><h3>Language Generated</h3></td>
+												<td>
+													<b>{a<SUP>m</SUP>b<SUP>n</SUP>c<SUP>n</SUP> | m, n &geq; 0}</b>
+													<p>
+														An arbitrary number of a's followed by an equal number of b's and c's
+													</p>
+												</td>
+												<td>
+													<b>{a<SUP>m</SUP>b<SUP>m</SUP>c<SUP>n</SUP> | m, n &geq; 0}</b>
+													<p>
+														An equal number of a's and b's followed by an arbitrary number of c's
+													</p>
+												</td>
+											</tr>
+										</table>
+
+
+										<p>
+											Then 
+										</p>
+
+										<h3>
+											L(G<SUB>1</SUB>) &cap; L(G<SUB>2</SUB>) = {a<SUP>n</SUP>b<SUP>n</SUP>c<SUP>n</SUP> | n &geq; 0}
+										</h3>
+
+										<p>
+											But we showed in class that this language is not context free, and we in fact need a <a href = "../Week8_MultitapeTuring/index.html#anbncn">Turing machine to decide it</a>.  But are we just not being clever enough, and there is some other trick we can exploit?  No, unfortunately.  This language is not decidable.
+										</p>
+
+										<p>
+											However, there is another CFG construction that we can to show other decidable languages involving CFGs.
+										</p>
+
+										<h3>4. The intersection of a context free language <b>L<SUB>C</SUB></b> and regular language <b>L<SUB>R</SUB></b> is context free</h3>
+
+										<p>
+											This can be proved by creating a pushdown automaton for <b>L<SUB>C</SUB></b> and running it "in parallel" with the DFA for the regular expression <b>L<SUB>R</SUB></b>.  Similarly to the proof you did on <a href = "../../Assignments/HW3_NFA/index.html">Homework 3 problem 2</a>, this can be accomplished by a cartesian product of states, where the accept states are the cartesian product of accept states in the machine for <b>L<SUB>C</SUB></b> and <b>L<SUB>R</SUB></b>.  The resulting machine is still a pushdown automaton.
+										</p>
+
+										<p>
+											The reason this argument doesn't work if both languages are context free is because we would need two stacks to run them in parallel, while if only one of them is context free, we only need one stack.
+										</p>
+
+
+
+                                    
+                                </div>
+						</div>
+					</div>
+
+					<!--LaTeX in Javascript!-->
+					<script src="../../../../jsMath/easy/load.js"></script>
+					<!--Syntax highlighting in Javascript!-->
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shCore.js"></script>
+					<script type="text/javascript" src="../../../syntaxhighlighter/scripts/shBrushJScript.js"></script>
+                    <script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushCpp.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushXml.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushMatlabSimple.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushPython.js"></script>
+					<link type="text/css" rel="stylesheet" href="../../../../syntaxhighlighter/styles/shCoreDefault.css"/>
+					<script type="text/javascript">SyntaxHighlighter.all();</script>
+
+<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+                                        <li>
+											<span class="opener">General</span>
+											<ul>
+												<li><a href = "../../index.html#overview">Overview</a></li>
+												<li><a href = "../../index.html#logistics">Technology Logistics</a></li>
+												<li><a href = "../../index.html#readings">Readings</a></li>
+												<li><a href = "../../index.html#deliverables">Deliverables</a></li>
+												<li><a href = "../../index.html#schedule">Schedule</a></li>
+												<li><a href = "../../index.html#grading">Grading</a></li>
+												<li><a href = "../../index.html#environment">Classroom Environment</a></li>
+												<li><a href = "../../index.html#collaboration">Collaboration Policy</a></li>
+												<li><a href = "../../index.html#other">Other Resources / Policies</a></li>
+											</ul> 
+										</li>
+										<li><a href = "../../Software/index.html">Software</a></li>
+										<li><a href = "../../index.html#schedule">Schedule</a></li>
+										<li><a href = "../../FinalProject/index.html">Final Project</a></li>
+                                        <li>
+											<span class="opener">Assignments</span>
+											<ul>
+												<li>
+													<a href = "../../Assignments/HW1_Discrete/index.html">HW1: Discrete Math Practice</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW2_DFA/index.html">HW2: DFAs</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW3_NFA/index.html">HW3: DFAs And NFAs</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW4_Regexp/index.html">HW4: (Non)Regular Languages And Regular Expressions</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW5_CFGs/index.html">HW5: Context Free Grammars</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW6_PDAs/index.html">HW6: Pushdown Automata</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW7_Turing/index.html">HW7: Turing Machines</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW8_Turing2/index.html">HW8: Turing Machines Part 2</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW9_Decidability/index.html">HW9: Decidability</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW10_Undecidability_Uncomputability/index.html">HW10: Undecidability And Uncomputability</a>
+												</li>
+											</ul>
+										</li>
+                                        <li>
+											<span class="opener">Class Exercises</span>
+											<ul>
+												<li><a href = "../../ClassExercises/Week1_Unplugged">Week 1: Acting Out DFAs</a></li>
+												<li><a href = "../../ClassExercises/Week1_Discrete">Week 1: Discrete Math Review</a></li>
+												<li><a href = "../../ClassExercises/Week1_FridayDFABinary">Week 1: Binary And JFLAP</a>
+													<ul>
+														<li><a href = "../../ClassExercises/Week1_FridayDFABinary/index.html#binary">Binary Drills</a></li>
+														<li><a href = "../../ClassExercises/Week1_FridayDFABinary/index.html#jflap">JFLAP Exercises</a></li>
+													</ul>
+												</li>
+												<li><a href = "../../ClassExercises/Week2_Formal">Week 2: Formal Description of DFAs, Divisibility</a></li>
+												<li><a href = "../../ClassExercises/Week2_Union">Week 2: Union of Regular Languages</a></li>
+												<li><a href = "../../ClassExercises/Week3_NFAs">Week 3: NFAs, Converting NFAs To DFAs</a></li>
+												<li><a href = "../../ClassExercises/Week4_DFAToRegexp">Week 4: Converting Regular Expressions To DFAs And Back</a></li>
+												<li><a href = "../../ClassExercises/Week5_PumpingLemma">Week 5: The Pumping Lemma</a></li>
+												<li><a href = "../../ClassExercises/Week7_Turing">Week 7/8: Turing Machine Examples</a></li>
+												<li><a href = "../../ClassExercises/Week8_MultitapeTuring">Week 8: Multitape Turing Machine Examples</a></li>
+												<li><a href = "../../ClassExercises/Week10_Decidability">Week 10: Decidability</a></li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; <a href = "http://www.ctralie.com">Christopher J. Tralie</a>. All rights reserved.  Contact chris.tralie@gmail.com. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+			
+            <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+            <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- End Sidebar !-->
+
+<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/skel.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="../../assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../../assets/js/main.js"></script>
+<!-- End Scripts -->
