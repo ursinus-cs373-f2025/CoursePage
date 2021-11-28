@@ -296,18 +296,18 @@
 												<a name = "reduction"><h4>Reduction Strategy for Proving Undecidability</h4></a>
 
 												<p>
-													If a problem <b>A</b> is undecidable and we can use problem <b>B</b> as a subroutine to solve problem <b>A</b> with otherwise decidable steps, then problem <b>B</b> must also be undecidable.  Otherwise, we would arrive at a contradiction with a decidable procedure to solve problem <b>A</b>.
+													If a problem <b>A</b> is undecidable, then we assume by contradiction that <b>B</b> is decidable and use a decider machine for problem <b>B</b> as a subroutine to solve problem <b>A</b>.  If we ensure that everything other than <b>B</b>'s decider takes decidable steps, then we reach the conclusion that <b>A</b> is decidable.  But this is a contradiction, so our assumption that <b>B</b> was decidable must be false, proving that <b>B</b> is undecidable.
 												</p>
 
 											</div>
 											<p></p>
 											<p>
-												Let's use this strategy to prove that <b>Halt<SUB>TM</SUB></b> is undecidable.  We'll use <b>A<SUB>TM</SUB></b> as problem <b>A</b> and <b>Halt<SUB>TM</SUB></b> as problem <b>B</b>.  If we assume by contradiction that <b>Halt<SUB>TM</SUB></b> is decidable, then we can define the following machine to decide <b>A<SUB>TM</SUB></b>
+												Let's use this strategy to prove that <b>Halt<SUB>TM</SUB></b> is undecidable.  We'll use <b>A<SUB>TM</SUB></b> as problem <b>A</b> and <b>Halt<SUB>TM</SUB></b> as problem <b>B</b>.  If we assume by contradiction that <b>Halt<SUB>TM</SUB></b> is decidable, then there must exist a decider machine <b>H</b> for this problem.  We can use <b>H</b> to define the following machine to decide <b>A<SUB>TM</SUB></b>
 											</p>
 
 											<script type="syntaxhighlighter" class="brush: python"><![CDATA[
 												def ATM(<M, w>):
-													if (HaltTM(<M, w>)) Accepts: 
+													if H(<M, w>) Accepts:
 														# Our presumed decidable halting machine tells indicates that M halts on w
 														# Therefore, it is safe to run it to see if it accepts/Rejects
 														Run M on w
@@ -326,7 +326,7 @@
 											</p>
 
 										<HR>
-											<h2><a name = "ettm">E<SUB>TM</SUB> Is Undecidable</a></h2>
+											<h2><a name = "etm">E<SUB>TM</SUB> Is Undecidable</a></h2>
 
 											<p>
 												A lot of times the halting problem is stated as the be all end all of undecidability.  But there are (sadly) so many other useful problems that we cannot hope to solve in general.  Let's now consider one called <b>E<SUB>TM</SUB></b>, which is the Turing machine equivalent of <a href = "../Week10_Decidability/index.html#edfa">E<SUB>DFA</SUB></a> and <a href = "../Week10_Decidability/index.html#ecfg">E<SUB>CFG</SUB></a>
@@ -341,7 +341,7 @@
 											</p>
 
 											<p>
-												<b>Proof: </b> We'll follow the same strategy by assuming by contradiction that <b>E<SUB>TM</SUB></b> is decidable and using it to create a machine to decide <b>A<SUB>TM</SUB></b>.  To do this, let's define a third machine that will help us:
+												<b>Proof: </b> We'll follow the same strategy by assuming by contradiction that <b>E<SUB>TM</SUB></b> is decidable.  Let's say we have a decider machine <b>E</b> for this language, which we'll use to create a machine to decide <b>A<SUB>TM</SUB></b>.  To do this, let's define a third machine that will help us:
 											</p>
 
 											<script type="syntaxhighlighter" class="brush: python"><![CDATA[
@@ -356,12 +356,12 @@
 											</script> 
 
 											<p>
-												This is kind of a weird trick, but we've defined a machine <b>EmptyIndicator_M_w</b> whose definition depends on a machine <b>M</b> and a string <b>w</b>, so the machine will actually change for a different <b>M</b> and <b>w</b>.  But when we fix <b>M</b> and <b>w</b>, we see that the language <b>L(EmptyIndicator_M_w)</b> is empty if <b>M</b> does not accept <b>w</b>, or it consists of a single string <b>"CS 373 Rocks"</b> if <b>M</b> does accept <b>w</b>.  Therefore, we can create a decider for <b>A<SUB>TM</SUB></b>
+												This is kind of a weird trick, but we've defined a machine <b>EmptyIndicator_M_w</b> whose definition depends on a machine <b>M</b> and a string <b>w</b>, so the machine will actually change for a different <b>M</b> and <b>w</b>.  But when we fix <b>M</b> and <b>w</b>, we see that the language <b>L(EmptyIndicator_M_w)</b> is empty if <b>M</b> does not accept <b>w</b>, or it consists of a single string <b>"CS 373 Rocks"</b> if <b>M</b> does accept <b>w</b>.  Therefore, we can create a decider for <b>A<SUB>TM</SUB></b> by using <b>E<SUB>TM</SUB></b>'s decider <b>E</b>
 											</p>
 
 											<script type="syntaxhighlighter" class="brush: python"><![CDATA[
 												def ATM(<M, w>):
-													if ETM Accepts <EmptyIndicator_M_w>:
+													if E(<EmptyIndicator_M_w>) Accepts:
 														# The language accepted by the machine is only empty
 														# if M rejects w
 														Reject 
@@ -405,7 +405,7 @@
 										</p>
 
 										<p>
-											<b>Proof: </b> As per procedure, we'll assume by contradiction that <b>Reg<SUB>TM</SUB></b> is decidable and use it to create a decider for <b>A<SUB>TM</SUB></b>.  We'll use a similar trick to the one we used for <b>E<SUB>TM</SUB></b> and design an auxiliary machine that we'll eventually feed to <b>Reg<SUB>TM</SUB></b>
+											<b>Proof: </b> As per procedure, we'll assume by contradiction that <b>Reg<SUB>TM</SUB></b> is decidable and use it to create a decider for <b>A<SUB>TM</SUB></b>.  Let's assume a decider for <b>Reg<SUB>TM</SUB></b> is called <b>R</b>.  We'll use a similar trick to the one we used for <b>E<SUB>TM</SUB></b> and design an auxiliary machine that we'll eventually feed to <b>Reg<SUB>TM</SUB></b>
 										</p>
 
 										<script type="syntaxhighlighter" class="brush: python"><![CDATA[
@@ -423,12 +423,12 @@
 										</script> 
 
 										<p>
-											When we fix <b>M</b> and <b>w</b>, we see that the language <b>L(RegIndicator_M_w)</b> happens to be regular if <b>M</b> accepts <b>w</b>, or it happens to be nonregular if <b>M</b> does not accept <b>w</b>.  Therefore, we can create a decider for <b>A<SUB>TM</SUB></b> by using <b>Reg<SUB>TM</SUB></b> on <b>RegIndicator_M_w</b>
+											When we fix <b>M</b> and <b>w</b>, we see that the language <b>L(RegIndicator_M_w)</b> happens to be regular if <b>M</b> accepts <b>w</b>, or it happens to be nonregular if <b>M</b> does not accept <b>w</b>.  Therefore, we can create a decider for <b>A<SUB>TM</SUB></b> by using <b>Reg<SUB>TM</SUB></b>'s decider <b>R</b> on <b>RegIndicator_M_w</b>
 											</p>
 
 											<script type="syntaxhighlighter" class="brush: python"><![CDATA[
 												def ATM(<M, w>):
-													if RegTM Accepts <RegIndicator_M_w>:
+													if R(<RegIndicator_M_w>) Accepts:
 														# The language accepted by the machine is only
 														# regular if M accepts w
 														Accept
@@ -514,7 +514,30 @@
 												</p>
 
 											</div>
+											<p>
 
+											</p>
+											<p>
+												Another way to understand Rice's theorem in the context of programming languages is that it is impossible to devise a decider for programs with a particular nontrivial <b>semantic/behavioral</b> property, ignoring the actual syntax of the programs that have this property.  So we see, for example, that Rice's theorem applies to <b>E<SUB>TM</SUB></b> and <b>Reg<SUB>TM</SUB></b>, but Rice's theorem <b>does not apply</b> to <b>TwoWrite<SUB>TM</SUB></b>, since there are certainly ways to implement the same recognizer for a language without using a second tape, as we explained in the multitape to single tape reduction in class.  Still, it could have saved us work on <b>E<SUB>TM</SUB></b> and <b>Reg<SUB>TM</SUB></b>
+											</p>
+											<p>
+												<b>Proof of Rice's Theorem: </b> Let's assume the language <b>P</b> satisfying these two conditions is decidable, and that there is .  We have to somehow use the nonempty and nontrivial properties of its language to create a decider for <b>A<SUB>TM</SUB></b>.  Since it's nonempty, we can assume there is at least one machine <b>T</b> whose language is in <b>P</b>.  Let's create the following auxiliary machine
+											</p>
+
+
+											<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+												def P_M_w(s):
+													Run M on w
+													if M halts and Rejects:
+														Reject
+													else if M accepts w:
+														if T Accepts s: # T can be any machine whose language is in P
+															Accept
+											</script>
+
+											<p>
+
+											</p>
 
 
 
