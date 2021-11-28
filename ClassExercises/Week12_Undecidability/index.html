@@ -73,19 +73,23 @@
 											<b>Proof: </b> Intuitively, there's something about the fact that Turing machines can throw infinite loops that prevent us from being able to rule out a particular string from just taking a long time to accept/reject or from actually infinitely looping.  But we need a more rigorous argument for this.
 										</p>
 										<p>
-											<a name = "atmdecidable">Suppose by contradiction that <b>A<SUB>TM</SUB></b> is actually decidable</a>.  Then we can use it as a subroutine to build another decidable universal Turing machine which I'll call <b>weird</b> (following <a href = "https://www.youtube.com/watch?v=r__GZ7ubU0M">Thorsten Altenkirch's convention</a>).  Below is a high level description of this machine, which feeds a <a href = "../Week10_Decidability/index.html#encodings">string encoding</a> of <b>M</b> to itself:
+											<a name = "atmdecidable">Suppose by contradiction that <b>A<SUB>TM</SUB></b> is actually decidable</a>, and let a decider for it be a machine called <b>A</b>.  Then we can use <b>A</b> as a subroutine to build another decidable universal Turing machine which I'll call <b>weird</b> (following <a href = "https://www.youtube.com/watch?v=r__GZ7ubU0M">Thorsten Altenkirch's convention</a>).  Below is a high level description of this machine, which feeds a <a href = "../Week10_Decidability/index.html#encodings">string encoding</a> of <b>M</b> to itself:
 										</p>
 
 										<script type="syntaxhighlighter" class="brush: python"><![CDATA[
 											def weird(M):
-												if (ATM(<M, <M>>)) accepts: # We run ATM to say if M accepts the string representation of itself, and we do the opposite
-													weird rejects
+												"""
+												We run ATM's decider A to say if M accepts the string 
+												representation of itself, and we do the opposite
+												"""
+												if A(<M, <M>>) Accepts: 
+													weird Rejects
 												else:
-													weird accepts
+													weird Accepts
 										</script> 
 
 										<p>
-											In other words, <b>weird</b> does the opposite of <b>A<SUB>TM</SUB></b> on the string encoding of a machine and itself.  Since <b>A<SUB>TM</SUB></b> is assumed to be a decidable Turing machine, so is <b>weird</b>.  But here's where <a href = "../Week11_Infinities/index.html#uncountable">Cantor's diagonal argument</a> can run us into trouble.  Since the <a href = "../Week11_Infinities/index.html#turingcountable">set of all Turing machines is countable</a>, we can arrange all possible Turing machines along the rows of a table in some order (such as the lexographic order of their string encoding).  We'll then order their string encodings in the same order across the columns.  In the entries of the table, let's record <b>Accept</b> or <b>Reject</b> to indicate whether the machine on the row accepts or rejects the string encoding of the machine on the column.  Since we've assumed that <b>A<SUB>TM</SUB></b> is decidable, then these are the only two possibilities for <b>A<SUB>TM</SUB></b>.  For instance, here's that table on six arbitrary Turing machines <b>M<SUB>1</SUB> ... M<SUB>6</SUB></b>
+											In other words, <b>weird</b> does the opposite of <b>A</b> on the string encoding of a machine and itself.  Since <b>A</b> is assumed to be a decidable Turing machine, so is <b>weird</b>.  But here's where <a href = "../Week11_Infinities/index.html#uncountable">Cantor's diagonal argument</a> can run us into trouble.  Since the <a href = "../Week11_Infinities/index.html#turingcountable">set of all Turing machines is countable</a>, we can arrange all possible Turing machines along the rows of a table in some order (such as the lexographic order of their string encoding).  We'll then order their string encodings in the same order across the columns.  In the entries of the table, let's record <b>Accept</b> or <b>Reject</b> to indicate whether the machine on the row accepts or rejects the string encoding of the machine on the column.  Since we've assumed that <b>A<SUB>TM</SUB></b> is decidable, then these are the only two possibilities for its decider <b>A</b>.  For instance, here's that table on six arbitrary Turing machines <b>M<SUB>1</SUB> ... M<SUB>6</SUB></b>
 										</p>
 
 										<table style="width:600px;">
@@ -164,7 +168,7 @@
 										</table>
 
 										<p>
-											<i>But we just argued a moment ago that <b>weird</b> is a valid Turing machine</i>, so we should be able to have a row and column for <b>weird</b> and its string encoding <b>&lt;weird&gt;</b>, respectively, in our table.  Since weird does the reverse behavior of <b>A<SUB>TM</SUB></b> on a machine and its string encoding, the value of <b>weird</b>'s row at the <b>i<SUP>th</SUP></b> column should be the opposite of the <b>i<SUP>th</SUP></b> diagonal entry of the table.  Let's try to do this:
+											<i>But we just argued a moment ago that <b>weird</b> is a valid Turing machine</i>, so we should be able to have a row and column for <b>weird</b> and its string encoding <b>&lt;weird&gt;</b>, respectively, in our table.  Since <b>weird</b> does the reverse behavior of <b>A</b> on a machine and its string encoding, the value of <b>weird</b>'s row at the <b>i<SUP>th</SUP></b> column should be the opposite of the <b>i<SUP>th</SUP></b> diagonal entry of the table.  Let's try to do this:
 										</p>
 
 										<table style="width:600px;">
@@ -518,10 +522,10 @@
 
 											</p>
 											<p>
-												Another way to understand Rice's theorem in the context of programming languages is that it is impossible to devise a decider for programs with a particular nontrivial <b>semantic/behavioral</b> property, ignoring the actual syntax of the programs that have this property.  So we see, for example, that Rice's theorem applies to <b>E<SUB>TM</SUB></b> and <b>Reg<SUB>TM</SUB></b>, but Rice's theorem <b>does not apply</b> to <b>TwoWrite<SUB>TM</SUB></b>, since there are certainly ways to implement the same recognizer for a language without using a second tape, as we explained in the multitape to single tape reduction in class.  Still, it could have saved us work on <b>E<SUB>TM</SUB></b> and <b>Reg<SUB>TM</SUB></b>
+												Another way to understand Rice's theorem in the context of programming languages is that it is impossible to devise a decider for programs with a particular nontrivial <b>semantic/behavioral</b> property, ignoring the actual syntax of the programs that have this property.  So we see, for example, that Rice's theorem applies to <b>E<SUB>TM</SUB></b> and <b>Reg<SUB>TM</SUB></b>, but Rice's theorem <b>does not apply</b> to <b>TwoWrite<SUB>TM</SUB></b>, since there are certainly ways to implement the same recognizer for a language without using a second tape, as we explained in the multitape to single tape reduction in class.  Still, it could have saved us work on <b>E<SUB>TM</SUB></b> and <b>Reg<SUB>TM</SUB></b>.
 											</p>
 											<p>
-												<b>Proof of Rice's Theorem: </b> Let's assume the language <b>P</b> satisfying these two conditions is decidable, and that there is .  We have to somehow use the nonempty and nontrivial properties of its language to create a decider for <b>A<SUB>TM</SUB></b>.  Since it's nonempty, we can assume there is at least one machine <b>T</b> whose language is in <b>P</b>.  Let's create the following auxiliary machine
+												<b>Proof of Rice's Theorem: </b> Let's assume the language <b>P</b> satisfying these two conditions is decidable.  We have to somehow use the nontrivial and semantic properties of its language to create a decider for <b>A<SUB>TM</SUB></b>.  Since it's nonempty, we can assume there is at least one machine <b>T</b> whose language is in <b>P</b>.  Let's create the following auxiliary machine
 											</p>
 
 
@@ -532,16 +536,81 @@
 														Reject
 													else if M accepts w:
 														if T Accepts s: # T can be any machine whose language is in P
+														# and we know there must exist at least one such machine
+														# by property 1.
+														# Notice how we're also implicitly using property 2
+														# by only looking at whether T accepts s
 															Accept
 											</script>
 
 											<p>
-
+												Now let's let the machine <b>M<SUB>P</SUB></b> be a decider for our assumed decidable language <b>P</b>.  Then the following machine decides <b>A<SUB>TM</SUB></b>
 											</p>
 
+											<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+												def ATM(<M, w>):
+													if MP(<P_M_w>) Accepts:
+														Accept
+													else:
+														Reject
+											</script>
 
+											<p>
+												We only run <b>T</b> in the auxiliary machine <b>P_M_w</b> if <b>M</b> accepts <b>w</b>.  Therefore, <b>M<SUB>p</SUB></b> accepts <b>P_M_w</b> if and only if <b>M</b> accepts <b>w</b>.  Therefore, we have created a decider for <b>A<SUB>TM</SUB></b>, which is a contradiction, showing that <b>P</b> is undecidable.
+											</p>
+
+											<p>
+												There is one technicality in the above proof: it assumes that empty machines are not in <b>P</b>.  If they are, then <b>M<SUB>P</SUB></b> might accidentally accept <b>P_M_w</b> even if <b>M</b> doesn't accept <b>w</b>.  To fix this, if empty Turing machines are in <b>P</b>, then we can instead create a decider for <b>A<SUB>TM</SUB></b> using the complement of <b>P</b>.  This relies on the fact that if a language is decidable, then its complement is also decidable, which warrants a proof.  Let's talk about this one last fact and we'll call it a day.
+											</p>
 
                                     
+										<HR>
+											<h2><a name = "unrecognizable">Co-Recognizable And Unrecognizable Languages</a></h2>
+											
+											<p>
+												A language is called <b>co-recognizable</b> if its complement is recognizable.  We can prove the following theorem about decidable languages:
+											</p>
+
+											<div style="background-color: blanchedalmond; padding:10px;">
+											
+											<h4>Theorem: Recognizable/Co-Recognizable Languages</h4>
+												<p>A language is decidable if and only if it is both Turing recognizable and Turing co-recognizable.</p>
+											</div>
+											<p></p>
+											<p>
+												<b>Proof: </b> Let's prove the first direction: that if a language is decidable, then it is recognizable and co-recognizable.  We already know that if a language is decidable, then it's recognizable (since decidability is a stronger condition that rules out infinite loops).  To show that it's also co-recognizable, we simply flip the Accept/Reject states, which we can safely do because there are no infinite loops.
+											</p>
+
+											<p>
+												Let's now prove the other direction: that if a language is both recognizable and co-recognizable, then it is decidable.  In this case, we can assume that we have machines <b>M<SUB>L</SUB></b> and <b>M<SUB>C</SUB></b> that recognize a language and its complement, respectively.  So we'll run <b>M<SUB>L</SUB></b> and <b>M<SUB>C</SUB></b> in parallel.  If <b>M<SUB>L</SUB></b> accepts, then we accept.  If <b>M<SUB>C</SUB></b> accepts, then we reject (since if a string is in the complement, it should not be in our language).  Since these are both recognizers and they accept the opposite of each other, exactly one of them will accept eventually, even if the other loops infinitely.  So we have a valid decider.  This completes the proof.
+											</p>
+
+											<p>
+												This theorem tells us that complements play nicely with decidable languages, but they may not with undecidable languages.  
+											</p>
+
+											<h3><a name = "cATM">The complement of A<SUB>TM</SUB> Is Not Even Recognizable</a></h3>
+
+											<p>
+												<b>Proof: </b> Suppose by contradiction that the complement of <b>A<SUB>TM</SUB></b> is recognizable.  Then both <b>A<SUB>TM</SUB></b> and its complement are recognizable, so by the above theorem, <b>A<SUB>TM</SUB></b> must be decidable.  But the very first thing we talked about in these notes is that <a href = "#atm">A<SUB>TM</SUB></a> is not decidable.  Therefore, the complement of <b>A<SUB>TM</SUB></b> must not even be recognizable!  This completes the proof.
+											</p>
+
+											<p>
+												But wait, you may be saying!  I can create a recognizer for the complement of <b>A<SUB>TM</SUB></b> using a recognizer <b>A</b> for <B>A<SUB>TM</SUB></B> as follows
+											</p>
+
+											<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+												def coATM(<M, w>):
+													if A(<M, w>) Accepts:
+														Reject
+													else:
+														Accept
+											</script>
+
+											<p>
+												Doesn't this recognize the complement of <b>A<SUB>TM</SUB></b>?  Well, in order to recognize a language, we have to always be able to get to an accept state without infinitely looping.  However, if <b>A</b> does not accept <b>w</b>, it may infinitely loop on it.  So we might never get past the first if statement.  This is intuitively why the complement of <b>A<SUB>TM</SUB></b> is not recognizable (but again, we need the rigorous proof above to rule out all ways of being clever).
+											</p>
+
                                 </div>
 						</div>
 					</div>

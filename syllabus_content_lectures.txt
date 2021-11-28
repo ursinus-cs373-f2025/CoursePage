@@ -125,7 +125,7 @@ More Church-Turing Thesis Discussion, Decidable Languages
 LECTURE
 Continue Decidable Languages, Universal Turing Machines And Von-Neumann Architecture 
 
-<ul><li><a href = "#readings">Sipser</a> Ch. 4.1</li></ul>
+<ul><li><a href = "#readings">Sipser</a> Ch. 4.1</li><li><a href = "ClassExercises/Week10_Decidability/index.html">Class notes on decidable languages</a></li></ul>
 LECTURE
 Universal Turing Machines, Begin Halting Problem
 
@@ -133,7 +133,7 @@ Universal Turing Machines, Begin Halting Problem
 LECTURE
 Diagonalization, Turing Machines Are Countable
 
-<ul><li><a href = "#readings">Sipser</a> Ch. 4.2, 5</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/UnsolveableProblems1.html">PIFLSA21 Ch. 11.8</a></li></ul>
+<ul><li><a href = "#readings">Sipser</a> Ch. 4.2, 5</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/UnsolveableProblems1.html">PIFLSA21 Ch. 11.8</a></li><li><a href = "ClassExercises/Week11_Infinities/index.html">Class Notes on Countable And Uncountable Infinities</a></li></ul>
 LECTURE
 Problem Set Workshopping, More Halting Problem
 
@@ -141,7 +141,7 @@ Problem Set Workshopping, More Halting Problem
 LECTURE
 Finish Halting Problem, Reductions for Undecidability
 
-<ul><li><a href = "#readings">Sipser</a> Ch. 4.2, 5.1</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/UnsolveableProblems1.html">PIFLSA21 Ch. 11.8</a></li></ul>
+<ul><li><a href = "#readings">Sipser</a> Ch. 4.2, 5.1</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/UnsolveableProblems1.html">PIFLSA21 Ch. 11.8</a></li><li><a href = "ClassExercises/Week12_Undecidability/index.html">Class Notes on Undecidability</a></li></ul>
 SECTION
 Unit 4: Algorithms And Computational Complexity
 
@@ -155,9 +155,13 @@ Continue Big-O, Little-o, Complexity Relationships Among Models
 
 <ul><li><a href = "https://www.bigocheatsheet.com/">https://www.bigocheatsheet.com/</a></li><li><a href = "https://ursinus-cs371-s2021.github.io/Modules/Module5/Video1">My CS 371 Module on Little-o</a></li><li>Class Exercise: Multitape -> Single Tape Turing Machine Reduction Time Complexity</li></ul>
 LECTURE
-The Class P, The Class NP, P = NP?
+The Class P
 
-<ul><li><a href = "#readings">Sipser</a> Ch. 7.2, 7.3</li><li><a href = "https://www.claymath.org/millennium-problems/p-vs-np-problem">Clay Institute $1M Prize</a></li></ul>
+<ul><li><a href = "#readings">Sipser</a> Ch. 7.2</li></ul>
+LECTURE
+The Class NP, P = NP?
+
+<ul><li><a href = "#readings">Sipser</a> Ch. 7.3</li><li><a href = "https://www.claymath.org/millennium-problems/p-vs-np-problem">Clay Institute $1M Prize</a></li></ul>
 LECTURE
 The Satisfiability Problem (SAT), NP Completeness
 
@@ -166,10 +170,6 @@ LECTURE
 Vertex Cover, Hamiltonian Paths
 
 <ul><li><a href = "#readings">Sipser</a> Ch. 7.5</li></ul>
-LECTURE
-Intermezzo: Computability 
-
-<ul><li><a href = "#readings">Sipser</a> Ch. 5.3</li></ul>
 LECTURE
 Nondeterministic Turing Machine Definition of NP
 
