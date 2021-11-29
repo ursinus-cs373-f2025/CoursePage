@@ -1,0 +1,3 @@
+[submodule "FinalProject/NPCompleteReductions"]
+	path = FinalProject/NPCompleteReductions
+	url = https://github.com/Ursinus-CS373-F2021/NPCompleteReductions.git

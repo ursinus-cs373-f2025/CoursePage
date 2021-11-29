@@ -157,7 +157,7 @@ Continue Big-O, Little-o, Complexity Relationships Among Models
 LECTURE
 The Class P
 
-<ul><li><a href = "#readings">Sipser</a> Ch. 7.2</li></ul>
+<ul><li><a href = "#readings">Sipser</a> Ch. 7.2</li><li><a href = "https://faculty.kfupm.edu.sa/ics/darwish/JS_AlgorithmAnimation/gcd_animated.htm">Interactive animation of Euclid's GCD Algorithm</a></li></ul>
 LECTURE
 The Class NP, P = NP?
 
