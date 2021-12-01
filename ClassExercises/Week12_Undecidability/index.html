@@ -525,22 +525,27 @@
 												Another way to understand Rice's theorem in the context of programming languages is that it is impossible to devise a decider for programs with a particular nontrivial <b>semantic/behavioral</b> property, ignoring the actual syntax of the programs that have this property.  So we see, for example, that Rice's theorem applies to <b>E<SUB>TM</SUB></b> and <b>Reg<SUB>TM</SUB></b>, but Rice's theorem <b>does not apply</b> to <b>TwoWrite<SUB>TM</SUB></b>, since there are certainly ways to implement the same recognizer for a language without using a second tape, as we explained in the multitape to single tape reduction in class.  Still, it could have saved us work on <b>E<SUB>TM</SUB></b> and <b>Reg<SUB>TM</SUB></b>.
 											</p>
 											<p>
-												<b>Proof of Rice's Theorem: </b> Let's assume the language <b>P</b> satisfying these two conditions is decidable.  We have to somehow use the nontrivial and semantic properties of its language to create a decider for <b>A<SUB>TM</SUB></b>.  Since it's nonempty, we can assume there is at least one machine <b>T</b> whose language is in <b>P</b>.  Let's create the following auxiliary machine
+												<b>Proof of Rice's Theorem: </b> Let's assume the language <b>P</b> satisfying these two conditions is decidable.  We have to somehow use the nontrivial and semantic properties of its language to create a decider for <b>A<SUB>TM</SUB></b>.  Since it's nontrivial, we can assume there is at least one machine <b>T</b> whose encoding is in <b>P</b>, and at least one machine <b>F</b> whose encoding is not in <b>P</b>.  Let's create the following auxiliary machine
 											</p>
 
 
 											<script type="syntaxhighlighter" class="brush: python"><![CDATA[
 												def P_M_w(s):
-													Run M on w
-													if M halts and Rejects:
-														Reject
-													else if M accepts w:
-														if T Accepts s: # T can be any machine whose language is in P
-														# and we know there must exist at least one such machine
-														# by property 1.
+													if M accepts w:
+														if T Accepts s: # T can be any machine not in P
+														# We know there must exist at least one such machine by property 1.
 														# Notice how we're also implicitly using property 2
 														# by only looking at whether T accepts s
 															Accept
+														else:
+															Reject
+													else:
+														if F accepts s:
+															# F can be any machine *not* in P
+															# We know there must exist at least one such machine by property 1.
+															Accept
+														else:
+															Reject
 											</script>
 
 											<p>
@@ -556,16 +561,21 @@
 											</script>
 
 											<p>
-												We only run <b>T</b> in the auxiliary machine <b>P_M_w</b> if <b>M</b> accepts <b>w</b>.  Therefore, <b>M<SUB>p</SUB></b> accepts <b>P_M_w</b> if and only if <b>M</b> accepts <b>w</b>.  Therefore, we have created a decider for <b>A<SUB>TM</SUB></b>, which is a contradiction, showing that <b>P</b> is undecidable.
+												We've setup our auxiliary machine <b>P_M_w</b> to act like a machine in <b>P</b> if and only if <b>M</b> accepts <b>w</b>.  Otherwise, it acts like a machine not in <b>P</b>.  Therefore, <b>M<SUB>p</SUB></b> accepts <b>P_M_w</b> if and only if <b>M</b> accepts <b>w</b>.  Therefore, we have created a decider for <b>A<SUB>TM</SUB></b>, which is a contradiction, showing that <b>P</b> is undecidable.  This completes the proof.
 											</p>
 
 											<p>
-												There is one technicality in the above proof: it assumes that empty machines are not in <b>P</b>.  If they are, then <b>M<SUB>P</SUB></b> might accidentally accept <b>P_M_w</b> even if <b>M</b> doesn't accept <b>w</b>.  To fix this, if empty Turing machines are in <b>P</b>, then we can instead create a decider for <b>A<SUB>TM</SUB></b> using the complement of <b>P</b>.  This relies on the fact that if a language is decidable, then its complement is also decidable, which warrants a proof.  Let's talk about this one last fact and we'll call it a day.
+												We can see that some of the above examples use this logic directly.  For instance, <a href = "#regtm"><b>Reg<SUB>TM</SUB></b></a> creates an auxiliary machine that acts like DFA if <b>M</b> accepts <b>w</b>, but which otherwise acts like a CFG, which is not in <b>Reg<SUB>TM</SUB></b>.  But now we don't have to think so hard, and we just have to convince ourselves that there is at least one machine in the language and at least one machine not in the language, and that this property is a semantic property.
 											</p>
+
+											
 
                                     
 										<HR>
 											<h2><a name = "unrecognizable">Co-Recognizable And Unrecognizable Languages</a></h2>
+
+											<p>There's one more thing worth mentioning about undeciable machines: they don't play nicely with complements.</p>
+
 											
 											<p>
 												A language is called <b>co-recognizable</b> if its complement is recognizable.  We can prove the following theorem about decidable languages:
