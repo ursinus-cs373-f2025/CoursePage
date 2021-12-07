@@ -42,32 +42,438 @@
 								<section>
 									<header class="main">
 										<h1>Final Project</h1>
+										<h3><a href = "http://www.ctralie.com">Chris Tralie</a></h3>
 									</header>
 
-									<p>
-										This project is heavily inspired by <a href = "https://www.cs.princeton.edu/courses/archive/fall10/cos402/assignments/satisfaction/">one of my favorite projects in my undergraduate AI class</a>.  For the first time in the class, students will write ordinary code in Java to explore topics in computational complexity.  In particular, students will be responsible for coming up with a reduction from a NP complete problem to an instance of 3-SAT, and also for solving general 3-SAT problems in code.  We will then have a class competition to see who can generate the hardest problems and who has the most efficient solvers.
-									</p>
+									<!-- This project is heavily inspired by <a href = "https://www.cs.princeton.edu/courses/archive/fall10/cos402/assignments/satisfaction/">one of my favorite projects in my undergraduate AI class</a>.  For the first time in the class, you will write ordinary code in Java to explore topics in computational complexity.  -->
 
-									<h2>Part 1: Generating 3-SAT Problems</h2>
+									<h2>
+										Overview
+									</h2>
 									<p>
-										The first part of this project will be for you to implement a program that generates random instances of 3-SAT based on reductions from a more "natural" problem.  We showed in class how it is possible to reduce 3-SAT to vertex cover and to Hamiltonian cycles.  In this assignment, you should go the other way; you should take some problem and reduce it to 3-SAT.  In other words, you should translate an instance of your problem to 3-SAT, use a 3-SAT solver to solve it, and then translate it back to show the solution to your original problem.  You can choose any problem, <b>but it must be NP-complete</b>.  <a href = "https://en.wikipedia.org/wiki/List_of_NP-complete_problems">Click here</a> to see a list of NP-complete problems on Wikipedia.
-									</p>
-
-									<h2>Part 2: Polynomial Time Checking</h2>
-									<p>
-										You should create some code to verify that the solution you get back from 3-SAT is correct once you've translated it back to your problem instance.  Since the problem you chose is NP complete, this checking code should run in polynomial time.
+										 We suspect that NP complete problems are harder than problems in P, but we don't know for sure.  Usually, though, the fact that a problem is NP complete is enough for people to throw up their hands and say we can't solve it.  But what if we actually do want to solve it for some practical purpose?  What options do we have available to us?
+										 
 									</p>
 									
-
-									<h2>Part 3: 3-SAT Solver</h2>
 									<p>
-										A basic brute force 3-SAT solver has been provided along with your code, but you should implement your own 3-SAT solver.  You should not expect this to run efficiently in general (otherwise, you would have solved P = NP, and you should immediately graduate from Ursinus and be granted at Ph.D.).  But perhaps there are apparent "heuristics" or shortcuts you can use to make it faster on practical problems.
+										In this project, you will explore one strategy for solving NP complete decision problems via <b>polynomial time reductions</b>.  To accomplish this, you will devise a reduction from an <b>NP complete problem of your choosing</b> to an instance of <b>SAT</b>.  Since <b>SAT</b> is itself an NP-complete problem, you can use it to solve any problem in NP, including other NP-complete problems.  Thus, you will use SAT to decide your problem, and as a side effect, you will be able to extract a solution to your problem instance if it is satisfiable.  The steps you will need to do are as follows:
+										<ol>
+											<li>
+												Create a method to generate random instances of your problem of a certain size.
+											</li>
+											<li>
+												Polynomial time reduce your problem to SAT; that is, generate a CNF boolean statement that, if solved, will provide a solution to your problem.
+											</li>
+											<li>
+												Convert the SAT solution back into a certificate in the language of your problem, and create a verifier that checks whether the certificate is a valid solution to a problem of your type.
+											</li>
+										</ol>  
+
+										<p>
+											We will then have a class competition to see who can generate the hardest problems instance of SAT, as measured by average runtime.  Clear winners may receive some extra credit.
+										</p>
+
+										<p>
+											Note that you can choose any NP complete problem from Sipser chapter 7 other than Hamiltonian path (since I'm giving that example), but you are not limited to those problems.  <a href = "https://en.wikipedia.org/wiki/List_of_NP-complete_problems">Click here</a> to view a longer list of NP complete problems.  Examples from the book include vertex cover, k-clique, and subset sum.  
+										</p>
+
+										<p>
+											Below are some more details about the three tasks you have to do:
+										</p>
+
+										<h3>Part 1: Generating (Pseudo)Random Problems (25 Points)</h3>
+										<p>
+											You will have to make a (pseudo)random problem of size <b>N</b>, where <b>N</b> depends on the context of the problem.  For instance, in an NP-complete graph such as Hamiltonian path, vertex cover, or k-clique, <b>N</b> is the number of nodes in the graph.   <b>Your random problems should be solvable</b>; that is, it should be possibly to satisfy the CNF clauses that you generate for your problem.
+										</p>
+
+										<p>
+											<b>Other Parameters: </b> Aside from <b>N</b>, you may have some extra parameters to set for your problem.  For instance, for Hamiltonian path, you have the number of edges, for vertex cover, you have the size <b>K</b> of the number of edges that are supposed to be part of the cover, and for a <b>K</b>-clique, you will have the size <b>K</b> of the clique we're looking for.  You can choose these extra parameters to be whatever you like, but to be competitive, you should think carefully about what a "hard" problem of your type would look like.  For example, intuitively, graphs with very few edges might be easier to check for the Hamiltonian path problem since there are fewer possibilities.  However, too many edges might be too easy as well, since that increases the number of options in which a Hamiltonian path could occur.  Often, the sweet spot of hardest complexity is somewhere in the middle.
+										</p>
+	
+										<h3>Part 2: Polynomial Time Certificate Translation (50 Points)</h3>
+										<p>
+											Perform a reduction from your problem to SAT in <b>polynomial time</b> in the size of the problem.  The number of certificates you add should also be <b>polynomial size</b> in your input.  This is definitely the trickiest part of the assignment, and it's where the art comes in.  I'll show you an example of how to do this with the <a href = "#hamcertificate">Hamiltonian path problem</a>.
+										</p>
+	
+										<h3>Part 3: Polynomial Time Checking (25 Points) </h3>
+										<p>
+											You will have to implement the functionality to translate a SAT certificate into a certificate for your problem, and then you should implement a polynomial time verifier to make sure this certificate corresponds to a real solution.
+										</p>
+
+
 									</p>
 
+									<HR>
+									<h2><a name = "code">Codebase</a></h2>
+
+									<h3>Getting Started</h3>
+									<p>
+										<a href = "https://github.com/Ursinus-CS373-F2021/NPCompleteReductions/archive/refs/heads/main.zip">Click here</a> to download the starter code for this project, which will be written in Java.  By default, a Netbeans project has been provided to go along with the code, but you are free to edit the code in the <code>src/</code> directory in any editor you wish and to run it in the terminal if you would like.
+									</p>
+
+									<h3>What To Submit</h3>
+									<p>
+										You should stick to the API as much as possible as you're going along.  When you're finished, submit a .zip file of all of your code and clearly indicate which files correspond to your new problem.  There should be two files: one for the NP complete problem and another for its certificate.
+									</p>
+
+									<h3>Collaboration Policy</h3>
+									<p>
+										You may discuss the math behind reductions and NP complete problems you're thinking about with any students in the class.  When it comes to code, though, there is a "buddy policy" which is the same as that for <a href = "https://ursinus-cs477-f2021.github.io/CoursePage/index.html#buddy">CS 477</a>.  TL;DR, you are only allowed to look at the code of 1-2 other people as you're going along, you must indicate who these people are, and you must submit your own code at the end.
+									</p>
+
+
+									<h3>Code Overview</h3>
+									<p>
+										Below is a highlight of a few of the files in this project and how they fit into what you have to do
+									</p>
+
+									<HR>
+									<h4><a name = "cnfjava"><code>CNF.java</code></a></h4>
+									<p>
+										This file provides a class that encapsulates CNF formulas and SAT solvers.  You can mostly treat it as a black box, but if you're curious, I implemented the <a href = "https://en.wikipedia.org/wiki/DPLL_algorithm">DPLL algorithm</a> to solve the SAT problem more quickly than a naive brute force implementation.
+									</p>
+
+									<p>
+										Below are the instance methods you'll need to use when reducing your problem to SAT:
+									</p>
+									<ul>
+										<li>
+											<code>public void addClause(int[] index, boolean[] pos)</code>
+											<p>
+												You use this method to add a particular clause to a CNF object.  It takes two parallel arrays: the first holds the indices of the variables and the second holds their coefficients (true is original and false is the negative).  For instance, the clause 
+											</p>
+											<div style="width:100px;">
+												\[ (x_0 \vee x_3 \vee \neg x_2 \vee x_5) \]
+											</div>
+											<p>
+												could be added to an existing CNF object <code>cnf</code> with the code
+											</p>
+											<script type="syntaxhighlighter" class="brush: java"><![CDATA[
+												int[] index = {0, 3, 2, 5};
+												boolean[] pos = {true, true, false, true};
+												cnf.addClause(index, pos);
+											</script>  
+
+										</li>
+
+										<li>
+											<code>public boolean[] solveDPLL()</code>
+											<p>
+												This is the method that implements the aforementioned DPLL algorithm to find an assignment if it exists.  If a solution exists, it returns an array of booleans of all assignments across all variables that leads to the CNF being true.  Otherwise, it returns <code>null</code>.
+											</p>
+										</li>
+
+										<li>
+											<code>public String toString()</code>
+											<p>
+												If you print this object, it will show a symbolic representation of the CNF formula using &vee; and &wedge;, which you can use for debugging.  For example, if you had the code
+											</p>
+											<script type="syntaxhighlighter" class="brush: java"><![CDATA[
+												CNF cnf = new CNF();
+												int[] index = {0, 3, 2, 5};
+												boolean[] pos = {true, true, false, true};
+												cnf.addClause(index, pos);
+												int[] index2 = {0, 1, 4};
+												boolean[] pos2 = {true, false, false};
+												cnf.addClause(index2, pos2);
+												System.out.println(cnf);
+											</script>  
+
+											<p>
+												Then the output would be 
+											</p>
+											<script type="syntaxhighlighter" class="brush: java"><![CDATA[
+												(x0 V x3 V ¬x2 V x5) ^ (x0 V ¬x1 V ¬x4)
+											</script>  
+											
+
+
+										</li>
+									</ul>
+
+									<HR>
+									<h4><a name = "npcompleteproblem"><code>NPCompleteProblem.java</code></a></h4>
+									<p>
+										You will create a child class that extends this class to implement the basic API for an NP complete problem.  This class encapsulates all of the functionality you need to generate random instances and to solve them via a reduction.  Below are the methods you need to override
+									</p>
+
+									<ul>
+										<li>
+											<code>public String getPseudonym()</code>
+											<p>
+												Return your pseudonym as a String for the competition.
+											</p>
+										</li>
+										<li>
+											<code>public String getDescription()</code>
+											<p>
+												Return a short description of your algorithm for the competition as a String.
+											</p>
+										</li>
+										<li>
+											<code>public makeRandomProblem(int N, long seed)</code>
+											<p>
+												Make a random version of your problem with of size <b>N</b>.
+											</p>
+											<p>
+												Note also the parameter <code>seed</code>, which should be used to make sure you get the same (pseudo)random problem instance each time you use the same seed (<a href = "https://docs.oracle.com/javase/8/docs/api/java/util/Random.html#setSeed-long-">Click here</a> for the Javadoc API of the method that does this). 
+											</p>
+										</li>
+										<li>
+											<code>public CNF getCNF()</code>
+											<p>
+												This generates a CNF formula that is satisfiable if and only if your problem is solvable.  You'll start with an empty CNF as in the example above, and then you'll add clauses to it one by one to enforce constrains that make your problem your problem.  This is where the meat of your work will happen for the reduction.
+											</p>
+											<p>
+												There's a real art to this, but here are a few suggestions of how to translate some logical statements into CNF form, in which each clause only has OR &vee; operations:
+												<ol>
+													<li>If you have a <b>logical implication a &Implies; b</b>, or "a implies b,", then you can write that as the CNF clause
+													
+													<div style="width:100px;">
+													\[ (\neg a \vee b) \]
+													</div>
+													</li>
+													<li>De Morgan's law may come in handy.  Recall that one version of it is  
+
+														<div style="width:100px;">
+															\[ \neg(a \wedge b) = (\neg a \vee \neg b) \]
+														</div>
+
+													</li>
+													<li>
+														Certain distributive rules work with boolean statements.  For instance, 
+
+														<div style="width:100px;">
+															\[ a \wedge (b \vee c) = (a \vee b) \wedge (a \vee c) \]
+														</div>
+													</li>
+													<li>
+														You are allowed to have clauses with a single variable (so-called "unit clauses") if that helps!
+													</li>
+													<li>
+														Don't be afraid to use a number of variables that's a polynomial factor of <b>N</b>.  For instance, in the Hamiltonian path problem, instead of using one variable per graph vertex, I found it easier to use <b>O(N<SUP>2</SUP>)</b> variables: one for each path index for each variable.
+													</li>
+												</ol>
+											</p>
+										</li>
+
+										<p>
+											<b>NOTE: </b> I have also made an intermediate child class <code>GraphProblem.java</code> that you can inherit from if you end up solving another undirected graph problem.  This class comes with data structures to store graph info, as well as a method to draw the graph.  
+										</p>
+
+										<li>
+											<code>public Certificate makeCertificateType(boolean[] vals, int N)</code>
+											<p>
+												This is a wrapper method to construct a certificate of the appropriate type for this problem (see <a href = "#certificatecode"><code>Certificate.java</code></a> for more info)
+											</p>
+										</li>
+									</ul>
+									<HR>
+									<h4><a name = "certificatecode"><code>Certificate.java</code></a></h4>
+									<p>
+										As alluded to above, you also need to extend a class that handles certificates for your problem.  The constructor to your certificate should convert from CNF form back into your problem.  Then, you should override the method 
+									</p>
+									<p>
+										<code>public boolean satisfiesProblem(NPCompleteProblem npcproblem)</code>
+									</p>
+									<p>
+										
+										in your certificate class to check whether the certificate you constructed is a valid solution to a particular problem.
+									</p>
+
+									<HR>
+									<h2><a name = "hamiltonianexample">Worked Example: Hamiltonian Paths</a></h2>
+
+									<p>
+										To give you some more pointers, I've worked through a full example that would that would fulfill all of the project requirements: a Hamiltonian Path reduction (though, of course, you'll have to choose a different problem from Hamitonian Path or Hamiltonian Cycle).  The code can be found in <code><a href = "https://github.com/Ursinus-CS373-F2021/NPCompleteReductions/blob/main/src/HamiltonianPath.java">HamiltonianPath.java</a></code> and <code><a href = "https://github.com/Ursinus-CS373-F2021/NPCompleteReductions/blob/main/src/HamiltonianPathCert.java">HamiltonianPathCert.java</a></code>.  In your problem, you should also have two such files.
+									</p>
+									
+									<h3>Generating Random Graphs Containing Hamiltonian Paths</h3>
+									<p>
+										To generate a random Hamiltonian path, I first choose a random permutation using a utility function <code>getShuffledNumbers</code> in <code>NPCompleteProblem.java</code> (FYI this method implements <a href = "https://ursinus-cs371-s2021.github.io/Modules/Module16/Video2">Fisher-Yates shuffling</a>).  You can use this method in your random generation if it helps.  I then add the <b>N-1</b> edges implied by this random permutation to ensure that there is a Hamiltonian path in the graph.  Next, I add an additional <b>O(N<SUP>3/2</SUP>)</b> random edges to make the problem harder.
+									</p>
+
+									<p>
+										As an example, let's suppose we executed the following code in the main method of <code>HamiltonianPath.java</code>
+										<script type="syntaxhighlighter" class="brush: java"><![CDATA[
+											HamiltonianPath h = new HamiltonianPath();
+											int N = 10;
+											int seed = 0;
+											h.makeRandomProblem(N, seed);
+											h.draw();
+										</script>  
+
+										<p>
+											Then we'll get the following graph with 10 vertices:
+										</p>
+
+										<img src = "Hamiltonian_10_0.png" width=300>
+
+										<p>
+											As another example, suppose we have this code
+										</p>
+
+										<script type="syntaxhighlighter" class="brush: java"><![CDATA[
+											HamiltonianPath h = new HamiltonianPath();
+											int N = 20;
+											int seed = 9;
+											h.makeRandomProblem(N, seed);
+											h.draw();
+										</script>  
+
+										<p>
+											Then we'll get the following graph with 20 vertices:
+										</p>
+
+										<img src = "Hamiltonian_20_9.png" width=300>
+
+									</p>
+
+
+									<h3><a name = "hamcertificate">Hamiltonian Path Certificate Generation</a></h3>
+									<p>
+										To convert reduce a Hamiltonian path problem into a CNF form, I used <b>O(N<SUP>2</SUP>)</b> variables: one for each element in the permutation and one for each possible vertex choice at that permutation index.  That is, <b>x<SUB>ij</SUB> = true</b> if the <b>i<SUP>th</SUP></b> element in the path is vertex <b>j</b>.  Then, I had to enforce a number of conditions by constructing <b>O(N<SUP>3</SUP>)</b> clauses:
+									</p>
+									
+									<h4>1. Each Graph Vertex Must Appear</h4>
+										<p>
+											Each vertex <code>j</code> must appear in the path more than 0 times (<a href = "https://github.com/Ursinus-CS373-F2021/NPCompleteReductions/blob/2eb93faea6de05c0ef7ad922a836ccd0e889e87a/src/HamiltonianPath.java#L79">click here</a> to jump to this section in the code).  In other words, a clause of the form
+										</p>
+										<div style="width:100px;">
+										\[ (x_{1j} \vee x_{2j} \vee ... \vee x_{Nj}) \]
+										</div>
+										<p>
+											must be part of the CNF formula for each <b>j = 1, 2, ..., N</b>.
+										</p>
+									
+									<h4>2. No Vertex Should Appear More Than Once on The Path</h4>
+									<p>
+										Each vertex <b>j</b> must appear at most once in the Hamiltonian path (<a href = "https://github.com/Ursinus-CS373-F2021/NPCompleteReductions/blob/2eb93faea6de05c0ef7ad922a836ccd0e889e87a/src/HamiltonianPath.java#L104">Click here</a> to jump to this section in code).  Written as an implication, this translates into 
+									</p>
+
+									<div style="width:100px;">
+										\[ x_{ij} \implies \neg x_{kj}, \text{ for all } i, j, k, i \neq k \]
+									</div>
+
+									<p>
+										Converting into CNF form, this is the clause 
+									</p>
+
+									<div style="width:100px;">
+										\[ (\neg x_{ij} \vee \neg x_{kj}), \text{ for all } i, j, k, i \neq k \]
+									</div>
+
+									<p>
+										Note that there are <b>O(N<SUP>3</SUP>)</b> of these 2-element clauses
+									</p>
+
+									<h4>3. At Most One Vertex At Each Path Index</h4>
+									<p>
+										There is at most one vertex at each index <b>i</b> of the path (<a href = "https://github.com/Ursinus-CS373-F2021/NPCompleteReductions/blob/2eb93faea6de05c0ef7ad922a836ccd0e889e87a/src/HamiltonianPath.java#L133">Click here</a> to jump to code).  Written as an implication, this translates into 
+									</p>
+
+									<div style="width:100px;">
+										\[ x_{ij} \implies \neg x_{ik}, \text{ for all } i, j, k, j \neq k \]
+									</div>
+
+									Xij -> not Xkj for all i, j, k with i != k
+
+									<div style="width:100px;">
+										\[ ( \neg x_{ij} \vee \neg x_{ik}), \text{ for all } i, j, k, j \neq k \]
+									</div>
+
+									<p>
+										There are also <b>O(N<SUP>3</SUP>)</b> of these 2-element clauses.
+									</p>
+
+									<h4>4. Every Path Position Must Be Occupied</h4>
+									<p>
+										Every position on the path must have at most one node (<a href = "https://github.com/Ursinus-CS373-F2021/NPCompleteReductions/blob/2eb93faea6de05c0ef7ad922a836ccd0e889e87a/src/HamiltonianPath.java#L155">Click here</a> to jump to this section of the code)
+									</p>
+
+									<div style="width:100px;">
+										\[ (x_{i1} \vee x_{i2} \vee ... \vee x_{iN}) \text{ for } i = 1, ..., n \]
+									</div>
+
+									<h4>5. The Edges on The Path Must Be Edges on The Graph</h4>
+									<p>
+										Finally, we'll add clauses that enforce that the edges chosen in the path are actually edges on the graph (<a href = "https://github.com/Ursinus-CS373-F2021/NPCompleteReductions/blob/2eb93faea6de05c0ef7ad922a836ccd0e889e87a/src/HamiltonianPath.java#L178">Click here</a> to view the code).  In implication form, this can be written as 
+									</p>
+
+									<div style="width:100px;">
+										\[ x_{ij} \implies \neg x_{i+1,k} \text{ for } i = 1, ..., N-1 \text{ and } (j, k) \text{ is not an edge} \]
+									</div>
+
+									<p>
+										This translates into the following 2-element clauses 
+									</p>
+
+									<div style="width:100px;">
+										\[ (\neg x_{ij} \vee \neg x_{i+1,k}) \text{ for } i = 1, ..., N-1 \text{ and } (j, k) \text{ is not an edge} \]
+									</div>
+
+									<p>
+										Notice that we had to be a bit tricky here since we need ORs in the CNF clauses instead of ANDs.
+									</p>
+
+									
+
+
+
+									<h3>Verifier</h3>
+									<p>
+										<a href = "https://github.com/Ursinus-CS373-F2021/NPCompleteReductions/blob/main/src/Certificate.java">Click here</a> to see code for the certificate constructor and verifier.  This uses the same <b>O(N)</b> verifier we discussed in class that simply checks each edge in the path to make sure it's in the graph.  You can see details in the <code><a href = "https://github.com/Ursinus-CS373-F2021/NPCompleteReductions/blob/2eb93faea6de05c0ef7ad922a836ccd0e889e87a/src/HamiltonianPathCert.java#L53">satisfiesProblem</a></code> method in <code>HamiltonianPathCert.java</code>.
+									</p>
+
+									<h3>Putting It All Together</h3>
+
+									<p>
+										I have implemented a method in the <code>HamiltonianPathCert</code> class that draw the line segments in the certificate on top of line segments of the graph that are already there.  If you run the following code
+									</p>
+
+									<script type="syntaxhighlighter" class="brush: java"><![CDATA[
+										HamiltonianPath h = new HamiltonianPath();
+										int N = 20;
+										int seed = 9;
+										h.makeRandomProblem(N, seed);
+										h.draw();
+										CNF c = h.getCNF();
+										boolean[] vals = c.solveDPLL();
+										HamiltonianPathCert cert = new HamiltonianPathCert(vals, N);
+										cert.draw();
+										System.out.println("Satisfies: " + cert.satisfiesProblem(h)); // This should be true
+									</script>  
+
+									<p>
+										Then you'll get this.
+									</p>
+
+
+									<img src = "Hamiltonian_20_9_solution.png">
+
+									<p>
+										You'll find code like this in the <code>main</code> method of the <code>HamiltonianPath</code> class.  For completeness, below is the solution to <b>N = 10, seed = 0</b> shown before
+									</p>
+
+									<img src = "Hamiltonian_10_0_solution.png">
+
+									<p>
+										Feel free to use your own drawing code using the <a href = "https://introcs.cs.princeton.edu/java/stdlib/javadoc/StdDraw.html"><code>StdDraw</code></a> API to help you debug in your problem in a similar way.
+									</p>
 
 
 						</div>
 					</div>
+
+					<!--Syntax highlighting in Javascript!-->
+					<script type="text/javascript" src="../../../syntaxhighlighter/scripts/shCore.js"></script>
+					<script type="text/javascript" src="../../../syntaxhighlighter/scripts/shBrushJScript.js"></script>
+                    <script type="text/javascript" src="../../../syntaxhighlighter/scripts/shBrushCpp.js"></script>
+					<script type="text/javascript" src="../../../syntaxhighlighter/scripts/shBrushXml.js"></script>
+					<script type="text/javascript" src="../../../syntaxhighlighter/scripts/shBrushMatlabSimple.js"></script>
+					<script type="text/javascript" src="../../../syntaxhighlighter/scripts/shBrushJava.js"></script>
+					<link type="text/css" rel="stylesheet" href="../../../syntaxhighlighter/styles/shCoreDefault.css"/>
+					<script type="text/javascript">SyntaxHighlighter.all();</script>
 
 <!-- Sidebar -->
 					<div id="sidebar">
