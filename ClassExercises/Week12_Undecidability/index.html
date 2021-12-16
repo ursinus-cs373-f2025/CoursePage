@@ -89,7 +89,7 @@
 										</script> 
 
 										<p>
-											In other words, <b>weird</b> does the opposite of <b>A</b> on the string encoding of a machine and itself.  Since <b>A</b> is assumed to be a decidable Turing machine, so is <b>weird</b>.  But here's where <a href = "../Week11_Infinities/index.html#uncountable">Cantor's diagonal argument</a> can run us into trouble.  Since the <a href = "../Week11_Infinities/index.html#turingcountable">set of all Turing machines is countable</a>, we can arrange all possible Turing machines along the rows of a table in some order (such as the lexographic order of their string encoding).  We'll then order their string encodings in the same order across the columns.  In the entries of the table, let's record <b>Accept</b> or <b>Reject</b> to indicate whether the machine on the row accepts or rejects the string encoding of the machine on the column.  Since we've assumed that <b>A<SUB>TM</SUB></b> is decidable, then these are the only two possibilities for its decider <b>A</b>.  For instance, here's that table on six arbitrary Turing machines <b>M<SUB>1</SUB> ... M<SUB>6</SUB></b>
+											In other words, <b>weird</b> does the opposite of <b>A</b> on the string encoding of a machine and itself.  Since <b>A</b> is assumed to be a decidable Turing machine, so is <b>weird</b>.  But here's a <b>diagonalization argument</b> can run us into trouble.  Since the <a href = "../Week11_Infinities/index.html#turingcountable">set of all Turing machines is countable</a>, we can arrange all possible Turing machines along the rows of a table in some order (such as the lexographic order of their string encoding).  We'll then order their string encodings in the same order across the columns.  In the entries of the table, let's record <b>Accept</b> or <b>Reject</b> to indicate whether the machine on the row accepts or rejects the string encoding of the machine on the column.  Since we've assumed that <b>A<SUB>TM</SUB></b> is decidable, then these are the only two possibilities for its decider <b>A</b>.  For instance, here's that table on six arbitrary Turing machines <b>M<SUB>1</SUB> ... M<SUB>6</SUB></b>
 										</p>
 
 										<table style="width:600px;">
@@ -279,6 +279,14 @@
 
 										<p>
 											We start off just fine by having <b>weird</b> do the opposite on other machines.  However, when we get to <b>weird</b> itself, we reach a contradiction, because we define its accept/reject status to be the opposite of what it is.  But it's impossible to choose either accept or reject to be the opposite of itself.  So we've arrived at a contradiction.  The only falsifiable assumption we made this whole time is that <a href = "#atmdecidable">A<SUB>TM</SUB> is decidable</a>.  Therefore, A<SUB>TM</SUB> must not be decidable!
+										</p>
+
+										<h3><a name = "diagonalizationdisclaimer">Diagonalization Disclaimer!!</a></h3>
+										<p>
+											Most math students would be used to using a diagonalization argument to prove that certain sets are <a href = "../Week11_Infinities/index.html#uncountable">uncountably infinite</a>.  But that's not what we're showing with <b>A<SUB>TM</SUB></b>!  Actually, as we discussed, the set of all strings in an alphabet is <a href = "../Week11_Infinities/index.html#alphabet">countably infinite</a>, and every language is a subset of these strings, so every language must be countable, whether it's decidable or not.  So even though <b>A<SUB>TM</SUB></b> is undecidable, it is still countably infinite!  <b>So don't make the mistake of assuming that undecidable languages are uncountable!</b>
+										</p>
+										<p>
+											At the root of this issue is the fact that we're using the diagonal argument in a different way here to show that we made some bad assumptions about the existence of a very specific machine <b>weird</b>, which <b>always has the same definition</b>, regardless of how we re-order the rows of our table.  This is the main difference from the diagonalization argument to prove that things are uncountably infinite.  But people still refer to this as a diagonalization argument.
 										</p>
 
 										<HR>
