@@ -1,69 +1,69 @@
 <a href = "Assignments/HW1_Discrete">Assignment 1: Discrete Math Practice</a> Out
 
-2021-08-30
+2023-08-28
 Assignment 1 Due
 
-2021-09-05
+2023-09-03
 <a href = "Assignments/HW2_DFA">Assignment 2: DFAs</a> Out
 
-2021-09-03
+2023-09-01
 Assignment 2 Due
 
-2021-09-10
+2023-09-08
 <HR><a href = "Assignments/HW3_NFA">Assignment 3: DFAs And NFAs</a> Out
 
-2021-09-10
+2023-09-08
 Assignment 3 Due
 
-2021-09-21
+2023-09-19
 <a href = "Assignments/HW4_Regexp">Assignment 4: (Non)Regular Languages And Regular Expressions</a> Out
 
-2021-09-19
+2023-09-17
 Assignment 4 Due
 
-2021-10-01
+2023-09-29
 <HR><a href = "Assignments/HW5_CFGs">Assignment 5: Context Free Grammars</a> Out
 
-2021-10-01
+2023-09-29
 Assignment 5 Due
 
-2021-10-08
+2023-10-06
 <HR><a href = "Assignments/HW6_PDAs">Assignment 6: Pushdown Automata, Non CFGs</a> Out
 
-2021-10-08
+2023-10-06
 Assignment 6 Due
 
-2021-10-15
+2023-10-13
 <a href = "Assignments/HW7_Turing">Assignment 7: Turing Machines</a> Out
 
-2021-10-21
+2023-10-19
 Assignment 7 Due
 
-2021-11-01
+2023-10-30
 <a href = "Assignments/HW8_Turing2">Assignment 8: Turing Machines Part 2</a> Out
 
-2021-11-03
+2023-11-01
 Assignment 8 Due
 
-2021-11-12
+2023-11-10
 <HR><a href = "Assignments/HW9_Decidability">Assignment 9: Decidability</a> Out
 
-2021-11-12
+2023-11-10
 <a href = "https://ursinus.instructure.com/courses/12825/quizzes/16473/">Big-O Module</a> Due Before Class
 
-2021-11-17
+2023-11-15
 <a href = "https://ursinus.instructure.com/courses/12825/quizzes/16475">Little-o Module</a> Due Before Class
 
-2021-11-19
+2023-11-17
 Assignment 9 Due
 
-2021-11-22
+2023-11-20
 <a href = "Assignments/HW10_Undecidability_Uncomputability/index.html">Assignment 10: Undecidability / Complexity</a> Out
 
-2021-11-23
+2023-11-21
 <a href = "FinalProject">Final Project</a> Out
 
-2021-11-29
+2023-11-27
 Assignment 10 Due
 
-2021-12-06
+2023-12-04
