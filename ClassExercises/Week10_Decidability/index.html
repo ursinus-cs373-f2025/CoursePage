@@ -190,7 +190,7 @@
 										</h4>
 
 										<p>
-											This language is decidable.  We can actually use a clever trick to invoke <b>E<SUB>DFA</SUB></b> as a subroutine to decide <b>EQ<SUB>DFA</SUB></b>.  Consider the disjoint union of two sets <b>A</b> and <b>B</b>, which is defined as  
+											This language is decidable.  We can actually use a clever trick to invoke <b>E<SUB>DFA</SUB></b> as a subroutine to decide <b>EQ<SUB>DFA</SUB></b>.  Consider the symmetric difference of two sets <b>A</b> and <b>B</b>, which is defined as  
 										</p>
 
 										<div style="width:200px;">
@@ -200,13 +200,13 @@
 										</div>
 
 										<p>
-											In English, the disjoint union of <b>A</b> and <b>B</b> is the set of all elements which are in <b>A</b> but not <b>B</b>, or which are in <b>B</b> but not <b>A</b>.  The highlighted region of the Venn diagram below shows this:
+											In English, the symmetric difference of <b>A</b> and <b>B</b> is the set of all elements which are in <b>A</b> but not <b>B</b>, or which are in <b>B</b> but not <b>A</b>.  The highlighted region of the Venn diagram below shows this:
 										</p>
 
 										<img src = "ADeltaB.svg" width=300>
 
 										<p>
-											If M<SUB>1</SUB> and M<SUB>2</SUB> accept the same language, then the disjoint union of <b>L(M<SUB>1</SUB>) &Delta; L(M<SUB>2</SUB>)</b> will be empty.  This is just a fancy way of saying that the languages the machines recognize have everything in common and nothing not in common.  We can use this fact to devise a new DFA which is 
+											If M<SUB>1</SUB> and M<SUB>2</SUB> accept the same language, then the symmetric difference of <b>L(M<SUB>1</SUB>) &Delta; L(M<SUB>2</SUB>)</b> will be empty.  This is just a fancy way of saying that the languages the machines recognize have everything in common and nothing not in common.  We can use this fact to devise a new DFA which is 
 										</p>
 
 										<p>
@@ -256,7 +256,7 @@
 										</h4>
 
 										<p>
-											is <b>not</b> decidable.  We can't use the disjoint union trick we used with EQ<SUB>DFA</SUB>, because though context free grammars are closed under union (we can simply branch to one or the other from the start), context free grammars are <b>not closed under intersection</b>.  For instance, consider the following context free grammars <b>G<SUB>1</SUB></b> and <b>G<SUB>2</SUB></b>
+											is <b>not</b> decidable.  We can't use the symmetric difference trick we used with EQ<SUB>DFA</SUB>, because though context free grammars are closed under union (we can simply branch to one or the other from the start), context free grammars are <b>not closed under intersection</b>.  For instance, consider the following context free grammars <b>G<SUB>1</SUB></b> and <b>G<SUB>2</SUB></b>
 										</p>
 
 										<table style="width: 800px;">
