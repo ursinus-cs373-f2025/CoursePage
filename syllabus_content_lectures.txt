@@ -47,9 +47,9 @@ More practice with DFAs -> Regexp
 
 
 LECTURE
-The efficiency of of NFA-based regular expression evaluation, begin pumping lemma
+The efficiency of of NFA-based regular expression evaluation
 
-<ul><li><a href = "https://swtch.com/~rsc/regexp/regexp1.html">Regular expression matching can be simple and fast (but is slow in Java, Perl, PHP, Python, Ruby, ...)</a></li><li><a href = "#readings">Sipser</a> Ch. 1.4</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/NonRegular.html">PIFLSA21 Ch. 5</a></li></ul>
+<ul><li><a href = "https://swtch.com/~rsc/regexp/regexp1.html">Regular expression matching can be simple and fast (but is slow in Java, Perl, PHP, Python, Ruby, ...)</a></li></ul>
 LECTURE
 The pumping lemma
 

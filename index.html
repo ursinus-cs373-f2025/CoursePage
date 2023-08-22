@@ -80,14 +80,17 @@
 											</div>
 											<div class = "row">
 												
-												<div class="12u 12u">
-													<img src = "ClassExercises/Week8_MultitapeTuring/wwrun.gif" width="70%">
+												<div class="6u 12u">
+													<img src = "OverviewPictures/BB4.gif" width="100%">
 													<p>
-														As shown in <a href = "https://www.jflap.org/">JFLAP</a>: A multi-tape turing machine that recognizes the language <div style="width:100px;">
-															<h3>
-																\[ L = \{ w\text{#}w, w \in \{ 0, 1 \}^* \} \]
-															</h3>
-														</div>
+														The <a href = "https://www.scottaaronson.com/papers/bb.pdf">busy beaver function <b>BB(N)</b></a> is the maximum number of steps taken by any <i>halting</i> turing machine with <b>N</b> satates (excluding a halting state).  It grows <b>extremely quickly</b>; it asymptotically upper bounds every computable function, including gigantic functions like <a href = "https://en.wikipedia.org/wiki/Ackermann_function">Ackermann(N, N)</a>.  Though it starts off fairly innocuously.  This example shows a Turing machine that achieves BB(4) = 107.
+													</p>
+                                                </div>
+												
+												<div class="6u 12u">
+													<img src = "OverviewPictures/WillAndI373Highlight.png" width="100%">
+													<p>
+														Tom Boccuto (left) and Will Gillette, CS 373, Fall 2021, working on a monster DFA in Pfahler Hall
 													</p>
                                                 </div>
 											</div>
@@ -98,7 +101,7 @@
 
 
 <!-- Start of Last Updated -->
-<h2><b>Course Evolving: Site Last Updated 8/10/2023
+<h2><b>Course Evolving: Site Last Updated 8/22/2023
 </b></h2><!-- End of Last Updated -->
 
 											<h2>Table Of Contents</h2>
@@ -414,35 +417,35 @@
 
 <!-- Begin Schedule -->
 <tr><td colspan = "5"><h2><b>Unit 1: Regular Languages</b></h2><p></p></td></tr>
-<tr><td>1</td><td>Mon 8/28/2023</td><td>DFA Intro, JFLAP</td><td><ul><li><a href = "ClassExercises/Week1_Unplugged">Class Exercise: Acting Out DFAs</a></li></ul></td><td bgcolor=#f4e6e7><a href = "Assignments/HW1_Discrete">Assignment 1: Discrete Math Practice</a> Out
+<tr><td>1</td><td>Mon 8/28/2023</td><td>DFA Intro, JFLAP</td><td><ul><li><a href = "ClassExercises/Week1_Unplugged">Class Exercise: Acting Out DFAs</a></li></ul></td><td bgcolor=#f4e6e7><!--<a href = "Assignments/HW1_Discrete">Assignment 1: Discrete Math Practice</a> Out!-->Assignment 1: Discrete Math Practice Out
 </td></tr>
 <tr><td>2</td><td>Wed 8/30/2023</td><td>Discrete Math Review</td><td><ul><li><a href = "ClassExercises/Week1_Discrete">Class exercises / notes</a></li><li><a href = "#readings">Sipser</a> Ch. 0</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/SetNotation.html">PIFLSA21 Ch. 2</a></li></ul></td><td></td></tr>
-<tr><td>3</td><td>Fri 9/1/2023</td><td>Binary Review, JFLAP for Designing DFAs</td><td><ul><li><a href = "ClassExercises/Week1_FridayDFABinary">Class exercises / notes</a></li><li><a href = "#readings">Sipser</a> Ch. 1.1</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/DFA.html">PIFLSA21 Ch. 3.1-3.3</a></li></ul></td><td bgcolor=#f4e6e7><a href = "Assignments/HW2_DFA">Assignment 2: DFAs</a> Out
+<tr><td>3</td><td>Fri 9/1/2023</td><td>Binary Review, JFLAP for Designing DFAs</td><td><ul><li><a href = "ClassExercises/Week1_FridayDFABinary">Class exercises / notes</a></li><li><a href = "#readings">Sipser</a> Ch. 1.1</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/DFA.html">PIFLSA21 Ch. 3.1-3.3</a></li></ul></td><td bgcolor=#f4e6e7><!--<a href = "Assignments/HW2_DFA">Assignment 2: DFAs</a> Out!-->Assignment 2: DFAs Out
 </td></tr>
 <tr><td></td><td>Sun 9/3/2023</td><td></td><td></td><td bgcolor=#f4e6e7>Assignment 1 Due
 </td></tr><tr><td>4</td><td>Mon 9/4/2023</td><td>Formal Description of Finite Automata, Regular Languages</td><td><ul><li><a href = "ClassExercises/Week2_Formal">Class exercises / notes</a></li><li><a href = "#readings">Sipser</a> Ch. 1.1</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/DFA.html">PIFLSA21 Ch. 3.1-3.3</a></li></ul></td><td></td></tr>
 <tr><td>5</td><td>Wed 9/6/2023</td><td>Practice with Formal Descriptions of DFAs, Begin Union</td><td><ul><li><a href = "#readings">Sipser</a> Ch. 1.1</li></ul></td><td></td></tr>
 <tr><td>6</td><td>Fri 9/8/2023</td><td>The Union Operation, Begin Nondeterministic Finite Automata (NFAs)</td><td><ul><li><a href = "#readings">Sipser</a> Ch. 1.1, 1.2</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/NFA.html">PIFLSA21 Ch. 3.4-3.6</a></li><li><a href = "ClassExercises/Week2_Union">Class notes</a></li></ul></td><td bgcolor=#f4e6e7>Assignment 2 Due
-<HR><a href = "Assignments/HW3_NFA">Assignment 3: DFAs And NFAs</a> Out
+<HR><!--<a href = "Assignments/HW3_NFA">Assignment 3: DFAs And NFAs</a> Out!-->Assignment 3: DFAs And NFAs Out
 </td></tr>
 <tr><td>7</td><td>Mon 9/11/2023</td><td>NFA Practice, NFA Reversing, Equivalence of NFAs and DFAs</td><td><ul><li><a href = "#readings">Sipser</a> Ch. 1.2</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/NFA.html">PIFLSA21 Ch. 3.4-3.6</a></li><li><a href = "ClassExercises/Week3_NFAs">Class notes</a></li></ul></td><td></td></tr>
 <tr><td>8</td><td>Wed 9/13/2023</td><td>The Regular Operations, Closure Under Star And Concatenation</td><td><ul><li><a href = "#readings">Sipser</a> Ch. 1.2, 1.3</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/RegEx.html">PIFLSA21 Ch. 4.1-4.3, 4.7</a></li></ul></td><td></td></tr>
 <tr><td>9</td><td>Fri 9/15/2023</td><td>Regular Expressions, Converting Regular Expressions To NFAs</td><td><ul><li><a href = "#readings">Sipser</a> Ch. 1.2, 1.3</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/RegEx.html">PIFLSA21 Ch. 4.1-4.3, 4.7</a></li></ul></td><td></td></tr>
-<tr><td></td><td>Sun 9/17/2023</td><td></td><td></td><td bgcolor=#f4e6e7><a href = "Assignments/HW4_Regexp">Assignment 4: (Non)Regular Languages And Regular Expressions</a> Out
+<tr><td></td><td>Sun 9/17/2023</td><td></td><td></td><td bgcolor=#f4e6e7><!--<a href = "Assignments/HW4_Regexp">Assignment 4: (Non)Regular Languages And Regular Expressions</a> Out!-->Assignment 4: (Non)Regular Languages And Regular Expressions Out
 </td></tr><tr><td>10</td><td>Mon 9/18/2023</td><td>Converting DFAs To Regular Expressions</td><td><ul><li><a href = "#readings">Sipser</a> Ch. 1.3</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/RegEx.html">PIFLSA21 Ch. 4.1-4.3, 4.7</a></li></ul></td><td></td></tr>
 <tr><td></td><td>Tue 9/19/2023</td><td></td><td></td><td bgcolor=#f4e6e7>Assignment 3 Due
 </td></tr><tr><td>11</td><td>Wed 9/20/2023</td><td>More practice with DFAs -> Regexp</td><td></td><td></td></tr>
-<tr><td>12</td><td>Fri 9/22/2023</td><td>The efficiency of of NFA-based regular expression evaluation, begin pumping lemma</td><td><ul><li><a href = "https://swtch.com/~rsc/regexp/regexp1.html">Regular expression matching can be simple and fast (but is slow in Java, Perl, PHP, Python, Ruby, ...)</a></li><li><a href = "#readings">Sipser</a> Ch. 1.4</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/NonRegular.html">PIFLSA21 Ch. 5</a></li></ul></td><td></td></tr>
+<tr><td>12</td><td>Fri 9/22/2023</td><td>The efficiency of of NFA-based regular expression evaluation</td><td><ul><li><a href = "https://swtch.com/~rsc/regexp/regexp1.html">Regular expression matching can be simple and fast (but is slow in Java, Perl, PHP, Python, Ruby, ...)</a></li></ul></td><td></td></tr>
 <tr><td>13</td><td>Mon 9/25/2023</td><td>The pumping lemma</td><td><ul><li><a href = "#readings">Sipser</a> Ch. 1.4</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/NonRegular.html">PIFLSA21 Ch. 5</a></li></ul></td><td></td></tr>
 <tr><td>14</td><td>Wed 9/27/2023</td><td>More pumping lemma practice</td><td><ul><li><a href = "ClassExercises/Week5_PumpingLemma">Class Examples</a></li></ul></td><td></td></tr>
 <tr><td colspan = "5"><h2><b>Unit 2: Context Free Grammars (CFGs)</b></h2><p></p></td></tr>
 <tr><td>15</td><td>Fri 9/29/2023</td><td>Intro To Context Free Grammars (CFGs)</td><td><ul><li><a href = "#readings">Sipser</a> Ch. 2.1</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/ContexFreeLanguages.html">PIFLSA21 Ch. 6.1, 6.2</a></li></ul></td><td bgcolor=#f4e6e7>Assignment 4 Due
-<HR><a href = "Assignments/HW5_CFGs">Assignment 5: Context Free Grammars</a> Out
+<HR><!--<a href = "Assignments/HW5_CFGs">Assignment 5: Context Free Grammars</a> Out!-->Assignment 5: Context Free Grammars Out
 </td></tr>
 <tr><td>16</td><td>Mon 10/2/2023</td><td>CFG Practice, Ambiguity of CFGs</td><td><ul><li><a href = "#readings">Sipser</a> Ch. 2.1</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/ContexFreeLanguages.html">PIFLSA21 Ch. 6.1, 6.2</a></li><li><a href = "#readings">Sipser</a> Ch. 2.1</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/ContexFreeLanguages.html#ambiguity">PIFLSA21 Ch. 6.1.8</a></li></ul></td><td></td></tr>
 <tr><td>17</td><td>Wed 10/4/2023</td><td>Pushdown Automata (PDAs)</td><td><ul><li><a href = "#readings">Sipser</a> Ch. 2.2</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/PDA.html">PIFLSA21 Ch. 7.1, 7.2</a></li></ul></td><td></td></tr>
 <tr><td>18</td><td>Fri 10/6/2023</td><td>Pushdown Automata Practice</td><td><ul><li><a href = "#readings">Sipser</a> Ch. 2.2</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/PDA.html">PIFLSA21 Ch. 7.1, 7.2</a></li></ul></td><td bgcolor=#f4e6e7>Assignment 5 Due
-<HR><a href = "Assignments/HW6_PDAs">Assignment 6: Pushdown Automata, Non CFGs</a> Out
+<HR><!--<a href = "Assignments/HW6_PDAs">Assignment 6: Pushdown Automata, Non CFGs</a> Out!-->Assignment 6: Pushdown Automata, Non CFGs Out
 </td></tr>
 <tr><td>19</td><td>Mon 10/9/2023</td><td>PDAs and CFGs</td><td><ul><li><a href = "#readings">Sipser</a> Ch. 2.2</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/PDACFL.html">PIFLSA21 Ch. 7.3, 7.4</a></li></ul></td><td></td></tr>
 <tr><td>20</td><td>Wed 10/11/2023</td><td>Non Context-Free Languages, CFG Pumping Lemma</td><td><ul><li><a href = "#readings">Sipser</a> Ch. 2.3</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/CFLProp.html">PIFLSA21 Ch. 8</a></li><li><a href = "https://www.youtube.com/watch?v=xg5IRsPs5E8">Trouble Funk: Pump Me Up</a></li></ul></td><td></td></tr>
@@ -451,30 +454,30 @@
 </td></tr>
 <tr><td>--</td><td>Mon 10/16/2023</td><td>Fall Break</td><td></td><td>No CS 373 Class.  Enjoy the break!</td></tr>
 <tr><td>22</td><td>Wed 10/18/2023</td><td>Recognizability, Decidability</td><td><ul><li><a href = "#readings">Sipser</a> Ch. 3.1</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/TuringMachines.html#turing-decidable-vs-turing-acceptable-languages">PIFLSA21 Ch. 9.2.3</a></li></ul></td><td></td></tr>
-<tr><td></td><td>Thu 10/19/2023</td><td></td><td></td><td bgcolor=#f4e6e7><a href = "Assignments/HW7_Turing">Assignment 7: Turing Machines</a> Out
+<tr><td></td><td>Thu 10/19/2023</td><td></td><td></td><td bgcolor=#f4e6e7><!--<a href = "Assignments/HW7_Turing">Assignment 7: Turing Machines</a> Out!-->Assignment 7: Turing Machines Out
 </td></tr><tr><td>23</td><td>Fri 10/20/2023</td><td>Multi-Tape Turing Machines</td><td><ul><li><a href = "#readings">Sipser</a> Ch. 3.2</li></ul></td><td></td></tr>
 <tr><td>24</td><td>Mon 10/23/2023</td><td>Intro To Reductions</td><td><ul><li><a href = "ClassExercises/Week8_MultitapeTuring">Multitape Turing Machine Examples</a></li><li><a href = "#readings">Sipser</a> Ch. 5.3</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/PairToSortCONPI.html">PIFLSA21 Ch. 11.1 - 11.3</a></li></ul></td><td></td></tr>
 <tr><td>25</td><td>Wed 10/25/2023</td><td>More Reductions, Begin Nondeterministic Turing Machines</td><td><ul><li><a href = "#readings">Sipser</a> Ch. 3.2</li></ul></td><td></td></tr>
 <tr><td>26</td><td>Fri 10/27/2023</td><td>Finish Nondeterministic TMS, Turing Enumerators/Transducers</td><td><ul><li><a href = "#readings">Sipser</a> Ch. 3.2</li></ul></td><td></td></tr>
 <tr><td>27</td><td>Mon 10/30/2023</td><td>The Church-Turing Thesis</td><td><ul><li><a href = "#readings">Sipser</a> Ch. 3.3</li><li><a href = "http://aurellem.org/vba-clojure/html/total-control.html">Pokemon Yellow is Turing Complete</a></li><li><a href = "https://xkcd.com/505/">XKCD: A Bunch of Rocks</a></li></ul></td><td bgcolor=#f4e6e7>Assignment 7 Due
 </td></tr>
-<tr><td>28</td><td>Wed 11/1/2023</td><td>More Church-Turing Thesis Discussion, Decidable Languages</td><td><ul><li><a href = "#readings">Sipser</a> Ch. 4.1</li></ul></td><td bgcolor=#f4e6e7><a href = "Assignments/HW8_Turing2">Assignment 8: Turing Machines Part 2</a> Out
+<tr><td>28</td><td>Wed 11/1/2023</td><td>More Church-Turing Thesis Discussion, Decidable Languages</td><td><ul><li><a href = "#readings">Sipser</a> Ch. 4.1</li></ul></td><td bgcolor=#f4e6e7><!--<a href = "Assignments/HW8_Turing2">Assignment 8: Turing Machines Part 2</a> Out!-->Assignment 8: Turing Machines Part 2 Out
 </td></tr>
 <tr><td>29</td><td>Fri 11/3/2023</td><td>Continue Decidable Languages, Universal Turing Machines And Von-Neumann Architecture</td><td><ul><li><a href = "#readings">Sipser</a> Ch. 4.1</li><li><a href = "ClassExercises/Week10_Decidability/index.html">Class notes on decidable languages</a></li></ul></td><td></td></tr>
 <tr><td>30</td><td>Mon 11/6/2023</td><td>Universal Turing Machines, Begin Halting Problem</td><td><ul><li><a href = "#readings">Sipser</a> Ch. 4.2</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/UnsolveableProblems1.html">PIFLSA21 Ch. 11.8</a></li><li><a href = "https://www.kosbie.net/cmu/fall-19/15-112/notes/notes-the-halting-problem.html">A Python halting program</a></li><li><a href = "https://watermark.silverchair.com/7-4-313.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAAscwggLDBgkqhkiG9w0BBwagggK0MIICsAIBADCCAqkGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQM1I_AHBFrj4z6IPDzAgEQgIICegpOsBu6LYAGo7H6BzAqd2pKsMaHiSCmarypve3U8pWWkxIMWi3mii7_KPHu7cu2RkxpemOuZL13JmhxDFQTZXhVgoqYLepqa9sus-v5dvC2lDDQ4Ns9CZQp-1KmH7nLV96yclV6ozoXoxT2tPTk-qkrwPX4tX5maJfOafOjER0Cz98RQuavvzX2VW82wIj4wJYPLjhAZFmArXgtoSN5qgx07RCTPBqGzBoa2JOZ-9a3uxg9O22Mhr9nZLjmGHbt9JbI5HLwWmj8f8d0XOeop_xVki7_jhNtWPAgkgbEm8k6xYT6mhZOzM59ZQsHASjuqDF1xau0uuomeytHJ7sBIjAWuEOahGFutzJZG2fT76GfiqbFR3kTYarA97Yv6XYgl0XexH_5vbpvriIM_xmf1dmhliYNBEWClPSXXNDCtPVPINmXbgTsUQmc1db-862q7fvmo76y5saJnKIZ5UEGA_sYAuV0ANxxbVTaMl2BRiTaaSEjmHDYZ-Q_AUQ3ZhJuSzWlSXmzKp7YQjRuF2cSqxKw_t8TFluuGgX1bdJg_WUuNwLYkD3B6dn0HTZQaCljpIETNP81Xk_TBp-UFBase7-gpnmc7z2ZDdE5-M0bbdYmzn9mDUl7mkgU8KenzcfBW5igpHTv099p6AbEzTb_N-SULalKto-oLBjbryQt4Zje3OBusVFCuXyweFisodVltT-gxjTIEOWQj8QA5R4x5RTevDOAT9COt2McYuSayq9ptXqbyeCNnceejxFHPGhImwkq9o-f_wxSirISZM0MxuNrWNRDZefugLkjrfyHhFINSzMaWC-cGKIISacjZEk4LE3UIUwOQZsd-zA">Strachey's Original Proof Sketch</a> (1965) that the Halting problem is unsolvable</li></ul></td><td></td></tr>
 <tr><td>31</td><td>Wed 11/8/2023</td><td>Diagonalization, Turing Machines Are Countable</td><td><ul><li><a href = "#readings">Sipser</a> Ch. 4.2, 5</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/UnsolveableProblems1.html">PIFLSA21 Ch. 11.8</a></li><li><a href = "ClassExercises/Week11_Infinities/index.html">Class Notes on Countable And Uncountable Infinities</a></li></ul></td><td></td></tr>
 <tr><td>32</td><td>Fri 11/10/2023</td><td>Problem Set Workshopping, More Halting Problem</td><td></td><td bgcolor=#f4e6e7>Assignment 8 Due
-<HR><a href = "Assignments/HW9_Decidability">Assignment 9: Decidability</a> Out
+<HR><!--<a href = "Assignments/HW9_Decidability">Assignment 9: Decidability</a> Out!-->Assignment 9: Decidability Out
 </td></tr>
 <tr><td>33</td><td>Mon 11/13/2023</td><td>Finish Halting Problem, Reductions for Undecidability</td><td><ul><li><a href = "#readings">Sipser</a> Ch. 4.2, 5.1</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/UnsolveableProblems1.html">PIFLSA21 Ch. 11.8</a></li><li><a href = "ClassExercises/Week12_Undecidability/index.html">Class Notes on Undecidability</a></li></ul></td><td></td></tr>
 <tr><td colspan = "5"><h2><b>Unit 4: Algorithms And Computational Complexity</b></h2><p></p></td></tr>
-<tr><td>34</td><td>Wed 11/15/2023</td><td>Reductions for Undecidability, Begin Formal Runtime Analysis: Big-O</td><td><ul><li><a href = "#readings">Sipser</a> Ch. 5, 7.1</li><li><a href = "https://www.youtube.com/watch?v=0oDAlMwTrLo">Asymptotic Bounding 101: Big O, Big Omega, & Theta</a> (NOTE: We won't need to worry about omega or theta in this course, but they're good to know)</li></ul></td><td bgcolor=#f4e6e7><a href = "https://ursinus.instructure.com/courses/12825/quizzes/16473/">Big-O Module</a> Due Before Class
+<tr><td>34</td><td>Wed 11/15/2023</td><td>Reductions for Undecidability, Begin Formal Runtime Analysis: Big-O</td><td><ul><li><a href = "#readings">Sipser</a> Ch. 5, 7.1</li><li><a href = "https://www.youtube.com/watch?v=0oDAlMwTrLo">Asymptotic Bounding 101: Big O, Big Omega, & Theta</a> (NOTE: We won't need to worry about omega or theta in this course, but they're good to know)</li></ul></td><td bgcolor=#f4e6e7><!--<a href = "https://ursinus.instructure.com/courses/12825/quizzes/16473/">Big-O Module</a> Due Before Class!-->Big-O Module Due Before Class
 </td></tr>
-<tr><td>35</td><td>Fri 11/17/2023</td><td>Continue Big-O, Little-o, Complexity Relationships Among Models</td><td><ul><li><a href = "https://www.bigocheatsheet.com/">https://www.bigocheatsheet.com/</a></li><li><a href = "https://ursinus-cs371-s2021.github.io/Modules/Module5/Video1">My CS 371 Module on Little-o</a></li><li>Class Exercise: Multitape -> Single Tape Turing Machine Reduction Time Complexity</li></ul></td><td bgcolor=#f4e6e7><a href = "https://ursinus.instructure.com/courses/12825/quizzes/16475">Little-o Module</a> Due Before Class
+<tr><td>35</td><td>Fri 11/17/2023</td><td>Continue Big-O, Little-o, Complexity Relationships Among Models</td><td><ul><li><a href = "https://www.bigocheatsheet.com/">https://www.bigocheatsheet.com/</a></li><li><a href = "https://ursinus-cs371-s2021.github.io/Modules/Module5/Video1">My CS 371 Module on Little-o</a></li><li>Class Exercise: Multitape -> Single Tape Turing Machine Reduction Time Complexity</li></ul></td><td bgcolor=#f4e6e7><!--<a href = "https://ursinus.instructure.com/courses/12825/quizzes/16475">Little-o Module</a> Due Before Class!-->Little-o Module Due Before Class
 </td></tr>
 <tr><td>36</td><td>Mon 11/20/2023</td><td>The Class P</td><td><ul><li><a href = "#readings">Sipser</a> Ch. 7.2</li><li><a href = "https://faculty.kfupm.edu.sa/ics/darwish/JS_AlgorithmAnimation/gcd_animated.htm">Interactive animation of Euclid's GCD Algorithm</a></li></ul></td><td bgcolor=#f4e6e7>Assignment 9 Due
 </td></tr>
-<tr><td></td><td>Tue 11/21/2023</td><td></td><td></td><td bgcolor=#f4e6e7><a href = "Assignments/HW10_Undecidability_Uncomputability/index.html">Assignment 10: Undecidability / Complexity</a> Out
+<tr><td></td><td>Tue 11/21/2023</td><td></td><td></td><td bgcolor=#f4e6e7><!--<a href = "Assignments/HW10_Undecidability_Uncomputability/index.html">Assignment 10: Undecidability / Complexity</a> Out!-->Assignment 10: Undecidability / Complexity Out
 </td></tr><tr><td>--</td><td>Wed 11/22/2023</td><td>Thanksgiving</td><td></td><td>No CS 373 Class.  Enjoy the break!</td></tr>
 <tr><td>--</td><td>Fri 11/24/2023</td><td>Thanksgiving</td><td></td><td>No CS 373 Class.  Enjoy the break!</td></tr>
 <tr><td>37</td><td>Mon 11/27/2023</td><td>The Class NP, P = NP?</td><td><ul><li><a href = "#readings">Sipser</a> Ch. 7.3</li><li><a href = "https://www.claymath.org/millennium-problems/p-vs-np-problem">Clay Institute $1M Prize</a></li></ul></td><td bgcolor=#f4e6e7><a href = "FinalProject">Final Project</a> Out
@@ -753,7 +756,7 @@
                                         <li>
 											<span class="opener">Assignments</span>
 											<ul>
-												<li>
+												<!--<li>
 													<a href = "Assignments/HW1_Discrete/index.html">HW1: Discrete Math Practice</a>
 												</li>
 												<li>
@@ -782,7 +785,7 @@
 												</li>
 												<li>
 													<a href = "Assignments/HW10_Undecidability_Uncomputability/index.html">HW10: Undecidability And Uncomputability</a>
-												</li>
+												</li>!-->
 											</ul>
 										</li>
                                         <li>
