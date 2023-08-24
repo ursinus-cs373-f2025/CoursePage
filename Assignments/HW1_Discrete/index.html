@@ -58,18 +58,12 @@
 										There are 3 easy points to earn here:
 										<ol>
 											<li>
-												Read over the <a href = "../../">syllabus</a> and complete the 1-point syllabus quiz at <a href = "https://ursinus.instructure.com/courses/12825/quizzes/15864">this link</a>
+												Read over the <a href = "../../">syllabus</a> and complete the syllabus quiz at <a href = "https://ursinus.instructure.com/courses/12825/quizzes/15864">this link</a>
 											</li>
 											<li>
-												<a href = "https://ursinus.co1.qualtrics.com/jfe/form/SV_6FHq4IurYitIMvA">Click here</a> to complete the personal survey for the course.
-											</li>
-											<li>
-												<a href = "https://discord.gg/kKR7FrxH">Click here</a> to sign up for the class Discord.  Post a message on the #general channel and let us know what your favorite animal is!
+												Sign up for the class Discord and send me answers to the survey questions at this link
 											</li>
 										</ol>
-										<p>
-											As an ungraded final step, <a href = "https://doodle.com/poll/wgmu62ug8t2g479a?utm_source=poll&utm_medium=link">click here</a> to fill out an office hours survey for what times you can make if you want to make sure that the hours I choose work with your schedule.  Put a check next to every time block for which you can make <b>at least 30 minutes</b> on at that time on that day of the week.
-										</p>
 
 										<h3>Problem 1 (3 pts)</h3>
 										<p>
@@ -112,7 +106,23 @@
 											<b>HINT:</b> Use the pigeonhole principle.  You'll have to look a couple of numbers up as well (cite your sources)
 										</p>
 
-										<h3>Problem 4 (3 pts)</h3>
+										<h3>Problem 4</h3>
+										<p>
+											Given 65 points in an equilateral triangle of side length 1, prove that the distance between the closest two points is at most 1/8 (0.125).
+										</p>
+
+										<p>
+											<b>Hint: </b> Look back at <a href = "https://ursinus-cs174-s2023.github.io/CoursePage/Labs/Lab6_RecursiveDrawing/">lab 6 from CS 174</a>, and use the pigeonhole principle.
+										</p>
+
+										<h4>For fun</h4>
+										<p>
+											When I do math research, I often write computer programs to help me explore examples to gain some intuition or to see if I can find a counterexample to a conjecture I have.  In this case, we might try to space points as far away as we can in a triangle and see how close the closest pair is.  To that end, I wrote a little program that samples 10,000 points uniformly from an equilateral triangle using <a href = "https://ursinus-cs476-f2022.github.io/CoursePage/Materials/BarycentricExploration/WeightedAverage.html">barycentric coordinates</a>, and then does <a href = "https://www.youtube.com/watch?v=xWuq1aXHLdU&pp=ygUSZ3JlZWR5IHBlcm11dGF0aW9u">greedy furthest point sampling</a> to find 65 of them that are spaced far apart.  Below is the result of running that experiment 100 times.  At least in these experiments, we never exceeded 0.125!  (That's not enough to prove it, but it does make us more confident)
+										</p>
+
+										<img src = "EquilateralTriangle.gif">
+
+										<!--<h3>Problem 4 (3 pts)</h3>
 										<p>
 											Write truth tables for the following expressions
 										</p>
@@ -126,7 +136,7 @@
 											<li>
 												<h3> \[  z \vee \neg (x \wedge  y \wedge z) \] </h3>
 											</li>
-										</ol>
+										</ol>!-->
                                         
 
 										<h3>Problem 5 (3 pts)</h3>
