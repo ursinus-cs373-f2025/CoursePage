@@ -235,11 +235,160 @@
 
 																					
 											
-											
-											
-											
-											
+										<h3>Problem 8: DFAs for Substring Search (5 Points)</h3>
+										
+										<p>
+											We're going to examine an application of DFAs that's used all the time behind the scenes in text editors and web browsers.  Consider the following problem: given a string <code>pattern</code> and a string <code>s</code>, determine if <code>pattern</code> is a substring (contiguous subset) of <code>s</code>.  One way to do this is to check every possible subset of length <code>len(pattern)</code> in <code>s</code>.  The code below shows how one might do this in python:
+										</p>
 
+										<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+											def naive_substring_search(pattern, s):
+												"""
+												Implement the naive O(len(pattern) * len(s)) algorithm for finding
+												all instances of pattern in s
+
+												Parameters
+												----------
+												pattern: string
+													Search pattern
+												s: string
+													String in which to search for pattern
+												
+												Returns
+												-------
+												list of int:
+													A list of all of the indices at which pattern exists in s
+												"""
+												instances = []
+												for i in range(len(s)-len(pattern)+1):
+													j = 0
+													valid = True
+													while valid and j < len(pattern):
+														if pattern[j] == s[i+j]:
+															j += 1 # Continue along as long as we do match
+														else:
+															valid = False # Break out early as soon as we don't match
+													if valid:
+														instances.append(i)
+												return instances
+										</script>  
+
+										<p>
+											So, for instance, if we run
+											<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+												naive_substring_search("ababac", "abababcabababcababacababac")	
+												#
+											</script>  
+
+										</p>
+											
+											
+										<p>
+											We should get <code>[14, 20]</code> (zero-indexed), since the pattern shows up twice at the end.  However, our algorithm goes quite slow on this because there are many times where it <i>almost</i> matches the pattern, but then it has to start over.  In the worst case, this algorithm can take <code>len(pattern)*len(s)</code> steps, so we say it's a <b>O(len(pattern)*len(s))</b> algorithm (we will talk about big-O notation later in the course).
+										</p>
+										<p>
+											As it turns out, we can construct a DFA for substring that only has to go through each character in the string <i>exactly once</i>, and we report a match every time it reaches an accept state.  Hence, the algorithm only takes <b>O(len(s))</b> time, which can be substantially better in practice if <code>pattern</code> is long.  For instance, consider the following DFA (<a href = "ababac.jff">Click here</a> to download the JFLAP file)
+										</p>
+										<img src = "ababac.png">
+										<p>
+											Now let's step through and search for our pattern:
+										</p>
+										<img src = "ababac.gif">
+										<p>
+											You'll notice that we reached the accept state exactly twice at the end of each instance of <code>pattern</code> in <code>s</code>.  But how on earth did we come up with this?  Here is a fairly straightforward algorithm to do this:
+										</p>
+
+										<h4><a name = "alg1">Algorithm 1: Straightforward Substring DFA Creation</a></h4>
+										<ol>
+											<li>
+												Create a state <code>start</code> and a state <code>c_i</code> for each character <code>c</code> in the pattern at index <code>i</code>.  For instance, if the pattern is <code>acdc</code>, you should have the states 
+												<ul>
+													<li>
+														<code>start</code>
+													</li>
+													<li>
+														<code>a_0</code>
+													</li>
+													<li>
+														<code>c_1</code>
+													</li>
+													<li>
+														<code>d_2</code>
+													</li>
+													<li>
+														<code>c_3</code>
+													</li>
+												</ul>
+											</li>
+											<li>
+												<p>
+													Add state transitions for the matched characters in sequence.  For instance, in the above pattern, we'd have a transition from <code>start</code> to <code>a_0</code> when we see an <code>a</code>, a transition from <code>a_0</code> to <code>c_1</code> when we see a <code>c</code>, etc.
+												</p>
+											</li>
+											<li>
+												Loop through each character in the pattern in sequence.  For each character <code>c</code> at index <code>i</code>, loop through all characters <code>a</code> in the alphabet <code>Sigma</code>.  
+
+												<ul>
+													<li>
+														If an arrow doesn't exist yet at <code>c<SUB>i</SUB></code> using <code>a</code>, 
+														<ul>
+															<li>
+																Then the <i>first</i> <code>i+1</code> characters of <code>pattern</code> do not match the string where we are ending at <code>a</code>
+															</li>
+															<li>
+																However, it is possible that the <i>last</i> <code>i</code> characters of the string match the first <code>i</code> characters of the pattern, or that the last <code>i-1</code> characters of the pattern match the first <code>i-1</code> characters of the pattern, etc.
+															</li>.
+															To figure out how much of the pattern we've actually matched, send <code>a</code> concatenated to the last <code>i</code> characters of pattern (<code>pattern[1:i+1]+a</code> in python) through the DFA that you've built so far, and use the state that you end on as the transition out of <code>c<SUB>i</SUB></code> through <b>a</b>
+														</ul> 
+													</li>
+												</ul>
+
+											</li>
+										</ol>
+
+										<h4>
+											Your task
+										</h4>
+										<p>
+											<a href = "https://github.com/ursinus-cs373-f2023/CoursePage/blob/main/Assignments/HW3_NFA/substring.py">Click here</a> to download the starter code for this task.
+										</p>
+
+										<p>
+											Create a python method <code>make_substring_dfa(Sigma, pattern)</code> that takes in an alphabet as a list in <code>Sigma</code> and a <code>pattern</code> string, and which returns a <code>transitions</code> dictionary describing a DFA that matches <code>pattern</code>.  For example, if you run the following code:
+										</p>
+
+										So, for instance, if you run
+											<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+												Sigma = ['a', 'b', 'c']
+												pattern = "ababac"
+												transitions = make_substring_dfa(Sigma, "ababac")
+												write_dfa_jflap(transitions, "ababac.jff")
+												#
+											</script>  
+											
+										then your program should output the above example.
+
+										<h4>Hint</h4>
+										<p>
+											The following code will create the strings representing the states for each character <code>c</code> at index <code>i</code>
+										</p>
+										<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+											ci = "{}_{}".format(c, i)
+											#
+										</script> 
+
+										<h4>Hint 2</h4>
+										<p>
+											If you're having trouble figuring out where to get started, at least see if you can do step 1 in <a href = "#alg1">the algorithm</a>, then save the DFA and look at it in JFLAP to see if you have the right states.  Then try step 2 and see if you have the arrows for matching characters.  Finally, you can tackle the third step, which is the hardest
+										</p>
+
+										<h4>Extra Credit (+2)</h4>
+										<p>
+											The DFA that you've built is very efficient and can find all instances of the pattern in <b>O(len(s))</b> time, which is substantially better than the <b>O(len(s)*len(p))</b> algorithm we started with.  However, <a href = "#alg1">algorithm 1</a> for <i>constructing</i> the DFA is not very efficient, and is in fact <code>O(len(pattern)<SUP>3</SUP>)</code>, which is quite bad for long patterns.  Luckily, there is a variation that we can do known as the <b>Knuth-Morris-Pratt</b> algorithm to accomplish DFA construction in <code>O(p)</code> time only, so that the entire search algorithm is <code>O(len(pattern) + p)</code>, which is optimal.  Implement this algorithm to construct your DFA instead of the one described in <a href = "#alg1">algorithm 1</a>.  <a href = "https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/#">Click here</a> to view some notes about this on GeeksForGeeks.
+										</p>
+
+
+										<!--
 										<h3>Problem 8: Ordered Mixing of Regular Languages (3 Points)</h3>
 										<p>
 											Define an <b>ordered mixing</b> of two regular languages <b>A</b> and <b>B</b> over the alphabet <b>&Sigma;</b> to be the set of all strings <b>s</b> so that 
@@ -295,6 +444,7 @@
 										<p>
 											<b>Hint #2: </b> It may be easier to first think about how to make a DFA to recognize a simpler type of mixing where each chunk is a single character.  Then see if you can extend this idea with an NFA to define a full ordered mixing
 										</p>
+										-->
 										
 
                                     
