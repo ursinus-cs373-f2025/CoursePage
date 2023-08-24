@@ -1,6 +1,6 @@
 ## Programmer: Chris Tralie
 ## Purpose: An empirical exploration of the following claim:
-# Given 33 points in an equilateral triangle, prove that there are two points
+# Given 65 points in an equilateral triangle, prove that there are two points
 # that are at most a distance of 1/8 = 0.125 from each other
 
 import numpy as np

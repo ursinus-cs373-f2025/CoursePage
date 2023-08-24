@@ -141,7 +141,7 @@ Problem Set Workshopping, More Halting Problem
 LECTURE
 Finish Halting Problem, Reductions for Undecidability
 
-<ul><li><a href = "#readings">Sipser</a> Ch. 4.2, 5.1</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/UnsolveableProblems1.html">PIFLSA21 Ch. 11.8</a></li><li><a href = "ClassExercises/Week12_Undecidability/index.html">Class Notes on Undecidability</a></li></ul>
+<ul><li><a href = "#readings">Sipser</a> Ch. 4.2, 5.1</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/UnsolveableProblems1.html">PIFLSA21 Ch. 11.8</a></li><li><a href = "ClassExercises/Week12_Undecidability/index.html">Class Notes on Undecidability</a></li><li><a href = "https://www.youtube.com/watch?v=jIAEpYwJgbA">Easy Theory: Rice's Theorem</a></li></ul>
 SECTION
 Unit 4: Algorithms And Computational Complexity
 
@@ -177,7 +177,7 @@ Nondeterministic Turing Machine Definition of NP
 LECTURE
 The Cook-Levin Theorem
 
-<ul><li><a href = "#readings">Sipser</a> Ch. 7.4</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/SATProof.html">PIFLSA21 Ch. 11.6</a></li></ul>
+<ul><li><a href = "#readings">Sipser</a> Ch. 7.4</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/SATProof.html">PIFLSA21 Ch. 11.6</a></li><li><a href = "https://www.youtube.com/watch?v=LW_37i96htQ">Easy Theory: Cook Levin Theorem (Awesome video explanation!)</a></li></ul>
 LECTURE
 NP Hardness, Mario And Mario Kart Are Hard
 
