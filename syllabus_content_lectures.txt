@@ -5,7 +5,7 @@ Unit 1: Regular Languages
 LECTURE
 DFA Intro, JFLAP
 
-<ul><li><a href = "ClassExercises/Week1_Unplugged">Class Exercise: Acting Out DFAs</a></li></ul>
+<ul><li><a href = "ClassExercises/Week1_Unplugged">Class Exercise: Acting Out DFAs</a></li><li><a href = "https://www.youtube.com/watch?v=vhiiia1_hC4">Computerphile: Cool applications of DFAs to making change, vending machines, and valid variable names</a></li></ul>
 LECTURE
 Discrete Math Review
 
