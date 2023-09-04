@@ -4,15 +4,15 @@
 Assignment 1 Due
 
 2023-09-03
-<!--<a href = "Assignments/HW2_DFA">Assignment 2: DFAs</a> Out!-->Assignment 2: DFAs Out
+<a href = "Assignments/HW2_DFA">Assignment 2: DFAs</a> Out
 
-2023-09-01
+2023-09-04
 Assignment 2 Due
 
-2023-09-08
+2023-09-11
 <HR><!--<a href = "Assignments/HW3_NFA">Assignment 3: DFAs And NFAs</a> Out!-->Assignment 3: DFAs And NFAs Out
 
-2023-09-08
+2023-09-11
 Assignment 3 Due
 
 2023-09-19
@@ -37,6 +37,9 @@ Assignment 6 Due
 <!--<a href = "Assignments/HW7_Turing">Assignment 7: Turing Machines</a> Out!-->Assignment 7: Turing Machines Out
 
 2023-10-19
+Last day to drop courses with a "W"
+
+2023-10-25
 Assignment 7 Due
 
 2023-10-30
