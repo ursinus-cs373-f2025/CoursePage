@@ -224,7 +224,7 @@
 
 									<h3><a name = "example3">Example 3</a></h3>
 									<p>
-										So why the big deal about this formal notation?  Well, it makes it easier for us to specify more huge machines or more general classes machines more succinctly and without having to draw them.  Let's consider an example of a machine that <b>accepts a binary string with at most K zeros</b>, where <b>K</b> here is left open as a variable.  We couldn't draw this as a picture in general (unless we wanted to draw infinitely many pictures for each case).  But we can describe it symbolically:
+										So why the big deal about this formal notation?  Well, it makes it easier for us to specify more huge machines or more general classes machines more succinctly and without having to draw them.  Let's consider an example of a machine that <b>accepts a binary string with at most K zeros</b>, where <b>K</b> here is left open as a variable.  We couldn't draw this as a picture in general (unless we wanted to draw infinitely many pictures: one for each case).  But we can describe it symbolically:
 									</p>
 
 									<table style="width:400px;">
@@ -264,9 +264,15 @@
 										</tr>
 										<tr>
 											<td><h3>F</h3></td>
-											<td><h3>{q0}</h3></td>
+											<td><h3>{q0, q1, ..., q<SUB>K</SUB>}</h3></td>
 										</tr>
 									</table>
+
+									<p>
+										For example, when <b>K=2</b>, we have the following DFA (<a href = "NoMoreThan2Zeros.jff">Click here</a> to download the corresponding JFlap files):
+									</p>
+
+									<img src = "NoMoreThan2Zeros.png">
 
 									<HR>
 										<h2><a name = "formal">Formal Languages</a></h2>
