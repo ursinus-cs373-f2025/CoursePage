@@ -106,7 +106,7 @@
 											<b>HINT:</b> Use the pigeonhole principle.  You'll have to look a couple of numbers up as well (cite your sources)
 										</p>
 
-										<h3>Problem 4</h3>
+										<h3>Problem 4 (3 pts)</h3>
 										<p>
 											Given 65 points in an equilateral triangle of side length 1, prove that the distance between the closest two points is at most 1/8 (0.125).
 										</p>
@@ -155,12 +155,12 @@
 											<b>Base Case</b>: For <b>N = 1</b>, there's only one person to consider, so no matter what operating system they're running, everyone is running the same operating system. 
 										</p>
 										<p>
-											<b>Inductive Step: </b> For <b>N > 1</b>, assume the hypothesis is true for <b>N-1</b> students, and prove that it is true for <b>N</b>.  Take any set <b>S</b> of <b>N</b> students.  We show that all of the students in this group are using the same OS.  Remove some arbitrary student <b>a</b> from this set to obtain the set <b>S<SUB>1</SUB></b>; that is.
+											<b>Inductive Step: </b> Assume the hypothesis is true for <b>N</b> students, and prove that it is true for <b>N+1</b> students.  Take any set <b>S</b> of <b>N+1</b> students.  We show that all of the students in this group are using the same OS.  Remove some arbitrary student <b>a</b> from this set to obtain the set <b>S<SUB>1</SUB></b>; that is.
 											
 											\[ S = S_1 \cup \{ a \} \]
 											
 
-											By the inductive hypothesis, all students in <b>S<SUB>1</SUB></b> are running the same OS.  Now remove a different student <b>b</b> from <b>S</b> to obtain different set <b>S<SUB>2</SUB></b>; that is
+											By the inductive hypothesis, all students in <b>S<SUB>1</SUB></b> are running the same OS, since <b>|S<SUB>1</SUB></SUB>| = N</b>.  Now remove a different student <b>b</b> from <b>S</b> to obtain different set <b>S<SUB>2</SUB></b>; that is
 											
 											\[ S = S_2 \cup \{ b \}, b \neq a \]
 											
@@ -168,7 +168,7 @@
 
 											\[ a \in S_2, b \in S_1 \]
 
-											which, by the inductive hypothesis, means that <b>a</b> is using the same OS as everyone in <b>S<SUB>2</SUB></b>, and <b>b</b> is using the same OS as everyone in <b>S<SUB>1</SUB></b>.  Since the people overlapping in <b>S<SUB>1</SUB></b> and <b>S<SUB>2</SUB></b> are using the same operating system, it follows that everyone is using the same operating system.  Proof complete!
+											which, by the inductive hypothesis, means that <b>a</b> is using the same OS as everyone in <b>S<SUB>2</SUB></b>, and <b>b</b> is using the same OS as everyone in <b>S<SUB>1</SUB></b>.  The people overlapping in <b>S<SUB>1</SUB></b> and <b>S<SUB>2</SUB></b> must then be using the same operating system.  So since the overlap is using the same operating system, and each of <b>S<SUB>1</SUB></b> and <b>S<SUB>2</SUB></b> are using the same operating system, then all of <b>S</b> must be using the same operating system. Proof complete!
 										</p>
 										</div>
 										<p>
