@@ -335,13 +335,13 @@
 									</table>
 
 									<HR>
-										<h2><a name = "formal">Formal Languages</a></h2>
+										<h2><a name = "formal">Formal Languages: Definitions</a></h2>
 										<p>
 											We now have the terminology we need to formally define what is meant by a <b>regular language</b>.  We'll need a few other definitions first
 										</p>
 
 										<div style="background-color: rgb(251, 245, 234); padding: 10px;">
-										<b>Def. Language</b>: A language <b>L</b> over an alphabet <b>&Sigma;</b> is simply a set of strings made from the elements in &Sigma;
+										<a name = "language"><b>Def. Language</b></a>: A language <b>L</b> over an alphabet <b>&Sigma;</b> is simply a set of strings made from the elements in &Sigma;
 										</div>
 
 										<p>
@@ -349,7 +349,7 @@
 										</p>
 
 										<div style="background-color: rgb(251, 245, 234); padding: 10px;">
-											<b>Def. DFA Acceptance</b>: </b> A string <b>s = w<SUB>1</SUB>w<SUB>2</SUB>...w<SUB>n</SUB></b> in <b>L</b> is <b>accepted</b> by a DFA  <b>(Q, &Sigma;, &delta;, q, F)</b> if there exists (i.e. it is possible to find) a sequence of states <b>r<SUB>0</SUB>, r<SUB>1</SUB>, r<SUB>2</SUB>, ..., r<SUB>n</SUB></b> so that 
+											<a name = "acceptance"><b>Def. DFA Acceptance</b></a>: </b> A string <b>s = w<SUB>1</SUB>w<SUB>2</SUB>...w<SUB>n</SUB></b> in <b>L</b> is <b>accepted</b> by a DFA  <b>(Q, &Sigma;, &delta;, q, F)</b> if there exists (i.e. it is possible to find) a sequence of states <b>r<SUB>0</SUB>, r<SUB>1</SUB>, r<SUB>2</SUB>, ..., r<SUB>n</SUB></b> so that 
 											<ol>
 												<li>r<SUB>0</SUB> = q</li>
 												<li>
@@ -363,12 +363,21 @@
 											Notice how there is one more element in the accepting sequence than there is in the string.  This is because we start at the start state before we process any characters.
 										</p>
 										<p>
-											As a sanity for the notation, it's sometimes helpful to look through an example and plug in some numbers.  If we look back at example 2 and we're given the string 112122, then we can give the sequence q0, q1, q2, q1, q2, q1, q0, and the 3 conditions above will be satisfied.
+											As a sanity for the notation, it's sometimes helpful to look through an example and plug in some numbers.  If we look back at <a href = "#example2">example 2</a> and we're given the string 112122, then we can give the sequence q0, q1, q2, q1, q2, q1, q0, and the 3 conditions above will be satisfied.  The diagram below shows an "unrolling" of the state sequence, with arrows showing a transition from one state to the enxt for each character.
+										</p>
+
+										<img src = "Example2_Unrolled.svg" width="80%">
+										<p>
+											Looking at it this way, it should perhaps also be clear why there's always one more state in the sequence (we index the states starting at <b>r<SUB>0</SUB></b>) than there are characters in the string (we index the string starting at <b>w<SUB>1</SUB></b>).
+										</p>
+
+										<p>
+											Let's now proceed to a formal definition of what it means for a DFA to <b>recognize</b> a language
 										</p>
                                             
 
 										<div style="background-color: rgb(251, 245, 234); padding: 10px;">
-											<b>Def. Language recognition:</b> A language <b>L</b> over an alphabet <b>&Sigma;</b> is <b>recognized</b> by a DFA <b>M = (Q, &Sigma;, &delta;, q, F)</b> if for all strings <b>s</b> in <b>L</b>, <b>M</b> accepts <b>s</b>, and for all strings <b>t</b> not in <b>L</b>, <b>M</b> rejects <b>t</b>.  In other words, we can construct the language set <b>L</b> in set notation as 
+											<a name = "recognition"><b>Def. DFA Language recognition:</b></a> A language <b>L</b> over an alphabet <b>&Sigma;</b> is <b>recognized</b> by a DFA <b>M = (Q, &Sigma;, &delta;, q, F)</b> if for all strings <b>s</b> in <b>L</b>, <b>M</b> accepts <b>s</b>, and for all strings <b>t</b> not in <b>L</b>, <b>M</b> rejects <b>t</b>.  In other words, we can construct the language set <b>L</b> in set notation as 
 
 											<h3>
 												\[ L = \{s | M \text{ accepts } s\} \]
@@ -387,12 +396,54 @@
 										</p>
 
 										<HR>
+										<h2><a name = "formalcode">Formal Languages: Code</a></h2>
+
+										<p>
+											Let's revisit some of the <a href = "../Week1_Unplugged/index.html#code">python code from week 1</a>, because we will see that it corresponds almost exactly to the formal definitions we had above.  Let's consider a DFA that accepts binary strings with an odd number of 1's.  Here's how we would specify this machine formally using python sets and dictionaries:
+										</p>
+										<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+											# A DFA that accepts binary strings with an odd number of 1's
+
+											Q = {"q0", "q1"} # Python set for states
+											Sigma = {"0", "1"} # Python set for alphabet
+											q = "q0" # Start state
+											F = {"q1"}  # Python set for end states
+											delta = {
+												# key: value,
+												("q0", "0"): "q0",
+												("q0", "1"): "q1",
+												("q1", "0"): "q1",
+												("q1", "1"): "q0"
+											} # Python dictionary for transition function
+										]]></script>   
+
+										<p>
+											And here's how we would check if a particular string <code>s</code> is in recognized by the DFA, which matches nearly exactly the <a href = "#acceptance">definition of DFA acceptance</a> that we had:
+										</p>
+										<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+											s = "1101001"
+
+											curr_state = q # Start at the start state
+											for c in s: # For each character in sequence
+												# At state curr_state, and I see a character "c"
+												curr_state = delta[(curr_state, c)]
+												
+											print(curr_state in F) # This will be true if and only if we end on an end state
+										]]></script>  
+
+										
+
+										<HR>
 										<h2><a name = "divisibility">Binary Divisibility Checks</a></h2>
 
 										<iframe width="560" height="315" src="https://www.youtube.com/embed/qvmjWWZkh7o?si=NVe45-d8oG042LXT" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 										<p>
-											As some final helpful notes for you, you have a problem on your problem set about divisibility by 5 of binary numbers read <b>from left to right</b>.  Let's complete the divisibility by 3 example to elucidate a strategy that can be used to design DFAs for general divisibility.  This time I'll actually give the solution first and then I'll explain it.  Below is a state diagram that accomplishes this in JFLAP (<a href = "Div3.jff">Click here</a> to download the JFLAP file)
+											You have a problem on your problem set about divisibility by 5 of binary numbers read <b>from left to right</b>.  You will prove by construction that the set of all binary numbers divisible by 5 form a regular language.  
+										</p>
+
+										<p>
+											In the meantime, as an example, let's complete the divisibility by 3 example to elucidate a strategy that can be used to design DFAs for general divisibility.  This time I'll actually give the solution first and then I'll explain it.  Below is a state diagram that accomplishes this in JFLAP (<a href = "Div3.jff">Click here</a> to download the JFLAP file)
 										</p>
 
 										<img src = "Div3.png">
@@ -423,7 +474,12 @@
 											</ul>
 										</p>
 
+									<HR>
+										<h2><a name = "finitelanguage">Languages with A Finite Number of Strings are Regular</a></h2>
 
+										<p>
+											As another example, we can prove that any language with a finite set of strings is regular.  For example, the language <code>{0, 1, 01}</code> is regular.  Below is a DFA that recognizes it:
+										</p>
 
 
                                     
