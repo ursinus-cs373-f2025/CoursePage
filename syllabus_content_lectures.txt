@@ -23,7 +23,11 @@ Finish Regular Language Definitions, Python Code for DFAs
 
 <ul><li><a href = "#readings">Sipser</a> Ch. 1.1</li></ul>
 LECTURE
-The Union Operation, Begin Nondeterministic Finite Automata (NFAs)
+The Union Operation
+
+<ul><li><a href = "ClassExercises/Week2_Union/index.html">Class exercises / notes</a></li><li><a href = "#readings">Sipser</a> Theorem 1.25</li></ul>
+LECTURE
+Nondeterministic Finite Automata (NFAs)
 
 <ul><li><a href = "#readings">Sipser</a> Ch. 1.1, 1.2</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/NFA.html">PIFLSA21 Ch. 3.4-3.6</a></li><li><a href = "ClassExercises/Week2_Union">Class notes</a></li></ul>
 LECTURE
@@ -42,10 +46,6 @@ LECTURE
 Converting DFAs To Regular Expressions
 
 <ul><li><a href = "#readings">Sipser</a> Ch. 1.3</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/RegEx.html">PIFLSA21 Ch. 4.1-4.3, 4.7</a></li></ul>
-LECTURE
-More practice with DFAs -> Regexp
-
-
 LECTURE
 The efficiency of of NFA-based regular expression evaluation
 
