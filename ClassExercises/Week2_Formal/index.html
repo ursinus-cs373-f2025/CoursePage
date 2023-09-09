@@ -388,7 +388,8 @@
 										</p>
 
 										<div style="background-color: rgb(251, 245, 234); padding: 10px;">
-											A language <b>L</b> is <b>regular</b> if it is possible to find a DFA <b>M</b> that recognizes <b>L</b>
+											<a name = "reglang"><b>Def. Regular Language: </b></a>
+											A language <b>L</b> is <b>regular</b> there exists a DFA <b>M</b> that recognizes <b>L</b>
 										</div>
 										<p></p>
 										<p>
@@ -475,11 +476,63 @@
 										</p>
 
 									<HR>
-										<h2><a name = "finitelanguage">Languages with A Finite Number of Strings are Regular</a></h2>
+										<h2><a name = "finitelanguage">Languages with A Finite Number of Finite Strings are Regular</a></h2>
 
 										<p>
-											As another example, we can prove that any language with a finite set of strings is regular.  For example, the language <code>{0, 1, 01}</code> is regular.  Below is a DFA that recognizes it:
+											As another example, we can prove that any language with a finite set of finite strings is regular.  For example, the language <code>{0, 1, 01}</code> is regular.  Below is a DFA that recognizes it (<a href = "0_1_01.jff">Click here</a> for the JFLAP file):
 										</p>
+
+										<img src = "0_1_01.png" width="50%">
+
+										<h4>Proof</h4>
+										<p>
+											We will do a proof by construction where we design a DFA to recognize any language <b>L = {s<SUB>1</SUB>, s<SUB>1</SUB>, ..., s<SUB>N</SUB>}</b>, where each string is finite, is as follows:
+										</p>
+										<ol>
+											<li>Let <b>d</b> be the length of the longest string in <b>L</b></li>
+											<li>
+												Create a binary tree of depth <b>d</b>, with <b>2<SUP>d+1</SUP>-1</b> nodes total, where each node is a state, and transition arrows coming out of each node go to its left child on a 0 and its right child on a 1.
+											</li>
+											<li>
+												Make the root of the tree be the start state
+											</li>
+											<li>
+												Mark each state as an accept state if we reach that state for a particular string in <b>L</b>
+											</li>
+											<li>
+												Add one additional "reject state" that all strings beyond length <b>d</b> go to and stay.  This makes <b>2<SUP>d</SUP></b> nodes total.
+											</li>
+										</ol>
+
+										<p>
+											For fun, I've written some code to automatically generate these trees in JFLAP.  <a href = "https://github.com/ursinus-cs373-f2023/CoursePage/blob/main/ClassExercises/Week2_Formal/finitelang.py">Click here</a> to view this code.  I used it to generate a few examples below:
+										</p>
+
+										<h4>3 Short Strings Example</h4>
+
+										<p>
+											We'll redo the language <code>{0, 1, 01}</code> using this technique.  The result is shown below (<a href = "0_1_01_tree.jflap">Click here</a> for the JFLAP file).
+										</p>
+
+										<img src = "0_1_01_tree.png" width="50%">
+
+										<p>
+											We see this is not as efficient as the machine we came up with before, but efficiency doesn't really matter in this context, because we're just trying to show the <b>existence</b> of a DFA that recognizes a language; it doesn't have to be the best one.
+										</p>
+
+										<h4>Binary Palindromes &leq;= 5</h4>
+
+										<p>
+											A string is a <b>palindrome</b> if it is the same read forwards and backwards.  The machine below recognizes the language of binary strings that are palindromes with at most 5 characters: (<a href = "palindromes5max.jflap">Click here</a> to see the JFLAP file)
+										</p>
+
+										<img src = "palindromes5max.png" width="100%">
+
+										<p>
+											Interestingly, as <a href = "../Week5_PumpingLemma/index.html">we will prove later</a>, the languages of palindromes of arbitrary length is <b>not regular</b>, but if put a cap on the length, they are!
+										</p>
+
+
 
 
                                     
