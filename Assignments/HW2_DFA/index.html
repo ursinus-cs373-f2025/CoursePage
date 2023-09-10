@@ -86,7 +86,7 @@
 
                                         <h3>Problem 1.2 (3 Points)</h3>
                                         <p>
-                                            Construct a DFA in JFLAP that accepts the language over &Sigma; = {a, b} of strings with a nonzero and even number of a's, followed by at least one b, followed by zero or an odd number of a's.  Running your DFA on <a href = "tests2.txt">the following test file</a> should give these results (you should come up with your own tests as well to convince yourself it's working)
+                                            Construct a DFA in JFLAP that accepts the language over &Sigma; = {a, b} of strings that start with a nonzero and even number of a's, followed by at least one b, followed by zero or an odd number of a's.  Running your DFA on <a href = "tests2.txt">the following test file</a> should give these results (you should come up with your own tests as well to convince yourself it's working)
                                         </p>
 
                                         <table style="width: 40%;">
@@ -130,7 +130,7 @@
 										<h3><a name = "problem1dot4">Problem 1.4 (3 Points)</a></h3>
 										<b>You should review how <a href = "../../ClassExercises/Week1_FridayDFABinary/index.html#binaryaddition">binary addition</a> works before you start this problem</b>
 										<p>
-											In this problem, you will create a DFA that recognizes the language of binary strings that have been correctly added together.    Since we can only feed a single symbol to a DFA at a time, we will have to setup a slightly more intricate language that we have so far with 8 elements
+											In this problem, you will create a DFA that recognizes the language of binary strings that have been correctly added together.    Since we can only feed a single symbol to a DFA at a time, we will have to setup a slightly more intricate alphabet than we have so far with 8 elements
 										</p>
 
 										<div style="width:400px">
@@ -140,7 +140,7 @@
 										</div>
 
 										<p>
-											Each element of the language is a column with three numbers: the top one is a digit in the first binary number, the middle one is the corresponding digit in the second binary number, and the third is the corresponding digit in the result that we're checking.  You should design your DFA to read the binary digits <b>from right to left</b> (this is easier than left to right actually, and it matches the way the <a href = "../../ClassExercises/Week1_FridayDFABinary/index.html#binaryaddition">binary addition app</a> works).  For instance, to check the result 1011101<SUB>2</SUB> + 101100<SUB>2</SUB> = 10001001<SUB>2</SUB>
+											Each element of the alphabet is a column with three numbers: the top one is a digit in the first binary number, the middle one is the corresponding digit in the second binary number, and the third is the corresponding digit in the result that we're checking.  You can assume that your DFA is reading the binary digits <b>from right to left</b> (this is easier than left to right actually, and it matches the way the <a href = "../../ClassExercises/Week1_FridayDFABinary/index.html#binaryaddition">binary addition app</a> works).  For instance, to check the result 1011101<SUB>2</SUB> + 101100<SUB>2</SUB> = 10001001<SUB>2</SUB>
 										</p>
 
 										<img src = "BinaryAddEx.svg">
