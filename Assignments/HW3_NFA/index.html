@@ -56,29 +56,30 @@
 											For all problems that require you to construct an NFA or a DFA, <b>you should submit a JFLAP file</b>.  For all other problems, submit a picture of pen + paper work or a PDF document of a writeup.  Enjoy!
                                         </p>
 
-										<b>(Q, &Sigma;, &delta;, q, F)</b>
+										<!--<b>(Q, &Sigma;, &delta;, q, F)</b>!-->
 
 										<h3>Problem 1: The Union of Regular Languages (3 Points)</h3>
 										<p>
-											Design a DFA that recognizes strings over the alphabet {a, b, c} that contain ab <b>or</b> that contain bc.  Then, design an NFA that also recognizes this language
+											Design a DFA that recognizes strings that are divisible by 3 <b>OR</b> divisible by 4.  Then, design an NFA that also recognizes this language
 										</p>
 
 										<p>
 											Below are some tests you can try in JFLAP (<a href = "tests1.txt">Click here</a> to download them)
 										</p>
 
-										<table style="width:200px;"><tr><td>Input</td><td>Result</td></tr>
-											<tr><td> abbcac </td><td> Accept </td></tr>
-											<tr><td> aacbccabb </td><td> Accept </td></tr>
-											<tr><td> babaabcaca </td><td> Accept </td></tr>
-											<tr><td> bc </td><td> Accept </td></tr>
-											<tr><td> abbbacac </td><td> Accept </td></tr>
-											<tr><td> aca </td><td> Reject </td></tr>
-											<tr><td> a </td><td> Reject </td></tr>
-											<tr><td> bcaaba </td><td> Accept </td></tr>
-											<tr><td> ccabbbbccc </td><td> Accept </td></tr>
-											<tr><td> c </td><td> Reject </td></tr>
+										<table style="width:200px;"><tr><td>Decimal Number</td><td>Input</td><td>Result</td></tr>
+											<tr><td> 44 </td><td> 101100 </td><td> Accept </td></tr>
+											<tr><td> 47 </td><td> 101111 </td><td> Reject </td></tr>
+											<tr><td> 64 </td><td> 1000000 </td><td> Accept </td></tr>
+											<tr><td> 67 </td><td> 1000011 </td><td> Reject </td></tr>
+											<tr><td> 67 </td><td> 1000011 </td><td> Reject </td></tr>
+											<tr><td> 9 </td><td> 1001 </td><td> Accept </td></tr>
+											<tr><td> 83 </td><td> 1010011 </td><td> Reject </td></tr>
+											<tr><td> 21 </td><td> 10101 </td><td> Accept </td></tr>
+											<tr><td> 36 </td><td> 100100 </td><td> Accept </td></tr>
+											<tr><td> 87 </td><td> 1010111 </td><td> Accept </td></tr>
 											</table>
+																					
 											
 
 										<h3>Problem 2: The Intersection of Regular Languages (3 Points)</h3>
@@ -499,10 +500,10 @@
 												<li>
 													<a href = "../../Assignments/HW2_DFA/index.html">HW2: DFAs</a>
 												</li>
-												<!--
 												<li>
 													<a href = "../../Assignments/HW3_NFA/index.html">HW3: DFAs And NFAs</a>
 												</li>
+												<!--
 												<li>
 													<a href = "../../Assignments/HW4_Regexp/index.html">HW4: (Non)Regular Languages And Regular Expressions</a>
 												</li>

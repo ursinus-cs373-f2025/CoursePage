@@ -1,1 +1,1 @@
-abbcac aacbccabb babaabcaca bc abbbacac aca a bcaaba ccabbbbccc c 
+101100 101111 1000000 1000011 1000011 1001 1010011 10101 100100 1010111
