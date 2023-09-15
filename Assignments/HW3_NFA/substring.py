@@ -1,4 +1,4 @@
-def write_dfa_jflap(transitions, filename):
+def write_dfa_jflap(delta, filename):
     """
     Programmer: Chris Tralie
     Convert a python dictionary describing DFA transitions into
@@ -6,15 +6,15 @@ def write_dfa_jflap(transitions, filename):
 
     Parameters
     ----------
-    transitions: Dictionary: String -> (Dictionary: String -> String)
-        Dictionary of state->character->next
-        For any characters in the alphabet not specified as a transition, assume
+    delta: Dictionary: (String, String) -> String
+        Transition function from (state, character) -> state
+        NOTE: For any characters in the alphabet not specified as a transition, assume
         it means go back to the beginning
     filename: string
         Path to which to write JFLAP file
     """
     import numpy as np
-    BEGIN_JFF = """<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--Created with JFLAP 6.4.--><structure>
+    BEGIN_JFF = """<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--Created with substring.py in Ursinus College CS 373--><structure>
         <type>fa</type>
         <automaton>"""
     ## Step 1: Setup the states
@@ -25,7 +25,15 @@ def write_dfa_jflap(transitions, filename):
         if s != "start":
             ret = 1+int(s.split("_")[1])
         return ret
-    states = transitions.keys()
+    delta_orig = delta
+    # Convert to (State):(Character:State)
+    delta = {}
+    for (state, c), state_to in delta_orig.items():
+        if not state in delta:
+            delta[state] = {}
+        delta[state][c] = state_to
+    states = delta.keys()
+    ## Step 1b: Setup state positions
     width = 100
     r = len(states)*width/2
     for state in states:
@@ -42,12 +50,12 @@ def write_dfa_jflap(transitions, filename):
         if id == len(states)-1:
             d = "<final/>"
         states_xml += "<state id=\"{}\" name=\"{}\">\n    <x>{}</x>    <y>{}</y>\n{}</state>".format(id, state, x, y, d)
-    # Now make the transitions
+    ## Step 2: Setup the transitions
     jff_string += states_xml
-    for state_from in transitions.keys():
+    for state_from in delta.keys():
         state_from_id = get_id(state_from)
-        for c in transitions[state_from].keys():
-            state_to = get_id(transitions[state_from][c])
+        for c in delta[state_from].keys():
+            state_to = get_id(delta[state_from][c])
             jff_string += "<transition>\n    <from>{}</from>\n    <to>{}</to>\n    <read>{}</read>\n</transition>\n".format(state_from_id, state_to, c)
     jff_string += "</automaton></structure>"
     fout = open(filename, "w")
@@ -59,5 +67,7 @@ def write_dfa_jflap(transitions, filename):
 if __name__ == '__main__':    
     Sigma = ['a', 'b', 'c']
     pattern = "ababac"
-    transitions = make_substring_dfa(Sigma, "ababac")
-    write_dfa_jflap(transitions, "ababac.jff")
+    delta = make_substring_dfa(Sigma, "ababac")
+    for key, value in delta.items():
+        print(key, ":", value)
+    write_dfa_jflap(delta, "ababac.jff")

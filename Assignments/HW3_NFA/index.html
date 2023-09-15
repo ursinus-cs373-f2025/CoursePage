@@ -323,7 +323,10 @@
 											</li>
 											<li>
 												<p>
-													Add state transitions for the matched characters in sequence.  For instance, in the above pattern, we'd have a transition from <code>start</code> to <code>a_0</code> when we see an <code>a</code>, a transition from <code>a_0</code> to <code>c_1</code> when we see a <code>c</code>, etc.
+													Add state transitions for the matched characters in sequence.  For instance, in the <code>acdc</code> pattern, we'd have a transition from <code>start</code> to <code>a_0</code> when we see an <code>a</code>, a transition from <code>a_0</code> to <code>c_1</code> when we see a <code>c</code>, etc.
+												</p>
+												<p>
+													Also, in a separate loop, add the remaining arrows from start back to itself for all other characters in the alphabet.  In <code>acdc</code>, assuming an alphabet of <code>{a, b, c, d}</code>, we'd add the arrows from b, c, and d from start to itself.
 												</p>
 											</li>
 											<li>
@@ -355,19 +358,48 @@
 										</p>
 
 										<p>
-											Create a python method <code>make_substring_dfa(Sigma, pattern)</code> that takes in an alphabet as a list in <code>Sigma</code> and a <code>pattern</code> string, and which returns a <code>transitions</code> dictionary describing a DFA that matches <code>pattern</code>.  For example, if you run the following code:
+											Create a python method <code>make_substring_dfa(Sigma, pattern)</code> that takes in an alphabet as a list in <code>Sigma</code> and a <code>pattern</code> string, and which returns a <code>delta</code> dictionary describing the DFA transitions that match <code>pattern</code>.  For example, if you run the following code:
 										</p>
 
 										So, for instance, if you run
 											<script type="syntaxhighlighter" class="brush: python"><![CDATA[
 												Sigma = ['a', 'b', 'c']
 												pattern = "ababac"
-												transitions = make_substring_dfa(Sigma, "ababac")
-												write_dfa_jflap(transitions, "ababac.jff")
-												#
+												delta = make_substring_dfa(Sigma, "ababac")
+												for key, value in delta.items():
+													print(key, ":", value)
+												write_dfa_jflap(delta, "ababac.jff")
+
 											</script>  
 											
-										then your program should output the above example.
+										then your program should output the above example.  It will also print the values of the dictionary, which you can check individually.  They should look like this on the above example, in no particular order:
+										<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+											('start', 'a') : a_0
+											('start', 'b') : start
+											('start', 'c') : start
+											('a_0', 'b') : b_1
+											('b_1', 'a') : a_2
+											('a_2', 'b') : b_3
+											('b_3', 'a') : a_4
+											('a_4', 'c') : c_5
+											('a_0', 'a') : a_0
+											('a_0', 'c') : start
+											('b_1', 'b') : start
+											('b_1', 'c') : start
+											('a_2', 'a') : a_0
+											('a_2', 'c') : start
+											('b_3', 'b') : start
+											('b_3', 'c') : start
+											('a_4', 'a') : a_0
+											('a_4', 'b') : b_3
+											('c_5', 'a') : a_0
+											('c_5', 'b') : start
+											('c_5', 'c') : start
+
+										</script>  
+
+
+
 
 										<h4>Hint</h4>
 										<p>
@@ -385,7 +417,11 @@
 
 										<h4>Extra Credit (+2)</h4>
 										<p>
-											The DFA that you've built is very efficient and can find all instances of the pattern in <b>O(len(s))</b> time, which is substantially better than the <b>O(len(s)*len(p))</b> algorithm we started with.  However, <a href = "#alg1">algorithm 1</a> for <i>constructing</i> the DFA is not very efficient, and is in fact <code>O(len(pattern)<SUP>3</SUP>)</code>, which is quite bad for long patterns.  Luckily, there is a variation that we can do known as the <b>Knuth-Morris-Pratt</b> algorithm to accomplish DFA construction in <code>O(p)</code> time only, so that the entire search algorithm is <code>O(len(pattern) + p)</code>, which is optimal.  Implement this algorithm to construct your DFA instead of the one described in <a href = "#alg1">algorithm 1</a>.  <a href = "https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/#">Click here</a> to view some notes about this on GeeksForGeeks.
+											The DFA that you've built is very efficient and can find all instances of the pattern in <b>O(len(s))</b> time, which is substantially better than the <b>O(len(s)*len(pattern))</b> algorithm we started with.  However, <a href = "#alg1">algorithm 1</a> for <i>constructing</i> the DFA is not very efficient, and is in fact <code>O(len(alphabet)*len(pattern)<SUP>2</SUP>)</code>, assuming a constant alphabet size, which is quite bad for long patterns.  Luckily, there is a variation that we can do known as the <b>Knuth-Morris-Pratt</b> algorithm to accomplish DFA construction with all arrows in <code>O(len(alphabet)*len(pattern))</code> time only.  Implement this algorithm to construct your DFA instead of the one described in <a href = "#alg1">algorithm 1</a>.  <a href = "https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/#">Click here</a> to view some notes about this on GeeksForGeeks.
+										</p>
+
+										<p>
+											<b>NOTE: </b> In practice, the KMP algorithm doesn't actually store arrows for every character in the alphabet coming out of each state; it only tells you where to jump if there's about to be a mismatch, before you process the next character.  This is more efficient to do in practice, because it scales well for large alphabets.  What I'm looking for in the extra credit, though, is to create <b>all arrows</b> using a similar trick to what KMP does.  In particular, you'll want to track the longest suffix of the string you're searching that's still a prefix of the pattern you're matching, rather than checking the entire suffix minus one character like we've been doing.</b>
 										</p>
 
 
