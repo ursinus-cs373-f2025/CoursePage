@@ -16,15 +16,18 @@ Assignment 2 Due
 Assignment 3 Due
 
 2023-09-19
-<!--<a href = "Assignments/HW4_Regexp">Assignment 4: (Non)Regular Languages And Regular Expressions</a> Out!-->Assignment 4: (Non)Regular Languages And Regular Expressions Out
+Assignment 4: Grep, Regular Expressions, Nonregular Languages Out
 
-2023-09-18
-Assignment 4 Due
+2023-09-20
+Assignment 4a: Grep Due
 
-2023-09-29
+2023-09-26
+Assignment 4b: Regular Expressions, Nonregular Languages Due
+
+2023-10-02
 <HR><!--<a href = "Assignments/HW5_CFGs">Assignment 5: Context Free Grammars</a> Out!-->Assignment 5: Context Free Grammars Out
 
-2023-09-29
+2023-10-02
 Assignment 5 Due
 
 2023-10-06
