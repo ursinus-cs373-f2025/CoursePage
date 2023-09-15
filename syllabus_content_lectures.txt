@@ -29,17 +29,17 @@ The Union Operation
 LECTURE
 Nondeterministic Finite Automata (NFAs)
 
-<ul><li><a href = "#readings">Sipser</a> Ch. 1.1, 1.2</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/NFA.html">PIFLSA21 Ch. 3.4-3.6</a></li><li><a href = "ClassExercises/Week2_Union">Class notes</a></li></ul>
+<ul><li><a href = "#readings">Sipser</a> Ch. 1.2</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/NFA.html">PIFLSA21 Ch. 3.4-3.6</a></li><li><a href = "ClassExercises/Week3_NFAs">Class notes on NFAs And Formal Definitions</a></li></ul>
 LECTURE
-NFA Practice, NFA Reversing, Equivalence of NFAs and DFAs
+NFA Practice, NFAs with and without &lambda;, NFA Reversing
 
-<ul><li><a href = "#readings">Sipser</a> Ch. 1.2</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/NFA.html">PIFLSA21 Ch. 3.4-3.6</a></li><li><a href = "ClassExercises/Week3_NFAs">Class notes</a></li></ul>
+<ul><li><a href = "#readings">Sipser</a> Ch. 1.2</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/NFA.html">PIFLSA21 Ch. 3.4-3.6</a></li><li><a href = "ClassExercises/Week3_NFAs/index.html#reversing">Class notes on Reversing DFAs</a></li></ul>
 LECTURE
-The Regular Operations, Closure Under Star And Concatenation
+NFAs Recognize Regular Languages (NFA &lt;----&gt; DFA), NFAs in Python
 
-<ul><li><a href = "#readings">Sipser</a> Ch. 1.2, 1.3</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/RegEx.html">PIFLSA21 Ch. 4.1-4.3, 4.7</a></li></ul>
+<ul><li><a href = "#readings">Sipser</a> Ch. 1.2, 1.3</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/RegEx.html">PIFLSA21 Ch. 4.1-4.3, 4.7</a></li><li><a href = "ClassExercises/Week3_NFAToDFA/index.html">Class Notes on NFA And DFA Equivalence</a></li><li><a href = "ClassExercises/Week3_NFACode">Class Notes on NFAs in Python with and without &lambda;</a></li></ul>
 LECTURE
-Regular Expressions, Converting Regular Expressions To NFAs
+Regular Operations, Regular Expressions, Converting Regular Expressions To NFAs
 
 <ul><li><a href = "#readings">Sipser</a> Ch. 1.2, 1.3</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/RegEx.html">PIFLSA21 Ch. 4.1-4.3, 4.7</a></li></ul>
 LECTURE
@@ -53,7 +53,7 @@ The efficiency of of NFA-based regular expression evaluation
 LECTURE
 The pumping lemma
 
-<ul><li><a href = "#readings">Sipser</a> Ch. 1.4</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/NonRegular.html">PIFLSA21 Ch. 5</a></li></ul>
+<ul><li><a href = "#readings">Sipser</a> Ch. 1.4</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/NonRegular.html">PIFLSA21 Ch. 5</a></li><li><a href = "https://www.youtube.com/watch?v=592crJUBgGc">Trouble Funk: Pump Me Up</a></li></ul>
 LECTURE
 More pumping lemma practice
 

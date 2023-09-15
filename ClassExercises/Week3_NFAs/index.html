@@ -67,7 +67,7 @@
 											<img src = "1In2sPlaceInput.svg" width="30%">
 										</p>
 										<p>
-											Notice how when we are at a state that has multiple arrows coming out of it for a particular input, we branch off into each possibility.  Also, as soon as we reach a dead end, a particular path dies off.  In this case, the only path that survives until the end is the one that stays at q until the 4th character comes in, when it jumps to <b>q2</b> and then <b>q0</b>, which is an accept state.  Since it ends at an accept state, the string is said to be accepted by the machine.
+											Notice how when we are at a state that has multiple arrows coming out of it for a particular input, we branch off into each possibility.  Also, as soon as we reach a dead end, a particular path dies off.  In this case, the only path that survives until the end is the one that stays at q until the 4th character comes in, when it jumps to <b>q2</b> and then <b>q0</b>, which is an accept state.  Since it ends at an accept state in at least one clone, the string is said to be accepted by the machine.
 										</p>
 										<p>
 											We can interpret the above machine as taking a gamble on when it's actually reading the 2s place.  If it's reading the 2s place and it sees a 1 as it should, it jumps from the start to <b>q2</b>.  If it hasn't read the 2s place yet, it stays at <b>q</b> regardless.  We can see that the rightmost branches in the above evaluation guessed incorrectly that they were in the 2s place, and this is what caused them to die off when they had more characters than anticipated. 
@@ -220,7 +220,7 @@
 												Include all non-&lambda; transitions in the original NFA in &delta;
 											</li>
 											<li>
-												If a state <b>q</b> has a &lambda; transition, gather all states that can be reached from <b>q</b> by a sequence of &lambda; arrows into a set <b>P</b>.  Then, for all non-&lambda; arrows <b>&delta;(p, c) = r</b>, for all <b>p</b> in <b>P</b>, create a transition 
+												If a state <b>q</b> has a &lambda; transition in <b>M</b>, gather into a set <b>P</b> all states that can be reached from <b>q</b> in <b>M</b> by a sequence of &lambda; arrows.  Then, for all non-&lambda; arrows <b>&delta;(p, c) = r</b>, for all <b>p</b> in <b>P</b>, create a transition 
 
 												<div style="width:100px;">
 												<h4>
@@ -405,6 +405,7 @@
 												<li><a href = "../../ClassExercises/Week2_Union">Week 2: Union of Regular Languages</a></li>
 												<li><a href = "../../ClassExercises/Week3_NFAs">Week 3: Nondeterministic Finite Automata (NFAs), Reversing Regular Languages</a></li>
 												<li><a href = "../../ClassExercises/Week3_NFAToDFA">Week 3: NFAs Recognize Regular Languages (i.e. NFAs To DFAS)</a></li>
+												<li><a href = "../../ClassExercises/Week3_NFACode">Week 3: Class Notes on NFAs in Python with and without Lambda</a></li>
 												<li><a href = "../../ClassExercises/Week4_DFAToRegexp">Week 4: Converting Regular Expressions To DFAs And Back</a></li>
 												<li><a href = "../../ClassExercises/Week5_PumpingLemma">Week 5: The Pumping Lemma</a></li>
 												<li><a href = "../../ClassExercises/Week7_Turing">Week 7/8: Turing Machine Examples</a></li>
