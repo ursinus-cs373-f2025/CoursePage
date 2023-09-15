@@ -50,21 +50,21 @@
 									<HR>
 										<h2><a name = "nfas">Nondeterministic Finite Automata (NFAs)</a></h2>
 										<p>
-											At this point in the course, we talked about a generalization of DFAs called <b>Nondeterministic Finite Automata (NFAs)</b>.  The idea here is that we can have more than one arrow with the same symbol coming out of a state, none at all, or a special symbol called <b>&lambda;</b>.  The machine is "nondeterministic" because it clones itself into a sort of "parallel universe" situation to explore multiple paths in parallel, and it can keep branching.  If one or more branches ends up persisting to an accept state, then we consider the NFA to have accepted a language.  Let's look at an example
+											We will now introduce a generalization of DFAs called <b>Nondeterministic Finite Automata (NFAs)</b>.  The idea here is that we can have more than one arrow with the same symbol coming out of a state, or none at all.  We will also look at a variant with a special symbol called <b>&lambda;</b> that clones the machine in a different state without seeing a character.  The machine is "nondeterministic" because it clones itself into a sort of "parallel universe" situation to explore multiple paths in parallel, and it can keep branching.  If one or more branches ends up persisting to an accept state, then we consider the NFA to have accepted a language.  Let's look at an example
 										</p>
 
 										<h3>
-											<a name = "example11">Example 1</a>
+											<a name = "example11">NFA Example 1: 1 in The 2s Place</a>
 										</h3>
 										<p>
 											We'll create an NFA that accepts a binary string that, when read from left to right, has a 1 in the 2s place.  Below is a picture of an NFA that accomplishes this (<a href = "1in2splace.jff">Click here</a> to download the JFLAP file)
 										</p>
-										<img src = "1in2splace.png">
+										<img src = "1in2splace.png" width="50%">
 										<p>
 											Let's consider the input <b>11010</b>.  We know by looking at it that it does indeed have a 1 in the 2s place.  But what does the NFA do?  We can keep track of the branching using a tree that follows the different possibilities as new characters are read:
 										</p>
 										<p>
-											<img src = "1In2sPlaceInput.svg" width=250>
+											<img src = "1In2sPlaceInput.svg" width="30%">
 										</p>
 										<p>
 											Notice how when we are at a state that has multiple arrows coming out of it for a particular input, we branch off into each possibility.  Also, as soon as we reach a dead end, a particular path dies off.  In this case, the only path that survives until the end is the one that stays at q until the 4th character comes in, when it jumps to <b>q2</b> and then <b>q0</b>, which is an accept state.  Since it ends at an accept state, the string is said to be accepted by the machine.
@@ -75,14 +75,111 @@
 										<p>
 											You can also explore NFA evaluations in JFLAP by stepping through, as shown below for this example
 										</p>
-										<img src = "1in2splace.gif">
+										<img src = "1in2splace.gif" width="90%">
 										<P></P><p></p>
 
+										<HR>
 										<h3>
-											Example 2: A Union
+											<a name = "formaldef">Formal Definition of NFAs</a>
+										</h3>
+
+										<p>
+											With the above example in mind, let's see if we can now come up with a formal definition for NFAs and NFA acceptance, given the analogous definitions for <a href = "../Week2_Formal/index.html">DFAs</a> and <a href = "../Week2_Formal/index.html#acceptance">DFA acceptance</a>, respectively.
+										</p>
+
+										<div style="background-color: rgb(251, 245, 234); padding: 10px;">
+											<a name = "nfaformal"><b>Def. NFA</b></a>: </b> 
+
+											Like a DFA, and NFA is defined as "5-tuple" <b>(Q, &Sigma;, &delta;, q, F)</b>.
+
+											<ul>
+												<li>
+													<b>Q</b>: A set of all of the states in the NFA
+												</li>
+												<li>
+													<b>&Sigma;</b>: A set of all characters in the <b>alphabet</b>
+												</li>
+												<li>
+													<b>&delta;</b>: A function describing the arrows in the diagram.  The function is of the form
+													<div style="width:100px;">
+													<h4>
+														\[ \delta: Q \times \Sigma \to \mathcal{P}(Q) \]
+													</h4>
+													</div>
+													where <b>P(Q)</b> is the <a href = "../Week1_Discrete/index.html#powerset">power set</a> of <b>Q</b>, or the set of all subsets of <b>Q</b> (including all of <b>Q</b> and the emptyset).  In other words, like a DFA, the input to the function is a tuple of (state, character), but this time, the output is a <b>set of states</b>.
+												</li>
+												<li>
+													<b>q</b>: The start state
+												</li>
+												<li>
+													<b>F</b>: A <b>set</b> of the accept states or "final states"
+												</li>
+											</ul>
+
+										</div>
+
+										<p>
+											You'll notice looking at this that the only difference is the <b>\delta;</b> function, which captures the idea that we can have multiple outgoing characters through the same arrow, or none at all.
+										</p>
+
+										<p>
+											Let's see how we'd tweak the definition of acceptance for an NFA now
+										</p>
+
+										<div style="background-color: rgb(251, 245, 234); padding: 10px;">
+											<a name = "acceptance"><b>Def. NFA Acceptance</b></a>: </b> A string <b>s = w<SUB>1</SUB>w<SUB>2</SUB>...w<SUB>n</SUB></b> in <b>L</b> is <b>accepted</b> by an NFA  <b>(Q, &Sigma;, &delta;, q, F)</b> if there exists (i.e. it is possible to find) a sequence of states <b>r<SUB>0</SUB>, r<SUB>1</SUB>, r<SUB>2</SUB>, ..., r<SUB>n</SUB></b> so that 
+											<ol>
+												<li>r<SUB>0</SUB> = q</li>
+												<li>
+													<div style="width:100px;">
+													<h4>
+														\[ r_{i+1} \in \delta(r_i, w_i+1) \]
+													</h4>
+													</div>
+												</li>
+												<li>r<SUB>n</SUB> is in <b>F</b></li>
+											</ol>
+											
+											
+										</div>
+										<p></p>
+										<p>
+											The only difference between this and <a href = "../Week2_Formal/index.html#acceptance">DFA acceptance</a> is that <b>r<SUB>i+1</SUB></b> has to be only one of many possibilities of the output of <b>&delta;(r<SUB>i</SUB>, w<SUB>i</SUB>+1)</b>.  It's also worth nothing that there may be multiple sequences that take us to acceptance, while there is exactly one sequence in a DFA that gets us there.  Though in both definitions, it's sufficient to say "there exists a sequence."
+										</p>
+
+										<HR>
+
+										<h2>
+											<a name = "example2">NFA Example 2: &lambda; Arrows</a>
+										</h2>
+										<p>
+											Let's spice up our NFAs now by adding one more type of nondeterministic transition: the &lambda; transition.  What &lambda; means is that, even before we see a new character, a machine can clone itself along the arrow.  Consider the example below (<a href = "LambdaEx.jff">Click here</a> for the JFLAP file):
+										</p>
+
+										<img src = "LambdaEx.png" width="60%">
+
+										<p>
+											Here's a diagram depicting a simulation of the NFA with machine cloning for the input <b>0011</b>.  We'll depict &lambda; transitions as horizontal arrows, and we have to recursively clone along all horizontal arrows before we parse the next character:
+										</p>
+
+										<img src = "LambdaEx.svg" width="50%">
+										<p>
+											Notice how in this example we clone to two states before parsing the next character if we happen to be at <b>q0</b>, since we clone to <b>q1</b>, and then <b>q1</b> clone itself to <b>q2</b>.  The DFA ends up accepting, as there's exactly one clone of the machine that ends up in an accept state.
+										</p>
+
+										<p>
+											Here's how JFLAP would show us all of these clones as we interactively step through the input.  Notice how we have up to 5 machine clones at one point, as depicted in the above trace.
+										</p>
+
+										<img src = "LambdaEx.gif" width="80%">
+
+										<p></p>
+
+										<h3>
+											<a name = "example3">NFA Example 3: A Union</a>
 										</h3>
 										<p>
-											Let's go back to the union example from last time and see how we can do the same thing more simply with an NFA.  Recall that a machine that recognizes binary strings with at most 1 one looks like this:
+											Let's see a more useful application of the &lambda; transiton now.  We'll go back to the union example from last time and see how we can do the same thing more simply with an NFA with &lambda; transitions.  Recall that a machine that recognizes binary strings with at most 1 one looks like this:
 										</p>
 										<img src = "../Week2_Union/atmost1one.png">
 										<p>
@@ -90,7 +187,7 @@
 										</p>
 										<img src = "../Week2_Union/oddzeros.png">
 										<p>
-											We used the cartesian product to create a DFA to recognize both
+											We used the <a href = "../Week2_Union/index.html#example1">cartesian product</a> to create a DFA to recognize both
 										</p>
 
 										<img src = "../Week2_Union/atmost1one_or_oddzeros.png">
@@ -108,10 +205,56 @@
 										</p>
 
 										<img src = "UnionExample.gif">
+										<p></p>
+
+										<h2><a name = "lambdareduce">Reducing NFAs with &lambda; To Ordinary NFAs</a></h2>
+										<p>
+											It may seem that by introducing the &lambda; symbol, we're adding a capability to NFAs that we didn't have before.  But actually, we can <b>reduce</b> any NFA with a &lambda; symbol to an ordinary definition as per our <a href = "#formaldef">formal definition of NFAs</a>, which does not include &lambda; symbols.  That is, for any NFA with &lambda; symbols, we can construct an NFA without &lambda; symbols that recognizes the same language.  
+										</p>
+										<p>
+											<b>Proof: </b> Given an NFA <b>M = (Q, &Sigma;, &delta;, q, F)</b> with &lambda; transitions, construct an NFA <b>M' = (Q, &Sigma;, &delta;', q, F)</b>, where the transitions &delta;' are as follows:
+										</p>
+
+										<ul>
+											<li>
+												Include all non-&lambda; transitions in the original NFA in &delta;
+											</li>
+											<li>
+												If a state <b>q</b> has a &lambda; transition, gather all states that can be reached from <b>q</b> by a sequence of &lambda; arrows into a set <b>P</b>.  Then, for all non-&lambda; arrows <b>&delta;(p, c) = r</b>, for all <b>p</b> in <b>P</b>, create a transition 
+
+												<div style="width:100px;">
+												<h4>
+													\[ \delta'(q, c) = r \]
+												</h4>
+												</div>
+											</li>
+										</ul>
+
+										<p>
+											In other words, add arrows to <b>M'</b> that simulate the effect of going along a sequence of &lambda; transitions and then following the appropriate character where those &lambda; states end up.
+										</p>
+
+										<p>
+											The example below shows such a construction.  The blue arrows represent the &lambda; transitions, while the red arrows represent the arrows that would replace them after the above conversion.  The machine with the blue arrows alone is equivalent to the one with the red arrows alone.  As a few examples:
+											<ul>
+												<li>
+													If we're at q1 and we see a 1, we can do a lambda transition to q2 and then follow the 1 back to q1.  Or, we can follow the red arrow directly from q1 to q1
+												</li>
+												<li>
+													If we see an input of "0" at q0, we can follow three lambda transitions to get to q3, then follow the 0 to stay at q3.  Or, we can take the red arrow directly from q0 to q3
+												</li>
+												
+											</ul>
+										</p>
+										<img src = "LambdaConvertEx.svg" width="50%">
+
+										<p>
+											Since they're of equal capability, from now on, we'll stick to the <a href = "#formaldef">simpler definition</a> whenever we need to prove something about NFAs, but we'll use &lambda; as a practical tool for specific examples when we it helps to make them clearer.  As we can see in the above diagram, this often leads to a more parsimonious specification of the automaton.
+										</p>
 
 										<HR>
-											<h2>Reversing Regular Languages</h2>
-											<p>NFAs give us a nice tool to design machines that recognize the reverse of particular languages if we're given a DFA for the original language.  If the original DFA accepts a string <b>s0 s1 s2 ... sm</b>, then this means that there is a sequence of states <b>q, q0, q1, q2, ..., qm</b> that is compatible with the string, where <b>qm</b> is an accept state.  Were we to visit the string in reverse, we would visit the states in reverse, starting at <b>qm</b> and ending at <b>q</b>.  What this means is that we should take the following steps to devise an NFA that accepts the reverse string:</p>
+											<h2><a name = "reversing">Reversing Regular Languages</a></h2>
+											<p>Speaking of specific examples, NFAs with &lambda; transitions give us a nice tool to design machines that recognize the reverse of particular languages if we're given a <b>DFA</b> for the original language.  If the original DFA accepts a string <b>s0 s1 s2 ... sm</b>, then this means that there is a sequence of states <b>q, q0, q1, q2, ..., qm</b> that is compatible with the string, where <b>qm</b> is an accept state.  Were we to visit the string in reverse, we would visit the states in reverse, starting at <b>qm</b> and ending at <b>q</b>.  What this means is that we should take the following steps to devise an NFA that accepts the reverse string:</p>
 
 											<ol>
 												<li>Reverse all of the arrows</li>
@@ -132,7 +275,7 @@
 												Let's look at a couple of examples to see how this works
 											</p>
 
-											<h3>Example 1</h3>
+											<h3>Reversing Example 1</h3>
 											<p>
 												Let's recall the DFA that accepts strings that contain a 01:
 											</p>
@@ -145,11 +288,11 @@
 												We can see right away it's an NFA and not a DFA, because p01 has two arrows coming out for a 1 input, and p0 has two arrows coming out for a 0 input.  The new accept state, p, will also kill off any branches that have a 0 on them.
 											</p>
 
-											<h3>Example 2</h3>
+											<h3><a name = "revex2">Reversing Example 2</a></h3>
 											<p>
 												Let's consider a DFA that recognizes the languages of strings over &Sigma;={a, b} that do not contain the substring <b>ba</b>.  The DFA below accomplishes this (<a href = "noba.jff">Click here</a> to view the JFLAP file)
 											</p>
-											<img src = "noba.png">
+											<img src = "noba.png" width="45%">
 											<p>
 												If we follow the recipe to reverse the arrows, we get the following (<a href = "nobarev.jff">Click here</a> for the JFLAP file)
 											</p>
@@ -161,190 +304,6 @@
 												Actually, we can simplify this a bit by noticing that it's impossible to reach the state q2 from any of the start states:
 											</p>
 											<img src = "nobarevsimp.png">
-
-											<HR>
-												<h2><a name = "nfatodfa">NFA to DFA</a></h2>
-												<p>
-													It might seem at this point like NFAs are way more powerful than DFAs.  Every DFA is trivially an NFA with no branching, but it seems like we can represent more complicated things with an NFA.  Amazingly, though, NFAs are no more powerful than DFAs, in the sense that it is possible to construct a DFA for any NFA.  In other words, like DFAs, <b>NFAs also recognize the class of regular languages</b>.  We'll demonstrate a procedure to prove by construction how to convert NFAs to DFAs.
-												</p>
-												
-												<h3>Example 1</h3>
-												<p>
-													Let's return to the last example to start with 
-												</p>
-
-												<img src = "nobarevsimp.png">
-
-												<p>
-													We're going to do something like we did when constructing DFAs to <a href = "../Week2_Union/">recognize the union</a> of two regular languages; that is, we'll create "meta states" that are a tuple of all states we could possibly be in after observing some amount of symbols.  For instance, in <a href = "#example11">example 1</a> at the beginning of this document, we were in q by itself, but we were also in (q, q2), (q, q2, q0), (q, q0), q2, and q0.  We'll have to consider all such possibilities.
-												</p>
-
-												<p>
-													Returning to our current simpler example, we have the following transition table
-												</p>
-
-												<table style="width:200px">
-													<tr>
-														<td></td>
-														<td>a</td>
-														<td>b</td>
-													</tr>
-													<tr>
-														<td><b>(q0, q1)</b></td>
-														<td>q0</td>
-														<td>(q0, q1)</td>
-													</tr>
-													<tr>
-														<td><b>q0</b></td>
-														<td>q0</td>
-														<td>{}</td>
-													</tr>
-													<tr>
-														<td>{}</td>
-														<td>{}</td>
-														<td>{}</td>
-													</tr>
-												
-												</table>
-
-												A few things to notice here:
-												<ul>
-													<li>We start off in states q0 and q1, which we represent with the meta state (q0, q1), and we consider what happens to each of these.  When we see an a, q0 stays at q0, but q1 actually has a dead end, so this collapses to just q0.  When we see a b, q0 has a dead end, but q1 splits into q0 and q1, so this can be viewed as a self transition (q0, q1) -> (q0, q1)</li>
-													<li>
-														When we're at q0, a causes is to stay there, but there's a dead end at b, so we actually transition to a null, which I indicated with {}
-													</li>
-													<li>
-														Nulls (or as some in class call, "Azkaban") are like places that we get stuck at and can never recover from, so they transition to themselves for all characters
-													</li>
-													<li>
-														Accept states are bolded in the left column.  An accept state in an DFA we construct from an NFA is any meta state that contains at least one accept state from the NFA.
-													</li>
-												</ul>
-
-												<p>
-													When we draw this out graphically, we see the following (<a href = "nobarevdfa.jff">Click here</a> to view the JFLAP file)
-												</p>
-
-												<img src = "nobarevdfa.png">
-
-												<p>
-													And actually, if we stare at this, we can see that it accepts anything that doesn't contain an "ab".  This is neat, because we just discovered that this is precisely the language that's the reverse of the language we started with of strings that don't contain a "ba."
-												</p>
-
-												<h3>Example 2</h3>
-												<p>
-													Let's look at a divisibility example.  First, we'll consider a DFA that recognizes the language of binary strings divisible by 4 when read <i>from left to right</i>.  Recall that we need states for each remainder: 0, 1, 2, and 3, and the transition between the states is 
-												</p>
-
-												<div style="width:200px;">
-												<h3>
-													\[ \delta(q_k, b) = q_{(2k + b) \% 4} \]
-												</h3>
-												</div>
-
-												<p>
-													This leads to the following DFA (<a href = "DivBy4.jff">Click here</a> for the JFLAP file)
-												</p>
-
-												<img src = "DivBy4.png">
-
-												<p>
-													When we reverse the arrows and the accept/final states, we get the following NFA (<a href = "DivBy4Rev.png">Click here</a> for the JFLAP)
-												</p>
-
-												<img src = "DivBy4Rev.png">
-
-												<p>
-													Here's the transition table we get, starting at the start state q0 and keeping track of what states emerge on different paths that come out of that.  I've bolded the states that contain the original accept state <b>q0</b> as one of the options, and these will be the accept states in the new machine.
-												</p>
-
-												<table style="width:400px;">
-													<tr>
-														<td></td><td>0</td><td>1</td>
-													</tr>
-													<tr>
-														<td><b>q0</b></td><td>(q0, q2)</td><td>{}</td>
-													</tr>
-													<tr>
-														<td><b>(q0, q2)</b></td>
-														<td>(q0, q1, q2, q3)</td>
-														<td>{}</td>
-													</tr>
-													<tr>
-														<td><b>(q0, q1, q2, q3)</b></td>
-														<td>(q0, q1, q2, q3)</td>
-														<td>(q0, q1, q2, q3)</td>
-													</tr>
-													<tr>
-														<td>{}</td>
-														<td>{}</td>
-														<td>{}</td>
-													</tr>
-												</table>
-
-												<p>
-													Shown as a state diagram, this is what it looks like (<a href = "DivBy4RevDFA.jff">Click here</a>) to download the JFLAP file):
-												</p>
-
-												<img src = "DivBy4RevDFA.png">
-
-												<p>
-													Actually, if we examine this DFA, what we notice is that all strings that start with 00 and are followed by anything are accepted.  This makes perfect sense for binary numbers divisible by 4, which, from right to left means that the 1s place and the 2s place are 0.
-												</p>
-
-
-												<h3>Example 3</h3>
-												<p>
-													Below is an example of an NFA that recognizes the language of binary strings that have a 1 in the 2s place (<a href = "NFA1In2s.jff">Click here</a> to download the JFLAP file).  You'll notice that it has two 1 transitions out of the initial state <b>q</b>.  We can think of this as the machine "hedging its bets" when it reads a 1: it can decide it's about to look at the 2s place (transitioning to q2) or whether it hasn't gotten there yet (staying at q).
-												</p>
-
-												<img src = "NFA1In2s.png">
-
-												<p>
-													Below is filling in the NFA to DFA table keeping track of the states as we go along, starting at the start state <b>q</b>, and filling in state tuple transition rules as we see new tuples, bolding the tuples that contain the accept state <b>q1</b> as one of the states
-												</p>
-
-												<table style="width:400px;">
-													<tr>
-														<td></td><td>0</td><td>1</td>
-													</tr>
-													<tr>
-														<td>q</td><td>q</td><td>(q, q2)</td>
-													</tr>
-													<tr>
-														<td>(q, q2)</td>
-														<td>(q, q1)</td>
-														<td>(q, q1, q2)</td>
-													</tr>
-													<tr>
-														<td><b>(q, q1)</b></td>
-														<td>q</td>
-														<td>
-															(q, q2)
-														</td>
-													</tr>
-													<tr>
-														<td>(<b>q, q1, q2)</b></td>
-														<td>(q, q1)</td>
-														<td>(q, q1, q2)</td>
-													</tr>
-												</table>
-
-												<p>
-													Below is a state diagram for this DFA (<a href = "DFA1In2s.jff">Click here</a> to download the JFLAP file)
-												</p>
-
-												<img src = "DFA1In2s.png">
-
-												<p>
-													Actually, if we rename the states, we get some insight into what this machine is doing
-												</p>
-
-												<img src = "DFA1In2s_Relabeled.png">
-												<p>
-													In fact, it's just keeping track of the last two characters it's processed (assuming leading zeros), and if the second to last one happens to be a 1 when it finishes, it accepts.  We can see then how this is logically equivalent to what we specified with the NFA.
-												</p>
-
 												
 
 
@@ -444,7 +403,8 @@
 												</li>
 												<li><a href = "../../ClassExercises/Week2_Formal">Week 2: Formal Description of DFAs, Divisibility</a></li>
 												<li><a href = "../../ClassExercises/Week2_Union">Week 2: Union of Regular Languages</a></li>
-												<li><a href = "../../ClassExercises/Week3_NFAs">Week 3: NFAs, Converting NFAs To DFAs</a></li>
+												<li><a href = "../../ClassExercises/Week3_NFAs">Week 3: Nondeterministic Finite Automata (NFAs), Reversing Regular Languages</a></li>
+												<li><a href = "../../ClassExercises/Week3_NFAToDFA">Week 3: NFAs Recognize Regular Languages (i.e. NFAs To DFAS)</a></li>
 												<li><a href = "../../ClassExercises/Week4_DFAToRegexp">Week 4: Converting Regular Expressions To DFAs And Back</a></li>
 												<li><a href = "../../ClassExercises/Week5_PumpingLemma">Week 5: The Pumping Lemma</a></li>
 												<li><a href = "../../ClassExercises/Week7_Turing">Week 7/8: Turing Machine Examples</a></li>
