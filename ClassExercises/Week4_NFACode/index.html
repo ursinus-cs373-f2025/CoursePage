@@ -1,0 +1,628 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<!-- Header !-->
+	<head>
+		<title>Ursinus CS 373: Theory of Computation, Fall 2023</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="../../assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="../../assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="../../assets/css/ie8.css" /><![endif]-->
+        <style>
+        .image_off, #home:hover .image_on{
+           display:none
+        }
+        .image_on, #home:hover .image_off{
+           display:block
+        }
+        </style>
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="../../index.html" class="logo"><strong>Ursinus CS 373: Theory of Computation, Fall 2023</strong></a>
+								</header>
+<!-- End Header !-->
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+                                        <h2>Week 4: Efficiently Evaluating NFAs in Python</h2>
+                                        <h3><a href = "http://www.ctralie.com">Chris Tralie</a>
+									</header>
+
+									<div id="page-content">
+
+									<h2><a name = "nolambda">No Lambda Transitions</a></h2>
+									<p>
+										Let's start with the case of no &lambda; transitions, as that will be easier to handle, and it matches the <a href = "../Week3_NFAs/index.html#formaldef">formal definition we gave for NFAs</a>.  Code is shown below:
+									</p>
+
+									<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+										def eval_nfa(s, q, delta, F, verbose=False):
+											"""
+											Evaluate a standard NFA with no lambda arrows
+											
+											Parameters
+											----------
+											s: string
+												Input to try
+											q: string
+												Start state
+											delta: (string, string) -> set([string])
+												Transition function
+											F: set([string])
+												Accept states
+											verbose: bool
+												If True, print info about sequence of states that are visited
+											"""
+											states = set([q]) ## We now track multiple possibilities
+											if verbose:
+												print("Start", states)
+											for c in s:
+												next_states = set([])
+												for p in states:
+													if (p, c) in delta:
+														## This line is different from DFA; there are multiple
+														## states we can branch out to; track the unique ones
+														next_states = next_states.union(delta[(p, c)])
+												states = next_states
+												if verbose:
+													print(c, states)
+											## At least one state must be in the set of accept states F
+											return len(states.intersection(F)) > 0
+									]]></script>   
+
+									<p>
+										This code is quite similar to the DFA evaluation code we wrote, except the state transitions map onto a <b>set</b> of states.  Likewise, we keep track of a set of states during the evaluation of the machine to keep track of the unique parallel universes we're considering.  Finally, we accept if at least one state is in the set of accept states <b>F</b>.
+									</p>
+
+									<p>
+										As an example, let's return to the NFA that accepts strings that have a 1 in the 2's place:
+									</p>
+
+
+									<div style="display: inline-block;width:35%;">
+										<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+											delta = {
+												("q", "0"):{"q"},
+												("q", "1"):{"q", "q2"},
+												("q2", "0"):{"q0"},
+												("q2", "1"):{"q0"}
+											}
+	
+											F = {"q0"}
+											q = "q"
+											s = "11010"
+										]]></script>  
+									</div>
+
+									<div style="display: inline-block;width:55%;">
+										<img src = "../Week3_NFAs/1in2splace.png">
+									</div>
+
+									
+
+
+
+
+
+									<p>
+										If we evaluate it
+									</p>
+									<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+										print(s, "Accepts:", eval_nfa(s, q, delta, F, verbose=True))
+									]]></script>  
+
+									<p>
+										then it prints the following:
+									</p>
+
+									<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+										Start {'q'}
+										1 {'q2', 'q'}
+										1 {'q2', 'q0', 'q'}
+										0 {'q0', 'q'}
+										1 {'q2', 'q'}
+										0 {'q0', 'q'}
+										11010 Accepts: True
+									]]></script> 
+
+									<p>
+										This matches the picture we drew
+									</p>
+									
+									<img src = "../Week3_NFAs/1In2sPlaceInput.svg" width="25%">
+									
+
+									<HR>
+										<h2><a name = "reducelambda">Reducing Lambda Transitions</a></h2>
+
+										<p>
+											The above code is useful for the textbook definition of NFAs, but as we've seen, adding &lambda; transitions can make it much easier to specify certain NFAs, and this will be crucial for us on the next assignment when we create <a href = "https://www.youtube.com/watch?v=NTfOnGZUZDk">grep</a><SUP><a href = "#bwk">(1)</a></SUP>
+										</p>
+
+										<p>
+											First, let's talk about how to represent &lambda; transitions in python.  Let's start with the union example from before. We'll use python <code>None</code> to represent &lambda;, as shown below
+										</p>
+
+										<div style="display: inline-block;width:35%;">
+												<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+													delta = {
+														("q", None):{"q0", "peven"},
+														
+														("q0", "0"):{"q0"},
+														("q0", "1"):{"q1"},
+														("q1", "0"):{"q1"},
+														("q1", "1"):{"q2"},
+														("q2", "0"):{"q2"},
+														("q2", "1"):{"q2"},
+														
+														("peven", "0"):{"podd"},
+														("peven", "1"):{"peven"},
+														("podd", "0"):{"peven"},
+														("podd", "1"):{"podd"}
+													}
+													q = "q"
+													F = {"q0", "q1", "podd"}
+													s = "00011"
+												]]></script>
+										</div>
+
+										<div style="display: inline-block;width:55%;">
+											<img src = "../Week3_NFAs/UnionExample.png" width="100%">
+										</div>
+
+										 
+	
+
+										<p>
+											Now, rather than rewriting our code to evaluate NFAs, we'll do the <a href = "../Week3_NFAs/index.html#lambdareduce">reduction from NFAs with &lambda; to those without</a> so we can use the evaluation code we already have.  First, we'll create a helper method to figure out which states are reachable from a particular state via a sequence of &lambda; transitions.  To accomplish this, we'll use <a href = "https://ursinus-cs477-f2023.github.io/CoursePage/ClassExercises/Week2_BasicSearch/index.html#bfsgraph">depth-first graph search</a>:
+										</p>
+
+
+										<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+											def get_reachable_lambdas(start, delta):
+												"""
+												Parameters
+												----------
+												start: string
+													State at which to start.  We'll gather anything
+													that can be reached by a sequence of lambdas
+													from this state
+												delta: (string, string) -> set([string])
+													Transition function
+												
+												Returns
+												-------
+												set([string])
+													Set of all states reachable from start 
+													by a sequence of lambda arrows
+												"""
+												reachable = set([])
+												stack = [start]
+												while len(stack) > 0:
+													state = stack.pop()
+													reachable.add(state)
+													if (state, None) in delta:
+														# If there are lambda arrows out of this state, 
+														# loop through all of them
+														for neighbor in delta[(state, None)]:
+															if not neighbor in reachable:
+																# If we haven't seen this state yet 
+																# (Crucial to avoid infinite loops for lambda cycles)
+																stack.append(neighbor)
+												reachable.remove(start) # Exclude the start state itself
+												return reachable
+										]]></script> 
+
+										<p>
+											Let's look at the <a href = "../Week3_NFAs/index.html#lambdareduceexample">crazy example we had from before:</a>, but we'll add one more &lambda; transition from <b>q3</b> to <b>q1</b> to create a cycle, just to make sure we can handle that
+										</p>
+
+
+										<div style="display: inline-block;width:45%;">
+											<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+												delta = {
+													("q0", "0"):{"q0"},
+													("q0", None):{"q1"},
+													
+													("q1", "0"):{"q1"},
+													("q1", "1"):{"q3"},
+													("q1", None):{"q2"},
+													
+													("q2", "0"):{"q2"},
+													("q2", "1"):{"q1"},
+													("q2", None):{"q3"},
+													
+													("q3", "0"):{"q3"},
+													("q3", None):{"q1"}
+												}
+											]]></script> 
+										</div>
+
+										<div style="display: inline-block;width:45%;">
+											<img src = "LambdaConvertEx.svg" width="70%">
+										</div>
+
+
+										<p>
+											If we check the method we just made on all the states
+										</p>
+
+										<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+											for state in ["q0", "q1", "q2", "q3"]:
+											print(state, get_reachable_lambdas(state, delta))
+										]]></script> 
+
+										<p>
+											then we get this:
+										</p>
+
+										<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+											q0 {'q1', 'q2', 'q3'}
+											q1 {'q2', 'q3'}
+											q2 {'q1', 'q3'}
+											q3 {'q1', 'q2'}
+										]]></script> 
+
+										<p>
+											which is correct.  Let's finish the <a href = "../Week3_NFAs/index.html#lambdareduce">reduction</a> now by adding non-lambda arrows out of the reachable states to each state, and by updating the accept states
+										</p>
+
+
+										<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+											def reduce_nfa_lambdas(delta, F):
+												"""
+												Eliminate the lambdas in an NFA by doing a reduction
+												to equivalent arrows and accept states to without 
+												lambdas
+												
+												Parameters
+												----------
+												delta: (string, string) -> set([string])
+													Transition function, which will be updated as as side effect
+												F: set([string])
+													Final states, which will be updated as as side effect
+												"""
+												## Step 1: Copy the dictionary into a new format where
+												## it's more convenient to look up only the arrows coming
+												## out of a particular state
+												delta_state = {} #(State):(Character:set(states))
+												for (state, c), state_to in delta.items():
+													if not state in delta_state:
+														delta_state[state] = {}
+													delta_state[state][c] = state_to
+												
+												## Step 2: Loop through each state, get the new arrows, and 
+												## update the final states
+												states = set([key[0] for key in delta])
+												F_new = set([])
+												for state in states:
+													# Get states that are reachable from this state
+													reachable = get_reachable_lambdas(state, delta)
+													# Figure out if this should be an accept state based
+													# on what's reachable
+													if len(reachable.intersection(F)) > 0:
+														F_new.add(state)
+													# Add the new arrows
+													for other in reachable:
+														for c, states_to in delta_state[other].items():
+															if c is not None:
+																# Add this new equivalent arrow
+																if not (state, c) in delta:
+																	delta[(state, c)] = set([])
+																delta[(state, c)] = delta[(state, c)].union(states_to)
+												F.update(F_new)
+												
+												## Step 3: Remove the original lambda arrows
+												to_remove = [key for key in delta.keys() if key[1] is None]
+												for key in to_remove:
+													del delta[key]
+										]]></script> 
+
+										<p>
+											Let's run this code on the example we have and see what we get:
+										</p>
+
+										<div style="display: inline-block;width:45%;">
+											<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+												reduce_nfa_lambdas(delta, F)
+												for key in sorted(delta.keys()):
+													print(key, ":", sorted(delta[key]))
+												print("F", sorted(F))
+											]]></script> 
+
+
+											<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+												('q0', '0') : ['q0', 'q1', 'q2', 'q3']
+												('q0', '1') : ['q1', 'q3']
+												('q1', '0') : ['q1', 'q2', 'q3']
+												('q1', '1') : ['q1', 'q3']
+												('q2', '0') : ['q1', 'q2', 'q3']
+												('q2', '1') : ['q1', 'q3']
+												('q3', '0') : ['q1', 'q2', 'q3']
+												('q3', '1') : ['q1', 'q3']
+												F ['q0', 'q1', 'q2', 'q3']
+												
+											]]></script> 
+										</div>
+
+										<div style="display: inline-block;width:45%;">
+											<img src = "LambdaConvertEx_Reduced.svg" width="70%">
+										</div>
+
+										<p>
+											The new transitions and new accept states are depicted in red.  We've added lots of arrows, but it seems our code has worked correctly!  This is a useless example in practice since every state accepts (since every state can reach q2 with a sequence of &lambda; transitions), but it was good to test our code on
+										</p>
+
+										<h4>Union Example Again</h4>
+										<p>
+											Now let's go back to the union example and see what we get:
+										</p>
+										
+										<img src = "../Week3_NFAs/UnionExample.png" width="50%">
+
+
+										<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+											delta = {
+												("q", None):{"q0", "peven"},
+												 
+												("q0", "0"):{"q0"},
+												("q0", "1"):{"q1"},
+												("q1", "0"):{"q1"},
+												("q1", "1"):{"q2"},
+												("q2", "0"):{"q2"},
+												("q2", "1"):{"q2"},
+												 
+												("peven", "0"):{"podd"},
+												("peven", "1"):{"peven"},
+												("podd", "0"):{"peven"},
+												("podd", "1"):{"podd"}
+											}
+											q = "q"
+											F = {"q0", "q1", "podd"}
+											s = "00011"
+											 
+											reduce_nfa_lambdas(delta, F)
+											print(s, "Accepts:", eval_nfa(s, q, delta, F, verbose=True))
+										]]></script> 
+
+										<p>
+											And we get
+										</p>
+
+										<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+											Start {'q'}
+											0 {'podd', 'q0'}
+											0 {'q0', 'peven'}
+											0 {'podd', 'q0'}
+											1 {'podd', 'q1'}
+											1 {'podd', 'q2'}
+											00011 Accepts: True
+											
+										]]></script> 
+
+										<p>
+											This accepts because even though in one of the unique parallel universes it ends on <b>q2</b>, in the other one, it ends on <b>podd</b>, an accept state
+										</p>
+
+										<h4>Messy Lambda Clone Example</h4>
+										<p>
+											Finally, let's go back and look at this example
+										</p>
+
+
+										<div style="display: inline-block;width:40%;">
+											<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+												delta = {
+													("q0", None):{"q1"},
+													("q0", "0"):{"q0"},
+													("q0", "1"):{"q1"},
+													 
+													("q1", "1"):{"q1"},
+													("q1", None):{"q2"},
+													 
+													("q2", "0"):{"q2"}
+												}
+												q = "q0"
+												F = {"q2"}
+												 
+												reduce_nfa_lambdas(delta, F)
+												print("0011", "Accepts:", eval_nfa(s, q, delta, F, verbose=True))
+											]]></script> 
+										</div>
+
+										<div style="display: inline-block;width:55%;">
+											<img src = "../Week3_NFAs/LambdaEx.png" width="100%">
+										</div>
+
+										<p>
+											We get the output below, which matches the picture we drew before on the right; that is, we end up in state <b>q1</b>, which is adjacent to <b>q2</b> by a &lambda; arrow, so we accept.
+										</p>
+										<p>
+											Note that the NFA transitions on our reduced machine do not immediately show the &lambda; clones in the verbose output, but they are behaving correctly.
+										</p>
+
+										<div style="display: inline-block;width:40%;">
+											<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+												Start {'q0'}
+												0 {'q2', 'q0'}
+												0 {'q2', 'q0'}
+												0 {'q2', 'q0'}
+												1 {'q1'}
+												1 {'q1'}
+												0011 Accepts: True												
+											]]></script> 
+										</div>
+
+										<div style="display: inline-block;width:55%;">
+											<img src = "../Week3_NFAs/LambdaEx.svg" width="60%">
+										</div>
+
+
+										<p>
+											Seems like everything is working well!  Feel free to use this code on the grep part of HW4.
+										</p>
+
+
+										
+
+										<HR>
+											<a name = "bwk">Footnote 1</a>
+
+											<p>
+												<a href = "https://www.cs.princeton.edu/~bwk/">Brian Kernighan</a> made <a href = "https://www.youtube.com/watch?v=NTfOnGZUZDk">this video</a> at around the time I had him as an academic adviser at Princeton, so that's how I remember him.  His advice to me at the time was to take more theory courses (up to the point that we met I'd done mostly applications like music, graphics, and human computer interface).  He was right!  Theory is now also a huge passion of mine, as evidenced by these notes.  I am eternally grateful for that push he gave me.
+											</p>
+
+											<p>
+												If there's one more thing I could go back and tell myself, it would be that it's OK if you struggle with the stuff at first, that's normal.  Keep trying, and it will be amazing.
+											</p>
+                                </div>
+						</div>
+					</div>
+
+					<!--LaTeX in Javascript!-->
+					<script src="../../../../jsMath/easy/load.js"></script>
+					<!--Syntax highlighting in Javascript!-->
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shCore.js"></script>
+					<script type="text/javascript" src="../../../syntaxhighlighter/scripts/shBrushJScript.js"></script>
+                    <script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushCpp.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushXml.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushMatlabSimple.js"></script>
+					<script type="text/javascript" src="../../../../syntaxhighlighter/scripts/shBrushPython.js"></script>
+					<link type="text/css" rel="stylesheet" href="../../../../syntaxhighlighter/styles/shCoreDefault.css"/>
+					<script type="text/javascript">SyntaxHighlighter.all();</script>
+
+<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+                                        <li>
+											<span class="opener">General</span>
+											<ul>
+												<li><a href = "../../index.html#overview">Overview</a></li>
+												<li><a href = "../../index.html#logistics">Technology Logistics</a></li>
+												<li><a href = "../../index.html#readings">Readings</a></li>
+												<li><a href = "../../index.html#deliverables">Deliverables</a></li>
+												<li><a href = "../../index.html#schedule">Schedule</a></li>
+												<li><a href = "../../index.html#grading">Grading</a></li>
+												<li><a href = "../../index.html#environment">Classroom Environment</a></li>
+												<li><a href = "../../index.html#collaboration">Collaboration Policy</a></li>
+												<li><a href = "../../index.html#other">Other Resources / Policies</a></li>
+											</ul> 
+										</li>
+										<li><a href = "../../Software/index.html">Software</a></li>
+										<li><a href = "../../index.html#schedule">Schedule</a></li>
+										<li><a href = "../../FinalProject/index.html">Final Project</a></li>
+                                        <li>
+											<span class="opener">Assignments</span>
+											<ul>
+												<li>
+													<a href = "../../Assignments/HW1_Discrete/index.html">HW1: Discrete Math Practice</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW2_DFA/index.html">HW2: DFAs</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW3_NFA/index.html">HW3: DFAs And NFAs</a>
+												</li>
+												<!--
+												<li>
+													<a href = "../../Assignments/HW4_Regexp/index.html">HW4: (Non)Regular Languages And Regular Expressions</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW5_CFGs/index.html">HW5: Context Free Grammars</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW6_PDAs/index.html">HW6: Pushdown Automata</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW7_Turing/index.html">HW7: Turing Machines</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW8_Turing2/index.html">HW8: Turing Machines Part 2</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW9_Decidability/index.html">HW9: Decidability</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW10_Undecidability_Uncomputability/index.html">HW10: Undecidability And Uncomputability</a>
+												</li>!-->
+											</ul>
+										</li>
+                                        <li>
+											<span class="opener">Class Exercises</span>
+											<ul>
+												<li><a href = "../../ClassExercises/Week1_Unplugged">Week 1: Acting Out DFAs</a></li>
+												<li><a href = "../../ClassExercises/Week1_Discrete">Week 1: Discrete Math Review</a></li>
+												<li><a href = "../../ClassExercises/Week1_FridayDFABinary">Week 1: Binary And JFLAP</a>
+													<ul>
+														<li><a href = "../../ClassExercises/Week1_FridayDFABinary/index.html#binary">Binary Drills</a></li>
+														<li><a href = "../../ClassExercises/Week1_FridayDFABinary/index.html#jflap">JFLAP Exercises</a></li>
+													</ul>
+												</li>
+												<li><a href = "../../ClassExercises/Week2_Formal">Week 2: Formal Description of DFAs, Divisibility</a>
+													<ul>
+														<li>
+															<a href = "../../ClassExercises/Week2_Formal/index.html#formalcode">Formal Regular Languages: Code</a>
+														</li>
+													</ul>
+												</li>
+												<li><a href = "../../ClassExercises/Week2_Union">Week 2: Union of Regular Languages</a></li>
+												<li><a href = "../../ClassExercises/Week3_NFAs">Week 3: Nondeterministic Finite Automata (NFAs), Reversing Regular Languages</a></li>
+												<li><a href = "../../ClassExercises/Week3_NFAToDFA">Week 3: NFAs Recognize Regular Languages (i.e. NFAs To DFAS)</a></li>
+												<li><a href = "../../ClassExercises/Week4_NFACode">Week 4: Efficiently Evaluating NFAs in Python with and without Lambda</a></li>
+												<li><a href = "../../ClassExercises/Week4_DFAToRegexp">Week 4: Converting Regular Expressions To DFAs And Back</a></li>
+												<li><a href = "../../ClassExercises/Week5_PumpingLemma">Week 5: The Pumping Lemma</a></li>
+												<li><a href = "../../ClassExercises/Week7_Turing">Week 7/8: Turing Machine Examples</a></li>
+												<li><a href = "../../ClassExercises/Week8_MultitapeTuring">Week 8: Multitape Turing Machine Examples</a></li>
+												<li><a href = "../../ClassExercises/Week10_Decidability">Week 10: Decidability</a></li>
+												<li><a href = "../../ClassExercises/Week11_Infinities">Week 11: Countable And Uncountable Infinities</a></li>
+												<li><a href = "../../ClassExercises/Week12_Undecidability">Week 12: Undecidability</a></li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; <a href = "http://www.ctralie.com">Christopher J. Tralie</a>. All rights reserved.  Contact chris.tralie@gmail.com. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+			
+            <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+            <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- End Sidebar !-->
+
+<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/skel.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="../../assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../../assets/js/main.js"></script>
+<!-- End Scripts -->

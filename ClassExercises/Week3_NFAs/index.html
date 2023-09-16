@@ -153,7 +153,7 @@
 											<a name = "example2">NFA Example 2: &lambda; Arrows</a>
 										</h2>
 										<p>
-											Let's spice up our NFAs now by adding one more type of nondeterministic transition: the &lambda; transition.  What &lambda; means is that, even before we see a new character, a machine can clone itself along the arrow.  Consider the example below (<a href = "LambdaEx.jff">Click here</a> for the JFLAP file):
+											Let's spice up our NFAs now by adding one more type of nondeterministic transition: the &lambda; transition (<b>NOTE:</b> Sipser and many others call this an &epsilon;-transition, but I'm sticking with what JFLAP uses).  What &lambda; means is that, even before we see a new character, a machine can clone itself along the arrow.  Consider the example below (<a href = "LambdaEx.jff">Click here</a> for the JFLAP file).  As you will see, this is a bit of a silly example, because it's a complicated way of designing an NFA that accepts every binary string.  But it will allow me to demonstrate some interesting branching behavior.
 										</p>
 
 										<img src = "LambdaEx.png" width="60%">
@@ -164,7 +164,7 @@
 
 										<img src = "LambdaEx.svg" width="50%">
 										<p>
-											Notice how in this example we clone to two states before parsing the next character if we happen to be at <b>q0</b>, since we clone to <b>q1</b>, and then <b>q1</b> clone itself to <b>q2</b>.  The DFA ends up accepting, as there's exactly one clone of the machine that ends up in an accept state.
+											Notice how in this example we clone to two states before parsing the next character if we happen to be at <b>q0</b>, since we clone to <b>q1</b>, and then <b>q1</b> clone itself to <b>q2</b>.  The DFA ends up accepting, as there is at least one clone of the machine that ends up in an accept state.
 										</p>
 
 										<p>
@@ -179,7 +179,7 @@
 											<a name = "example3">NFA Example 3: A Union</a>
 										</h3>
 										<p>
-											Let's see a more useful application of the &lambda; transiton now.  We'll go back to the union example from last time and see how we can do the same thing more simply with an NFA with &lambda; transitions.  Recall that a machine that recognizes binary strings with at most 1 one looks like this:
+											Let's see a more useful application of the &lambda; transiton now that doesn't just accept everything.  We'll go back to the union example from last time and see how we can do the same thing more simply with an NFA with &lambda; transitions.  Recall that a machine that recognizes binary strings with at most 1 one looks like this:
 										</p>
 										<img src = "../Week2_Union/atmost1one.png">
 										<p>
@@ -215,7 +215,7 @@
 											<b>Proof: </b> Given an NFA <b>M = (Q, &Sigma;, &delta;, q, F)</b> with &lambda; transitions, construct an NFA <b>M' = (Q, &Sigma;, &delta;', q, F)</b>, where the transitions &delta;' are as follows:
 										</p>
 
-										<ul>
+										<ol>
 											<li>
 												Include all non-&lambda; transitions in the original NFA in &delta;
 											</li>
@@ -228,12 +228,16 @@
 												</h4>
 												</div>
 											</li>
-										</ul>
+											<li>
+												If we can reach an accept state from a state <b>s</b> by a sequence of &lambda; transitions, add <b>s</b> to the set of accept states.
+											</li>
+										</ol>
 
 										<p>
-											In other words, add arrows to <b>M'</b> that simulate the effect of going along a sequence of &lambda; transitions and then following the appropriate character where those &lambda; states end up.
+											In other words, add arrows to <b>M'</b> that simulate the effect of going along a sequence of &lambda; transitions and then following the appropriate character where those &lambda; states end up.  This new &lambda;-less NFA will accept the same language as the original NFA.
 										</p>
 
+										<h4><a name = "lambdareduceexample">Example of &lambda; to non-&lambda; reduction</a></h4>
 										<p>
 											The example below shows such a construction.  The blue arrows represent the &lambda; transitions, while the red arrows represent the arrows that would replace them after the above conversion.  The machine with the blue arrows alone is equivalent to the one with the red arrows alone.  As a few examples:
 											<ul>
@@ -243,10 +247,12 @@
 												<li>
 													If we see an input of "0" at q0, we can follow three lambda transitions to get to q3, then follow the 0 to stay at q3.  Or, we can take the red arrow directly from q0 to q3
 												</li>
-												
+												<li>
+													q0 and q1 both become accept states, as they can jump to the accept state q2 via a sequence of &lambda; transitions.
+												</li>
 											</ul>
 										</p>
-										<img src = "LambdaConvertEx.svg" width="50%">
+										<img src = "LambdaConvertEx.svg" width="45%">
 
 										<p>
 											Since they're of equal capability, from now on, we'll stick to the <a href = "#formaldef">simpler definition</a> whenever we need to prove something about NFAs, but we'll use &lambda; as a practical tool for specific examples when we it helps to make them clearer.  As we can see in the above diagram, this often leads to a more parsimonious specification of the automaton.
@@ -401,11 +407,17 @@
 														<li><a href = "../../ClassExercises/Week1_FridayDFABinary/index.html#jflap">JFLAP Exercises</a></li>
 													</ul>
 												</li>
-												<li><a href = "../../ClassExercises/Week2_Formal">Week 2: Formal Description of DFAs, Divisibility</a></li>
+												<li><a href = "../../ClassExercises/Week2_Formal">Week 2: Formal Description of DFAs, Divisibility</a>
+													<ul>
+														<li>
+															<a href = "../../ClassExercises/Week2_Formal/index.html#formalcode">Formal Regular Languages: Code</a>
+														</li>
+													</ul>
+												</li>
 												<li><a href = "../../ClassExercises/Week2_Union">Week 2: Union of Regular Languages</a></li>
 												<li><a href = "../../ClassExercises/Week3_NFAs">Week 3: Nondeterministic Finite Automata (NFAs), Reversing Regular Languages</a></li>
 												<li><a href = "../../ClassExercises/Week3_NFAToDFA">Week 3: NFAs Recognize Regular Languages (i.e. NFAs To DFAS)</a></li>
-												<li><a href = "../../ClassExercises/Week3_NFACode">Week 3: Class Notes on NFAs in Python with and without Lambda</a></li>
+												<li><a href = "../../ClassExercises/Week4_NFACode">Week 4: Efficiently Evaluating NFAs in Python with and without Lambda</a></li>
 												<li><a href = "../../ClassExercises/Week4_DFAToRegexp">Week 4: Converting Regular Expressions To DFAs And Back</a></li>
 												<li><a href = "../../ClassExercises/Week5_PumpingLemma">Week 5: The Pumping Lemma</a></li>
 												<li><a href = "../../ClassExercises/Week7_Turing">Week 7/8: Turing Machine Examples</a></li>
