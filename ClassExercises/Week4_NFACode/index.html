@@ -303,11 +303,13 @@
 												## it's more convenient to look up only the arrows coming
 												## out of a particular state
 												delta_state = {} #(State):(Character:set(states))
-												for (state, c), state_to in delta.items():
+												for (state, c), states_to in delta.items():
 													if not state in delta_state:
 														delta_state[state] = {}
-													delta_state[state][c] = state_to
-												
+													if not c in delta_state[state]:
+														delta_state[state][c] = set([])
+													delta_state[state][c].update(states_to)
+
 												## Step 2: Loop through each state, get the new arrows, and 
 												## update the final states
 												states = set([key[0] for key in delta])
@@ -321,12 +323,13 @@
 														F_new.add(state)
 													# Add the new arrows
 													for other in reachable:
-														for c, states_to in delta_state[other].items():
-															if c is not None:
-																# Add this new equivalent arrow
-																if not (state, c) in delta:
-																	delta[(state, c)] = set([])
-																delta[(state, c)] = delta[(state, c)].union(states_to)
+														if other in delta_state: # If there are actually any arrows coming out of this state
+															for c, states_to in delta_state[other].items():
+																if c is not None:
+																	# Add this new equivalent arrow
+																	if not (state, c) in delta:
+																		delta[(state, c)] = set([])
+																	delta[(state, c)] = delta[(state, c)].union(states_to)
 												F.update(F_new)
 												
 												## Step 3: Remove the original lambda arrows
