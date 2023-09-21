@@ -45,11 +45,11 @@ Regular Operations, Regular Expressions, Converting Regular Expressions To NFAs
 LECTURE
 <b>G</b>lobal <b>R</b>egular <b>Expression</b> Search And <b>P</b>rint (GREP): The efficiency of of NFA-based regular expression evaluation
 
-<ul><li><a href = "ClassExercises/Week3_NFACode">Class Notes on evaluating NFAs in Python with and without &lambda;</a></li><li><a href = "https://swtch.com/~rsc/regexp/regexp1.html">Regular expression matching can be simple and fast (but is slow in Java, Perl, PHP, Python, Ruby, ...)</a></li></ul>
+<ul><li><a href = "ClassExercises/Week4_NFACode/index.html">Class Notes on evaluating NFAs in Python with and without &lambda;</a></li><li><a href = "ClassExercises/Week4_Grep/index.html">Class Notes on RegEx -> NFA Algorithm</a></li><li><a href = "https://swtch.com/~rsc/regexp/regexp1.html">Regular expression matching can be simple and fast (but is slow in Java, Perl, PHP, Python, Ruby, ...)</a></li></ul>
 LECTURE
-Converting DFAs To Regular Expressions
+Converting DFAs To Regular Expressions with Generalized NFAs (GNFAs)
 
-<ul><li><a href = "#readings">Sipser</a> Ch. 1.3</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/RegEx.html">PIFLSA21 Ch. 4.1-4.3, 4.7</a></li></ul>
+<ul><li><a href = "#readings">Sipser</a> Ch. 1.3</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/RegEx.html">PIFLSA21 Ch. 4.1-4.3, 4.7</a></li><li><a href = "ClassExercises/Week4_DFAToRegexp">Class notes on GNFAs</a></li></ul>
 LECTURE
 The pumping lemma
 

@@ -16,13 +16,13 @@ Assignment 2 Due
 Assignment 3 Due
 
 2023-09-19
-Assignment 4: Grep, Regular Expressions, Nonregular Languages Out
+<a href = "Assignments/HW4_Regexp/index.html">Assignment 4: Regular Expressions and Nonregular Languages</a> Out
 
 2023-09-20
-Assignment 4a: Grep Due
+<a href = "Assignments/HW4_Regexp/index.html#problem1">Assignment 4: Grep</a> Due
 
-2023-09-26
-Assignment 4b: Regular Expressions, Nonregular Languages Due
+2023-09-27
+Final deadline for assignment 4
 
 2023-10-02
 <HR><!--<a href = "Assignments/HW5_CFGs">Assignment 5: Context Free Grammars</a> Out!-->Assignment 5: Context Free Grammars Out

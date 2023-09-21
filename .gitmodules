@@ -1,3 +1,6 @@
 [submodule "FinalProject/NPCompleteReductions"]
 	path = FinalProject/NPCompleteReductions
 	url = https://github.com/Ursinus-CS373-F2021/NPCompleteReductions.git
+[submodule "Assignments/HW4_Regexp/HW4_MyGrep"]
+	path = Assignments/HW4_Regexp/HW4_MyGrep
+	url = https://github.com/ursinus-cs373-f2023/HW4_MyGrep.git
