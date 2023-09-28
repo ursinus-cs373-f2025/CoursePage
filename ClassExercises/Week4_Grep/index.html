@@ -180,8 +180,8 @@
 
 												for c in R_postfix: # Assuming the convention c_i for each operand
 													if c is *
-														(in, out, c) = stack.pop()
-														# Create meta * machine around (in, out, c)
+														(in1, out1, c1) = stack.pop()
+														# Create meta * machine around (in1, out1, c1)
 														# and push it onto the stack
 													elif c is . or |:
 														(in2, out2, c2) = stack.pop()
