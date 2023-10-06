@@ -41,7 +41,7 @@
 							<!-- Content -->
 								<section>
 									<header class="main">
-                                        <h2>Homework 5: Context Free Grammars (13 Points)</h2>
+                                        <h2>Homework 5: Context Free Grammars And Pushdown Automata (25 Points)</h2>
 										<h3>Chris Tralie</h3>
 									</header>
 
@@ -49,10 +49,12 @@
 
                                         <h2>Overview / Logistics</h2>
 										<p>
-                                            The purpose of this problem set is to get you experience designing and reasoning about context free grammars.
+                                            The purpose of this problem set is to get you experience designing and reasoning about context free grammars, as well as designing pushdown automata, which will serve as a warmup to our ultimate destination in this course: Turing machines.  
                                         </p>
 
-										<h3>Problem 1 (4 Points)</h3>
+										<HR>
+										<h2>Part 1: Context-Free Grammars</h2>
+										<h3>Problem 1.1 (4 Points)</h3>
 										<p>
 											Consider the grammar with variables <b>V = {S, R}</b>, terminals <b>&Sigma; = {0, 1}</b> and the following rules (where <b>S</b> is the start variable)
 
@@ -123,7 +125,7 @@
 										</p>
 
 
-										<h3>Problem 2 (3 Points)</h3>
+										<h3>Problem 1.2 (3 Points)</h3>
 										<p>
 											Devise a context free grammar that generates the language
 										</p>
@@ -143,7 +145,7 @@
 											<tr><td>abbccc</td><td>Reject</td></tr>
 										</table>!-->
 
-										<h3>Problem 3 (3 Points)</h3>
+										<h3>Problem 1.3 (3 Points)</h3>
 										<p>
 											Prove that it's impossible to recognize the above language <b>L<SUB>2</SUB></b> with a DFA.
 										</p>
@@ -162,7 +164,7 @@
 											<b>Hint: </b> For the inductive proof, notice that any string in this language has a length divisible by 4, so you can chunk it up into contiguous sets of 4 characters.  For instance, 01000010 can be divided up into 0100 and 0010.  There are 16 possibilities for each chunk.  If one of the chunks happens to be a 0001, a 0010, a 0100, or a 1000, then you're set.  If none of them are, then argue that one of them has to be a 0000.  Use that fact to show that you can find a substring somewhere else that's a 0001 or a 1000. 
 										</p>!-->
 										
-										<h3>Problem 4 (3 Points)</h3>
+										<h3>Problem 1.4 (3 Points)</h3>
 										<p>
 											We know that the union of two CFGs is a CFG, and that CFG generated languages are a superset of regular languages.  However, this doesn't preclude the union of two CFGs from being regular.  To prove this, show two languages which are each nonregular but which can be each generated with CFGs, and whose union is regular.
 										</p>
@@ -172,6 +174,257 @@
 
 										<!--<h3>Problem 5 (4 Points)</h3>
 										Sipser 2.27!-->
+
+										<HR>
+											<h2>Part 2: Pushdown Automata</h2>
+
+											<p>
+												What's neat about all of the languages in these problems is that they aren't regular (you could prove this with the pumping lemma), but they're still simple enough that just having a rudimentary stack for memory is enough to recognize them.
+											</p>
+
+										<p>
+											In all of the problems below, you should design and submit a JFLAP file.  <b>Be sure to only push or pop one character at a time</b>.
+										</p>
+
+										<h3>Problem 2.1 (3 Points)</h3>
+
+										<p>
+											Design a pushdown automaton that recognizes the following language
+										</p>
+
+										<div style="width:200px;">
+											<h3>
+												\[ L = \{ a^{2n}b^{5n} | n \geq 0 \} \]
+											</h3>
+										</div>
+
+										<p>
+											Below are some tests you can try in JFLAP (<a href = "tests1.txt">Click here</a> to download them)
+										</p>
+
+										<table style="width:200px;"><tr><td>Input</td><td>Result</td></tr>
+											<tr>
+												<td>
+													aabbbbb
+												</td>
+												<td>
+													Accept
+												</td>
+											</tr>
+											<tr>
+												<td>
+													aabbbbbb
+												</td>
+												<td>
+													Reject
+												</td>
+											</tr>
+											<tr>
+												<td>
+													aaabbb
+												</td>
+												<td>
+													Reject
+												</td>
+											</tr>
+											<tr>
+												<td>aaaaaabbbbbbbbbbbbbbb</td>
+												<td>Accept</td>
+											</tr>
+											<tr>
+												<td>
+													aaaaaaaabbbbbbbbbbbbbbbbbbbb
+												</td>
+												<td>
+													Accept
+												</td>
+											</tr>
+											<tr>
+												<td>
+													aabb
+												</td>
+												<td>
+													Reject
+												</td>
+											</tr>
+											<Tr>
+												<td>aaaaaaaabbbbbbbbbbbbbbbbbbbbbb</td>
+												<td>Reject</td>
+											</Tr>
+											<tr>
+												<td>aabbbbbbbbbb</td>
+												<td>Reject</td>
+											</tr>
+											<tr>
+												<td>aaabbbbb</td>
+												<td>Reject</td>
+											</tr>
+										</table>
+											
+										
+										<h3>Problem 2.2 (3 Points)</h3>
+
+										<p>
+											Design a pushdown automaton that recognizes the following language
+										</p>
+
+										<div style="width:200px;">
+											<h3>
+												\[ L = \{ a^nb^mc^md^n | m, n \geq 0 \} \]
+											</h3>
+										</div>
+
+										<p>
+											Below are some tests you can try in JFLAP (<a href = "tests2.txt">Click here</a> to download them)
+										</p>
+
+										<table style="width:200px;"><tr><td>Input</td><td>Result</td></tr>
+											<tr>
+												<td>
+													aabbbbb
+												</td>
+												<td>
+													Reject
+												</td>
+											</tr>
+											<tr>
+												<td>
+													aaaddd
+												</td>
+												<td>
+													Accept
+												</td>
+											</tr>
+											<tr>
+												<td>
+													aaabcddd
+												</td>
+												<td>
+													Accept
+												</td>
+											</tr>
+											<tr>
+												<td>
+													abbbbccccd
+												</td>
+												<td>
+													Accept
+												</td>
+											</tr>
+											<tr>
+												<td>
+													abbbbccccdd
+												</td>
+												<td>
+													Reject
+												</td>
+											</tr>
+											<tr>
+												<td>
+													bbbbcccc
+												</td>
+												<td>
+													Accept
+												</td>
+											</tr>
+											<tr>
+												<td>
+													bbbbccccc
+												</td>
+												<td>
+													Reject
+												</td>
+											</tr>
+											<tr>
+												<td>
+													aabbbbccccdd
+												</td>
+												<td>
+													Accept
+												</td>
+											</tr>
+											<tr>
+												<td>dcba</td>
+												<td>Reject</td>
+											</tr>
+										</table>
+
+										<h3>Problem 2.3 (3 Points)</h3>
+
+										<p>
+											Design a pushdown automaton that recognizes the following language
+										</p>
+
+										<div style="width:200px;">
+											<h3>
+												\[ L = \{w\#x | w^R \text{ is a substring of } x \text{ for } w, x \in \{0,1\}^* \}\]
+											</h3>
+										</div>
+
+										<p>
+											Below are some tests you can try in JFLAP that should all accept (<a href = "tests3_accept.txt">Click here</a> to download them).  I'm showing <span style="color:red">w</span> in red and <span style="color:blue"><b>w<SUP>R</b></SUP></span>, the reverse of <span style="color:red"><b>w</b></span>, in blue.  The entire substring after the red portion is <b>x</b>.  I'm separating these tests out because with nondeterminism, it's possible that JFLAP will warn you that a ton of configurations are being generated, so it's nice to do these ones separately.
+										</p>
+
+										<table style="width:400px;"><tr><td>Input</td><td>Result</td></tr>
+											<tr><td><span style="color:red">10110</span>#1111<span style="color:blue">01101</span>1</td><td> Accept </td></tr>
+											<tr><td><span style="color:red">00101</span>#010<span style="color:blue">10100</span></td><td> Accept </td></tr>
+											<tr><td><span style="color:red">1110100</span>#010<span style="color:blue">0010111</span>0</td><td> Accept </td></tr>
+											<tr><td><span style="color:red">01010</span>#1010<span style="color:blue">01010</span>01</td><td> Accept </td></tr>
+											<tr><td><span style="color:red">01011100</span>#0000<span style="color:blue">00111010</span>0</td><td> Accept </td></tr>
+											<tr><td>#0101</td><td>Accept (Empty w)</td></tr>
+										</table>
+
+										<p>
+											Below are some inputs that should be rejected (<a href = "tests3_reject.txt">Click here</a> to download them).  These tests will run faster
+										</p>
+
+										<table style="width:400px;"><tr><td>Input</td><td>Result</td></tr>
+											<tr>
+												<td>00#111</td><td>Reject</td>
+											</tr>
+											<tr>
+												<td>01010#11001100</td><td>Reject</td>
+											</tr>
+											<tr>
+												<td>101100#10110</td><td>Reject</td>
+											</tr>
+											<tr>
+												<td>01010#10100101</td><td>Reject</td>
+											</tr>
+											<tr>
+												<td>01011100#01110100</td><td>Reject</td>
+											</tr>
+										</table>
+
+
+										<h3>Problem 2.4 (3 Points)</h3>
+										<p>
+											The following context free grammar generates the language of binary strings with the same number of 1s as 0s
+										</p>
+
+										<ul>
+											<li>S &rightarrow; &lambda;</li>
+											<li>S &rightarrow; 0S1S</li>
+											<li>S &rightarrow; 1S0S</li>
+										</ul>
+										
+										<p>
+											Devise a pushdown automaton that recognizes the same language.  Below are some tests you can apply in JFLAP (<a href = "tests4.txt">Click here</a> to download them)
+										</p>
+											
+										<table style="width:400px;"><tr><td>Input</td><td>Result</td></tr>
+											<tr><td>01011011</td><td>Reject</td></tr>
+											<tr><td>11001100</td><td>Accept</td></tr>
+											<tr><td>0111001100</td><td>Accept</td></tr>
+											<tr><td>0101110010</td><td>Accept</td></tr>
+											<tr><td>001111</td><td>Reject</td></tr>
+											<tr><td>000000110</td><td>Reject</td></tr>
+											<tr><td>10001</td><td>Reject</td></tr>
+											<tr><td>11001000</td><td>Reject</td></tr>
+											<tr><td>0101101001</td><td>Accept</td></tr>
+											<tr><td>00100111</td><td>Accept</td></tr>
+											</table>
+
 
                                     
                                 </div>
@@ -232,12 +485,9 @@
 													<a href = "../../Assignments/HW4_Regexp/index.html">HW4: Regular Expressions And Nonregular Languages</a>
 												</li>
 												<li>
-													<a href = "../../Assignments/HW5_CFGs/index.html">HW5: Context Free Grammars</a>
+													<a href = "../../Assignments/HW5_CFGs/index.html">HW5: Context Free Grammars And Pushdown Automata</a>
 												</li>
 												<!--
-												<li>
-													<a href = "../../Assignments/HW6_PDAs/index.html">HW6: Pushdown Automata</a>
-												</li>
 												<li>
 													<a href = "../../Assignments/HW7_Turing/index.html">HW7: Turing Machines</a>
 												</li>

@@ -30,29 +30,23 @@ Final deadline for assignment 4
 2023-10-02
 Assignment 5 Due
 
-2023-10-06
-<HR><!--<a href = "Assignments/HW6_PDAs">Assignment 6: Pushdown Automata, Non CFGs</a> Out!-->Assignment 6: Pushdown Automata, Non CFGs Out
-
-2023-10-06
-Assignment 6 Due
-
 2023-10-13
-<!--<a href = "Assignments/HW7_Turing">Assignment 7: Turing Machines</a> Out!-->Assignment 7: Turing Machines Out
+<!--<a href = "Assignments/HW7_Turing">Assignment 7: Turing Machines</a> Out!-->Assignment 6: Turing Machines Out
 
-2023-10-19
+2023-10-18
 Last day to drop courses with a "W"
 
 2023-10-25
-Assignment 7 Due
+Assignment 6 Due
 
 2023-10-30
-<!--<a href = "Assignments/HW8_Turing2">Assignment 8: Turing Machines Part 2</a> Out!-->Assignment 8: Turing Machines Part 2 Out
+<!--<a href = "Assignments/HW8_Turing2">Assignment 7: Turing Machines Part 2</a> Out!-->Assignment 7: Turing Machines Part 2 Out
 
 2023-11-01
-Assignment 8 Due
+Assignment 7 Due
 
 2023-11-10
-<HR><!--<a href = "Assignments/HW9_Decidability">Assignment 9: Decidability</a> Out!-->Assignment 9: Decidability Out
+<HR><!--<a href = "Assignments/HW9_Decidability">Assignment 8: Decidability</a> Out!-->Assignment 8: Decidability Out
 
 2023-11-10
 <!--<a href = "https://ursinus.instructure.com/courses/12825/quizzes/16473/">Big-O Module</a> Due Before Class!-->Big-O Module Due Before Class
@@ -61,15 +55,15 @@ Assignment 8 Due
 <!--<a href = "https://ursinus.instructure.com/courses/12825/quizzes/16475">Little-o Module</a> Due Before Class!-->Little-o Module Due Before Class
 
 2023-11-17
-Assignment 9 Due
+Assignment 8 Due
 
 2023-11-20
-<!--<a href = "Assignments/HW10_Undecidability_Uncomputability/index.html">Assignment 10: Undecidability / Complexity</a> Out!-->Assignment 10: Undecidability / Complexity Out
+<!--<a href = "Assignments/HW10_Undecidability_Uncomputability/index.html">Assignment 9: Undecidability / Complexity</a> Out!-->Assignment 9: Undecidability / Complexity Out
 
 2023-11-21
 <a href = "FinalProject">Final Project</a> Out
 
 2023-11-27
-Assignment 10 Due
+Assignment 9 Due
 
 2023-12-04
