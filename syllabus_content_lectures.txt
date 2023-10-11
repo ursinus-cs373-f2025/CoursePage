@@ -79,9 +79,13 @@ Pushdown Automata Practice
 
 <ul><li><a href = "#readings">Sipser</a> Ch. 2.2</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/PDA.html">PIFLSA21 Ch. 7.1, 7.2</a></li></ul>
 LECTURE
-PDAs and CFGs
+CFG -> PDA Reduction, Begin PDA -> CFG Reduction
 
 <ul><li><a href = "#readings">Sipser</a> Ch. 2.2</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/PDACFL.html">PIFLSA21 Ch. 7.3, 7.4</a></li></ul>
+LECTURE
+Finish PDA->CFG Reduction, CYK Algorithm for Parsing Context-Free Grammars
+
+<ul><li><a href = "https://www.informaticadidactica.de/index.php?page=LangeLeiss2009">A better CYK algorithm</a></li></ul>
 LECTURE
 Non Context-Free Languages, CFG Pumping Lemma
 
@@ -134,10 +138,6 @@ LECTURE
 Diagonalization, Turing Machines Are Countable
 
 <ul><li><a href = "#readings">Sipser</a> Ch. 4.2, 5</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/UnsolveableProblems1.html">PIFLSA21 Ch. 11.8</a></li><li><a href = "ClassExercises/Week11_Infinities/index.html">Class Notes on Countable And Uncountable Infinities</a></li></ul>
-LECTURE
-Problem Set Workshopping, More Halting Problem
-
-
 LECTURE
 Finish Halting Problem, Reductions for Undecidability
 
