@@ -31,7 +31,7 @@ Final deadline for assignment 4
 Assignment 5 Due
 
 2023-10-13
-<!--<a href = "Assignments/HW7_Turing">Assignment 7: Turing Machines</a> Out!-->Assignment 6: Turing Machines Out
+<a href = "Assignments/HW6_Turing/index.html">Assignment 6</a> Out
 
 2023-10-18
 Last day to drop courses with a "W"
