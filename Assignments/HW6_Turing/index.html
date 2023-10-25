@@ -160,11 +160,27 @@
 													Any queue automaton can be converted into an equivalent Turing Machine
 												</li>
 												<li>
-													Any Turing machine can be converted into an equivalent queue automaton
+													Any Turing machine can be converted into an equivalent queue automaton.  By a queue automaton, I mean a pushdown automaton where we replace the stack by a queue ADT with the following operations:
+													<ul>
+														<li>
+															<b>push(x):</b> Add <code>x</code> to the right
+														</li>
+														<li>
+															<b>pop():</b> Remove and return the element from the left
+														</li>
+														<li>
+															<b>peek():</b> Return the element at the left, but do not remove it
+														</li>
+													</ul>
 												</li>
 											</ol>  
+
 											<p>
 												As a hint, the first direction is more straightforward if you use a multi-tape Turing machine, which we know has the same power as a regular Turing machine.  For the other direction, you will need to use what seems like a pretty limited data structure (the queue) to simulate moving left/right on a tape.  To this end, consider how you might use a queue in a "circular fashion" by removing things from the left and adding them back to the right, while also keeping track of where the end of the tape is.  Then, explain how to use this technique to move either left or right on the tape.  Do not worry about efficiency.
+											</p>
+
+											<p>
+												As a final hint, the most difficult direction in the reduction from a turing machine to a queue automaton is moving the head to the left.  Consider how you might use the states in the queue automaton to "remember" something that helps you here, and give a high level description of how that might work.
 											</p>
 											
 											

@@ -99,19 +99,19 @@ Intro To Turing Machines
 
 <ul><li><a href = "ClassExercises/Week7_Turing">Turing Machine Examples</a></li><li><a href = "#readings">Sipser</a> Ch. 3.1</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/TuringIntro.html">PIFLSA21 Ch. 9.1, 9.2.1, 9.2.2</a></li></ul>
 LECTURE
-Recognizability, Decidability
+Recognizability, Decidability, Busy Beavers
 
-<ul><li><a href = "#readings">Sipser</a> Ch. 3.1</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/TuringMachines.html#turing-decidable-vs-turing-acceptable-languages">PIFLSA21 Ch. 9.2.3</a></li></ul>
+<ul><li><a href = "#readings">Sipser</a> Ch. 3.1</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/TuringMachines.html#turing-decidable-vs-turing-acceptable-languages">PIFLSA21 Ch. 9.2.3</a></li><li><a href = "https://gist.github.com/jms137/cbb66fb58dde067b0bece12873fadc76">47 State Turing machine for Goldbach Conjecture</a></li><li><a href = "https://www.sligocki.com/2022/06/21/bb-6-2-t15.html">Shawn Ligocki 2022 Proof that BB(6) > 10 ↑	↑15</a></li></ul>
 LECTURE
 Multi-Tape Turing Machines
 
 <ul><li><a href = "#readings">Sipser</a> Ch. 3.2</li></ul>
 LECTURE
-Intro To Reductions
+Multi-Tape Turing Machines -> Single Tape Turing Machine Reduction
 
-<ul><li><a href = "ClassExercises/Week8_MultitapeTuring">Multitape Turing Machine Examples</a></li><li><a href = "#readings">Sipser</a> Ch. 5.3</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/PairToSortCONPI.html">PIFLSA21 Ch. 11.1 - 11.3</a></li></ul>
+<ul><li><a href = "ClassExercises/Week8_MultitapeTuring">Multitape Turing Machine Examples</a></li><li><a href = "#readings">Sipser</a> Theorem 7.8 (Ch. 7.1)</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/PairToSortCONPI.html">PIFLSA21 Ch. 11.1 - 11.3</a></li></ul>
 LECTURE
-More Reductions, Begin Nondeterministic Turing Machines
+Begin Nondeterministic Turing Machines
 
 <ul><li><a href = "#readings">Sipser</a> Ch. 3.2</li></ul>
 LECTURE
