@@ -41,7 +41,7 @@
 							<!-- Content -->
 								<section>
 									<header class="main">
-                                        <h2>Homework 8: Turing Machines Part 2 (16 Points)</h2>
+                                        <h2>Homework 8: Turing Machines Part 2 (17 Points)</h2>
 										<h3>Chris Tralie</h3>
 									</header>
 
@@ -51,10 +51,11 @@
 										<p>
                                             Here's another small-ish homework to keep you engaged and practicing with Turing machines while we go over the background for decidability. 
                                         </p>
-										
+
 										<h3>Problem 1 (3 Points)</h3>
+
 										<p>
-											This is a retry on problem 5 from <a href = "../HW7_Turing/">homework 7</a>.  We want to show that if we have a "restricted Turing machine" (RTM) that can only move the tape to the right or stay in place, then it's equally powerful as a DFA; in other words, disabling the "move left" function significantly weakens the Turing machine.  To reduce from a DFA to an RTM, it's basically the same proof as reducing to an ordinary Turing machine, since we only ever move right anyway and we don't use the left function.  However, reducing the other way is more tricky.  <b>Show that any RTM can be reduced to a DFA; that is, explain in detail how a sequence of states in an RTM would be mapped to a sequence of states in a DFA that recognizes equivalent languages</b>.  You will have to carefully consider the cases when the Turing machine's tape head stays still and possibly makes substitutions, as this never happens in a DFA.  But you can simulate the equivalent result with a DFA.
+											CYK Algorithm
 										</p>
 
 										<h3>Problem 2 (3 Points)</h3>
@@ -84,25 +85,21 @@
 
 										<p><b>NOTE:</b> As a corollary, this means that 3 stack PDAs are equally powerful as 2 stack PDAs, since 2 stack PDAs are already as powerful as Turing machines.</p>
 
-										<h3>Problem 3 (4 Points)</h3>
+										<h3>Problem 3 (5 Points)</h3>
 										<p>
-											Create a Turing enumerator to enumerate all strings over the alphabet <b>{a, b, c}</b> in <b>lexographic order</b>.  In particular, your machine should start with the sequence 
+											Create a Turing enumerator that enumerates the language <b>L = {w &in; {a, b, c}* | w has an even number of a's}</b>, in <b>lexographic order</b>.  In particular create a 2-tape turing machine with the "work tape" on the top and a "print tape" on the bottom, where the bottom tape has 
+										</p>
+
+										<script type="syntaxhighlighter" class="brush: cpp"><![CDATA[
+											b#c#aa#bb#bc#cb#cc#aab#aac#aba#aca#baa#bbb#bbc#bcb#bcc#caa#cbb#cbc#ccb#ccc#aaaa#aabb#aabc#aacb#aacc#abab#abac#abba#abca#acab#acac#acba#acca#baab#baac#baba#baca#bbaa#bbbb#bbbc#bbcb#bbcc#bcaa#bcbb#bcbc#bccb#bccc#caab#caac#caba#caca#cbaa#cbbb#cbbc#cbcb#cbcc#ccaa#ccbb#ccbc#cccb#cccc#aaaab#aaaac#aaaba#aaaca#aabaa#aabbb#aabbc#aabcb#aabcc#aacaa#aacbb#aacbc#aaccb#aaccc#abaaa#ababb#ababc#abacb#abacc#abbab#abbac#abbba#abbca#abcab#abcac#abcba#abcca#acaaa#acabb#acabc#acacb#acacc#acbab#acbac#acbba#acbca#accab#accac#accba#accca#......
+										]]></script> 
+
+										<p>
+											An algorithm to do this counts in base 3 (where a=0, b=1, c=2) on the work tape.  Every time a new string is completed on the work tape, count the number of a's to see if it's even, and print on the print tape if so.  If the work tape overflows to the next place, reset to all a's with one more character than there was before
 										</p>
 
 										<p>
-											a, b, c, aa, ab, ac, ba, bb, bc, ca, cb, cc, aaa, aab, aac, ...
-										</p>
-
-										<p>
-											You can think of this like doing counting in base 3 until you overflow to the next place, and when you do, resetting to all a's with one more character.  We saw in class that this was an important subroutine for the tape that kept track of which branch we were exploring in a nondeterministic turing machine when reducing it to a deterministic turing machine.
-										</p>
-
-										<p>
-											Since JFLAP doesn't support enumerators, you'll have to hack an ordinary turing machine to do this, which has one designated tape as the "printing tape."  You can do this with multiple tapes if you'd like, but it's possible to do it with one tape.  You should just special state that you go to every time it's ready to print whatever is on the printing tape.  You can check that this is working properly by stepping through your machine in a blank input in JFLAP.
-										</p>
-
-										<p>
-											For example, here is what I get when I start with an empty string and step through a, b, c, aa, ab, ac, ba, bb, bc, ca, cb, cc, aaa, aab, aac, aba, abb, abc, aca, acb, acc, baa, and bab.  I paused the animation every time it entered the "qprint" state.  I had multiple other states, but I called them all "q" so I wouldn't give away too much of the solution
+											You can check that this is functioning properly by stepping through your machine with blank tapes to start.  For example, here is what I get on my enumerator:
 										</p>
 
 										<img src = "sol3step1.gif">
@@ -112,14 +109,14 @@
 										</p>
 
 										<img src = "sol3step2.gif">
-
+										<p></p>
 
 
 
 
 										<h3>Problem 4 (3 Points)</h3>
 										<p>
-											Watch <a href = "https://www.youtube.com/watch?v=uNjxe8ShM-8">this video</a>, and explain using the Church-Turing thesis why the Powerpoint app is theoretically in violation of the Apple Store's app guidelines.
+											Watch <a href = "https://www.youtube.com/watch?v=uNjxe8ShM-8">this video</a> (<a href = "http://tomwildenhain.com/PowerPointTM/Paper.pdf">Click here</a> to read the associated paper), and explain using the Church-Turing thesis why the Powerpoint app is theoretically in violation of the Apple Store's app guidelines.
 										</p>
 
 										<h3>Problem 5 (3 Points)</h3>
@@ -222,7 +219,7 @@
 												</li>
 												<!--
 												<li>
-													<a href = "../../Assignments/HW8_Turing2/index.html">HW8: Turing Machines Part 2</a>
+													<a href = "../../Assignments/HW7_Turing2/index.html">HW7: Turing Machines Part 2</a>
 												</li>
 												<li>
 													<a href = "../../Assignments/HW9_Decidability/index.html">HW9: Decidability</a>
