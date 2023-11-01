@@ -121,7 +121,7 @@ Finish Nondeterministic TMS, Turing Enumerators/Transducers
 LECTURE
 The Church-Turing Thesis
 
-<ul><li><a href = "#readings">Sipser</a> Ch. 3.3</li><li><a href = "http://aurellem.org/vba-clojure/html/total-control.html">Pokemon Yellow is Turing Complete</a></li><li><a href = "https://www.youtube.com/watch?v=Kk2MH9O4pXY">Alan Zucconi: Let's Build A Computer in Conway's Game of Life</a></li><li><a href = "https://xkcd.com/505/">XKCD: A Bunch of Rocks</a></li></ul>
+<ul><li><a href = "#readings">Sipser</a> Ch. 3.3</li><li><a href = "http://aurellem.org/vba-clojure/html/total-control.html">Pokemon Yellow is Turing Complete</a></li><li><a href = "https://playgameoflife.com/">Gliders in Game of Life</a></li><li><a href = "https://www.youtube.com/watch?v=Kk2MH9O4pXY">Alan Zucconi: Let's Build A Computer in Conway's Game of Life</a></li><li><a href = "http://eli.fox-epste.in/rule110-full.html">Rule 110 in HTML+CSS</a></li><li><a href = "https://xkcd.com/505/">XKCD: A Bunch of Rocks</a></li></ul>
 LECTURE
 More Church-Turing Thesis Discussion, Decidable Languages
 
