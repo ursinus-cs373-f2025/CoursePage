@@ -40,15 +40,15 @@ Last day to drop courses with a "W"
 Assignment 6 Due
 
 2023-10-30
-<!--<a href = "Assignments/HW8_Turing2">Assignment 7: Turing Machines Part 2</a> Out!-->Assignment 7: Turing Machines Part 2 Out
+<a href = "Assignments/HW7_Turing2">Assignment 7: Turing Machines, Turing Enumerators, And Decidability</a> Out
 
 2023-11-01
 Assignment 7 Due
 
-2023-11-10
+2023-11-13
 <HR><!--<a href = "Assignments/HW9_Decidability">Assignment 8: Decidability</a> Out!-->Assignment 8: Decidability Out
 
-2023-11-10
+2023-11-13
 <!--<a href = "https://ursinus.instructure.com/courses/12825/quizzes/16473/">Big-O Module</a> Due Before Class!-->Big-O Module Due Before Class
 
 2023-11-15

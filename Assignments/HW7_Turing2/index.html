@@ -41,21 +41,16 @@
 							<!-- Content -->
 								<section>
 									<header class="main">
-                                        <h2>Homework 8: Turing Machines Part 2 (17 Points)</h2>
+                                        <h2>Homework 8: Turing Machines, Turing Enumerators, And Decidability (20 Points)</h2>
 										<h3>Chris Tralie</h3>
 									</header>
 
 									<div id="page-content">
 
-                                        <h2>Overview / Logistics</h2>
-										<p>
-                                            Here's another small-ish homework to keep you engaged and practicing with Turing machines while we go over the background for decidability. 
-                                        </p>
 
 										<h3>Problem 1 (3 Points)</h3>
-
 										<p>
-											CYK Algorithm
+											Watch <a href = "https://www.youtube.com/watch?v=uNjxe8ShM-8">this video</a> (<a href = "http://tomwildenhain.com/PowerPointTM/Paper.pdf">Click here</a> to read the associated paper), and explain using the Church-Turing thesis why the Powerpoint app is theoretically in violation of the Apple Store's app guidelines.
 										</p>
 
 										<h3>Problem 2 (3 Points)</h3>
@@ -87,7 +82,7 @@
 
 										<h3>Problem 3 (5 Points)</h3>
 										<p>
-											Create a Turing enumerator that enumerates the language <b>L = {w &in; {a, b, c}* | w has an even number of a's}</b>, in <b>lexographic order</b>.  In particular create a 2-tape turing machine with the "work tape" on the top and a "print tape" on the bottom, where the bottom tape has 
+											Create a Turing enumerator that enumerates the language <b>L = {w &in; {a, b, c}* | w has an even number of a's}</b>, in <b>lexicographic order</b>.  In particular create a 2-tape turing machine with the "work tape" on the top and a "print tape" on the bottom, where the bottom tape has 
 										</p>
 
 										<script type="syntaxhighlighter" class="brush: cpp"><![CDATA[
@@ -113,11 +108,25 @@
 
 
 
+										<HR>
+											<h3>Problem 4 (3 Points)</h3>
+											<p>
+												The above example points to an interesing general fact.
+											</p>
+											<p>
+												
+												Show that for any infinite language L, L is decidable <b>if and only if</b> some Turing enumerator enumerates L in lexicographic order.  You may use a high level description of any Turing machines at play.  Note that you will have to prove two directions for the if and only if
+												<ol>
+												<li>If some Turing enumerator enumerates L in lexicographic order, then L is decidable</li>
+												<li>If L is decidable, then some Turing enumerator enumerates L in lexicographic order</li>
+												</ol>
+											</p>
+	
+											<p>
+												For the first direction, when creating a decider, you can't assume any knowledge of the language other than what the enumerator tells you, so you have to tie your hands behind your back and just look at the strings that come out of the enumerator to decide whether a string is in the language.  For example, if you wanted to check if the string <b>bcc</b> was in the language coming out of the enumerator in problem 3, how would you do so by just examining the above strings coming out in lexicographic order?  When would you know that you could reject this string?  
+											</p>
 
-										<h3>Problem 4 (3 Points)</h3>
-										<p>
-											Watch <a href = "https://www.youtube.com/watch?v=uNjxe8ShM-8">this video</a> (<a href = "http://tomwildenhain.com/PowerPointTM/Paper.pdf">Click here</a> to read the associated paper), and explain using the Church-Turing thesis why the Powerpoint app is theoretically in violation of the Apple Store's app guidelines.
-										</p>
+										
 
 										<h3>Problem 5 (3 Points)</h3>
 										<p>
@@ -152,6 +161,19 @@
 											</ul>!-->
 										</p>
 										
+
+										<HR>
+											<h3>Problem 6 (3 Points)</h3>
+											<p>
+												Once again, the above example points to an interesting general fact!
+											</p>
+											<p>
+												Show that every infinite Turing-recognizable language has an infinite decidable subset.  An example of this is Hilbert's 10th problem, which is recognizable and undecidable, but we showed in the last problem that the language of all univariate integer polynomials with integer roots is decidable, and that language is a subset of the original language.
+											</p>
+	
+											<p>
+												<b>Hint: </b> Have a look at the proof for Theorem 3.21 (Pg. 153 Sipser 2nd edition) that a language is Turing-recognizable if and only if some enumerator enumerates it (we went over this in class also).  Focus on the second part where we start with a recognizable language and construct an enumerator, then modify this construction to enumerate an infinite language of strings in lexicographic order, which is decidable by appealing to your proof in the last problem. <i>Even if you can't figure out the proof for the previous problem, you may use the result in this problem.</i>
+											</p>
 
                                     
                                 </div>

@@ -132,59 +132,11 @@
 											<b>Hint: </b> Use the fact that the intersection of a context free language and a regular language is context free.  Then use theorem <b>4.8</b> in the book that <b>E<SUB>CFG</SUB></b> is decidable.
 										</p>
 
-										<HR>
-										<h3>Problem 4 (3 Points)</h3>
-										<p>
-											Show that for any infinite language L, L is decidable <b>if and only if</b> some Turing enumerator enumerates L in lexographic order.  You may use a high level description of any Turing machines at play.  Note that you will have to prove two directions for the if and only if
-											<ol>
-											<li>If some Turing enumerator enumerates L in lexographic order, then L is decidable</li>
-											<li>If L is decidable, then some Turing enumerator enumerates L in lexographic order</li>
-											</ol>
-										</p>
-
-										<p>
-											As a hint for the first direction, let's consider the language of binary strings with an even number of 0's.  This language can be recognized by a DFA, so it's definitely decidable!  Here are the first 20 strings that a turing enumerator for this language would print out if it did so in lexographic order
-										</p>
-
-										<script type="syntaxhighlighter" class="brush: python"><![CDATA[
-											1
-											00
-											11
-											001
-											010
-											100
-											111
-											0000
-											0011
-											0101
-											0110
-											1001
-											1010
-											1100
-											1111
-											00001
-											00010
-											00100
-											00111
-											01000
-										</script>
-
-										<p>
-											When creating a decider, you can't assume any knowledge of the language other than what the enumerator tells you, so you have to tie your hands behind your back and just look at the strings that come out of the enumerator to decide whether a string is in the language.  For example, if you wanted to check if the string <b>1011</b> was in this language, how would you do so by just examining the above strings coming out in lexographic order?  When would you know that you could reject this string?  
-										</p>
 
 
 
 
-										<HR>
-										<h3>Problem 5 (3 Points)</h3>
-										<p>
-											Show that every infinite Turing-recognizable language has an infinite decidable subset.  An example of this is Hilbert's 10th problem, which is recognizable and undecidable, but we showed in the last problem set that the language of all univariate integer polynomials with integer roots is decidable, and that language is a subset of the original language.
-										</p>
-
-										<p>
-											<b>Hint: </b> Have a look at the proof for Theorem 3.21 (Pg. 153 Sipser 2nd edition) that a language is Turing-recognizable if and only if some enumerator enumerates it.  Focus on the second part where we start with a recognizable language and construct an enumerator, then modify this construction to enumerate an infinite language of strings in lexographic order, which is decidable by appealing to your proof in the last problem. <i>Even if you can't figure out the proof for the previous problem, you may use the result in this problem.</i>
-										</p>
+										
 
 										<HR>
 										<h3>Problem 6 (3 Points)</h3>
