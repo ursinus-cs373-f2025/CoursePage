@@ -46,7 +46,7 @@ Assignment 6 Due
 Assignment 7 Due
 
 2023-11-13
-<HR><!--<a href = "Assignments/HW9_Decidability">Assignment 8: Decidability</a> Out!-->Assignment 8: Decidability Out
+<HR><a href = "Assignments/HW8_Decidability">Assignment 8: (Un)Decidability</a> Out
 
 2023-11-13
 <!--<a href = "https://ursinus.instructure.com/courses/12825/quizzes/16473/">Big-O Module</a> Due Before Class!-->Big-O Module Due Before Class
@@ -57,13 +57,16 @@ Assignment 7 Due
 2023-11-17
 Assignment 8 Due
 
-2023-11-20
+2023-11-27
 <!--<a href = "Assignments/HW10_Undecidability_Uncomputability/index.html">Assignment 9: Undecidability / Complexity</a> Out!-->Assignment 9: Undecidability / Complexity Out
 
 2023-11-21
-<a href = "FinalProject">Final Project</a> Out
+<HR>Assignment 9 Out
 
 2023-11-27
+<a href = "FinalProject">Final Project</a> Out
+
+2023-11-29
 Assignment 9 Due
 
 2023-12-04

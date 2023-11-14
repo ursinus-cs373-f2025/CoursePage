@@ -135,15 +135,19 @@ Diagonalization, Turing Machines Are Countable
 
 <ul><li><a href = "#readings">Sipser</a> Ch. 4.2, 5</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/UnsolveableProblems1.html">PIFLSA21 Ch. 11.8</a></li><li><a href = "ClassExercises/Week11_Infinities/index.html">Class Notes on Countable And Uncountable Infinities</a></li></ul>
 LECTURE
-Finish Halting Problem, Reductions for Undecidability
+Formal Proof That Halting Problem is Undecidable
 
-<ul><li><a href = "#readings">Sipser</a> Ch. 4.2, 5.1</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/UnsolveableProblems1.html">PIFLSA21 Ch. 11.8</a></li><li><a href = "ClassExercises/Week12_Undecidability/index.html">Class Notes on Undecidability</a></li><li><a href = "https://www.youtube.com/watch?v=jIAEpYwJgbA">Easy Theory: Rice's Theorem</a></li></ul>
+<ul><li><a href = "#readings">Sipser</a> Ch. 4.2, 5.1</li><li><a href = "https://opendsa-server.cs.vt.edu/OpenDSA/Books/PIFLAS21/html/UnsolveableProblems1.html">PIFLSA21 Ch. 11.8</a></li></ul>
+LECTURE
+Reductions for Undecidability
+
+<ul><li><a href = "ClassExercises/Week12_Undecidability/index.html">Class Notes on Undecidability</a></li><li><a href = "https://www.youtube.com/watch?v=jIAEpYwJgbA">Easy Theory: Rice's Theorem</a></li></ul>
 SECTION
 Unit 4: Algorithms And Computational Complexity
 
 
 LECTURE
-Reductions for Undecidability, Begin Formal Runtime Analysis: Big-O
+Formal Runtime Analysis: Big-O
 
 <ul><li><a href = "#readings">Sipser</a> Ch. 5, 7.1</li><li><a href = "https://www.youtube.com/watch?v=0oDAlMwTrLo">Asymptotic Bounding 101: Big O, Big Omega, & Theta</a> (NOTE: We won't need to worry about omega or theta in this course, but they're good to know)</li></ul>
 LECTURE

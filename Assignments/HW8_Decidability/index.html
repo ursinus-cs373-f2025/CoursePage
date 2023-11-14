@@ -41,7 +41,7 @@
 							<!-- Content -->
 								<section>
 									<header class="main">
-                                        <h2>Homework 8: Decidability (18 Points)</h2>
+                                        <h2>Homework 8: (Un)Decidability (18 Points)</h2>
 										<h3>Chris Tralie</h3>
 									</header>
 
@@ -139,7 +139,7 @@
 										
 
 										<HR>
-										<h3>Problem 6 (3 Points)</h3>
+										<h3>Problem 4 (3 Points)</h3>
 										<p>
 											Prove that the language 
 											
@@ -156,6 +156,37 @@
 											<b>Hint: </b> Put yourself in a pumping mindset here, and argue that a DFA with <b>k</b> states rejects infinitely many strings <b>if and only if</b> it rejects a string with a length between <b>k</b> and <b>2k</b>
 										</p>
 										
+
+
+										<HR>
+											<h3>Problem 5 (3 Points)</h3>
+
+											<p>
+												Consider the language <b>L</b> of turing machines <b>M</b> that have the property that if <b>M</b> accepts <b>w</b>, then <b>M</b> also accepts the reverse <b>w<SUP>R</SUP></b>.  Show that <b>L</b> is undecidable
+											</p>
+
+											<p>
+												<b>Hint: </b> You can use a very similar trick to the proof <a href = "../../ClassExercises/Week12_Undecidability/index.html#etm"> that <b>E<SUB>TM</SUB></b> is undecidable</a>; that is, create an auxiliary machine that you can show could be used to decide <b>A<SUB>TM</SUB></b> if you feed it to a decider for <b>L</b>.  Alternatively, you can argue that the conditions for <a href = "../../ClassExercises/Week12_Undecidability/index.html#rice">Rice's theorem</a> are fulfilled.
+											</p>
+
+										<HR>
+											<h3>Problem 6 (3 Points)</h3>
+
+											<p>
+												Define a <b>useless state</b> in a Turing machine as a state that is never reached on any possible input to the machine.  It would be nice to detect and remove these states for a more parsimonious Turing machine.  Unfortunately, the language
+											</p>
+
+											<h3>
+												L<SUB>U</SUB> = { &lt;M, q&gt; | q is a useless state in M}
+											</h3>
+
+											<p>
+												is undecidable.  Prove this by contradiction by showing that L<SUB>U</SUB> can be used to decide <b>E<SUB>TM</SUB></b>.
+											</p>
+											
+											<p>
+												<b>NOTE: </b> This has some important practical implications, as it is basically the turing machine version of <a href = "https://www.atlassian.com/continuous-delivery/software-testing/code-coverage">code coverage</a>
+											</p>
 
                                     
                                 </div>
@@ -224,10 +255,10 @@
 												<li>
 													<a href = "../../Assignments/HW7_Turing2/index.html">HW7: Turing Machines, Turing Enumerators, And Decidability</a>
 												</li>
-												<!--
 												<li>
-													<a href = "../../Assignments/HW9_Decidability/index.html">HW9: Decidability</a>
+													<a href = "../../Assignments/HW8_Decidability/index.html">HW8: Decidability</a>
 												</li>
+												<!--
 												<li>
 													<a href = "../../Assignments/HW10_Undecidability_Uncomputability/index.html">HW10: Undecidability And Uncomputability</a>
 												</li>!-->

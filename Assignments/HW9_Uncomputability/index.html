@@ -41,7 +41,7 @@
 							<!-- Content -->
 								<section>
 									<header class="main">
-                                        <h2>Homework 10: Undecidability And Uncomputability (17 Points)</h2>
+                                        <h2>Homework 9: Uncomputability (11 Points)</h2>
 										<h3>Chris Tralie</h3>
 									</header>
 
@@ -49,41 +49,16 @@
 
                                         <h2>Overview / Logistics</h2>
 										<p>
-                                            In this homework we'll explore some limits of computation: in particular, languages that are at the edge of decidability and functions that are at the edge of computability.
+                                            In this homework we'll explore functions that are at the edge of computability.
                                         </p>
 
 										<p>
 											There are no JFLAP problems on this homework.  You should submit a single typed document with the answers to each question.  You can use Microsoft Word, LaTeX, or anything else you're comfortable with.
 										</p>
 										
+
 										<HR>
 											<h3>Problem 1 (3 Points)</h3>
-
-											<p>
-												Consider the language <b>L</b> of turing machines <b>M</b> that have the property that if <b>M</b> accepts <b>w</b>, then <b>M</b> also accepts the reverse <b>w<SUP>R</SUP></b>.  Show that <b>L</b> is undecidable
-											</p>
-
-											<p>
-												<b>Hint: </b> You can use a very similar trick to the proof <a href = "../../ClassExercises/Week12_Undecidability/index.html#etm"> that <b>E<SUB>TM</SUB></b> is undecidable</a>; that is, create an auxiliary machine that you can show could be used to decide <b>A<SUB>TM</SUB></b> if you feed it to a decider for <b>L</b>.  Alternatively, you can argue that the conditions for <a href = "../../ClassExercises/Week12_Undecidability/index.html#rice">Rice's theorem</a> are fulfilled.
-											</p>
-
-										<HR>
-											<h3>Problem 2 (3 Points)</h3>
-
-											<p>
-												Define a <b>useless state</b> in a Turing machine as a state that is never reached on any possible input to the machine.  It would be nice to detect and remove these states for a more parsimonious Turing machine.  Unfortunately, the language
-											</p>
-
-											<h3>
-												L<SUB>U</SUB> = { &lt;M, q&gt; | q is a useless state in M}
-											</h3>
-
-											<p>
-												is undecidable.  Prove this by contradiction by showing that L<SUB>U</SUB> can be used to decide <b>E<SUB>TM</SUB></b>.
-											</p>
-
-										<HR>
-											<h3>Problem 3 (3 Points)</h3>
 											<p>
 												We'll explore something called the <b>Collatz conjecture</b> in this problem.  This is a seemingly innocuous math problem that's very easy to state, but it has served as a "black hole" that has sucked in many an aspiring mathematician, because it still eludes a proof after almost a century from when it was first posed.  The conjecture is as follows: given the following piecewise function
 											</p>
@@ -119,7 +94,7 @@
 
 
 											<HR>
-												<h3>Problem 4 (5 Points)</h3>
+												<h3>Problem 2 (5 Points)</h3>
 
 												<p>
 													We're going to think about some <b>very</b> large numbers now.  Consider a function over the natural numbers known as the <b>Busy Beaver Function BB(N)</b>, whose output value at <b>N</b> is the maximum number of steps<SUP><a href = "#shift">[1]</a></SUP> that any Turing machine of a special form with <b>N</b> states can take before halting, <b>if it halts</b>.  The Turing machines used in the Busy Beavers have the following properties
@@ -191,7 +166,7 @@
 													
 												</p>
 											<HR>
-											<h3>Problem 5 (3 Points)</h3>					
+											<h3>Problem 3 (3 Points)</h3>					
 												<p>
 													The busy beaver function grows <b>very quickly</b>.  In fact, <b>BB(18)</b> already exceeds <a href = "https://en.wikipedia.org/wiki/Graham%27s_number">Graham's number</a>, one of the biggest numbers ever used in mathematical research (check out <a href = "https://www.youtube.com/watch?v=HX8bihEe3nA">this video</a>, <a href = "https://www.youtube.com/watch?v=txajrEOTkuY">this video</a>, and <a href = "https://www.youtube.com/watch?v=GuigptwlVHo">this video</a>).  But we can show something even stronger and more general about the busy beaver's asymptotic growth.  Let <b>f</b> be <i>any computable function</i> over natural numbers expressed in binary.  Prove that there exists and <b>N<SUB>c</SUB></b> so that <b>BB(N) > f(N)</b> for all <b>N > N<SUB>c</SUB></b>.
 												</p>
@@ -273,10 +248,10 @@
 												<li>
 													<a href = "../../Assignments/HW7_Turing2/index.html">HW7: Turing Machines, Turing Enumerators, And Decidability</a>
 												</li>
-												<!--
 												<li>
-													<a href = "../../Assignments/HW9_Decidability/index.html">HW9: Decidability</a>
+													<a href = "../../Assignments/HW8_Decidability/index.html">HW8: Decidability</a>
 												</li>
+												<!--
 												<li>
 													<a href = "../../Assignments/HW10_Undecidability_Uncomputability/index.html">HW10: Undecidability And Uncomputability</a>
 												</li>!-->
