@@ -149,11 +149,11 @@ Unit 4: Algorithms And Computational Complexity
 LECTURE
 Formal Runtime Analysis: Big-O
 
-<ul><li><a href = "#readings">Sipser</a> Ch. 5, 7.1</li><li><a href = "https://www.youtube.com/watch?v=0oDAlMwTrLo">Asymptotic Bounding 101: Big O, Big Omega, & Theta</a> (NOTE: We won't need to worry about omega or theta in this course, but they're good to know)</li></ul>
+<ul><li><a href = "https://ursinus-cs271-f2023.github.io/Modules/BigO/Video1">My informal notes on Big-O</a></li><li><a href = "#readings">Sipser</a> Ch. 5, 7.1</li><li><a href = "https://www.youtube.com/watch?v=0oDAlMwTrLo">Asymptotic Bounding 101: Big O, Big Omega, & Theta</a> (NOTE: We won't need to worry about omega or theta in this course, but they're good to know)</li></ul>
 LECTURE
 Continue Big-O, Little-o, Complexity Relationships Among Models
 
-<ul><li><a href = "https://www.bigocheatsheet.com/">https://www.bigocheatsheet.com/</a></li><li><a href = "https://ursinus-cs371-s2021.github.io/Modules/Module5/Video1">My CS 371 Module on Little-o</a></li><li>Class Exercise: Multitape -> Single Tape Turing Machine Reduction Time Complexity</li></ul>
+<ul><li><a href = "https://www.bigocheatsheet.com/">https://www.bigocheatsheet.com/</a></li><li><a href = "https://ursinus-cs371-s2021.github.io/Modules/Module5/Video1">My CS 371 Module on Little-o</a></li><li><a href = "https://ursinus-cs271-f2023.github.io/CoursePage/ClassExercises/Week3_Asymptotics/">My CS 271 Little-o Notes</a></li><li>Class Exercise: Multitape -> Single Tape Turing Machine Reduction Time Complexity</li></ul>
 LECTURE
 The Class P
 
