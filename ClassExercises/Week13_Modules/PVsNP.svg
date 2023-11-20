@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="108.62583mm"
+   height="183.11121mm"
+   viewBox="0 0 108.62583 183.11121"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="PVsNP.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="1.2810466"
+     inkscape:cx="109.67595"
+     inkscape:cy="184.22437"
+     inkscape:window-width="1920"
+     inkscape:window-height="1043"
+     inkscape:window-x="1920"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-7.922773,-41.55411)">
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.219796"
+       id="rect846"
+       width="107.67615"
+       height="68.588821"
+       x="8.032671"
+       y="75.696152" />
+    <text
+       xml:space="preserve"
+       style="font-size:7.05556px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="79.318222"
+       y="47.942429"
+       id="text1590"><tspan
+         sodipodi:role="line"
+         id="tspan1588"
+         style="font-size:7.05556px;stroke-width:0.264583"
+         x="79.318222"
+         y="47.942429" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583"
+       x="37.936726"
+       y="194.77226"
+       id="text6422"><tspan
+         sodipodi:role="line"
+         id="tspan6420"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583"
+         x="37.936726"
+         y="194.77226" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8.46667px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="13.827128"
+       y="47.726345"
+       id="text10032"><tspan
+         sodipodi:role="line"
+         id="tspan10030"
+         style="font-size:8.46667px;stroke-width:0.264583"
+         x="13.827128"
+         y="47.726345">P vs NP</tspan></text>
+    <ellipse
+       style="fill:none;stroke:#000000;stroke-width:0.264583"
+       id="path11150"
+       cx="60.56842"
+       cy="113.00847"
+       rx="40.854084"
+       ry="22.669641" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.82223px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="44.377689"
+       y="130.62346"
+       id="text12642"><tspan
+         sodipodi:role="line"
+         id="tspan12640"
+         style="stroke-width:0.264583"
+         x="44.377689"
+         y="130.62346">Decidable languages</tspan></text>
+    <ellipse
+       style="fill:none;stroke:#000000;stroke-width:0.264583"
+       id="path13538"
+       cx="64.927856"
+       cy="110.71838"
+       rx="22.269676"
+       ry="11.802748" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.82223px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="65.911125"
+       y="120.05915"
+       id="text14832"><tspan
+         sodipodi:role="line"
+         id="tspan14830"
+         style="stroke-width:0.264583"
+         x="65.911125"
+         y="120.05915">NP</tspan></text>
+    <ellipse
+       style="fill:none;stroke:#000000;stroke-width:0.264583"
+       id="path16234"
+       cx="63.369236"
+       cy="108.97282"
+       rx="11.838719"
+       ry="5.0232644" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.82223px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="63.062469"
+       y="109.08029"
+       id="text17514"><tspan
+         sodipodi:role="line"
+         id="tspan17512"
+         style="stroke-width:0.264583"
+         x="63.062469"
+         y="109.08029">P</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.82223px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="9.8594103"
+       y="70.145821"
+       id="text18808"><tspan
+         sodipodi:role="line"
+         id="tspan18806"
+         style="stroke-width:0.264583"
+         x="9.8594103"
+         y="70.145821">Hypothesis 1</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.219796"
+       id="rect846-0"
+       width="107.67615"
+       height="68.588821"
+       x="8.7625599"
+       y="155.9666" />
+    <ellipse
+       style="fill:none;stroke:#000000;stroke-width:0.264583"
+       id="path11150-9"
+       cx="61.298313"
+       cy="193.27892"
+       rx="40.854084"
+       ry="22.669641" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.82223px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="45.107578"
+       y="210.89389"
+       id="text12642-1"><tspan
+         sodipodi:role="line"
+         id="tspan12640-9"
+         style="stroke-width:0.264583"
+         x="45.107578"
+         y="210.89389">Decidable languages</tspan></text>
+    <ellipse
+       style="fill:none;stroke:#000000;stroke-width:0.264583"
+       id="path13538-6"
+       cx="65.657745"
+       cy="190.98883"
+       rx="22.269676"
+       ry="11.802748" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.82223px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="60.288754"
+       y="191.81767"
+       id="text14832-2"><tspan
+         sodipodi:role="line"
+         id="tspan14830-5"
+         style="stroke-width:0.264583"
+         x="60.288754"
+         y="191.81767">P = NP</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.82223px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="10.589296"
+       y="150.41628"
+       id="text18808-9"><tspan
+         sodipodi:role="line"
+         id="tspan18806-3"
+         style="stroke-width:0.264583"
+         x="10.589296"
+         y="150.41628">Hypothesis 2</tspan></text>
+  </g>
+</svg>

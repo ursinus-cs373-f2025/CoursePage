@@ -41,118 +41,28 @@
 							<!-- Content -->
 								<section>
 									<header class="main">
-                                        <h2>Week 7/8: Turing Machine Exmaples</h2>
+                                        <h2>Week 13 Module: The Class P</h2>
                                         <h3><a href = "http://www.ctralie.com">Chris Tralie</a>
 									</header>
 
 									<div id="page-content">
-
+										<button onclick="window.location.href = './video2.html ';"> ---&gt; Next</button>
 										<p>
-											For our purposes, a Turing machine can be thought of a 6-tuple <b>(Q, &Sigma;, &Gamma;, &delta;, q<SUB>0</SUB>, F)</b>, where
+											Watch the two videos below, then <a href = "https://ursinus.instructure.com/courses/16215/quizzes/24580">click here</a> to complete an exercise on Canvas.  When you are finished, click next to continue
 										</p>
-										<ul>
-											<li><b>Q</b> is a finite set of control states</li>
-											<li>
-												<b>&Sigma; </b> is the input alphabet, which does not contain the blank symbol &#9633;
-											</li>
-											<li><b>&Gamma;</b> is the tape alphabet, where &#9633; &isin; &Gamma; and &Sigma; &subset; &Gamma;.  In other words, the tape alphabet has all of the symbols in the input alphabet, plus the blank symbol, plus possibly a more symbols.</li>
-											<li>
-												<b>&delta;</b> is the transition function, which has the form 
-												<div style="width:100px;">
-													<h3>
-														\[ Q \times \Gamma \rightarrow Q \times \Gamma \times \{ L, R \} \]
-													</h3>
-												</div>
-												In other words, given a state and a tape character, transition to a new state, write a new tape character, and move the head left or right.
-											</li>
-											<li>
-												<b>q<SUB>0</SUB> &isin; Q</b> is the start state
-											</li>
-											<li>
-												<b>F &subset; Q</b> are a set of accept states.  If the machine ends up in one of these states, it instantly accepts.  We do this since the tape can move left or right, there's no clear way to declare when we're "finished."  By contrast, PDAs and DFAs must step through their entire input from left to right before checking to see if they are in an accept state
-											</li>
-										</ul>
+
+										<iframe width="560" height="315" src="https://www.youtube.com/embed/39cRPHmbl_k?si=jJhjNz0TXBSjZK08" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+										<p></p>
+										<iframe width="560" height="315" src="https://www.youtube.com/embed/_tDU_L68jcM?si=Cd1OThE0I689deKj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
+										<h2>Notes</h2>
+										<iframe src = "BigOFormal.html" width="95%" height="2200"></iframe>
+										<HR>
+										<iframe src = "TheClassP.html" width="95%" height="1400"></iframe>
+
 										
-										<p>
-											Note that Sipser defines a single accept state, but we could easily show the equivalence with the above definition if all accept states simply transitioned instantly to a single accept state.  Sipser also includes a seventh element in the tuple which is a reject state, but we'll follow JFLAP's convention where a machine instantly rejects if there's no transition arrow to follow that matches the current state and tape character at the head.  This makes it a lot more like the PDAs we were defining.
-										</p>
 
-										<p>
-											Now let's look at a few examples
-										</p>
-
-										<HR>
-										<h2>Example 1: w#w</h2>
-										<p>
-											Consider the language 
-										</p>
-										<div style="width:100px;">
-											<h3>
-												\[ L = \{ w\text{#}w, w \in \{ 0, 1 \}^* \} \]
-											</h3>
-										</div>
-										<p>
-											Or, in other words, some arbitrary binary string, followed by a #, followed by a repeat of the string.  We showed using the context free pumping lemma that this is not context free (intuitively, if we try to remember the first repetition of the string, the stack goes the "wrong way" for the second repitition), but we can recognize it with a Turing machine.  Since we can now write to the tape, what we do is write an X over a character on the left side, then jump forward until we get to the right side and check to make sure the crossed out character is the same.  If so, we rewind and cross off the next character and repeat.  If not, we instantly reject.  If we make it to the end and everything we've tried on the left has matched to everything on the right, we make sure that we actually crossed everything off on the right.  If we did, then we accept.
-										</p>
-										<p>
-											Below is an image of a Turing machine that enacts this in JFLAP (<a href = "ww.jff">click here</a> to download the JFLAP file)
-										</p>
-										<img src = "ww.png">
-										<p>
-											Below is an animation of this machine running on the input <b>01011#01011</b>
-										</p>
-										<img src = "wwstep.gif">
-
-										<HR>
-										<h2>Example 2: Power of 2 Zeros</h2>
-										<p>
-											Consider the language 
-										</p>
-										<div style="width:100px;">
-										<h3>
-											\[ L = \{ 0^{2^N}, N \geq 0 \} \]
-										</h3>
-										</div>
-										<p>
-											Or, in other words, the language of strings of 0s in which the number of 0s is a power of 2.  You'll prove in <a href = "../../Assignments/HW6_Turing/">homework 6</a> that this language is not context free, but we can do it with a Turing machine.  What we want to do is to effectively halve the number of 0s on the tape at every step.  If we are able to keep halving and we get to a single 0, then we must have been a power of 2.  To halve, we cross out every other 0.  For instance, let's say that we had 8 zeros.  Then each pass from left to right along the tape would do the following
-										</p>
-										<ol>
-											<li>00000000</li>
-											<li><b>X</b>0<b>X</b>0<b>X</b>0<b>X</b>0</li>
-											<li>X<b>X</b>X0X<b>X</b>X0</li>
-											<li>XXX<b>X</b>XXX0</li>
-											<li>XXXXXXX<b>X</b></li>
-										</ol>
-
-										<p>
-											One thing we have to be careful of is that we're actually halving the number of zeros left at each step.  This will be true if the number of zeros that we haven't crossed off yet is <b>always even</b>.  
-										</p>
-										<p>
-											Below is a screenshot of a JFLAP implementation of a turing machine that does this (<a href = "pow2zeros.jff">click here</a> to download the JFLAP file)
-										</p>
-										<img src = "pow2zeros.png">
-										<p>
-											Below is an animation of this machine running on a string with 8 zeros
-										</p>
-										<img src = "pow2zeros_8step.gif">
-
-										<p>
-											Below is an example of the machine rejecting the string with 6 zeros.  Notice how it gets stuck on the odd state on the second pass.
-										</p>
-
-										<img src = "pow2zeros_6step.gif">
-
-										<h4>UPDATE:</h4>
-										<p>Dylan came up with an machine that does this with only 5 states instead of 6!  <a href = "02n_dylan.jff">Click here to download the JFLAP file</a>, a screenshot of which is shown below</p>
-
-										<img src="02n_dylan.png">
-
-
-
-
-
-
-                                    
                                 </div>
 						</div>
 					</div>

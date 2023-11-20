@@ -55,7 +55,13 @@ Assignment 7 Due
 <!--<a href = "https://ursinus.instructure.com/courses/12825/quizzes/16475">Little-o Module</a> Due Before Class!-->Little-o Module Due Before Class
 
 2023-11-17
-Assignment 8 Due
+<a href = "https://ursinus.instructure.com/courses/16215/quizzes/24576">Undecidability module</a> due
+
+2023-11-21
+<a href = "ClassExercises/Week13_Modules/video1.html">P vs NP Module</a> due before class
+
+2023-11-27
+<HR>Assignment 8 Due
 
 2023-11-27
 <!--<a href = "Assignments/HW10_Undecidability_Uncomputability/index.html">Assignment 9: Undecidability / Complexity</a> Out!-->Assignment 9: Undecidability / Complexity Out
