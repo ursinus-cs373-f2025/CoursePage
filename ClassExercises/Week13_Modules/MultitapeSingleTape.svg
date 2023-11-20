@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="129.45781mm"
+   height="146.35551mm"
+   viewBox="0 0 129.45781 146.35551"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="MultitapeSingleTape.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="2.5620932"
+     inkscape:cx="147.92593"
+     inkscape:cy="227.35317"
+     inkscape:window-width="1551"
+     inkscape:window-height="970"
+     inkscape:window-x="1920"
+     inkscape:window-y="68"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1"
+     showguides="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0">
+    <inkscape:grid
+       type="xygrid"
+       id="grid25935"
+       originx="-38.846528"
+       originy="-47.640442" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path25440" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-38.846529,-47.640446)">
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.127903;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect846"
+       width="43.935669"
+       height="2.6557686"
+       x="57.716202"
+       y="64.515869" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.82223px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="63.107384"
+       y="62.462975"
+       id="text8430"><tspan
+         sodipodi:role="line"
+         id="tspan8428"
+         style="stroke-width:0.264583"
+         x="63.107384"
+         y="62.462975" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.82223px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="45.793713"
+       y="49.784679"
+       id="text10912"><tspan
+         sodipodi:role="line"
+         id="tspan10910"
+         style="stroke-width:0.264583"
+         x="45.793713"
+         y="49.784679">Multitape-&gt;Single Tape TM Reduction</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.128326;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect846-5"
+       width="44.234058"
+       height="2.6553454"
+       x="57.684605"
+       y="73.654274" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.127921;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect846-3"
+       width="43.948711"
+       height="2.6557503"
+       x="57.806229"
+       y="83.080238" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.134434;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect846-2"
+       width="15.096443"
+       height="8.538723"
+       x="39.919224"
+       y="53.915462" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.82223px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="41.999489"
+       y="59.165695"
+       id="text17542"><tspan
+         sodipodi:role="line"
+         id="tspan17540"
+         style="stroke-width:0.264583"
+         x="41.999489"
+         y="59.165695">Control</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.82223px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="58.72805"
+       y="66.784645"
+       id="text19946"><tspan
+         sodipodi:role="line"
+         id="tspan19944"
+         style="stroke-width:0.264583"
+         x="58.72805"
+         y="66.784645">0 1 1 0</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.82223px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="58.707859"
+       y="75.930359"
+       id="text21834"><tspan
+         sodipodi:role="line"
+         id="tspan21832"
+         style="stroke-width:0.264583"
+         x="58.707859"
+         y="75.930359">1 1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.82223px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="58.843575"
+       y="85.342239"
+       id="text24184"><tspan
+         sodipodi:role="line"
+         id="tspan24182"
+         style="stroke-width:0.264583"
+         x="58.843575"
+         y="85.342239">1 1 0 </tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       d="m 55.097764,57.912428 6.721147,0.02965 0.124271,5.900905"
+       id="path25355" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       d="m 52.916666,62.177083 v 9.260416 l 9.260417,10e-7 v 2.645833"
+       id="path26327" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       d="m 48.947916,62.177083 v 18.520833 l 10.583334,10e-7 v 2.645833"
+       id="path26522" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.134434;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect846-2-9"
+       width="15.096443"
+       height="8.538723"
+       x="38.913746"
+       y="93.805473" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.82223px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="40.994011"
+       y="99.055717"
+       id="text17542-1"><tspan
+         sodipodi:role="line"
+         id="tspan17540-2"
+         style="stroke-width:0.264583"
+         x="40.994011"
+         y="99.055717">Control</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.127903;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect846-7"
+       width="43.935669"
+       height="2.6557686"
+       x="57.169994"
+       y="102.81117" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.82223px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="55.536007"
+       y="105.07995"
+       id="text19946-0"><tspan
+         sodipodi:role="line"
+         id="tspan19944-9"
+         style="stroke-width:0.264583"
+         x="55.536007"
+         y="105.07995">#0 1 1 0 # 1 1 # 1 1 0 # </tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.82223px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="61.29113"
+       y="102.54053"
+       id="text39672"><tspan
+         sodipodi:role="line"
+         id="tspan39670"
+         style="stroke-width:0.264583"
+         x="61.29113"
+         y="102.54053">.</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.82223px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="75.319435"
+       y="102.175"
+       id="text42142"><tspan
+         sodipodi:role="line"
+         id="tspan42140"
+         style="stroke-width:0.264583"
+         x="75.319435"
+         y="102.175">.</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.82223px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="81.191208"
+       y="102.04043"
+       id="text42142-3"><tspan
+         sodipodi:role="line"
+         id="tspan42140-6"
+         style="stroke-width:0.264583"
+         x="81.191208"
+         y="102.04043">.</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       d="m 54.102772,97.772819 10.039728,-0.08977 0.234801,4.613691"
+       id="path45920" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.82223px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="61.488079"
+       y="114.34833"
+       id="text48138"><tspan
+         sodipodi:role="line"
+         id="tspan48136"
+         style="stroke-width:0.264583"
+         x="61.488079"
+         y="114.34833">1. Start the single tape TM off with just the first character that </tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         x="61.488079"
+         y="117.87611"
+         id="tspan48788">is under each head</tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         x="61.488079"
+         y="121.4039"
+         id="tspan62781">2. Find where all of the virtual heads are, and record what each</tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         x="61.488079"
+         y="124.93169"
+         id="tspan65141">character under each head is</tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         x="61.488079"
+         y="128.45947"
+         id="tspan71053">3. Enact the transition. Rewind and go to each tape where the virtual</tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         x="61.488079"
+         y="131.98726"
+         id="tspan71055">head is, write something if appropriate, and move the virtual head</tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         x="61.488079"
+         y="135.51506"
+         id="tspan71057">right/left/stay</tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         x="61.488079"
+         y="139.04285"
+         id="tspan77809">      3b. I may need to expand (either in the left or in right) how much</tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         x="61.488079"
+         y="142.57063"
+         id="tspan77811">            space a virtual tape is taking up.</tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         x="61.488079"
+         y="146.09842"
+         id="tspan80009">            To do this, move every character afterwards over by one spot</tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         x="61.488079"
+         y="149.62621"
+         id="tspan82957">Repeat steps 2 and 3 until the machine halts</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.82223px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="152.89305"
+       y="116.09834"
+       id="text54144"><tspan
+         sodipodi:role="line"
+         id="tspan54142"
+         style="stroke-width:0.264583"
+         x="152.89305"
+         y="116.09834">#1#1#1#</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.82223px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="156.07996"
+       y="112.81363"
+       id="text42142-0"><tspan
+         sodipodi:role="line"
+         id="tspan42140-62"
+         style="stroke-width:0.264583"
+         x="156.07996"
+         y="112.81363">.</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.82223px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="160.00711"
+       y="112.69677"
+       id="text42142-6"><tspan
+         sodipodi:role="line"
+         id="tspan42140-1"
+         style="stroke-width:0.264583"
+         x="160.00711"
+         y="112.69677">.</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.82223px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="163.96999"
+       y="112.71694"
+       id="text42142-8"><tspan
+         sodipodi:role="line"
+         id="tspan42140-7"
+         style="stroke-width:0.264583"
+         x="163.96999"
+         y="112.71694">.</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.82223px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="60.569202"
+       y="158.68016"
+       id="text85733"><tspan
+         sodipodi:role="line"
+         id="tspan85731"
+         style="stroke-width:0.264583"
+         x="60.569202"
+         y="158.68016">Given multitape TM takes T steps, how many steps each of these</tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         x="60.569202"
+         y="162.20795"
+         id="tspan85735">reduction actions takes</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 59.798949,118.88985 -5.800277,-0.0716 0.210824,32.55277 6.712927,0.29501"
+       id="path86878" />
+    <text
+       xml:space="preserve"
+       style="font-size:2.82223px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="42.459724"
+       y="135.32974"
+       id="text87908"><tspan
+         sodipodi:role="line"
+         id="tspan87906"
+         style="stroke-width:0.264583"
+         x="42.459724"
+         y="135.32974">T times</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.82223px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="61.465385"
+       y="169.4718"
+       id="text96948"><tspan
+         sodipodi:role="line"
+         id="tspan96946"
+         style="stroke-width:0.264583"
+         x="61.465385"
+         y="169.4718">NOTE: If every single head</tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         x="61.465385"
+         y="172.99959"
+         id="tspan96950">moved to the right at every single step</tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         x="61.465385"
+         y="176.52737"
+         id="tspan96952">them my tapes would each grow to length T.  This means I can</tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         x="61.465385"
+         y="180.05516"
+         id="tspan102068">bound the length of my single tape by k*T, where k is the number of</tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         x="61.465385"
+         y="183.58295"
+         id="tspan102070">tapes I have in my multitape TM</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.82223px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="153.26802"
+       y="121.99725"
+       id="text105518"><tspan
+         sodipodi:role="line"
+         id="tspan105516"
+         style="stroke-width:0.264583"
+         x="153.26802"
+         y="121.99725">O(T)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.82223px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="158.66423"
+       y="142.29698"
+       id="text112596"><tspan
+         sodipodi:role="line"
+         id="tspan112594"
+         style="stroke-width:0.264583"
+         x="158.66423"
+         y="142.29698">O(T)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.82223px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="61.359745"
+       y="193.62389"
+       id="text115152"><tspan
+         sodipodi:role="line"
+         id="tspan115150"
+         style="stroke-width:0.264583"
+         x="61.359745"
+         y="193.62389">O(T^2)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.82223px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="162.39943"
+       y="131.10619"
+       id="text112596-9"><tspan
+         sodipodi:role="line"
+         id="tspan112594-2"
+         style="stroke-width:0.264583"
+         x="162.39943"
+         y="131.10619">O(T)</tspan></text>
+  </g>
+</svg>
