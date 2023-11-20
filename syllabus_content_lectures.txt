@@ -171,9 +171,9 @@ Vertex Cover, Subset Sum
 
 <ul><li><a href = "#readings">Sipser</a> Ch. 7.5</li></ul>
 LECTURE
-Nondeterministic Turing Machine Definition of NP
+Graph Coloring, Independent Set
 
-<ul><li><a href = "#readings">Sipser</a> Ch. 7.3</li></ul>
+
 LECTURE
 The Cook-Levin Theorem
 
