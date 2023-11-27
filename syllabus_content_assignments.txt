@@ -61,18 +61,15 @@ Assignment 7 Due
 <a href = "ClassExercises/Week13_Modules/video1.html">P vs NP Module</a> due before class
 
 2023-11-27
-<HR>Assignment 8 Due
+Assignment 8 Due
 
-2023-11-27
-<!--<a href = "Assignments/HW10_Undecidability_Uncomputability/index.html">Assignment 9: Undecidability / Complexity</a> Out!-->Assignment 9: Undecidability / Complexity Out
-
-2023-11-21
+2023-11-29
 <HR>Assignment 9 Out
 
 2023-11-27
-<a href = "FinalProject">Final Project</a> Out
+<HR><a href = "FinalProject">Final Project</a> Out
 
 2023-11-29
 Assignment 9 Due
 
-2023-12-04
+2023-12-06
