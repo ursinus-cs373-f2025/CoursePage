@@ -3,7 +3,7 @@ def f(x):
         return int(x/2)
     return 3*x+1
 
-ns = [11, 13, 111, 174, 373, 2021]
+ns = [11, 13, 111, 174, 373, 2023]
 print("""<html>
 <head>
     <link rel="stylesheet" href="../../assets/css/main.css" />

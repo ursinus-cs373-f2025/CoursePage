@@ -41,7 +41,7 @@
 							<!-- Content -->
 								<section>
 									<header class="main">
-                                        <h2>Homework 9: Uncomputability (11 Points)</h2>
+                                        <h2>Homework 9: Computability (12 Points)</h2>
 										<h3>Chris Tralie</h3>
 									</header>
 
@@ -84,7 +84,7 @@
 
 
 											</p>
-												The author of this <a href = "https://www.quantamagazine.org/why-mathematicians-still-cant-solve-the-collatz-conjecture-20200922/">popular math article on the conjecture</a> recommends that we <i>do not try to solve this math problem.</i>.  However, let's cheat for a moment and suppose that <b>Halt<SUB>TM</SUB></b> is decidable.  Provide a high level description of a machine that outputs whether the Collatz conjecture is true or not, using this hypothetical decidable <b>Halt<SUB>TM</SUB></b> oracle to help you.
+												The author of this <a href = "https://www.quantamagazine.org/why-mathematicians-still-cant-solve-the-collatz-conjecture-20200922/">popular math article on the conjecture</a> recommends that we <i>do not try to solve this math problem.</i>.  However, let's cheat for a moment and suppose that <b>Halt<SUB>TM</SUB></b> is decidable (it most certainly is not, but we can go into a parallel universe where it is for a moment and see what happens).  Provide a high level description of a machine that outputs whether the Collatz conjecture is true or not, using this hypothetical decidable <b>Halt<SUB>TM</SUB></b> decider to help you.
 											</p>
 
 											<p>
@@ -166,7 +166,8 @@
 													
 												</p>
 											<HR>
-											<h3>Problem 3 (3 Points)</h3>					
+											<!--
+												<h3>Problem 3 (3 Points)</h3>					
 												<p>
 													The busy beaver function grows <b>very quickly</b>.  In fact, <b>BB(18)</b> already exceeds <a href = "https://en.wikipedia.org/wiki/Graham%27s_number">Graham's number</a>, one of the biggest numbers ever used in mathematical research (check out <a href = "https://www.youtube.com/watch?v=HX8bihEe3nA">this video</a>, <a href = "https://www.youtube.com/watch?v=txajrEOTkuY">this video</a>, and <a href = "https://www.youtube.com/watch?v=GuigptwlVHo">this video</a>).  But we can show something even stronger and more general about the busy beaver's asymptotic growth.  Let <b>f</b> be <i>any computable function</i> over natural numbers expressed in binary.  Prove that there exists and <b>N<SUB>c</SUB></b> so that <b>BB(N) > f(N)</b> for all <b>N > N<SUB>c</SUB></b>.
 												</p>
@@ -179,6 +180,13 @@
 
 												<p>
 													<b>Hint within hint(!):</b> Since the busy beaver machine starts off with a tape of all 0's, you have to use state memory to load in the input <b>N</b> to <b>f(N)</b>.
+												</p>
+												!-->
+
+												<h3>Problem 3 (4 Points)</h3>
+
+												<p>
+													As an example of the Church-Turing thesis, describe a polynomial time reduction from the <a href = "https://en.wikipedia.org/wiki/Vertex_cover">vertex cover problem</a> to SAT. 
 												</p>
 												
                                     
@@ -251,10 +259,9 @@
 												<li>
 													<a href = "../../Assignments/HW8_Decidability/index.html">HW8: Decidability</a>
 												</li>
-												<!--
 												<li>
-													<a href = "../../Assignments/HW10_Undecidability_Uncomputability/index.html">HW10: Undecidability And Uncomputability</a>
-												</li>!-->
+													<a href = "../../Assignments/HW9_Computability/index.html">HW9: Computability</a>
+												</li>
 											</ul>
 										</li>
                                         <li>
