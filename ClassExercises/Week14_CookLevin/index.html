@@ -1,0 +1,367 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<!-- Header !-->
+	<head>
+		<title>Ursinus CS 373: Theory of Computation, Fall 2023</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="../../assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="../../assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="../../assets/css/ie8.css" /><![endif]-->
+        <style>
+        .image_off, #home:hover .image_on{
+           display:none
+        }
+        .image_on, #home:hover .image_off{
+           display:block
+        }
+        </style>
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="../../index.html" class="logo"><strong>Ursinus CS 373: Theory of Computation, Fall 2023</strong></a>
+								</header>
+<!-- End Header !-->
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h2>Final Project: Solving NP Complete Problems</h2>
+										<h3><a href = "http://www.ctralie.com">Chris Tralie</a></h3>
+									</header>
+
+									<HR>
+									<h2><a name = "hamcycle">Worked Example: Hamiltonian Cycles</a></h2>
+
+									<p>
+										To give you some more pointers, I've worked through a full example that would that would fulfill all of the project requirements: a Hamiltonian Path reduction (though, of course, you'll have to choose a different problem from Hamitonian Path or Hamiltonian Cycle).  The code can be found in <code><a href = "https://github.com/Ursinus-CS373-F2021/NPCompleteReductions/blob/main/src/HamiltonianPath.java">HamiltonianPath.java</a></code> and <code><a href = "https://github.com/Ursinus-CS373-F2021/NPCompleteReductions/blob/main/src/HamiltonianPathCert.java">HamiltonianPathCert.java</a></code>.  In your problem, you should also have two such files.
+									</p>
+									
+									<h3>Generating Random Graphs Containing Hamiltonian Paths</h3>
+									<p>
+										To generate a random Hamiltonian path, I first choose a random permutation using a utility function <code>getShuffledNumbers</code> in <code>NPCompleteProblem.java</code> (FYI this method implements <a href = "https://ursinus-cs371-s2021.github.io/Modules/Module16/Video2">Fisher-Yates shuffling</a>).  You can use this method in your random generation if it helps.  I then add the <b>N-1</b> edges implied by this random permutation to ensure that there is a Hamiltonian path in the graph.  Next, I add an additional <b>O(N<SUP>3/2</SUP>)</b> random edges to make the problem harder.
+									</p>
+
+									<p>
+										Below is a picture explaining this graphically
+									</p>
+
+									<img src = "RandomHampath.svg" width=800>
+
+									<p>
+										As an example in code, let's suppose we executed the following snippet in the main method of <code>HamiltonianPath.java</code>
+										<script type="syntaxhighlighter" class="brush: java"><![CDATA[
+											HamiltonianPath h = new HamiltonianPath();
+											int N = 10;
+											int seed = 0;
+											h.makeRandomProblem(N, seed);
+											h.draw();
+										</script>  
+
+										<p>
+											Then we'll get the following graph with 10 vertices:
+										</p>
+
+										<img src = "Hamiltonian_10_0.png" width=300>
+
+										<p>
+											As another example, suppose we have this code
+										</p>
+
+										<script type="syntaxhighlighter" class="brush: java"><![CDATA[
+											HamiltonianPath h = new HamiltonianPath();
+											int N = 20;
+											int seed = 9;
+											h.makeRandomProblem(N, seed);
+											h.draw();
+										</script>  
+
+										<p>
+											Then we'll get the following graph with 20 vertices:
+										</p>
+
+										<img src = "Hamiltonian_20_9.png" width=300>
+
+									</p>
+
+
+									<h3><a name = "hamcertificate">Hamiltonian Path Certificate Generation</a></h3>
+									<p>
+										To convert reduce a Hamiltonian path problem into a CNF form, I used <b>O(N<SUP>2</SUP>)</b> variables: one for each element in the permutation and one for each possible vertex choice at that permutation index.  That is, <b>x<SUB>ij</SUB> = true</b> if the <b>i<SUP>th</SUP></b> element in the path is vertex <b>j</b>.  Then, I had to enforce a number of conditions by constructing <b>O(N<SUP>3</SUP>)</b> clauses:
+									</p>
+									
+									<h4>1. Each Graph Vertex Must Appear</h4>
+										<p>
+											Each vertex <code>j</code> must appear in the path more than 0 times (<a href = "https://github.com/Ursinus-CS373-F2021/NPCompleteReductions/blob/2eb93faea6de05c0ef7ad922a836ccd0e889e87a/src/HamiltonianPath.java#L79">click here</a> to jump to this section in the code).  In other words, a clause of the form
+										</p>
+										<div style="width:100px;">
+										\[ (x_{1j} \vee x_{2j} \vee ... \vee x_{Nj}) \]
+										</div>
+										<p>
+											must be part of the CNF formula for each <b>j = 1, 2, ..., N</b>.
+										</p>
+									
+									<h4>2. No Vertex Should Appear More Than Once on The Path</h4>
+									<p>
+										Each vertex <b>j</b> must appear at most once in the Hamiltonian path (<a href = "https://github.com/Ursinus-CS373-F2021/NPCompleteReductions/blob/2eb93faea6de05c0ef7ad922a836ccd0e889e87a/src/HamiltonianPath.java#L104">Click here</a> to jump to this section in code).  Written as an implication, this translates into 
+									</p>
+
+									<div style="width:100px;">
+										\[ x_{ij} \implies \neg x_{kj}, \text{ for all } i, j, k, i \neq k \]
+									</div>
+
+									<p>
+										Converting into CNF form, this is the clause 
+									</p>
+
+									<div style="width:100px;">
+										\[ (\neg x_{ij} \vee \neg x_{kj}), \text{ for all } i, j, k, i \neq k \]
+									</div>
+
+									<p>
+										Note that there are <b>O(N<SUP>3</SUP>)</b> of these 2-element clauses
+									</p>
+
+									<h4>3. At Most One Vertex At Each Path Index</h4>
+									<p>
+										There is at most one vertex at each index <b>i</b> of the path (<a href = "https://github.com/Ursinus-CS373-F2021/NPCompleteReductions/blob/2eb93faea6de05c0ef7ad922a836ccd0e889e87a/src/HamiltonianPath.java#L133">Click here</a> to jump to code).  Written as an implication, this translates into 
+									</p>
+
+									<div style="width:100px;">
+										\[ x_{ij} \implies \neg x_{ik}, \text{ for all } i, j, k, j \neq k \]
+									</div>
+
+									Xij -> not Xkj for all i, j, k with i != k
+
+									<div style="width:100px;">
+										\[ ( \neg x_{ij} \vee \neg x_{ik}), \text{ for all } i, j, k, j \neq k \]
+									</div>
+
+									<p>
+										There are also <b>O(N<SUP>3</SUP>)</b> of these 2-element clauses.
+									</p>
+
+									<h4>4. Every Path Position Must Be Occupied</h4>
+									<p>
+										Every position on the path must have at most one node (<a href = "https://github.com/Ursinus-CS373-F2021/NPCompleteReductions/blob/2eb93faea6de05c0ef7ad922a836ccd0e889e87a/src/HamiltonianPath.java#L155">Click here</a> to jump to this section of the code)
+									</p>
+
+									<div style="width:100px;">
+										\[ (x_{i1} \vee x_{i2} \vee ... \vee x_{iN}) \text{ for } i = 1, ..., n \]
+									</div>
+
+									<h4>5. The Edges on The Path Must Be Edges on The Graph</h4>
+									<p>
+										Finally, we'll add clauses that enforce that the edges chosen in the path are actually edges on the graph (<a href = "https://github.com/Ursinus-CS373-F2021/NPCompleteReductions/blob/2eb93faea6de05c0ef7ad922a836ccd0e889e87a/src/HamiltonianPath.java#L178">Click here</a> to view the code).  In implication form, this can be written as 
+									</p>
+
+									<div style="width:100px;">
+										\[ x_{ij} \implies \neg x_{i+1,k} \text{ for } i = 1, ..., N-1 \text{ and } (j, k) \text{ is not an edge} \]
+									</div>
+
+									<p>
+										This translates into the following 2-element clauses 
+									</p>
+
+									<div style="width:100px;">
+										\[ (\neg x_{ij} \vee \neg x_{i+1,k}) \text{ for } i = 1, ..., N-1 \text{ and } (j, k) \text{ is not an edge} \]
+									</div>
+
+									<p>
+										Notice that we had to be a bit tricky here since we need ORs in the CNF clauses instead of ANDs.
+									</p>
+
+									
+
+
+
+									<h3>Verifier</h3>
+									<p>
+										<a href = "https://github.com/Ursinus-CS373-F2021/NPCompleteReductions/blob/main/src/HamiltonianPathCert.java">Click here</a> to see code for the certificate constructor and verifier.  This uses the same polynomial time verifier we discussed in class that simply makes sure that each vertex shows up once in that path and that each edge in the path is actually in the graph.  You can see details in the <code><a href = "https://github.com/Ursinus-CS373-F2021/NPCompleteReductions/blob/2eb93faea6de05c0ef7ad922a836ccd0e889e87a/src/HamiltonianPathCert.java#L53">satisfiesProblem</a></code> method in <code>HamiltonianPathCert.java</code>.
+									</p>
+
+									<h3>Putting It All Together</h3>
+
+									<p>
+										I have implemented a method in the <code>HamiltonianPathCert</code> class that draw the line segments in the certificate on top of line segments of the graph that are already there.  If you run the following code
+									</p>
+
+									<script type="syntaxhighlighter" class="brush: java"><![CDATA[
+										HamiltonianPath h = new HamiltonianPath();
+										int N = 20;
+										int seed = 9;
+										h.makeRandomProblem(N, seed);
+										h.draw();
+										CNF c = h.getCNF();
+										boolean[] vals = c.solveDPLL();
+										HamiltonianPathCert cert = new HamiltonianPathCert(vals, N);
+										cert.draw();
+										System.out.println("Satisfies: " + cert.satisfiesProblem(h)); // This should be true
+									</script>  
+
+									<p>
+										Then you'll get this.
+									</p>
+
+
+									<img src = "Hamiltonian_20_9_solution.png">
+
+									<p>
+										You'll find code like this in the <code>main</code> method of the <code>HamiltonianPath</code> class.  For completeness, below is the solution to <b>N = 10, seed = 0</b> shown before
+									</p>
+
+									<img src = "Hamiltonian_10_0_solution.png">
+
+									<p>
+										Feel free to use your own drawing code using the <a href = "https://introcs.cs.princeton.edu/java/stdlib/javadoc/StdDraw.html"><code>StdDraw</code></a> API to help you debug in your problem in a similar way.
+									</p>
+
+
+						</div>
+					</div>
+
+					<!--Syntax highlighting in Javascript!-->
+					<script type="text/javascript" src="../../../syntaxhighlighter/scripts/shCore.js"></script>
+					<script type="text/javascript" src="../../../syntaxhighlighter/scripts/shBrushJScript.js"></script>
+                    <script type="text/javascript" src="../../../syntaxhighlighter/scripts/shBrushCpp.js"></script>
+					<script type="text/javascript" src="../../../syntaxhighlighter/scripts/shBrushXml.js"></script>
+					<script type="text/javascript" src="../../../syntaxhighlighter/scripts/shBrushMatlabSimple.js"></script>
+					<script type="text/javascript" src="../../../syntaxhighlighter/scripts/shBrushJava.js"></script>
+					<link type="text/css" rel="stylesheet" href="../../../syntaxhighlighter/styles/shCoreDefault.css"/>
+					<script type="text/javascript">SyntaxHighlighter.all();</script>
+
+<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+                                        <li>
+											<span class="opener">General</span>
+											<ul>
+												<li><a href = "../../index.html#overview">Overview</a></li>
+												<li><a href = "../../index.html#logistics">Technology Logistics</a></li>
+												<li><a href = "../../index.html#readings">Readings</a></li>
+												<li><a href = "../../index.html#deliverables">Deliverables</a></li>
+												<li><a href = "../../index.html#schedule">Schedule</a></li>
+												<li><a href = "../../index.html#grading">Grading</a></li>
+												<li><a href = "../../index.html#environment">Classroom Environment</a></li>
+												<li><a href = "../../index.html#collaboration">Collaboration Policy</a></li>
+												<li><a href = "../../index.html#other">Other Resources / Policies</a></li>
+											</ul> 
+										</li>
+										<li><a href = "../../Software/index.html">Software</a></li>
+										<li><a href = "../../index.html#schedule">Schedule</a></li>
+										<li><a href = "../../FinalProject/index.html">Final Project</a></li>
+                                        <li>
+											<span class="opener">Assignments</span>
+											<ul>
+												<li>
+													<a href = "../../Assignments/HW1_Discrete/index.html">HW1: Discrete Math Practice</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW2_DFA/index.html">HW2: DFAs</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW3_NFA/index.html">HW3: DFAs And NFAs</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW4_Regexp/index.html">HW4: Regular Expressions And Nonregular Languages</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW5_CFGs/index.html">HW5: Context Free Grammars And Pushdown Automata</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW6_Turing/index.html">HW6: Turing Machines</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW7_Turing2/index.html">HW7: Turing Machines, Turing Enumerators, And Decidability</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW8_Decidability/index.html">HW8: Decidability</a>
+												</li>
+												<li>
+													<a href = "../../Assignments/HW9_Computability/index.html">HW9: Computability</a>
+												</li>
+											</ul>
+										</li>
+                                        <li>
+											<span class="opener">Class Exercises</span>
+											<ul>
+												<li><a href = "../../ClassExercises/Week1_Unplugged">Week 1: Acting Out DFAs</a></li>
+												<li><a href = "../../ClassExercises/Week1_Discrete">Week 1: Discrete Math Review</a></li>
+												<li><a href = "../../ClassExercises/Week1_FridayDFABinary">Week 1: Binary And JFLAP</a>
+													<ul>
+														<li><a href = "../../ClassExercises/Week1_FridayDFABinary/index.html#binary">Binary Drills</a></li>
+														<li><a href = "../../ClassExercises/Week1_FridayDFABinary/index.html#jflap">JFLAP Exercises</a></li>
+													</ul>
+												</li>
+												<li><a href = "../../ClassExercises/Week2_Formal">Week 2: Formal Description of DFAs, Divisibility</a>
+													<ul>
+														<li>
+															<a href = "../../ClassExercises/Week2_Formal/index.html#formalcode">Formal Regular Languages: Code</a>
+														</li>
+													</ul>
+												</li>
+												<li><a href = "../../ClassExercises/Week2_Union">Week 2: Union of Regular Languages</a></li>
+												<li><a href = "../../ClassExercises/Week3_NFAs">Week 3: Nondeterministic Finite Automata (NFAs), Reversing Regular Languages</a></li>
+												<li><a href = "../../ClassExercises/Week3_NFAToDFA">Week 3: NFAs Recognize Regular Languages (i.e. NFAs To DFAS)</a></li>
+												<li><a href = "../../ClassExercises/Week4_NFACode">Week 4: Efficiently Evaluating NFAs in Python with and without Lambda</a></li>
+												<li><a href = "../../ClassExercises/Week4_DFAToRegexp">Week 4: Converting Regular Expressions To DFAs And Back</a></li>
+												<li><a href = "../../ClassExercises/Week4_Grep">Week 4: Grep: Regular Expression Parsing And Evaluating</a></li>
+												<li><a href = "../../ClassExercises/Week5_PumpingLemma">Week 5: The Pumping Lemma</a></li>
+												<li><a href = "../../ClassExercises/Week7_Turing">Week 7/8: Turing Machine Examples</a></li>
+												<li><a href = "../../ClassExercises/Week8_MultitapeTuring">Week 8: Multitape Turing Machine Examples</a></li>
+												<li><a href = "../../ClassExercises/Week10_Decidability">Week 10: Decidability</a></li>
+												<li><a href = "../../ClassExercises/Week11_Infinities">Week 11: Countable And Uncountable Infinities</a></li>
+												<li><a href = "../../ClassExercises/Week12_Undecidability">Week 12: Undecidability</a></li>
+												<li><a href = "../../ClassExercises/Week13_Modules/video1.html">Week 13: The Class P</a></li>
+												<li><a href = "../../ClassExercises/Week13_Modules/video2.html">Week 13: The Class NP</a></li>
+												<li><a href = "../../ClassExercises/Week14_CookLevin">Week 14: Cook Levin Theorem And SAT Solving</a></li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; <a href = "http://www.ctralie.com">Christopher J. Tralie</a>. All rights reserved.  Contact chris.tralie@gmail.com. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+			
+            <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+            <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- End Sidebar !-->
+
+<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/skel.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="../../assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../../assets/js/main.js"></script>
+<!-- End Scripts -->
+	</body>
+</html>
