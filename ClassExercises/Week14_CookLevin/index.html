@@ -41,137 +41,148 @@
 							<!-- Content -->
 								<section>
 									<header class="main">
-										<h2>Final Project: Solving NP Complete Problems</h2>
+										<h2>SAT Solvers: The Practical Side of The Cook-Levin Theorem</h2>
 										<h3><a href = "http://www.ctralie.com">Chris Tralie</a></h3>
 									</header>
 
+									<p>
+										The Cook-Levin theorem states that SAT is NP-complete.  This means we can reduce <b>any</b> problem in NP to SAT in polynomial time.  This includes very difficult problems, such as other NP-complete problems.
+									</p>
+									<p>
+										While the proof of the Cook-Levin theorem uses Turing machine verifiers, there are often more direct ways to reduce a verifier to SAT.  Below, I'll explore a few examples, which you can choose from in the <a href = "../../FinalProject/index.html">final project</a>.  You are certainly free to choose other NP-complete problems; there are tons to choose from!  Check out <a href = "https://en.wikipedia.org/wiki/Karp%27s_21_NP-complete_problems">Karp's 21 classical problems</a>, for instance.  But if you want to do something I'm not describing below, run it by me so we can make sure it's feasible for the final project, since some of the reductions are a bit tricky in practice.  
+									</p>
+
 									<HR>
-									<h2><a name = "hamcycle">Worked Example: Hamiltonian Cycles</a></h2>
+									<h2><a name = "hamcycle">Hamiltonian Cycles</a></h2>
 
-									<p>
-										To give you some more pointers, I've worked through a full example that would that would fulfill all of the project requirements: a Hamiltonian Path reduction (though, of course, you'll have to choose a different problem from Hamitonian Path or Hamiltonian Cycle).  The code can be found in <code><a href = "https://github.com/Ursinus-CS373-F2021/NPCompleteReductions/blob/main/src/HamiltonianPath.java">HamiltonianPath.java</a></code> and <code><a href = "https://github.com/Ursinus-CS373-F2021/NPCompleteReductions/blob/main/src/HamiltonianPathCert.java">HamiltonianPathCert.java</a></code>.  In your problem, you should also have two such files.
-									</p>
+										<p>
+											<img src = "hamcycle.svg" width="90%">
+										</p>
+
+										<p>
+											Here I'll summarize an example that I implemented in python for you already.  You can find the code at <a href = "https://github.com/ursinus-cs373-f2023/CookLevinForReal/blob/main/hamcycle.py">this link</a>.  Below is a video I made walking through this, but I'll summarize the reduction in text in what follows
+										</p>
 									
-									<h3>Generating Random Graphs Containing Hamiltonian Paths</h3>
+										<iframe width="560" height="315" src="https://www.youtube.com/embed/JFRK3OXOK0U?si=7c7_gluKPv0LdqUQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+									
+									<h3>Generating Random Graphs Containing Hamiltonian Cycles</h3>
 									<p>
-										To generate a random Hamiltonian path, I first choose a random permutation using a utility function <code>getShuffledNumbers</code> in <code>NPCompleteProblem.java</code> (FYI this method implements <a href = "https://ursinus-cs371-s2021.github.io/Modules/Module16/Video2">Fisher-Yates shuffling</a>).  You can use this method in your random generation if it helps.  I then add the <b>N-1</b> edges implied by this random permutation to ensure that there is a Hamiltonian path in the graph.  Next, I add an additional <b>O(N<SUP>3/2</SUP>)</b> random edges to make the problem harder.
+										To generate a random Hamiltonian cycle, I first choose a random permutation using <a href = "https://numpy.org/doc/stable/reference/random/generated/numpy.random.permutation.html"><code>np.random.permutation</code></a>.  You can use this method in your random generation if it helps.  I then add the <b>V</b> edges implied by this random permutation to ensure that there is a Hamiltonian cycle in the graph.  Next, I add an additional <b>O(V<SUP>5/4</SUP>)</b> random edges to make the problem harder.
 									</p>
 
 									<p>
-										Below is a picture explaining this graphically
+										Below is a picture explaining this graphically.  Code to do this can be found at <a href = "https://github.com/ursinus-cs373-f2023/CookLevinForReal/blob/a69a6d2f44fdd5c968681d31f5cf35d83d417e9a/hamcycle.py#L17">this link</a>
 									</p>
 
-									<img src = "RandomHampath.svg" width=800>
+									<img src = "RandomHamCycle.svg" width=90%>
 
 									<p>
-										As an example in code, let's suppose we executed the following snippet in the main method of <code>HamiltonianPath.java</code>
-										<script type="syntaxhighlighter" class="brush: java"><![CDATA[
-											HamiltonianPath h = new HamiltonianPath();
-											int N = 10;
-											int seed = 0;
-											h.makeRandomProblem(N, seed);
-											h.draw();
-										</script>  
 
 										<p>
-											Then we'll get the following graph with 10 vertices:
+											Here is an example with 10 vertices, with the certificate superimposed
 										</p>
-
-										<img src = "Hamiltonian_10_0.png" width=300>
+	
+										<img src = "HamCycle_10_0_Sol.svg" width="70%">
 
 										<p>
-											As another example, suppose we have this code
+											Here is another example with 20 vertices
 										</p>
 
-										<script type="syntaxhighlighter" class="brush: java"><![CDATA[
-											HamiltonianPath h = new HamiltonianPath();
-											int N = 20;
-											int seed = 9;
-											h.makeRandomProblem(N, seed);
-											h.draw();
-										</script>  
+										<img src = "HamCycle_20_0_Sol.svg" width="70%">
 
-										<p>
-											Then we'll get the following graph with 20 vertices:
-										</p>
+									</p>
 
-										<img src = "Hamiltonian_20_9.png" width=300>
-
+									<p>
+										So how did we get these solutions?  The notes below explain the reduction
 									</p>
 
 
 									<h3><a name = "hamcertificate">Hamiltonian Path Certificate Generation</a></h3>
+
+
 									<p>
-										To convert reduce a Hamiltonian path problem into a CNF form, I used <b>O(N<SUP>2</SUP>)</b> variables: one for each element in the permutation and one for each possible vertex choice at that permutation index.  That is, <b>x<SUB>ij</SUB> = true</b> if the <b>i<SUP>th</SUP></b> element in the path is vertex <b>j</b>.  Then, I had to enforce a number of conditions by constructing <b>O(N<SUP>3</SUP>)</b> clauses:
+										To convert reduce a Hamiltonian path problem into a CNF form,  we can use <b>O(V<SUP>2</SUP>)</b> variables: one for each element in the permutation and one for each possible vertex choice at that permutation index.  That is, <b>x<SUB>ij</SUB> = true</b> if the <b>i<SUP>th</SUP></b> element in the path is vertex <b>j</b>.  Then, we enforce number of conditions by constructing <b>O(V<SUP>3</SUP>)</b> clauses:
 									</p>
 									
-									<h4>1. Each Graph Vertex Must Appear</h4>
+									<h4><a name = "hamexactly1">1. Each Graph Vertex Must Appear in Exactly one Position</a></h4>
 										<p>
-											Each vertex <code>j</code> must appear in the path more than 0 times (<a href = "https://github.com/Ursinus-CS373-F2021/NPCompleteReductions/blob/2eb93faea6de05c0ef7ad922a836ccd0e889e87a/src/HamiltonianPath.java#L79">click here</a> to jump to this section in the code).  In other words, a clause of the form
+											This breaks down into 3 different parts.  Basically, we ensure that each row and each column have at least one 1 and at most one 1, together ensuring that each row/column has <b>exactly one 1</b>.  This is an example of a <a href = "https://en.wikipedia.org/wiki/Doubly_stochastic_matrix">doubly-stochastic matrix</a>.  Below are the 3 groups of CNF clauses that accomplish this:
 										</p>
-										<div style="width:100px;">
-										\[ (x_{1j} \vee x_{2j} \vee ... \vee x_{Nj}) \]
-										</div>
+
+										<ol>
+
+											<li>
+												<p>
+													Each path index <code>i</code> must be occupied by at least one vertex.  Written as an implication, this translates into 
+												</p>
+			
+												<div style="width:100px;">
+													\[ x_{ij} \implies \neg x_{ik}, \text{ for all } i, j, k, j \neq k \]
+												</div>
+			
+												<p>
+													Converting into CNF form, this is the clause 
+												</p>
+			
+												<div style="width:100px;">
+													\[ (\neg x_{ij} \vee \neg x_{ik}), \text{ for all } i, j, k, j \neq k \]
+												</div>
+			
+												<p>
+													Note that there are <b>O(V<SUP>3</SUP>)</b> of these 2-element clauses
+												</p>
+											</li>
+											<li>
+												<p>
+													Each vertex <code>j</code> must appear at most once in the Hamiltonian path.  Written as an implication, this translates into 
+												</p>
+			
+												<div style="width:100px;">
+													\[ x_{ij} \implies \neg x_{kj}, \text{ for all } i, j, k, i \neq k \]
+												</div>
+			
+												<p>
+													Converting into CNF form, this is the clause 
+												</p>
+			
+												<div style="width:100px;">
+													\[ (\neg x_{ij} \vee \neg x_{kj}), \text{ for all } i, j, k, i \neq k \]
+												</div>
+			
+												<p>
+													Note that there are <b>O(V<SUP>3</SUP>)</b> of these 2-element clauses
+												</p>
+											</li>
+
+											<li>
+												<p>
+													Every index <code>i</code> on the path must have at least one node
+												</p>
+			
+												<div style="width:100px;">
+													\[ (x_{0,1} \vee x_{i,2} \vee ... \vee x_{i,V-1}) \text{ for } i = 0, 1, ..., V-1 \]
+												</div>
+													<p>
+														must be part of the CNF formula for each <b>j = 0, 1, 2, ..., V-1</b>.  The total size of all of these is <b>O(V<SUP>2</SUP>)</b>
+													</p>
+											</li>
+											
+										</ol>
+
 										<p>
-											must be part of the CNF formula for each <b>j = 1, 2, ..., N</b>.
+											<a href = "https://github.com/ursinus-cs373-f2023/CookLevinForReal/blob/a69a6d2f44fdd5c968681d31f5cf35d83d417e9a/hamcycle.py#L81">Click here</a> to see these implemented in code
 										</p>
+										
 									
-									<h4>2. No Vertex Should Appear More Than Once on The Path</h4>
+
+									<h4>2. The Edges on The Path Must Be Edges on The Graph</h4>
 									<p>
-										Each vertex <b>j</b> must appear at most once in the Hamiltonian path (<a href = "https://github.com/Ursinus-CS373-F2021/NPCompleteReductions/blob/2eb93faea6de05c0ef7ad922a836ccd0e889e87a/src/HamiltonianPath.java#L104">Click here</a> to jump to this section in code).  Written as an implication, this translates into 
+										Finally, we'll add clauses that enforce that the edges chosen in the path are actually edges on the graph.  In implication form, this can be written as 
 									</p>
 
 									<div style="width:100px;">
-										\[ x_{ij} \implies \neg x_{kj}, \text{ for all } i, j, k, i \neq k \]
-									</div>
-
-									<p>
-										Converting into CNF form, this is the clause 
-									</p>
-
-									<div style="width:100px;">
-										\[ (\neg x_{ij} \vee \neg x_{kj}), \text{ for all } i, j, k, i \neq k \]
-									</div>
-
-									<p>
-										Note that there are <b>O(N<SUP>3</SUP>)</b> of these 2-element clauses
-									</p>
-
-									<h4>3. At Most One Vertex At Each Path Index</h4>
-									<p>
-										There is at most one vertex at each index <b>i</b> of the path (<a href = "https://github.com/Ursinus-CS373-F2021/NPCompleteReductions/blob/2eb93faea6de05c0ef7ad922a836ccd0e889e87a/src/HamiltonianPath.java#L133">Click here</a> to jump to code).  Written as an implication, this translates into 
-									</p>
-
-									<div style="width:100px;">
-										\[ x_{ij} \implies \neg x_{ik}, \text{ for all } i, j, k, j \neq k \]
-									</div>
-
-									Xij -> not Xkj for all i, j, k with i != k
-
-									<div style="width:100px;">
-										\[ ( \neg x_{ij} \vee \neg x_{ik}), \text{ for all } i, j, k, j \neq k \]
-									</div>
-
-									<p>
-										There are also <b>O(N<SUP>3</SUP>)</b> of these 2-element clauses.
-									</p>
-
-									<h4>4. Every Path Position Must Be Occupied</h4>
-									<p>
-										Every position on the path must have at most one node (<a href = "https://github.com/Ursinus-CS373-F2021/NPCompleteReductions/blob/2eb93faea6de05c0ef7ad922a836ccd0e889e87a/src/HamiltonianPath.java#L155">Click here</a> to jump to this section of the code)
-									</p>
-
-									<div style="width:100px;">
-										\[ (x_{i1} \vee x_{i2} \vee ... \vee x_{iN}) \text{ for } i = 1, ..., n \]
-									</div>
-
-									<h4>5. The Edges on The Path Must Be Edges on The Graph</h4>
-									<p>
-										Finally, we'll add clauses that enforce that the edges chosen in the path are actually edges on the graph (<a href = "https://github.com/Ursinus-CS373-F2021/NPCompleteReductions/blob/2eb93faea6de05c0ef7ad922a836ccd0e889e87a/src/HamiltonianPath.java#L178">Click here</a> to view the code).  In implication form, this can be written as 
-									</p>
-
-									<div style="width:100px;">
-										\[ x_{ij} \implies \neg x_{i+1,k} \text{ for } i = 1, ..., N-1 \text{ and } (j, k) \text{ is not an edge} \]
+										\[ x_{ij} \implies \neg x_{(i+1)\%V,k} \text{ for } i = 0, ..., V-1 \text{ and } (j, k) \text{ is not an edge} \]
 									</div>
 
 									<p>
@@ -179,57 +190,99 @@
 									</p>
 
 									<div style="width:100px;">
-										\[ (\neg x_{ij} \vee \neg x_{i+1,k}) \text{ for } i = 1, ..., N-1 \text{ and } (j, k) \text{ is not an edge} \]
+										\[ (\neg x_{ij} \vee \neg x_{(i+1)\%V,k}) \text{ for } i = 0, ..., V-1 \text{ and } (j, k) \text{ is not an edge} \]
 									</div>
 
 									<p>
 										Notice that we had to be a bit tricky here since we need ORs in the CNF clauses instead of ANDs.
 									</p>
 
-									
-
-
-
-									<h3>Verifier</h3>
+									<HR>
+									<h2><a name = "kclique">K-Clique</a></h2>
 									<p>
-										<a href = "https://github.com/Ursinus-CS373-F2021/NPCompleteReductions/blob/main/src/HamiltonianPathCert.java">Click here</a> to see code for the certificate constructor and verifier.  This uses the same polynomial time verifier we discussed in class that simply makes sure that each vertex shows up once in that path and that each edge in the path is actually in the graph.  You can see details in the <code><a href = "https://github.com/Ursinus-CS373-F2021/NPCompleteReductions/blob/2eb93faea6de05c0ef7ad922a836ccd0e889e87a/src/HamiltonianPathCert.java#L53">satisfiesProblem</a></code> method in <code>HamiltonianPathCert.java</code>.
+										A <b>k-clique</b> in a graph is a set of <b>k</b> vertices with each pair connected by an edge in the graph.  <b>k-clique</b> is NP-complete.  The picture below shows a 5-clique in a graph with 20 vertices:
 									</p>
-
-									<h3>Putting It All Together</h3>
+									<img src = "5Clique_20_Solved.svg" width="60%">
 
 									<p>
-										I have implemented a method in the <code>HamiltonianPathCert</code> class that draw the line segments in the certificate on top of line segments of the graph that are already there.  If you run the following code
+										The graph below has 80 vertices and 502 edges (<a href = "80_10.csv">click here</a> to download the edges).  Can you find the 10-clique? 🤣
 									</p>
 
-									<script type="syntaxhighlighter" class="brush: java"><![CDATA[
-										HamiltonianPath h = new HamiltonianPath();
-										int N = 20;
-										int seed = 9;
-										h.makeRandomProblem(N, seed);
-										h.draw();
-										CNF c = h.getCNF();
-										boolean[] vals = c.solveDPLL();
-										HamiltonianPathCert cert = new HamiltonianPathCert(vals, N);
-										cert.draw();
-										System.out.println("Satisfies: " + cert.satisfiesProblem(h)); // This should be true
-									</script>  
+									<img src = "10Clique_80.svg" width="90%">
 
 									<p>
-										Then you'll get this.
+										To hide the clique, I <b>added random edges until the degree of each vertex was at least 10, and I expect you to do something similar in your implementation if you choose this problem</b>.  In this case, there are 80!/((70!)*(10!)) subsets of size 10, or <b>over 1.6 trillion</b> subsets we'd need to check in a brute force algorithm!  But our framework can solve this problem more efficiently with the right SAT reduction:
 									</p>
 
-
-									<img src = "Hamiltonian_20_9_solution.png">
+									<img src = "10Clique_80_Solved.svg" width="90%">
 
 									<p>
-										You'll find code like this in the <code>main</code> method of the <code>HamiltonianPath</code> class.  For completeness, below is the solution to <b>N = 10, seed = 0</b> shown before
+										How do we do this?  The reduction is actually quite similar to hamiltonian cycle.  For <b>V</b> vertices and a clique of size <b>K</b>, we'll create <b>KxV</b> variables.  We can think of arranging these in a 2D array where each row is an index into the clique, and each column is a choice of vertex.
 									</p>
 
-									<img src = "Hamiltonian_10_0_solution.png">
+									<h4>1. Exactly one 1 in each row/column</h4>
+									<p>
+										<a href = "#hamcertificate">As before with Hamiltonian cycle</a>, we'll enforce that there's exactly one 1 in each row/column.  The only difference here is there are only <b>K</b> rows, and <b>K</b> is usually less than <b>V</b>
+									</p>
+
+									<h4>2. Clique uses only edges in the graph</h4>
+									<p>
+										We'll enforce this condition similar to before.  For each edge <b>(i, j)</b> not in the graph, we'll make sure that no pair of rows has chosen both of these vertices.  We can write this as follows
+									</p>
+
+									<div style="width:100px;">
+										<h3>
+											\[ x_{ki} \implies \neg x_{\ell j}, \text{ for all } (i, j) \notin E \text{ for all }, k \neq l \]
+										</h3>
+									</div>
 
 									<p>
-										Feel free to use your own drawing code using the <a href = "https://introcs.cs.princeton.edu/java/stdlib/javadoc/StdDraw.html"><code>StdDraw</code></a> API to help you debug in your problem in a similar way.
+										This is actually a quartic <b>O(K<SUP>2</SUP>V<SUP>2</SUP>)</b> blowup in the worse case where the number of edges <b>E</b> is <b>O(V<SUP>2</SUP>)</b>, but this is still polynomial time.
 									</p>
+
+									<HR>
+										<h2><a name = "vertexcover">Vertex Cover</a></h2>
+										<p>
+											A vertex cover of size <b>k</b> in a graph is a subset of <b>k</b> vertices so that every edge in the graph is adjacent to each one of these vertices.  As an example, below is a graph with 20 vertices and 109 edges (<a href = "Cover15_20.csv">Click here</a> for the edges)
+										</p>
+										<img src = "Cover15_20.svg" width="70%">
+										<p>
+											And below is a vertex cover of size 15 (there are multiple solutions in this case)
+										</p>
+										<img src = "Cover15_20_Solved.svg" width="70%">
+
+										<p>
+											Interestingly, the example below, also with 20 vertices and 109 edges (<a href = "Cover10_20.csv">click here</a> for the edges) is more visually apparent, but glucose had a much harder time finding the vertex cover of size 10 in this one
+										</p>
+
+										<img src = "Cover10_20_Solved.svg" width="70%">
+
+
+										<p>
+											The reduction here is very similar to K-clique, but the edge enforcing conditions are even easier
+										</p>
+
+										<h4>1. Exactly one 1 in each row/column</h4>
+										<p>
+											This is exactly the same as in K-clique
+										</p>
+
+										<h4>2. Every edge is covered</h4>
+										<p>
+											For every edge <b>(i, j)</b>, we want to make sure that either vertex i or vertex j is chosen in at least one row.  This is simply 
+										</p>
+
+										<div style="width:100px;">
+											<h3>
+												\[ (x_{0i} \vee x_{1i} \vee ... x_{K-1, i} \vee x_{0j} \vee x_{1j} \vee ... x_{K-1, j}) \]
+											</h3>
+										</div>
+
+										<p>
+											for each edge <b>(i, j)</b>
+										</p>
+
+
 
 
 						</div>
