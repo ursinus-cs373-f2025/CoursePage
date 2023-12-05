@@ -14710,11 +14710,11 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
     <span class="c1"># Noting that k could actually be on the order of N</span>
     <span class="c1"># This is an O(N^3) verifier</span>
     <span class="p">(</span><span class="n">verts</span><span class="p">,</span> <span class="n">edges</span><span class="p">)</span> <span class="o">=</span> <span class="n">G</span>
-    <span class="n">is_value</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">is_valid</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="k">for</span> <span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">c</span> <span class="n">x</span> <span class="n">c</span><span class="p">:</span> <span class="c1"># O(k^2)</span>
         <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span> <span class="c1"># O(E)</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">=</span> <span class="n">e</span><span class="p">:</span>
-                <span class="n">is_value</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="n">is_valid</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="k">return</span> <span class="n">is_valid</span>
 </pre></div>
 
