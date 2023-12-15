@@ -8,7 +8,7 @@
    version="1.1"
    id="svg5"
    inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
-   sodipodi:docname="hampath.svg"
+   sodipodi:docname="hamcycle.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -28,12 +28,12 @@
      fit-margin-right="0"
      fit-margin-bottom="0"
      inkscape:zoom="1.8116734"
-     inkscape:cx="197.33137"
+     inkscape:cx="606.89747"
      inkscape:cy="123.09062"
      inkscape:window-width="1504"
      inkscape:window-height="947"
      inkscape:window-x="2137"
-     inkscape:window-y="97"
+     inkscape:window-y="96"
      inkscape:window-maximized="0"
      inkscape:current-layer="layer1"
      showguides="false">
@@ -767,19 +767,19 @@
          x="114.92776"
          y="130.10941">1</tspan></text>
     <rect
-       style="fill:none;stroke:#000000;stroke-width:0.279509;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:none;stroke:#000000;stroke-width:0.282103;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect201361"
-       width="55.238491"
-       height="74.098572"
-       x="167.26559"
-       y="47.999332" />
+       width="56.270397"
+       height="74.095978"
+       x="167.26689"
+       y="48.000629" />
     <rect
-       style="fill:none;stroke:#000000;stroke-width:0.333061;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:none;stroke:#000000;stroke-width:0.335597;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect212693"
-       width="55.300251"
-       height="7.5698261"
-       x="167.29236"
-       y="48.026108" />
+       width="56.16428"
+       height="7.5672903"
+       x="167.29362"
+       y="48.027374" />
     <rect
        style="fill:none;stroke:#000000;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect276467"
@@ -870,7 +870,7 @@
          id="tspan353712"
          style="stroke-width:0.264583"
          x="190.74197"
-         y="74.358139">(not x[i, j] V not [i, k])</tspan></text>
+         y="74.358139">(not x[i, j] V not x[i, k])</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 185.84156,75.699617 1.68321,-4.883316 1.57728,5.25511"
@@ -948,7 +948,7 @@
          id="tspan353712-2"
          style="stroke-width:0.264583"
          x="190.24759"
-         y="99.219337">(not x[i, j] V not [k, j])</tspan></text>
+         y="99.219337">(not x[i, j] V not x[k, j])</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 185.34717,100.56081 1.68321,-4.883313 1.57728,5.255103"
