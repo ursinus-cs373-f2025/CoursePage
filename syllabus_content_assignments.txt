@@ -1,27 +1,27 @@
 <a href = "Assignments/HW1_Discrete">Assignment 1: Discrete Math Practice</a> Out
 
-2025-08-25
+2025-08-29
 Assignment 1 Due
 
-2025-08-31
+2025-09-03
 <a href = "Assignments/HW2_DFA">Assignment 2: DFAs</a> Out
 
 2025-09-01
 Assignment 2 Due
 
-2025-09-08
+2025-09-10
 <HR><a href = "Assignments/HW3_NFA">Assignment 3: DFAs And NFAs</a> Out
 
 2025-09-08
 Assignment 3 Due
 
-2025-09-16
+2025-09-18
 <a href = "Assignments/HW4_Regexp/index.html">Assignment 4: Regular Expressions and Nonregular Languages</a> Out
 
 2025-09-17
 <a href = "Assignments/HW4_Regexp/index.html#problem1">Assignment 4: Grep</a> Due
 
-2025-09-24
+2025-09-26
 Final deadline for assignment 4
 
 2025-09-29
