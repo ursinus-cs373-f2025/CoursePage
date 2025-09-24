@@ -18,13 +18,13 @@ Assignment 3 Due
 2025-09-21
 <a href = "Assignments/HW4_Regexp/index.html">Assignment 4: Regular Expressions and Nonregular Languages</a> Out
 
-2025-09-17
+2025-09-26
 <a href = "Assignments/HW4_Regexp/index.html#problem1">Assignment 4: Grep</a> Due
 
-2025-09-26
+2025-10-01
 Final deadline for assignment 4
 
-2025-09-29
+2025-10-01
 <HR><a href = "Assignments/HW5_CFGs">Assignment 5: Context Free Grammars</a> Out
 
 2025-09-29
