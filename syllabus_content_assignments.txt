@@ -39,7 +39,7 @@ Last day to drop courses with a "W"
 2025-11-18
 Assignment 6 Due
 
-2025-10-27
+2025-10-29
 <a href = "Assignments/HW7_Turing2">Assignment 7: Turing Machines, Turing Enumerators, And Decidability</a> Out
 
 2025-10-29
