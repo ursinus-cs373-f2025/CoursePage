@@ -36,7 +36,7 @@ Assignment 5 Due
 2025-10-15
 Last day to drop courses with a "W"
 
-2025-11-18
+2025-11-25
 Assignment 6 Due
 
 2025-10-29
@@ -48,7 +48,7 @@ Assignment 7 Due
 2025-11-10
 <HR><a href = "Assignments/HW8_Decidability">Assignment 8: (Un)Decidability</a> Out
 
-2025-11-10
+2025-11-11
 <!--<a href = "https://ursinus.instructure.com/courses/12825/quizzes/16473/">Big-O Module</a> Due Before Class!-->Big-O Module Due Before Class
 
 2025-11-14
