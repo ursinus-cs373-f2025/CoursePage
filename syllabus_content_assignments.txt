@@ -51,13 +51,13 @@ Assignment 7 Due
 2025-11-10
 <!--<a href = "https://ursinus.instructure.com/courses/12825/quizzes/16473/">Big-O Module</a> Due Before Class!-->Big-O Module Due Before Class
 
-2025-11-12
+2025-11-14
 <!--<a href = "https://ursinus.instructure.com/courses/12825/quizzes/16475">Little-o Module</a> Due Before Class!-->Little-o Module Due Before Class
 
 2025-11-14
 <a href = "https://ursinus.instructure.com/courses/16215/quizzes/24576">Undecidability module</a> due
 
-2025-11-18
+2025-11-17
 <a href = "ClassExercises/Week13_Modules/video1.html">P vs NP Module</a> due before class
 
 2025-11-24
